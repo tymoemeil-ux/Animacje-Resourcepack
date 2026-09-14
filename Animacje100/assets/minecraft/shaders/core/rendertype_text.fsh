@@ -19,6 +19,9 @@ uniform vec4 FogColor;
 #moj_import <noise_effect.glsl>
 #moj_import <liquid_effect.glsl>
 #moj_import <water_effect.glsl>
+#moj_import <shimmer_effect.glsl>
+#moj_import <sparkle_effect.glsl>
+#moj_import <flame_effect.glsl>
 
 uniform sampler2D Sampler0;
 
@@ -106,6 +109,24 @@ void main() {
         return;
     } else if (effectID == 10) {
         applyWaterEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+                         fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+                         GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 11) {
+        applyShimmerEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+                           fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+                           GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 12) {
+        applySparkleEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+                           fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+                           GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 13) {
+        applyFlameEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
                          fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
                          GameTime, Sampler0, fragColor);
         fragColor.a *= fshDisplayAlpha;

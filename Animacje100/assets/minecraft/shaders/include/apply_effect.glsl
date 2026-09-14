@@ -272,6 +272,70 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         applyOffset(vertex);
     }
 
+    if (flagPopcorn) {
+        float pCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float pPhase = fract(pCharId * 0.25 - GameTime * paramPopcornSpeed);
+        if (pPhase < 0.35) {
+            float pPop = sin(pPhase / 0.35 * PI) * paramPopcornSize * 4.0;
+            float pVid = mod(float(gl_VertexID), 4.0);
+            vec2 pDir = vec2(0.0);
+            if (pVid < 0.5) pDir = vec2(-1.0, -1.0);
+            else if (pVid < 1.5) pDir = vec2(-1.0, 1.0);
+            else if (pVid < 2.5) pDir = vec2(1.0, 1.0);
+            else pDir = vec2(1.0, -1.0);
+            pDir *= vec2(0.7, 1.0);
+            setOffset(pDir.x * pPop, pDir.y * pPop);
+            applyOffset(vertex);
+        }
+    }
+
+    if (flagEksplozja) {
+        float eCharId = floor(float(gl_VertexID) / 4.0);
+        float eDir1 = random(vec2(eCharId, 3.0)) - 0.5;
+        float eDir2 = random(vec2(eCharId, 4.0)) - 0.5;
+        float eProgress = fract(GameTime * paramEksplozjaSpeed);
+        float eDist = eProgress * eProgress * paramEksplozjaRadius;
+        setOffset(eDir1 * 2.0 * eDist, eDir2 * 2.0 * eDist);
+        applyOffset(vertex);
+    }
+
+    if (flagWinda) {
+        float wvCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float wvRange = 30.0;
+        float wvPos = mod(GameTime * paramWindaSpeed * 120.0 + wvCharId * 7.0, wvRange);
+        setOffset(0.0, wvPos - wvRange);
+        applyOffset(vertex);
+    }
+
+    if (flagDeszcz) {
+        float dzCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float dzRange = 30.0;
+        float dzPos = mod(GameTime * paramDeszczSpeed * 120.0 + dzCharId * 7.0, dzRange);
+        setOffset(0.0, dzPos);
+        applyOffset(vertex);
+    }
+
+    if (flagMrugacz) {
+        float mCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float mStep = floor(GameTime * paramMrugaczSpeed * 8.0);
+        float mOn = step(0.5, noise(mCharId * 3.7 + mStep * 1.3));
+        if (mOn < 0.5) {
+            setOffset(0.0, 100000.0);
+            applyOffset(vertex);
+        }
+    }
+
+    if (flagSkoczki) {
+        float sCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float sPhase = fract(GameTime * paramSkoczkiSpeed - sCharId * 0.15);
+        float sVid = mod(float(gl_VertexID), 4.0);
+        if (sVid == 0.0 || sVid == 3.0) {
+            float sBounce = abs(cos(sPhase * PI * 2.0)) * paramSkoczkiAmplitude;
+            setOffset(0.0, sBounce);
+            applyOffset(vertex);
+        }
+    }
+
     float preX = vertex.x;
     float preY = vertex.y;
 
@@ -441,6 +505,18 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         fshEffectID = 10.0;
         fshEffectColor = paramWaterColor;
         fshEffectParams = vec4(paramWaterLevel, paramWaterAmplitude, paramWaterSpeed, paramWaterFrequency);
+    } else if (flagBlask) {
+        fshEffectID = 11.0;
+        fshEffectColor = paramBlaskColor;
+        fshEffectParams = vec4(paramBlaskIntensity, paramBlaskSpeed, paramBlaskWidth, 0.0);
+    } else if (flagIskry) {
+        fshEffectID = 12.0;
+        fshEffectColor = paramIskryColor;
+        fshEffectParams = vec4(paramIskryIntensity, paramIskrySpeed, paramIskryDensity, 0.0);
+    } else if (flagPlomien) {
+        fshEffectID = 13.0;
+        fshEffectColor = vec4(1.0, 0.5, 0.1, 1.0);
+        fshEffectParams = vec4(paramPlomienIntensity, paramPlomienSpeed, 0.0, 0.0);
     }
 
     fshGlyphT0 = vec3(0.0);
@@ -448,7 +524,8 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
     fshGlyphT2 = vec3(0.0);
     fshGlyphT3 = vec3(0.0);
     if (flagOutline || flagNeon || flagHatch || flagSplit ||
-        flagChromatic || flagExtrude || flagNoise || flagLiquid || flagWater) {
+        flagChromatic || flagExtrude || flagNoise || flagLiquid || flagWater ||
+        flagBlask || flagIskry || flagPlomien) {
         int vid_glyph = gl_VertexID % 4;
         if (vid_glyph == 0) fshGlyphT0 = vec3(UV0, 1.0);
         if (vid_glyph == 1) fshGlyphT2 = vec3(UV0, 1.0);
@@ -472,6 +549,10 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
 
     if (flagBreathe) {
         vertexColor.a *= 0.55 + 0.45 * (sin(GameTime * paramBreatheSpeed * 2.0) * 0.5 + 0.5);
+    }
+
+    if (flagEksplozja) {
+        vertexColor.a *= 1.0 - fract(GameTime * paramEksplozjaSpeed) * 0.8;
     }
 
 

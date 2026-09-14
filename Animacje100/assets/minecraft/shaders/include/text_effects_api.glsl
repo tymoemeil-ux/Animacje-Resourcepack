@@ -49,6 +49,15 @@ bool flagErase = false;
 bool flagHeartbeat = false;
 bool flagFlicker = false;
 bool flagBreathe = false;
+bool flagBlask = false;
+bool flagIskry = false;
+bool flagPlomien = false;
+bool flagPopcorn = false;
+bool flagEksplozja = false;
+bool flagWinda = false;
+bool flagDeszcz = false;
+bool flagMrugacz = false;
+bool flagSkoczki = false;
 
 
 float paramShakeSpeed = SHAKE_SPEED;
@@ -136,6 +145,25 @@ float paramHeartbeatSize = HEARTBEAT_SIZE;
 float paramFlickerSpeed = FLICKER_SPEED;
 float paramFlickerIntensity = FLICKER_INTENSITY;
 float paramBreatheSpeed = BREATHE_SPEED;
+vec4 paramBlaskColor = BLASK_COLOR;
+float paramBlaskIntensity = BLASK_INTENSITY;
+float paramBlaskSpeed = BLASK_SPEED;
+float paramBlaskWidth = BLASK_WIDTH;
+vec4 paramIskryColor = ISKRY_COLOR;
+float paramIskryIntensity = ISKRY_INTENSITY;
+float paramIskrySpeed = ISKRY_SPEED;
+float paramIskryDensity = ISKRY_DENSITY;
+float paramPlomienIntensity = PLOMIEN_INTENSITY;
+float paramPlomienSpeed = PLOMIEN_SPEED;
+float paramPopcornSpeed = POPCORN_SPEED;
+float paramPopcornSize = POPCORN_SIZE;
+float paramEksplozjaSpeed = EKSPLOZJA_SPEED;
+float paramEksplozjaRadius = EKSPLOZJA_RADIUS;
+float paramWindaSpeed = WINDA_SPEED;
+float paramDeszczSpeed = DESZCZ_SPEED;
+float paramMrugaczSpeed = MRUGACZ_SPEED;
+float paramSkoczkiSpeed = SKOCZKI_SPEED;
+float paramSkoczkiAmplitude = SKOCZKI_AMPLITUDE;
 
 
 vec3 rgb(float r, float g, float b) {
@@ -215,7 +243,9 @@ bool hasAnyEffect() {
            flagAurora || flagSplit || flagOutline || flagHatch || flagNeon ||
            flagColorOverride || flagChromatic || flagExtrude || flagNoise || flagLiquid || flagWater || flagBob || flagSway || flagZigzag || flagWobble ||
            flagFall || flagRise || flagOrbit || flagDrift || flagTypewriter ||
-           flagErase || flagHeartbeat || flagFlicker || flagBreathe;
+           flagErase || flagHeartbeat || flagFlicker || flagBreathe ||
+           flagBlask || flagIskry || flagPlomien || flagPopcorn || flagEksplozja ||
+           flagWinda || flagDeszcz || flagMrugacz || flagSkoczki;
 }
 
 
@@ -859,4 +889,123 @@ void apply_breathe() {
 void apply_breathe(float speed) {
     flagBreathe = true;
     paramBreatheSpeed = speed;
+}
+
+void apply_blask() {
+    flagBlask = true;
+}
+
+void apply_blask(float intensity, float speed, float width) {
+    flagBlask = true;
+    paramBlaskIntensity = intensity;
+    paramBlaskSpeed = speed;
+    paramBlaskWidth = width;
+}
+
+void apply_blask(float intensity) {
+    flagBlask = true;
+    paramBlaskIntensity = intensity;
+}
+
+void apply_iskry() {
+    flagIskry = true;
+}
+
+void apply_iskry(float intensity, float speed, float density) {
+    flagIskry = true;
+    paramIskryIntensity = intensity;
+    paramIskrySpeed = speed;
+    paramIskryDensity = density;
+}
+
+void apply_iskry(float intensity) {
+    flagIskry = true;
+    paramIskryIntensity = intensity;
+}
+
+void apply_plomien() {
+    flagPlomien = true;
+}
+
+void apply_plomien(float speed) {
+    flagPlomien = true;
+    paramPlomienSpeed = speed;
+}
+
+void apply_plomien(float intensity, float speed) {
+    flagPlomien = true;
+    paramPlomienIntensity = intensity;
+    paramPlomienSpeed = speed;
+}
+
+void apply_popcorn() {
+    flagPopcorn = true;
+}
+
+void apply_popcorn(float speed) {
+    flagPopcorn = true;
+    paramPopcornSpeed = speed;
+}
+
+void apply_popcorn(float speed, float size) {
+    flagPopcorn = true;
+    paramPopcornSpeed = speed;
+    paramPopcornSize = size;
+}
+
+void apply_eksplozja() {
+    flagEksplozja = true;
+}
+
+void apply_eksplozja(float speed) {
+    flagEksplozja = true;
+    paramEksplozjaSpeed = speed;
+}
+
+void apply_eksplozja(float speed, float radius) {
+    flagEksplozja = true;
+    paramEksplozjaSpeed = speed;
+    paramEksplozjaRadius = radius;
+}
+
+void apply_winda() {
+    flagWinda = true;
+}
+
+void apply_winda(float speed) {
+    flagWinda = true;
+    paramWindaSpeed = speed;
+}
+
+void apply_deszcz() {
+    flagDeszcz = true;
+}
+
+void apply_deszcz(float speed) {
+    flagDeszcz = true;
+    paramDeszczSpeed = speed;
+}
+
+void apply_mrugacz() {
+    flagMrugacz = true;
+}
+
+void apply_mrugacz(float speed) {
+    flagMrugacz = true;
+    paramMrugaczSpeed = speed;
+}
+
+void apply_skoczki() {
+    flagSkoczki = true;
+}
+
+void apply_skoczki(float speed) {
+    flagSkoczki = true;
+    paramSkoczkiSpeed = speed;
+}
+
+void apply_skoczki(float speed, float amplitude) {
+    flagSkoczki = true;
+    paramSkoczkiSpeed = speed;
+    paramSkoczkiAmplitude = amplitude;
 }

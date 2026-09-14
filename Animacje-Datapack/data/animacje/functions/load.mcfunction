@@ -1,0 +1,1 @@
+tellraw @a {text:"[Animacje] ", color:"#E8E800", extra:[{text:"Datapack wgrany. Rozkazy: /function animacje:tag | animacje:nick | animacje:reset | animacje:hologram | animacje:hologram_nazwa | animacje:hologram_usun", color:"gray"}]}

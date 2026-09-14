@@ -103,7 +103,23 @@ EFFECTS = {
     "animacja:noise_glitch": "#F0F084",
     "animacja:split_shake": "#F0F088",
     "animacja:outline_bouncy": "#F0F08C",
-    "animacja:mega": "#F0F090"
+    "animacja:mega": "#F0F090",
+    "animacja:blask": "#E8E800",
+    "animacja:blask_wave": "#E8E804",
+    "animacja:blask_shake": "#E8E808",
+    "animacja:iskry": "#E8E80C",
+    "animacja:iskry_float": "#E8E810",
+    "animacja:iskry_bouncy": "#E8E814",
+    "animacja:plomien": "#E8E818",
+    "animacja:plomien_wave": "#E8E81C",
+    "animacja:plomien_shake": "#E8E820",
+    "animacja:popcorn": "#E8E824",
+    "animacja:eksplozja": "#E8E828",
+    "animacja:winda": "#E8E82C",
+    "animacja:deszcz": "#E8E830",
+    "animacja:mrugacz": "#E8E834",
+    "animacja:skoczki": "#E8E838",
+    "animacja:mega_blask": "#E8E83C",
 }
 
 

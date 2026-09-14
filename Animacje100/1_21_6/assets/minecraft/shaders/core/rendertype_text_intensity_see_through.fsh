@@ -14,6 +14,9 @@
 #moj_import <minecraft:noise_effect.glsl>
 #moj_import <minecraft:liquid_effect.glsl>
 #moj_import <minecraft:water_effect.glsl>
+#moj_import <minecraft:shimmer_effect.glsl>
+#moj_import <minecraft:sparkle_effect.glsl>
+#moj_import <minecraft:flame_effect.glsl>
 
 uniform sampler2D Sampler0;
 
@@ -47,7 +50,6 @@ out vec4 fragColor;
 void main() {
     vec2 uv = texCoord0;
 
-    // Apply spin effect
     applySpinEffect(uv, spinT0, spinT1, spinT2, spinT3, spinScale, spinFlip, texCoord0, Sampler0);
 
     int effectID = int(fshEffectID + 0.5);
@@ -107,12 +109,28 @@ void main() {
                          GameTime, Sampler0, fragColor);
         fragColor.a *= fshDisplayAlpha;
         return;
+    } else if (effectID == 11) {
+        applyShimmerEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+                           fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+                           GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 12) {
+        applySparkleEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+                           fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+                           GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 13) {
+        applyFlameEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+                         fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+                         GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
     }
 
-    // Intensity variant: texture is R8 (SDF font), sample red channel as alpha
     vec4 color = texture(Sampler0, uv).rrrr * vertexColor * ColorModulator;
 
-    // Create TextData struct for effect processing
     TextData textData;
     textData.uv = uv;
     textData.spinT0 = spinT0;
