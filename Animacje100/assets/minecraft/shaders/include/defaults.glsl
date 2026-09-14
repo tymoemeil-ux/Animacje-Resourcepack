@@ -1,0 +1,138 @@
+
+
+
+
+
+
+
+
+
+#define SHAKE_SPEED 1.0
+#define SHAKE_INTENSITY 1.0
+
+
+#define PULSE_SPEED 20.0
+#define PULSE_SIZE 0.4
+
+
+#define WAVE_SPEED 12000.0
+#define WAVE_AMPLITUDE 0.5
+
+
+#define WAVE_X_FREQUENCY 0.35
+
+
+#define RAINBOW_SPEED 500.0
+
+
+#define BOUNCE_SPEED 3000.0
+#define BOUNCE_AMPLITUDE 1.0
+
+
+#define BLINK_SPEED 0.5
+
+
+#define SPIN_SPEED 2500.0
+#define ONCE_SPIN_SPEED 5000.0
+
+
+#define FADE_SPEED 1.0
+
+
+#define ITERATING_SPEED 1.0
+#define ITERATING_SPACE 1.0
+
+
+#define GLITCH_SPEED 1.0
+#define GLITCH_INTENSITY 2.0
+
+
+#define GLITCH2_SPEED 1.0
+#define GLITCH2_INTENSITY 1.0
+
+
+#define SCALE_FACTOR 1.5
+#define SCALE_OFFSET_X 0.0
+#define SCALE_OFFSET_Y 0.0
+
+
+#define GRADIENT_START vec3(1.0, 0.0, 0.0)
+#define GRADIENT_END vec3(0.0, 0.0, 1.0)
+#define GRADIENT_DIRECTION 0.0
+
+
+#define DYN_GRADIENT_START vec3(1.0, 0.0, 0.0)
+#define DYN_GRADIENT_END vec3(0.0, 0.0, 1.0)
+#define DYN_GRADIENT_DIRECTION 0.0
+#define DYN_GRADIENT_SPEED 500.0
+
+
+#define AURORA_SPEED 500.0
+#define AURORA_COLOR_1 vec3(1.0, 0.3, 0.7)
+#define AURORA_COLOR_2 vec3(0.3, 1.0, 0.6)
+#define AURORA_COLOR_3 vec3(0.4, 0.6, 1.0)
+
+
+#define SPLIT_INTENSITY 1.5
+#define SPLIT_SPEED 1.0
+
+
+#define OUTLINE_COLOR vec4(0.0, 0.0, 0.0, 1.0)
+#define OUTLINE_THICKNESS 1.0
+
+
+#define HATCH_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define HATCH_SPEED 1000.0
+#define HATCH_DENSITY 1.5
+
+
+#define NEON_COLOR vec4(0.5, 0.9, 1.0, 1.0)
+#define NEON_INTENSITY 1.5
+#define NEON_SPEED 1.0
+
+
+#define CHROMATIC_INTENSITY 1.5
+#define CHROMATIC_SPEED 1.0
+
+
+#define EXTRUDE_DEPTH 1.0
+#define EXTRUDE_LAYERS 3.0
+#define EXTRUDE_COLOR vec4(0.0, 0.0, 0.0, 1.0)
+#define EXTRUDE_COLOR2 vec4(0.0, 0.0, 0.0, 1.0)
+#define EXTRUDE_COLOR3 vec4(0.0, 0.0, 0.0, 1.0)
+
+
+#define NOISE_INTENSITY 1.0
+#define NOISE_SPEED 1.0
+
+
+#define LIQUID_INTENSITY 1.0
+#define LIQUID_SPEED 1.0
+
+
+#define WATER_COLOR vec4(0.2, 0.6, 0.95, 1.0)
+#define WATER_LEVEL 0.55
+#define WATER_AMPLITUDE 1.0
+#define WATER_SPEED 1.0
+#define WATER_FREQUENCY 1.5
+
+#define BOB_SPEED 2.0
+#define BOB_AMPLITUDE 3.0
+#define SWAY_SPEED 1.6
+#define SWAY_AMPLITUDE 4.0
+#define ZIGZAG_SPEED 0.5
+#define ZIGZAG_AMPLITUDE 3.0
+#define WOBBLE_SPEED 2.5
+#define WOBBLE_AMPLITUDE 2.5
+#define FALL_SPEED 0.5
+#define RISE_SPEED 0.5
+#define ORBIT_SPEED 3.0
+#define ORBIT_RADIUS 3.0
+#define DRIFT_SPEED 0.4
+#define TYPEWRITER_SPEED 0.5
+#define ERASE_SPEED 0.5
+#define HEARTBEAT_SPEED 1.2
+#define HEARTBEAT_SIZE 0.5
+#define FLICKER_SPEED 1.0
+#define FLICKER_INTENSITY 1.0
+#define BREATHE_SPEED 1.5
