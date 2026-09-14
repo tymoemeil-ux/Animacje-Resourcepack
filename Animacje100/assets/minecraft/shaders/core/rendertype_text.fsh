@@ -22,6 +22,16 @@ uniform vec4 FogColor;
 #moj_import <shimmer_effect.glsl>
 #moj_import <sparkle_effect.glsl>
 #moj_import <flame_effect.glsl>
+#moj_import <laser_effect.glsl>
+#moj_import <holo_effect.glsl>
+#moj_import <glitch_hard_effect.glsl>
+#moj_import <matrix_effect.glsl>
+#moj_import <caustics_effect.glsl>
+#moj_import <warp_effect.glsl>
+#moj_import <krysztal_effect.glsl>
+#moj_import <portal_effect.glsl>
+#moj_import <xray_effect.glsl>
+#moj_import <termowizja_effect.glsl>
 
 uniform sampler2D Sampler0;
 
@@ -129,6 +139,66 @@ void main() {
         applyFlameEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
                          fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
                          GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 14) {
+        applyLaserEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 15) {
+        applyHoloEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 16) {
+        applyGlitchHardEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 17) {
+        applyMatrixEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 18) {
+        applyCausticsEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 19) {
+        applyWarpEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 20) {
+        applyKrysztalEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 21) {
+        applyPortalEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 22) {
+        applyXrayEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 23) {
+        applyTermowizjaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
         fragColor.a *= fshDisplayAlpha;
         return;
     }

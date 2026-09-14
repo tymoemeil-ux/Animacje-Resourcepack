@@ -156,3 +156,46 @@
 #define MRUGACZ_SPEED 1.0
 #define SKOCZKI_SPEED 1.0
 #define SKOCZKI_AMPLITUDE 3.0
+
+#define LASER_COLOR vec4(0.3, 0.9, 1.0, 1.0)
+#define LASER_SPEED 0.5
+#define LASER_WIDTH 0.08
+#define HOLO_COLOR vec4(0.4, 0.9, 1.0, 1.0)
+#define HOLO_SPEED 0.5
+#define HOLO_LINES 20.0
+#define GLITCH_HARD_COLOR vec4(1.0, 0.3, 0.5, 1.0)
+#define GLITCH_HARD_SPEED 1.0
+#define GLITCH_HARD_STRENGTH 1.0
+#define MATRIX_COLOR vec4(0.2, 1.0, 0.4, 1.0)
+#define MATRIX_SPEED 0.6
+#define MATRIX_COLS 8.0
+#define CAUSTICS_COLOR vec4(0.3, 0.8, 1.0, 1.0)
+#define CAUSTICS_SPEED 1.0
+#define CAUSTICS_SCALE 6.0
+#define WARP_COLOR vec4(0.8, 0.4, 1.0, 1.0)
+#define WARP_SPEED 1.0
+#define WARP_STRENGTH 1.0
+#define KRYSTZAL_COLOR vec4(0.7, 0.9, 1.0, 1.0)
+#define KRYSTZAL_SPEED 1.0
+#define KRYSTZAL_CELLS 4.0
+#define PORTAL_COLOR vec4(0.7, 0.4, 1.0, 1.0)
+#define PORTAL_SPEED 1.0
+#define PORTAL_SWIRLS 3.0
+#define XRAY_COLOR vec4(0.3, 1.0, 0.5, 1.0)
+#define XRAY_SPEED 0.5
+#define XRAY_WIDTH 0.1
+#define TERMOWIZJA_COLOR vec4(1.0, 0.5, 0.2, 1.0)
+#define TERMOWIZJA_SPEED 1.0
+#define TERMOWIZJA_CONTRAST 1.2
+#define TORNADO_SPEED 1.0
+#define TORNADO_SIZE 2.0
+#define WAHADLO_SPEED 1.0
+#define WAHADLO_SIZE 3.0
+#define WIBRACJA_SPEED 1.0
+#define WIBRACJA_SIZE 1.0
+#define PRZEGON_SPEED 1.0
+#define PRZEGON_SIZE 3.0
+#define BUMPER_SPEED 1.0
+#define BUMPER_SIZE 4.0
+#define HARMONIJKA_SPEED 1.0
+#define HARMONIJKA_SIZE 2.0

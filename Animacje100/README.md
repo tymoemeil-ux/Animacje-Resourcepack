@@ -1,10 +1,21 @@
 # Animacje 100+
 
-Resourcepack z **116 animacjami tekstu** dla Minecraft Java Edition.
+Resourcepack z **152 animacjami tekstu** dla Minecraft Java Edition.
 
 Napisz tekst w specjalnym kolorze, a client z włączonym packiem wyświetli go z animacją. Na serwerze i u graczy bez packa pozostaje zwykły tekst - animacja działa wyłącznie po stronie klienta.
 
 > Nie jest kompatybilny z innymi packami nadpisującymi shader `rendertype_text`.
+
+## Czym to animuje (nie tylko czat!)
+
+Pack nadpisuje **cały pipeline renderowania tekstu** (wszystkie warianty `rendertype_text`: zwykły, intensity i see-through), więc animowane są:
+
+- czat i wiadomości `/tellraw`
+- tytuły (`/title`) i actionbar
+- **tabliczki** (front i tył)
+- **nazwy manekinów** (armor standy z `CustomName`)
+- tekst w GUI (1.21.4 i nowsze)
+- nick gracza ustawiony przez datapack `Animacje-Datapack` (1.21.11)
 
 ## Instalacja
 
@@ -12,7 +23,7 @@ Napisz tekst w specjalnym kolorze, a client z włączonym packiem wyświetli go 
 2. W opcjach gry włącz pack w sekcji `Pakiety zasobów`
 3. Wpisuj kolory z tabeli poniżej w komendach typu `/tellraw` lub `/title`
 
-Opcjonalnie: datapack `Animacje-Datapack` (Minecraft 1.21.11) do animacji na nickname'ach i hologramach - opis w `TUTORIAL.md`, rozdział 11.
+Opcjonalnie: datapack `Animacje-Datapack` (Minecraft 1.21.11) do animacji na nickname'ach i hologramach - opis w `TUTORIAL.md`, rozdział 9.
 
 ## Szybki start
 
@@ -34,21 +45,43 @@ python3 konwerter.py "<animacja:wave>Test</animacja>"
 /tellraw @a {"text": "Test", "color": "#F8F800"}
 ```
 
-## Nowe, mocniejsze efekty (101-116)
-
-Druga generacja efektów - fragmentowe (renderowane piksel po pikselu) i z pętlami:
+## Nowe efekty - druga generacja (101-116)
 
 - **blask** - błyszczący pas światła przetacza się po literach (jak po złocie)
 - **iskry** - losowe iskierki/gwiazdki rozbłyskują na literach
 - **plomien** - litery płoną (proceduralny ogień z migotaniem)
-- **popcorn** - litery wyskakują na zmianę jak kukurydza
-- **eksplozja** - litery odlatują na zewnątrz i zanikają (pętla)
-- **winda / deszcz** - tekst wjeżdża z dołu / spada jak deszcz (pętle)
-- **mrugacz** - losowe litery znikają i wracają
-- **skoczki** - litery podskakują jak piłeczki
+- **popcorn**, **eksplozja**, **winda**, **deszcz**, **mrugacz**, **skoczki**
 - **mega_blask** - fala + trzęsienie + blask
 
-## 116 animacji
+## Nowe efekty - trzecia generacja (117-152)
+
+Efekty fragmentowe (renderowane piksel po pikselu - najładniejsze):
+
+- **laser** - laserowy skan przeszywający litery
+- **holo** - hologram: scanlines + przesuwający pas + migotanie
+- **glitch_hard** - twardy glicz: bloki wysuwają się, separacja RGB
+- **matrix** - zielony deszcz kodu
+- **caustics** - podwodne kaustyki (sieć światła)
+- **warp** - litery się roztopowują i wirową (zniekształcenie UV)
+- **krysztal** - fasetowany kryształ z przesuwającymi błyskami
+- **portal** - wirujący fioletowy portal
+- **xray** - prześwietlenie: świecące obrysy + linia skanująca
+- **termowizja** - animowana paleta kamery termowizyjnej
+
+Efekty kinetyczne (literki w ruchu):
+
+- **tornado** - litery wirowają
+- **wahadlo** - huśtanie jak wahadła
+- **wibracja** - drżenie
+- **przegon** - fala przelatuje przez litery
+- **bumper** - sekwencyjne podskoki
+- **harmonijka** - składanie/rozchodzenie
+
+Poza tym 20 gotowych kombinacji trzeciej generacji (laser_wavy, holo_float, glitch_killer, matrix_shake, caustics_float, warp_breathe, krysztal_pulse, portal_spin, xray_flicker, thermo_wavy, tornado_rainbow, tornado_blask, wahadlo_gold, przegon_neon, bumper_bouncy, harmonijka_glitch, mega_2, mega_cyber i inne - tabela poniżej).
+
+Wszystkie 152 tagi są animowane - zero statycznych efektów (nawet `up`/`down`/`big`/`small` teraz pulsują/unoszą się).
+
+## 152 animacje
 
 Kolor = tag. Każdy tag ma swój unikalny kolor spustowy.
 
@@ -82,11 +115,11 @@ Kolor = tag. Każdy tag ma swój unikalny kolor spustowy.
 | 26 | `animacja:jump` | `#F8F864` | Skoki liter kolejno |
 | 27 | `animacja:glitch` | `#F8F868` | Glicz / losowe przesunięcia |
 | 28 | `animacja:glitch_soft` | `#F8F86C` | Delikatny glicz |
-| 29 | `animacja:big` | `#F8F870` | Powiększenie x1.5 |
-| 30 | `animacja:huge` | `#F8F874` | Powiększenie x2.5 |
-| 31 | `animacja:small` | `#F8F878` | Pomniejszenie x0.8 |
-| 32 | `animacja:up` | `#F8F87C` | Przesunięcie w górę |
-| 33 | `animacja:down` | `#F8F880` | Przesunięcie w dół |
+| 29 | `animacja:big` | `#F8F870` | Powiększenie x1.5 (pulsuje) |
+| 30 | `animacja:huge` | `#F8F874` | Powiększenie x2.5 (pulsuje) |
+| 31 | `animacja:small` | `#F8F878` | Pomniejszenie x0.8 (pulsuje) |
+| 32 | `animacja:up` | `#F8F87C` | Przesunięcie w górę + unoszenie |
+| 33 | `animacja:down` | `#F8F880` | Przesunięcie w dół + unoszenie |
 | 34 | `animacja:float` | `#F8F884` | Unoszenie góra-dół |
 | 35 | `animacja:sway` | `#F8F888` | Kołysanie na boki |
 | 36 | `animacja:zigzag` | `#F8F88C` | Literki na zmianę w górę/dół |
@@ -170,10 +203,46 @@ Kolor = tag. Każdy tag ma swój unikalny kolor spustowy.
 | 114 | `animacja:mrugacz` | `#E8E834` | Losowe literki znikają i wracają |
 | 115 | `animacja:skoczki` | `#E8E838` | Górne litery podskakują jak piłeczki |
 | 116 | `animacja:mega_blask` | `#E8E83C` | Fala + trzęsienie + blask |
+| 117 | `animacja:laser` | `#E0E004` | Laserowy skan przeszywający litery |
+| 118 | `animacja:holo` | `#E0E008` | Hologram (scanlines + migotanie) |
+| 119 | `animacja:glitch_hard` | `#E0E00C` | Twardy glicz: bloki się wysuwają + separacja RGB |
+| 120 | `animacja:matrix` | `#E0E010` | Zielony deszcz kodu (Matrix) |
+| 121 | `animacja:caustics` | `#E0E014` | Podwodne kaustyki (sieć światła) |
+| 122 | `animacja:warp` | `#E0E018` | Roztapianie / wir UV |
+| 123 | `animacja:krysztal` | `#E0E01C` | Fasetowany kryształ z błyskami |
+| 124 | `animacja:portal` | `#E0E020` | Wirujący portal (fiolet) |
+| 125 | `animacja:xray` | `#E0E024` | Prześwietlenie (świeżąca obrysy + skan) |
+| 126 | `animacja:termowizja` | `#E0E028` | Termowizyjna paleta (ciepło) |
+| 127 | `animacja:tornado` | `#E0E02C` | Literki wirowają jak w tornado |
+| 128 | `animacja:wahadlo` | `#E0E030` | Literki huśtają się jak wahadła |
+| 129 | `animacja:wibracja` | `#E0E034` | Wysokoczęstotliwościowa wibracja |
+| 130 | `animacja:przegon` | `#E0E038` | Fala przeganiająca przez litery |
+| 131 | `animacja:bumper` | `#E0E03C` | Literki podskakują jak piłeczki (sekwencja) |
+| 132 | `animacja:harmonijka` | `#E0E040` | Literki składają się i rozchodzą jak harmonijka |
+| 133 | `animacja:laser_wavy` | `#E0E044` | Laser + fala |
+| 134 | `animacja:laser_shake` | `#E0E048` | Laser + trzęsienie |
+| 135 | `animacja:holo_float` | `#E0E04C` | Hologram + unoszenie |
+| 136 | `animacja:holo_shake` | `#E0E050` | Hologram + trzęsienie |
+| 137 | `animacja:glitch_killer` | `#E0E054` | Twardy glicz + trzęsienie |
+| 138 | `animacja:matrix_shake` | `#E0E058` | Matrix + trzęsienie |
+| 139 | `animacja:caustics_float` | `#E0E05C` | Kaustyki + unoszenie |
+| 140 | `animacja:warp_breathe` | `#E0E060` | Roztapianie + oddech |
+| 141 | `animacja:krysztal_pulse` | `#E0E064` | Kryształ + pulsowanie |
+| 142 | `animacja:portal_spin` | `#E0E068` | Portal + obrót |
+| 143 | `animacja:xray_flicker` | `#E0E06C` | Prześwietlenie + migotanie |
+| 144 | `animacja:thermo_wavy` | `#E0E070` | Termowizja + fala |
+| 145 | `animacja:tornado_rainbow` | `#E0E074` | Tornado + tęcza |
+| 146 | `animacja:tornado_blask` | `#E0E078` | Tornado + blask |
+| 147 | `animacja:wahadlo_gold` | `#E0E07C` | Wahadła + złoto |
+| 148 | `animacja:przegon_neon` | `#E0E080` | Przegon + neon |
+| 149 | `animacja:bumper_bouncy` | `#E0E084` | Bumper + podskoki |
+| 150 | `animacja:harmonijka_glitch` | `#E0E088` | Harmonijka + glicz |
+| 151 | `animacja:mega_2` | `#E0E08C` | Tornado + trzęsienie + blask |
+| 152 | `animacja:mega_cyber` | `#E0E090` | Fala + trzęsienie + twardy glicz |
 
 ## Wszystkie rozkazy /tellraw
 
-Każdy z 116 tagów jako gotowy rozkaz (tekst `Test`):
+Każdy z 152 tagów jako gotowy rozkaz (tekst `Test`):
 
 ```
 /tellraw @a {"text":"Test","color":"#F8F800"}
@@ -292,16 +361,52 @@ Każdy z 116 tagów jako gotowy rozkaz (tekst `Test`):
 /tellraw @a {"text":"Test","color":"#E8E834"}
 /tellraw @a {"text":"Test","color":"#E8E838"}
 /tellraw @a {"text":"Test","color":"#E8E83C"}
+/tellraw @a {"text":"Test","color":"#E0E004"}
+/tellraw @a {"text":"Test","color":"#E0E008"}
+/tellraw @a {"text":"Test","color":"#E0E00C"}
+/tellraw @a {"text":"Test","color":"#E0E010"}
+/tellraw @a {"text":"Test","color":"#E0E014"}
+/tellraw @a {"text":"Test","color":"#E0E018"}
+/tellraw @a {"text":"Test","color":"#E0E01C"}
+/tellraw @a {"text":"Test","color":"#E0E020"}
+/tellraw @a {"text":"Test","color":"#E0E024"}
+/tellraw @a {"text":"Test","color":"#E0E028"}
+/tellraw @a {"text":"Test","color":"#E0E02C"}
+/tellraw @a {"text":"Test","color":"#E0E030"}
+/tellraw @a {"text":"Test","color":"#E0E034"}
+/tellraw @a {"text":"Test","color":"#E0E038"}
+/tellraw @a {"text":"Test","color":"#E0E03C"}
+/tellraw @a {"text":"Test","color":"#E0E040"}
+/tellraw @a {"text":"Test","color":"#E0E044"}
+/tellraw @a {"text":"Test","color":"#E0E048"}
+/tellraw @a {"text":"Test","color":"#E0E04C"}
+/tellraw @a {"text":"Test","color":"#E0E050"}
+/tellraw @a {"text":"Test","color":"#E0E054"}
+/tellraw @a {"text":"Test","color":"#E0E058"}
+/tellraw @a {"text":"Test","color":"#E0E05C"}
+/tellraw @a {"text":"Test","color":"#E0E060"}
+/tellraw @a {"text":"Test","color":"#E0E064"}
+/tellraw @a {"text":"Test","color":"#E0E068"}
+/tellraw @a {"text":"Test","color":"#E0E06C"}
+/tellraw @a {"text":"Test","color":"#E0E070"}
+/tellraw @a {"text":"Test","color":"#E0E074"}
+/tellraw @a {"text":"Test","color":"#E0E078"}
+/tellraw @a {"text":"Test","color":"#E0E07C"}
+/tellraw @a {"text":"Test","color":"#E0E080"}
+/tellraw @a {"text":"Test","color":"#E0E084"}
+/tellraw @a {"text":"Test","color":"#E0E088"}
+/tellraw @a {"text":"Test","color":"#E0E08C"}
+/tellraw @a {"text":"Test","color":"#E0E090"}
 ```
 
 ## Łączenie efektów
 
-Tagi 64-100 to gotowe kombinacje dwóch (a `mega` trzech) efektów. Tagi 101-116 to nowa generacja, w tym kombinacje `blask_wave`, `plomien_shake` itp.
+Tagi 64-100 to gotowe kombinacje dwóch (a `mega` trzech) efektów. Tagi 101-152 to nowa generacja, w tym 30+ kombinacji.
 
 Zasady łączenia:
 
 - dwa efekty wierzchołkowe (np. fala + trzęsienie) - tak
-- efekt wierzchołkowy + fragmentowy (np. blask + fala) - tak
+- efekt wierzchołkowy + fragmentowy (np. blask + tornado) - tak
 - efekt fragmentowy + kolor/faza (np. neon + blask) - nie, fragmentowy ma pierwszeństwo
 - dwa fragmentowe naraz - nie (jeden efekt fragmentowy na kolor)
 
@@ -325,7 +430,7 @@ Można też nakładać dwa efekty jednym rozkazem przez segment `extra` - drugi 
 
 ## Przykłady
 
-- 116 gotowych rozkazów: `TUTORIAL.md` (rozdział 5)
+- 152 gotowych rozkazów: `TUTORIAL.md` (rozdział 5)
 - 1000 gotowych rozkazów: `PRZYKLADY_1000.md`
 
 ## Wersje

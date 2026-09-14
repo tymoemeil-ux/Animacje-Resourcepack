@@ -58,6 +58,22 @@ bool flagWinda = false;
 bool flagDeszcz = false;
 bool flagMrugacz = false;
 bool flagSkoczki = false;
+bool flagLaser = false;
+bool flagHolo = false;
+bool flagGlitchHard = false;
+bool flagMatrix = false;
+bool flagCaustics = false;
+bool flagWarp = false;
+bool flagKrysztal = false;
+bool flagPortal = false;
+bool flagXray = false;
+bool flagTermowizja = false;
+bool flagTornado = false;
+bool flagWahadlo = false;
+bool flagWibracja = false;
+bool flagPrzegon = false;
+bool flagBumper = false;
+bool flagHarmonijka = false;
 
 
 float paramShakeSpeed = SHAKE_SPEED;
@@ -164,6 +180,48 @@ float paramDeszczSpeed = DESZCZ_SPEED;
 float paramMrugaczSpeed = MRUGACZ_SPEED;
 float paramSkoczkiSpeed = SKOCZKI_SPEED;
 float paramSkoczkiAmplitude = SKOCZKI_AMPLITUDE;
+vec4 paramLaserColor = LASER_COLOR;
+float paramLaserSpeed = LASER_SPEED;
+float paramLaserWidth = LASER_WIDTH;
+vec4 paramHoloColor = HOLO_COLOR;
+float paramHoloSpeed = HOLO_SPEED;
+float paramHoloLines = HOLO_LINES;
+vec4 paramGlitchHardColor = GLITCH_HARD_COLOR;
+float paramGlitchHardSpeed = GLITCH_HARD_SPEED;
+float paramGlitchHardStrength = GLITCH_HARD_STRENGTH;
+vec4 paramMatrixColor = MATRIX_COLOR;
+float paramMatrixSpeed = MATRIX_SPEED;
+float paramMatrixCols = MATRIX_COLS;
+vec4 paramCausticsColor = CAUSTICS_COLOR;
+float paramCausticsSpeed = CAUSTICS_SPEED;
+float paramCausticsScale = CAUSTICS_SCALE;
+vec4 paramWarpColor = WARP_COLOR;
+float paramWarpSpeed = WARP_SPEED;
+float paramWarpStrength = WARP_STRENGTH;
+vec4 paramKrysztalColor = KRYSTZAL_COLOR;
+float paramKrysztalSpeed = KRYSTZAL_SPEED;
+float paramKrysztalCells = KRYSTZAL_CELLS;
+vec4 paramPortalColor = PORTAL_COLOR;
+float paramPortalSpeed = PORTAL_SPEED;
+float paramPortalSwirls = PORTAL_SWIRLS;
+vec4 paramXrayColor = XRAY_COLOR;
+float paramXraySpeed = XRAY_SPEED;
+float paramXrayWidth = XRAY_WIDTH;
+vec4 paramTermowizjaColor = TERMOWIZJA_COLOR;
+float paramTermowizjaSpeed = TERMOWIZJA_SPEED;
+float paramTermowizjaContrast = TERMOWIZJA_CONTRAST;
+float paramTornadoSpeed = TORNADO_SPEED;
+float paramTornadoSize = TORNADO_SIZE;
+float paramWahadloSpeed = WAHADLO_SPEED;
+float paramWahadloSize = WAHADLO_SIZE;
+float paramWibracjaSpeed = WIBRACJA_SPEED;
+float paramWibracjaSize = WIBRACJA_SIZE;
+float paramPrzegonSpeed = PRZEGON_SPEED;
+float paramPrzegonSize = PRZEGON_SIZE;
+float paramBumperSpeed = BUMPER_SPEED;
+float paramBumperSize = BUMPER_SIZE;
+float paramHarmonijkaSpeed = HARMONIJKA_SPEED;
+float paramHarmonijkaSize = HARMONIJKA_SIZE;
 
 
 vec3 rgb(float r, float g, float b) {
@@ -245,7 +303,10 @@ bool hasAnyEffect() {
            flagFall || flagRise || flagOrbit || flagDrift || flagTypewriter ||
            flagErase || flagHeartbeat || flagFlicker || flagBreathe ||
            flagBlask || flagIskry || flagPlomien || flagPopcorn || flagEksplozja ||
-           flagWinda || flagDeszcz || flagMrugacz || flagSkoczki;
+           flagWinda || flagDeszcz || flagMrugacz || flagSkoczki ||
+           flagLaser || flagHolo || flagGlitchHard || flagMatrix || flagCaustics ||
+           flagWarp || flagKrysztal || flagPortal || flagXray || flagTermowizja ||
+           flagTornado || flagWahadlo || flagWibracja || flagPrzegon || flagBumper || flagHarmonijka;
 }
 
 
@@ -1008,4 +1069,244 @@ void apply_skoczki(float speed, float amplitude) {
     flagSkoczki = true;
     paramSkoczkiSpeed = speed;
     paramSkoczkiAmplitude = amplitude;
+}
+
+void apply_laser() {
+    flagLaser = true;
+}
+
+void apply_laser(float speed) {
+    flagLaser = true;
+    paramLaserSpeed = speed;
+}
+
+void apply_laser(float speed, float width) {
+    flagLaser = true;
+    paramLaserSpeed = speed;
+    paramLaserWidth = width;
+}
+
+void apply_holo() {
+    flagHolo = true;
+}
+
+void apply_holo(float speed) {
+    flagHolo = true;
+    paramHoloSpeed = speed;
+}
+
+void apply_holo(float speed, float lines) {
+    flagHolo = true;
+    paramHoloSpeed = speed;
+    paramHoloLines = lines;
+}
+
+void apply_glitch_hard() {
+    flagGlitchHard = true;
+}
+
+void apply_glitch_hard(float speed) {
+    flagGlitchHard = true;
+    paramGlitchHardSpeed = speed;
+}
+
+void apply_glitch_hard(float speed, float strength) {
+    flagGlitchHard = true;
+    paramGlitchHardSpeed = speed;
+    paramGlitchHardStrength = strength;
+}
+
+void apply_matrix() {
+    flagMatrix = true;
+}
+
+void apply_matrix(float speed) {
+    flagMatrix = true;
+    paramMatrixSpeed = speed;
+}
+
+void apply_matrix(float speed, float cols) {
+    flagMatrix = true;
+    paramMatrixSpeed = speed;
+    paramMatrixCols = cols;
+}
+
+void apply_caustics() {
+    flagCaustics = true;
+}
+
+void apply_caustics(float speed) {
+    flagCaustics = true;
+    paramCausticsSpeed = speed;
+}
+
+void apply_caustics(float speed, float scale) {
+    flagCaustics = true;
+    paramCausticsSpeed = speed;
+    paramCausticsScale = scale;
+}
+
+void apply_warp() {
+    flagWarp = true;
+}
+
+void apply_warp(float speed) {
+    flagWarp = true;
+    paramWarpSpeed = speed;
+}
+
+void apply_warp(float speed, float strength) {
+    flagWarp = true;
+    paramWarpSpeed = speed;
+    paramWarpStrength = strength;
+}
+
+void apply_krysztal() {
+    flagKrysztal = true;
+}
+
+void apply_krysztal(float speed) {
+    flagKrysztal = true;
+    paramKrysztalSpeed = speed;
+}
+
+void apply_krysztal(float speed, float cells) {
+    flagKrysztal = true;
+    paramKrysztalSpeed = speed;
+    paramKrysztalCells = cells;
+}
+
+void apply_portal() {
+    flagPortal = true;
+}
+
+void apply_portal(float speed) {
+    flagPortal = true;
+    paramPortalSpeed = speed;
+}
+
+void apply_portal(float speed, float swirls) {
+    flagPortal = true;
+    paramPortalSpeed = speed;
+    paramPortalSwirls = swirls;
+}
+
+void apply_xray() {
+    flagXray = true;
+}
+
+void apply_xray(float speed) {
+    flagXray = true;
+    paramXraySpeed = speed;
+}
+
+void apply_xray(float speed, float width) {
+    flagXray = true;
+    paramXraySpeed = speed;
+    paramXrayWidth = width;
+}
+
+void apply_termowizja() {
+    flagTermowizja = true;
+}
+
+void apply_termowizja(float speed) {
+    flagTermowizja = true;
+    paramTermowizjaSpeed = speed;
+}
+
+void apply_termowizja(float speed, float contrast) {
+    flagTermowizja = true;
+    paramTermowizjaSpeed = speed;
+    paramTermowizjaContrast = contrast;
+}
+
+void apply_tornado() {
+    flagTornado = true;
+}
+
+void apply_tornado(float speed) {
+    flagTornado = true;
+    paramTornadoSize = speed;
+}
+
+void apply_tornado(float speed, float Size) {
+    flagTornado = true;
+    paramTornadoSize = speed;
+    paramTornadoSize = Size;
+}
+
+void apply_wahadlo() {
+    flagWahadlo = true;
+}
+
+void apply_wahadlo(float speed) {
+    flagWahadlo = true;
+    paramWahadloSize = speed;
+}
+
+void apply_wahadlo(float speed, float Size) {
+    flagWahadlo = true;
+    paramWahadloSize = speed;
+    paramWahadloSize = Size;
+}
+
+void apply_wibracja() {
+    flagWibracja = true;
+}
+
+void apply_wibracja(float speed) {
+    flagWibracja = true;
+    paramWibracjaSize = speed;
+}
+
+void apply_wibracja(float speed, float Size) {
+    flagWibracja = true;
+    paramWibracjaSize = speed;
+    paramWibracjaSize = Size;
+}
+
+void apply_przegon() {
+    flagPrzegon = true;
+}
+
+void apply_przegon(float speed) {
+    flagPrzegon = true;
+    paramPrzegonSize = speed;
+}
+
+void apply_przegon(float speed, float Size) {
+    flagPrzegon = true;
+    paramPrzegonSize = speed;
+    paramPrzegonSize = Size;
+}
+
+void apply_bumper() {
+    flagBumper = true;
+}
+
+void apply_bumper(float speed) {
+    flagBumper = true;
+    paramBumperSize = speed;
+}
+
+void apply_bumper(float speed, float Size) {
+    flagBumper = true;
+    paramBumperSize = speed;
+    paramBumperSize = Size;
+}
+
+void apply_harmonijka() {
+    flagHarmonijka = true;
+}
+
+void apply_harmonijka(float speed) {
+    flagHarmonijka = true;
+    paramHarmonijkaSize = speed;
+}
+
+void apply_harmonijka(float speed, float Size) {
+    flagHarmonijka = true;
+    paramHarmonijkaSize = speed;
+    paramHarmonijkaSize = Size;
 }

@@ -336,6 +336,50 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         }
     }
 
+    if (flagTornado) {
+        float tnCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float tnAngle = GameTime * paramTornadoSpeed * 2.5 + tnCharId * 0.55;
+        float tnRadius = 1.5 + paramTornadoSize * 2.0;
+        setOffset(sin(tnAngle) * tnRadius, cos(tnAngle * 0.8) * tnRadius * 0.35);
+        applyOffset(vertex);
+    }
+
+    if (flagWahadlo) {
+        float whCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float whSwing = sin(GameTime * paramWahadloSpeed * 2.5 + whCharId * 0.35);
+        setOffset(whSwing * paramWahadloSize * 2.5, -abs(whSwing) * paramWahadloSize * 0.6);
+        applyOffset(vertex);
+    }
+
+    if (flagWibracja) {
+        float wbCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        setOffset(sin(GameTime * 60.0 + wbCharId * 1.7) * 0.5 * paramWibracjaSize, cos(GameTime * 53.0 + wbCharId * 2.3) * 0.4 * paramWibracjaSize);
+        applyOffset(vertex);
+    }
+
+    if (flagPrzegon) {
+        float pzCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float pzWave = sin(GameTime * paramPrzegonSpeed * 4.0 - pzCharId * 0.5) * paramPrzegonSize * 3.0;
+        setOffset(0.0, pzWave);
+        applyOffset(vertex);
+    }
+
+    if (flagBumper) {
+        float bmCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float bmPhase = fract(GameTime * paramBumperSpeed - bmCharId * 0.2);
+        float bmBounce = abs(sin(bmPhase * PI)) * paramBumperSize * 5.0;
+        setOffset(0.0, bmBounce);
+        applyOffset(vertex);
+    }
+
+    if (flagHarmonijka) {
+        float hzCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float hzFold = sin(GameTime * paramHarmonijkaSpeed * 2.0);
+        float hzSide = mod(hzCharId, 2.0) < 0.5 ? -1.0 : 1.0;
+        setOffset(-hzFold * hzSide * paramHarmonijkaSize * 1.5, abs(hzFold) * paramHarmonijkaSize * 0.4);
+        applyOffset(vertex);
+    }
+
     float preX = vertex.x;
     float preY = vertex.y;
 
@@ -517,15 +561,56 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         fshEffectID = 13.0;
         fshEffectColor = vec4(1.0, 0.5, 0.1, 1.0);
         fshEffectParams = vec4(paramPlomienIntensity, paramPlomienSpeed, 0.0, 0.0);
+    } else if (flagLaser) {
+        fshEffectID = 14.0;
+        fshEffectColor = paramLaserColor;
+        fshEffectParams = vec4(paramLaserSpeed, paramLaserWidth, 0.0, 0.0);
+    } else if (flagHolo) {
+        fshEffectID = 15.0;
+        fshEffectColor = paramHoloColor;
+        fshEffectParams = vec4(paramHoloSpeed, paramHoloLines, 0.0, 0.0);
+    } else if (flagGlitchHard) {
+        fshEffectID = 16.0;
+        fshEffectColor = paramGlitchHardColor;
+        fshEffectParams = vec4(paramGlitchHardSpeed, paramGlitchHardStrength, 0.0, 0.0);
+    } else if (flagMatrix) {
+        fshEffectID = 17.0;
+        fshEffectColor = paramMatrixColor;
+        fshEffectParams = vec4(paramMatrixSpeed, paramMatrixCols, 0.0, 0.0);
+    } else if (flagCaustics) {
+        fshEffectID = 18.0;
+        fshEffectColor = paramCausticsColor;
+        fshEffectParams = vec4(paramCausticsSpeed, paramCausticsScale, 0.0, 0.0);
+    } else if (flagWarp) {
+        fshEffectID = 19.0;
+        fshEffectColor = paramWarpColor;
+        fshEffectParams = vec4(paramWarpSpeed, paramWarpStrength, 0.0, 0.0);
+    } else if (flagKrysztal) {
+        fshEffectID = 20.0;
+        fshEffectColor = paramKrysztalColor;
+        fshEffectParams = vec4(paramKrysztalSpeed, paramKrysztalCells, 0.0, 0.0);
+    } else if (flagPortal) {
+        fshEffectID = 21.0;
+        fshEffectColor = paramPortalColor;
+        fshEffectParams = vec4(paramPortalSpeed, paramPortalSwirls, 0.0, 0.0);
+    } else if (flagXray) {
+        fshEffectID = 22.0;
+        fshEffectColor = paramXrayColor;
+        fshEffectParams = vec4(paramXraySpeed, paramXrayWidth, 0.0, 0.0);
+    } else if (flagTermowizja) {
+        fshEffectID = 23.0;
+        fshEffectColor = paramTermowizjaColor;
+        fshEffectParams = vec4(paramTermowizjaSpeed, paramTermowizjaContrast, 0.0, 0.0);
     }
-
     fshGlyphT0 = vec3(0.0);
     fshGlyphT1 = vec3(0.0);
     fshGlyphT2 = vec3(0.0);
     fshGlyphT3 = vec3(0.0);
     if (flagOutline || flagNeon || flagHatch || flagSplit ||
         flagChromatic || flagExtrude || flagNoise || flagLiquid || flagWater ||
-        flagBlask || flagIskry || flagPlomien) {
+        flagBlask || flagIskry || flagPlomien || flagLaser || flagHolo ||
+        flagGlitchHard || flagMatrix || flagCaustics || flagWarp || flagKrysztal ||
+        flagPortal || flagXray || flagTermowizja) {
         int vid_glyph = gl_VertexID % 4;
         if (vid_glyph == 0) fshGlyphT0 = vec3(UV0, 1.0);
         if (vid_glyph == 1) fshGlyphT2 = vec3(UV0, 1.0);
