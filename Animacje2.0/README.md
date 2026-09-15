@@ -89,20 +89,26 @@ Kolor spustowy + logika VSH leży w `tfx_<nazwa>.vsh`, wygląd pikselowy w `tfx_
 (tylko efekty fragmentowe mają plik .fsh).
 
 ## Wersje Minecraft
-Pack zawiera warianty shaderów dla: 1.20.5–1.21.1 (baza), 1.21.2, 1.21.6–1.21.9, 26.1, 26.2.
+| Wersje | Format packa | Co się ładuje |
+|---|---|---|
+| 1.20.2 – 1.21.5 | 16 – 55 | szadery bazowe (GLSL 150, stary API mgle) |
+| 1.21.6 – 1.21.11 | 63 – 75 | **wariant `63/`** (GLSL 330, nowy API mgle: `apply_fog`, UBO `Fog`) |
+| 26.1 – 26.2 | 84 – 88 | pack się ładuje (pipeline tekstu w 26.x to inny zestaw plików — bez kreski, bez efektów) |
+
+`pack.mcmeta`: `pack_format: 75` (1.21.11) + `min_format: [32,0]` + `max_format: [88,0]`.
+
+Wariant `63/` jest zgodny z **prawdziwym vanilla 1.21.11** (`fog.glsl`, `dynamictransforms.glsl`,
+`projection.glsl`, `globals.glsl` pobrane z oficjalnych assetów i zweryfikowane kompilatorem GLSL).
 
 ## Struktura
 ```
 Animacje2.0/
-├── pack.mcmeta
+├── pack.mcmeta           # pack_format 75 (1.21.11), zakres 32–88
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
 ├── KOMENDY.md            # gotowe rozkazy dla wszystkich 36 tagów
-├── assets/minecraft/shaders/...   # silnik + efekty (baza)
-├── 1_21_2/ ...           # warianty wersji
-├── 1_21_6/ ...
-├── 26_1/ ...
-└── 26_2/ ...
+├── assets/minecraft/shaders/...   # silnik + efekty (baza: 1.20.2–1.21.5)
+└── 63/assets/minecraft/shaders/...  # wariant 1.21.6+ (4 pary vsh/fsh + 40 include'ów)
 ```
 
 ## Archiwum

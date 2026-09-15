@@ -21,7 +21,7 @@ Repozytorium resourcepacków do animowania tekstu w Minecraft Java Edition.
 - **Każdy efekt = osobny plik** (`tfx_<nazwa>.vsh` + `tfx_<nazwa>.fsh`)
 - Jedna wspólna, mała warstwa silnika (`tfx_common.*`) — detekcja koloru spustowego + dispatch
 - **Nowe kolory spustowe** bez kolizji z 1.0: fragmentowe `#A0A0xx`, kinetyczne — jaskrawe kolory (tekst widoczny w czacie)
-- Poprawione spójne pary shaderów dla wszystkich wersji (1.20.5 → 26.2)
+- Dwa warianty shaderów: baza (1.20.2–1.21.5, GLSL 150) + `63/` (1.21.6–1.21.11, GLSL 330, nowy API mgle)
 
 ## Szybki start
 
@@ -35,5 +35,11 @@ Domyślny format rozkazów = **SNBT** (Minecraft 1.21.5+). Dla starszych serwer�
 
 ## Walidacja
 
-- Macierz: **54/54** plików shaderów przechodzi pełną analizę semantyczną (glslang 11.7.0, warianty 1.20.5→26.2 + kombinacje define'ów 26.x)
-- **22/22** pary vsh↔fsh spójne interfejsowo (nazwy + typy)
+Macierz kompilacji (glslang 11.7.0) na **prawdziwych vanilla include'ach 1.21.11**
+(pobrane z oficjalnych assetów: `fog.glsl`, `dynamictransforms.glsl`, `projection.glsl`, `globals.glsl`):
+
+- **Wariant `63/` × API 1.21.11: 8/8 OK** (4 pary vsh/fsh) + **8/8 OK z `IS_GUI`** (pipeline `gui_text`)
+- Baza × API 1.21.5 (stary `fog.glsl`): **8/8 OK**
+- Baza × API 1.21.11: **4× FAIL `'FogColor' redefinition`** — powiela dokładnie błąd z loga 1.21.11
+  (dowód, że stary wariant nie działał na 1.21.6+ i wariant `63/` był potrzebny)
+- **8/8** par vsh↔fsh spójnych interfejsowo (nazwy + typy)
