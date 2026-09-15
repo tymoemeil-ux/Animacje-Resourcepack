@@ -144,12 +144,14 @@ Kolor spustowy + logika VSH leży w `tfx_<nazwa>.vsh`, wygląd pikselowy w `tfx_
 **Architektura „baza = najnowsze API”:**
 | Wersje | Format packa | Co się ładuje |
 |---|---|---|
-| **1.21.6 → 1.21.11+ (Twój)** | **63 – 100** | **BAZA** (GLSL 330, nowy API mgle: `apply_fog`, UBO `Fog`, `GameTime` z UBO `Globals`) — ładowana ZAWSZE, niezależnie od mechanizmu wariantów |
-| 1.20.2 – 1.21.5 | 16 – 55 | overlay `old/` (GLSL 150, stary API mgle) przez `overlays` w pack.mcmeta |
+| **1.21.6 – 1.21.11** | **56 – 87** | **BAZA** (GLSL 330, `rendertype_text.*`, UBO `Globals`, `apply_fog`) |
+| **26.2 i nowsze** | **88 – 100** | **overlay `v262/`** (GLSL 330, scalone shadery `core/text.*` z define'ami `IS_GUI`/`IS_SEE_THROUGH`/`IS_GRAYSCALE`) |
+| 1.20.2 – 1.21.5 | 16 – 55 | overlay `old/` (GLSL 150, stary API mgle) |
 
-Baza jest zgodna z **prawdziwym vanilla 1.21.11** (`fog.glsl`, `dynamictransforms.glsl`,
-`projection.glsl`, `globals.glsl` pobrane z oficjalnych assetów i zweryfikowane kompilatorem GLSL —
-ten sam schemat, co w działającym packu TheSalt's Text Effects).
+Wszystkie warianty są zgodne z **prawdziwym vanilla** (1.21.11, 26.2 i 1.21.5 — pliki
+`fog.glsl`, `dynamictransforms.glsl`, `projection.glsl`, `globals.glsl`, `text.vsh/fsh` pobrane z
+oficjalnych assetów i zweryfikowane kompilatorem GLSL: 34/34 kompilacji, w tym 5 kombinacji
+define'ow 26.2: świat, GUI, see-through, grayscale ×2).
 
 ## Struktura
 ```
@@ -158,8 +160,9 @@ Animacje2.0/
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
 ├── KOMENDY.md            # gotowe rozkazy dla wszystkich 86 tagów
-├── assets/minecraft/shaders/...   # BAZA = 1.21.6+ (4 pary vsh/fsh 330 + 126 include'ów)
-└── old/assets/minecraft/shaders/...  # overlay ≤1.21.5 (4 pary vsh/fsh 150)
+├── assets/minecraft/shaders/...   # BAZA = 1.21.6 – 1.21.11 (4 pary vsh/fsh 330 + 126 include'ów)
+├── old/assets/minecraft/shaders/...  # overlay ≤1.21.5 (4 pary vsh/fsh 150)
+└── v262/assets/minecraft/shaders/core/  # overlay 26.2+ (scalone text.vsh/fsh z silnikiem)
 ```
 
 ## Archiwum
