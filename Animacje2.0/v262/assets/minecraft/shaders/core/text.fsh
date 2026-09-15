@@ -193,7 +193,168 @@ void main() {
         color = tfxRenderKarmazyn(uv, texColor, tfxColor);
     } else if (tfx == 75) {
         color = tfxRenderWizja(uv, texColor, tfxColor);
+    } else if (tfx == 76) {
+        color = tfxRenderHelikopter(uv, texColor, tfxColor);
+    } else if (tfx == 77) {
+        color = tfxRenderSpirala(uv, texColor, tfxColor);
+    } else if (tfx == 78) {
+        color = tfxRenderWibrowanie(uv, texColor, tfxColor);
+    } else if (tfx == 79) {
+        color = tfxRenderFalstart(uv, texColor, tfxColor);
+    } else if (tfx == 80) {
+        color = tfxRenderWachlarz(uv, texColor, tfxColor);
+    } else if (tfx == 81) {
+        color = tfxRenderDeszczZiemi(uv, texColor, tfxColor);
+    } else if (tfx == 82) {
+        color = tfxRenderWznoszenie(uv, texColor, tfxColor);
+    } else if (tfx == 83) {
+        color = tfxRenderLosoweSkoki(uv, texColor, tfxColor);
+    } else if (tfx == 84) {
+        color = tfxRenderFalaWodna(uv, texColor, tfxColor);
+    } else if (tfx == 85) {
+        color = tfxRenderZygzakV2(uv, texColor, tfxColor);
+    } else if (tfx == 86) {
+        color = tfxRenderMetronom(uv, texColor, tfxColor);
+    } else if (tfx == 87) {
+        color = tfxRenderDrganiaMuzyczne(uv, texColor, tfxColor);
+    } else if (tfx == 88) {
+        color = tfxRenderPulsZer(uv, texColor, tfxColor);
+    } else if (tfx == 89) {
+        color = tfxRenderWielkieKolo(uv, texColor, tfxColor);
+    } else if (tfx == 90) {
+        color = tfxRenderFalowanieGora(uv, texColor, tfxColor);
+    } else if (tfx == 91) {
+        color = tfxRenderSzarpaczeFale(uv, texColor, tfxColor);
+    } else if (tfx == 92) {
+        color = tfxRenderUnoszenieFale(uv, texColor, tfxColor);
+    } else if (tfx == 93) {
+        color = tfxRenderTrzesieniePionowe(uv, texColor, tfxColor);
+    } else if (tfx == 94) {
+        color = tfxRenderFalaOdSrodka(uv, texColor, tfxColor);
+    } else if (tfx == 95) {
+        color = tfxRenderBungee(uv, texColor, tfxColor);
+    } else if (tfx == 96) {
+        color = tfxRenderNeonFiolet(uv, texColor, tfxColor);
+    } else if (tfx == 97) {
+        color = tfxRenderNeonCyjan(uv, texColor, tfxColor);
+    } else if (tfx == 98) {
+        color = tfxRenderZloto(uv, texColor, tfxColor);
+    } else if (tfx == 99) {
+        color = tfxRenderPlatyna(uv, texColor, tfxColor);
+    } else if (tfx == 100) {
+        color = tfxRenderMiedz(uv, texColor, tfxColor);
+    } else if (tfx == 101) {
+        color = tfxRenderLawenda(uv, texColor, tfxColor);
+    } else if (tfx == 102) {
+        color = tfxRenderSzmaragd(uv, texColor, tfxColor);
+    } else if (tfx == 103) {
+        color = tfxRenderRubin(uv, texColor, tfxColor);
+    } else if (tfx == 104) {
+        color = tfxRenderSzafir(uv, texColor, tfxColor);
+    } else if (tfx == 105) {
+        color = tfxRenderTopaz(uv, texColor, tfxColor);
+    } else if (tfx == 106) {
+        color = tfxRenderPerla(uv, texColor, tfxColor);
+    } else if (tfx == 107) {
+        color = tfxRenderNeonyTokio(uv, texColor, tfxColor);
+    } else if (tfx == 108) {
+        color = tfxRenderRetro(uv, texColor, tfxColor);
+    } else if (tfx == 109) {
+        color = tfxRenderPixel8bit(uv, texColor, tfxColor);
+    } else if (tfx == 110) {
+        color = tfxRenderTlen(uv, texColor, tfxColor);
+    } else if (tfx == 111) {
+        color = tfxRenderNeonAmber(uv, texColor, tfxColor);
+    } else if (tfx == 112) {
+        color = tfxRenderGalaktyczny(uv, texColor, tfxColor);
+    } else if (tfx == 113) {
+        color = tfxRenderTuszaNeon(uv, texColor, tfxColor);
+    } else if (tfx == 114) {
+        color = tfxRenderOlo(uv, texColor, tfxColor);
+    } else if (tfx == 115) {
+        color = tfxRenderRoseGold(uv, texColor, tfxColor);
+    } else if (tfx == 116) {
+        color = tfxRenderHelikopterZloto(uv, texColor, tfxColor);
+    } else if (tfx == 117) {
+        color = tfxRenderSpiralaPlatyna(uv, texColor, tfxColor);
+    } else if (tfx == 118) {
+        color = tfxRenderWibrowanieMiedz(uv, texColor, tfxColor);
+    } else if (tfx == 119) {
+        color = tfxRenderFalstartLawenda(uv, texColor, tfxColor);
+    } else if (tfx == 120) {
+        color = tfxRenderWachlarzSzmaragd(uv, texColor, tfxColor);
+    } else if (tfx == 121) {
+        color = tfxRenderDeszczZiemiRubin(uv, texColor, tfxColor);
+    } else if (tfx == 122) {
+        color = tfxRenderWznoszenieSzafir(uv, texColor, tfxColor);
+    } else if (tfx == 123) {
+        color = tfxRenderLosoweSkokiTopaz(uv, texColor, tfxColor);
+    } else if (tfx == 124) {
+        color = tfxRenderFalaWodnaPerla(uv, texColor, tfxColor);
+    } else if (tfx == 125) {
+        color = tfxRenderZygzakV2NeonyTokio(uv, texColor, tfxColor);
+    } else if (tfx == 126) {
+        color = tfxRenderMetronomRetro(uv, texColor, tfxColor);
+    } else if (tfx == 127) {
+        color = tfxRenderDrganiaMuzycznePixel8bit(uv, texColor, tfxColor);
+    } else if (tfx == 128) {
+        color = tfxRenderPulsZerTlen(uv, texColor, tfxColor);
+    } else if (tfx == 129) {
+        color = tfxRenderWielkieKoloNeonAmber(uv, texColor, tfxColor);
+    } else if (tfx == 130) {
+        color = tfxRenderFalowanieGoraGalaktyczny(uv, texColor, tfxColor);
+    } else if (tfx == 131) {
+        color = tfxRenderSzarpaczeFaleTuszaNeon(uv, texColor, tfxColor);
+    } else if (tfx == 132) {
+        color = tfxRenderUnoszenieFaleOlo(uv, texColor, tfxColor);
+    } else if (tfx == 133) {
+        color = tfxRenderTrzesieniePionoweRoseGold(uv, texColor, tfxColor);
+    } else if (tfx == 134) {
+        color = tfxRenderFalaOdSrodkaNeonFiolet(uv, texColor, tfxColor);
+    } else if (tfx == 135) {
+        color = tfxRenderBungeeNeonCyjan(uv, texColor, tfxColor);
+    } else if (tfx == 136) {
+        color = tfxRenderHelikopterSzmaragd(uv, texColor, tfxColor);
+    } else if (tfx == 137) {
+        color = tfxRenderSpiralaRubin(uv, texColor, tfxColor);
+    } else if (tfx == 138) {
+        color = tfxRenderWibrowanieSzafir(uv, texColor, tfxColor);
+    } else if (tfx == 139) {
+        color = tfxRenderFalstartTopaz(uv, texColor, tfxColor);
+    } else if (tfx == 140) {
+        color = tfxRenderWachlarzPerla(uv, texColor, tfxColor);
+    } else if (tfx == 141) {
+        color = tfxRenderDeszczZiemiNeonyTokio(uv, texColor, tfxColor);
+    } else if (tfx == 142) {
+        color = tfxRenderWznoszenieRetro(uv, texColor, tfxColor);
+    } else if (tfx == 143) {
+        color = tfxRenderLosoweSkokiPixel8bit(uv, texColor, tfxColor);
+    } else if (tfx == 144) {
+        color = tfxRenderFalaWodnaTlen(uv, texColor, tfxColor);
+    } else if (tfx == 145) {
+        color = tfxRenderZygzakV2NeonAmber(uv, texColor, tfxColor);
+    } else if (tfx == 146) {
+        color = tfxRenderMetronomGalaktyczny(uv, texColor, tfxColor);
+    } else if (tfx == 147) {
+        color = tfxRenderDrganiaMuzyczneTuszaNeon(uv, texColor, tfxColor);
+    } else if (tfx == 148) {
+        color = tfxRenderPulsZerOlo(uv, texColor, tfxColor);
+    } else if (tfx == 149) {
+        color = tfxRenderWielkieKoloRoseGold(uv, texColor, tfxColor);
+    } else if (tfx == 150) {
+        color = tfxRenderFalowanieGoraNeonFiolet(uv, texColor, tfxColor);
+    } else if (tfx == 151) {
+        color = tfxRenderSzarpaczeFaleNeonCyjan(uv, texColor, tfxColor);
+    } else if (tfx == 152) {
+        color = tfxRenderUnoszenieFaleZloto(uv, texColor, tfxColor);
+    } else if (tfx == 153) {
+        color = tfxRenderTrzesieniePionowePlatyna(uv, texColor, tfxColor);
+    } else if (tfx == 154) {
+        color = tfxRenderFalaOdSrodkaMiedz(uv, texColor, tfxColor);
+    } else if (tfx == 155) {
+        color = tfxRenderBungeeLawenda(uv, texColor, tfxColor);
     }
+
 
     if (color.a < 0.1) {
         discard;

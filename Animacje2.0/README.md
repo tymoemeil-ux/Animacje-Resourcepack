@@ -1,6 +1,6 @@
 # Animacje 2.0 — nowy silnik efektów tekstu
 
-Resourcepack, który animuje tekst w czacie Minecraft. **75 efektów animowanych + 11 czystych kolorów.** Każdy efekt to **połączenie koloru i ruchu**.
+Resourcepack, który animuje tekst w czacie Minecraft. **155 efektów animowanych + 11 czystych kolorów.** Każdy efekt to **połączenie koloru i ruchu**.
 Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i czytelny.
 
 > Instaluj TYLKO JEDEN pack animacji naraz (1.0 i 2.0 konfliktują — oba nadpisują render tekstu).
@@ -12,7 +12,7 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
    - **efekt fragmentowy** (1–13, 26–38) — koloruje piksele znaku w czasie (FSH).
 3. Kolor bez efektu = zwykły tekst (dlatego "czyste kolory" niczego nie uruchamiają).
 
-## 75 efektów animowanych (każdy = kolor + ruch)
+## 155 efektów animowanych (każdy = kolor + ruch)
 
 ### Fragmentowe (kolor pikseli zmienia się w czasie)
 | Tag | Kolor | Co robi |
@@ -87,7 +87,99 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `szary` | `#999999` |
 | `brazowy` | `#8B4513` |
 
-### Hybrydowe — 25 nowych (51–75)
+### Nowe typy RUCHU — 20 (76–95)
+| Tag | Kolor | Co robi |
+|---|---|---|
+| `helikopter` | `#A0A0CC` | **znaki lecia jak helikopter (osmiotaka), czerwone swiatlo** |
+| `spirala` | `#A0A0D0` | **znaki krcza spirala o rosnacym promieniu, zloto** |
+| `wibrowanie` | `#A0A0D4` | **wyska czestotliwosc w poprzek, fiolet** |
+| `falstart` | `#A0A0D8` | **ostra fala z jednostronnymi grzbietami, pomarancz** |
+| `wachlarz` | `#A0A0DC` | **znaki roztwieraja sie jak wachlarz, niebieski** |
+| `deszcz_ziemi` | `#A0A0E0` | **tekst powoli tonie w ziemi, brazowa ziemia** |
+| `wznoszenie` | `#A0A0E4` | **tekst wznosi sie z falowaniem, blady blask** |
+| `losowe_skoki` | `#A0A0E8` | **znaki teleporutuja losowo co 0.25s, neon zielen** |
+| `fala_wodna` | `#A0A0EC` | **dwuwymiarowa fala wodna, morska zieleń** |
+| `zygzak_v2` | `#A0A0F0` | **zygzak pionowy z faza po znakach, limonka** |
+| `metronom` | `#A0A0F4` | **powolne wahanie z hamowaniem na koncach, srebro** |
+| `drgania_muzyczne` | `#A0A0F8` | **kop w dol przy kazdym bicie (1 Hz), magenta** |
+| `puls_zer` | `#A0A0FC` | **pulsowanie w bok z modulacja, szkarlat** |
+| `wielkie_kolo` | `#80C000` | **wielkie powolne kolo, indygo** |
+| `falowanie_gora` | `#80C004` | **spokojna fala z faza po znakach, pink** |
+| `szarpacze_fale` | `#80C008` | **fale kwadratowe z ostrymi szarpnieniami, zolty** |
+| `unoszenie_fale` | `#80C00C` | **plyne z falowaniem po tekscie, cyjan** |
+| `trzesienie_pionowe` | `#80C010` | **mocne trzesienie w gore i w dol, czerwon** |
+| `fala_od_srodka` | `#80C014` | **fala z pulsuujaca amplituda, niebiesko-fiolet** |
+| `bungee` | `#80C018` | **spad i sprzynczyste odbicia (bungee), pomaranczowo-czerwony** |
+
+### Nowe typy KOLORU — 20 (96–115)
+| Tag | Kolor | Co robi |
+|---|---|---|
+| `neon_fiolet` | `#80C01C` | **neonowa fioletowa poswiata, oddychanie** |
+| `neon_cyjan` | `#80C020` | **neon cyjan ze scanlines** |
+| `zloto` | `#80C024` | **metalowe zloto z przesuwajacym sie polyskiem** |
+| `platyna` | `#80C028` | **metalowa platyna, chlodne srebro** |
+| `miedz` | `#80C02C` | **ciepła miedz/brąz z połyskiem** |
+| `lawenda` | `#80C030` | **miękki fiolet lawendy, snowy gradient** |
+| `szmaragd` | `#80C034` | **szmaragd z migocacymi iskrami** |
+| `rubin` | `#80C038` | **rubin z wewnetrznym swiatlem** |
+| `szafir` | `#80C03C` | **szafir z glintami kryształu** |
+| `topaz` | `#80C040` | **topaz, ciepły bursztyn** |
+| `perla` | `#80C044` | **perła — delikatna iryzacja koloru** |
+| `neony_tokio` | `#80C048` | **neony Tokio — magenta i cyjan na przemian** |
+| `retro` | `#80C04C` | **retro VHS — magenta/cyjan + szum** |
+| `pixel_8bit` | `#80C050` | **retro 8-bit — dyskretny pixelowy kolor z pallete** |
+| `tlen` | `#80C054` | **toksyczna zielona poswiata** |
+| `neon_amber` | `#80C058` | **neon amber — ostrzeżenie, ostre pulsowanie** |
+| `galaktyczny` | `#80C05C` | **głęboka kosmiczna ciemność + migające gwiazdy** |
+| `tusza_neon` | `#80C060` | **neon na ciemnym tle (tusza)** |
+| `olo` | `#80C064` | **ołowiowo-industrialna szarość** |
+| `rose_gold` | `#80C068` | **różowe złoto (rose gold)** |
+
+### POŁĄCZENIA ruch + kolor — 40 (116–155)
+| Tag | Kolor | Co robi |
+|---|---|---|
+| `helikopter_zloto` | `#80C06C` | **ruch: helikopter + kolor: zloto** |
+| `spirala_platyna` | `#80C070` | **ruch: spirala + kolor: platyna** |
+| `wibrowanie_miedz` | `#80C074` | **ruch: wibrowanie + kolor: miedz** |
+| `falstart_lawenda` | `#80C078` | **ruch: falstart + kolor: lawenda** |
+| `wachlarz_szmaragd` | `#80C07C` | **ruch: wachlarz + kolor: szmaragd** |
+| `deszcz_ziemi_rubin` | `#80C080` | **ruch: deszcz_ziemi + kolor: rubin** |
+| `wznoszenie_szafir` | `#80C084` | **ruch: wznoszenie + kolor: szafir** |
+| `losowe_skoki_topaz` | `#80C088` | **ruch: losowe_skoki + kolor: topaz** |
+| `fala_wodna_perla` | `#80C08C` | **ruch: fala_wodna + kolor: perla** |
+| `zygzak_v2_neony_tokio` | `#80C090` | **ruch: zygzak_v2 + kolor: neony_tokio** |
+| `metronom_retro` | `#80C094` | **ruch: metronom + kolor: retro** |
+| `drgania_muzyczne_pixel_8bit` | `#80C098` | **ruch: drgania_muzyczne + kolor: pixel_8bit** |
+| `puls_zer_tlen` | `#80C09C` | **ruch: puls_zer + kolor: tlen** |
+| `wielkie_kolo_neon_amber` | `#80C0A0` | **ruch: wielkie_kolo + kolor: neon_amber** |
+| `falowanie_gora_galaktyczny` | `#80C0A4` | **ruch: falowanie_gora + kolor: galaktyczny** |
+| `szarpacze_fale_tusza_neon` | `#80C0A8` | **ruch: szarpacze_fale + kolor: tusza_neon** |
+| `unoszenie_fale_olo` | `#80C0AC` | **ruch: unoszenie_fale + kolor: olo** |
+| `trzesienie_pionowe_rose_gold` | `#80C0B0` | **ruch: trzesienie_pionowe + kolor: rose_gold** |
+| `fala_od_srodka_neon_fiolet` | `#80C0B4` | **ruch: fala_od_srodka + kolor: neon_fiolet** |
+| `bungee_neon_cyjan` | `#80C0B8` | **ruch: bungee + kolor: neon_cyjan** |
+| `helikopter_szmaragd` | `#80C0BC` | **ruch: helikopter + kolor: szmaragd** |
+| `spirala_rubin` | `#80C0C0` | **ruch: spirala + kolor: rubin** |
+| `wibrowanie_szafir` | `#80C0C4` | **ruch: wibrowanie + kolor: szafir** |
+| `falstart_topaz` | `#80C0C8` | **ruch: falstart + kolor: topaz** |
+| `wachlarz_perla` | `#80C0CC` | **ruch: wachlarz + kolor: perla** |
+| `deszcz_ziemi_neony_tokio` | `#80C0D0` | **ruch: deszcz_ziemi + kolor: neony_tokio** |
+| `wznoszenie_retro` | `#80C0D4` | **ruch: wznoszenie + kolor: retro** |
+| `losowe_skoki_pixel_8bit` | `#80C0D8` | **ruch: losowe_skoki + kolor: pixel_8bit** |
+| `fala_wodna_tlen` | `#80C0DC` | **ruch: fala_wodna + kolor: tlen** |
+| `zygzak_v2_neon_amber` | `#80C0E0` | **ruch: zygzak_v2 + kolor: neon_amber** |
+| `metronom_galaktyczny` | `#80C0E4` | **ruch: metronom + kolor: galaktyczny** |
+| `drgania_muzyczne_tusza_neon` | `#80C0E8` | **ruch: drgania_muzyczne + kolor: tusza_neon** |
+| `puls_zer_olo` | `#80C0EC` | **ruch: puls_zer + kolor: olo** |
+| `wielkie_kolo_rose_gold` | `#80C0F0` | **ruch: wielkie_kolo + kolor: rose_gold** |
+| `falowanie_gora_neon_fiolet` | `#80C0F4` | **ruch: falowanie_gora + kolor: neon_fiolet** |
+| `szarpacze_fale_neon_cyjan` | `#80C0F8` | **ruch: szarpacze_fale + kolor: neon_cyjan** |
+| `unoszenie_fale_zloto` | `#80C0FC` | **ruch: unoszenie_fale + kolor: zloto** |
+| `trzesienie_pionowe_platyna` | `#80D000` | **ruch: trzesienie_pionowe + kolor: platyna** |
+| `fala_od_srodka_miedz` | `#80D004` | **ruch: fala_od_srodka + kolor: miedz** |
+| `bungee_lawenda` | `#80D008` | **ruch: bungee + kolor: lawenda** |
+
+### Hybrydowe — 25 (51–75)
 | `tancuj` | `#A0A068` | **znaki tańczą na przemian + pełna tęcza** |
 | `lawina` | `#A0A06C` | **znaki spadają lawinowo + śnieżna biel** |
 | `dym` | `#A0A070` | **znaki unoszą się jak dym + szaro-niebieskie migotanie** |
@@ -159,8 +251,8 @@ Animacje2.0/
 ├── pack.mcmeta           # pack_format 63 + overlays: old/ dla formatów 16–55
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
-├── KOMENDY.md            # gotowe rozkazy dla wszystkich 86 tagów
-├── assets/minecraft/shaders/...   # BAZA = 1.21.6 – 1.21.11 (4 pary vsh/fsh 330 + 126 include'ów)
+├── KOMENDY.md            # gotowe rozkazy dla wszystkich 166 tagów
+├── assets/minecraft/shaders/...   # BAZA = 1.21.6 – 1.21.11 (4 pary vsh/fsh 330 + 286 include'ów)
 ├── old/assets/minecraft/shaders/...  # overlay ≤1.21.5 (4 pary vsh/fsh 150)
 └── v262/assets/minecraft/shaders/core/  # overlay 26.2+ (scalone text.vsh/fsh z silnikiem)
 ```

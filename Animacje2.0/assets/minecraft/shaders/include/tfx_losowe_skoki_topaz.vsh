@@ -1,0 +1,10 @@
+// ============================================================
+// EFEKT (POLACZENIE): LOSOWE_SKOKI_TOPAZ   |   kolor spustowy: #80C088
+// polaczenie: ruch losowe_skoki + kolor topaz
+// ============================================================
+if (c == ivec3(128, 192, 136)) {
+        tfxIDg = 123.0;
+        float f = floor(GameTime * 4.0);
+        tfxOffg.x += (tfxHash(vec2(f, g)) - 0.5) * 0.02;
+        tfxOffg.y += (tfxHash(vec2(f, g + 2.0)) - 0.5) * 0.02;
+}
