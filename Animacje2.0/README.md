@@ -1,6 +1,6 @@
 # Animacje 2.0 — nowy silnik efektów tekstu
 
-Resourcepack, który animuje tekst w czacie Minecraft. **25 efektów animowanych + 11 czystych kolorów.**
+Resourcepack, który animuje tekst w czacie Minecraft. **50 efektów animowanych + 11 czystych kolorów.**
 Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i czytelny.
 
 > Instaluj TYLKO JEDEN pack animacji naraz (1.0 i 2.0 konfliktują — oba nadpisują render tekstu).
@@ -8,11 +8,11 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 ## Jak to działa
 1. `konwerter.py` zamienia `<animacja:NAZWA>tekst</animacja>` na gotowy rozkaz `/tellraw` z kolorem spustowym.
 2. Shader (VSH) rozpoznaje dokładny kolor znaku i:
-   - **efekt kinetyczny** (14–25) — przesuwa/odwraca całe znaki w przestrzeni ekranu,
-   - **efekt fragmentowy** (1–13) — koloruje piksele znaku w czasie (FSH).
+   - **efekt kinetyczny** (14–25, 39–50) — przesuwa/odwraca całe znaki w przestrzeni ekranu,
+   - **efekt fragmentowy** (1–13, 26–38) — koloruje piksele znaku w czasie (FSH).
 3. Kolor bez efektu = zwykły tekst (dlatego "czyste kolory" niczego nie uruchamiają).
 
-## 25 efektów animowanych
+## 50 efektów animowanych
 
 ### Fragmentowe (kolor pikseli zmienia się w czasie)
 | Tag | Kolor | Co robi |
@@ -30,6 +30,19 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `galaktyka` | `#A0A028` | fioletowo-niebieska mgławica + mieniące gwiazdki |
 | `krew` | `#A0A02C` | pulsująca, cętkowana czerwień |
 | `piorun` | `#A0A030` | szybkie migotanie + rzadkie mocne rozbłyski |
+| `plazma` | `#A0A034` | **animowana plazma — nakładające się fale kolorów** |
+| `ogien` | `#A0A038` | **ogień — iskrzące piksele: czerwień → pomarańcz → żółty** |
+| `lod` | `#A0A03C` | **lód — zimna błękitność z ruchomymi iskrzeniami** |
+| `diament` | `#A0A040` | **diament — jasny blask przetacza się skośnie** |
+| `aurora` | `#A0A044` | **aurora — zielono-fioletowe zasłonki dryfują** |
+| `ocean` | `#A0A048` | **ocean — migocące kaustyki światła na głębokiej wodzie** |
+| `neon_grad` | `#A0A04C` | **neonowy gradient — pasmo odcienia przetacza się** |
+| `chroma` | `#A0A050` | **cały tekst płynnie obiega pełne spektrum** |
+| `morse` | `#A0A054` | **miga w rytmie kodu morse (krotko-krotko-długi)** |
+| `radar` | `#A0A058` | **cyanowa linia skanu skośnie, z zanikającym ogonem** |
+| `glow` | `#A0A05C` | **złoty blask, który delikatnie oddycha** |
+| `holo` | `#A0A060` | **hologram — scanlines + losowe spadki sygnału** |
+| `static_tv` | `#A0A064` | **szum telewizyjny — losowy szum pikselowy** |
 
 ### Kinetyczne (same znaki się ruszają)
 | Tag | Kolor | Co robi |
@@ -46,6 +59,18 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `heartbeat` | `#FF3030` | cały tekst bije jak serce (bum-bum) |
 | `flicker` | `#F0F0F0` | znaki migają (znikają i wracają) |
 | `shake` | `#FFA030` | cały tekst trzęsie się mocno |
+| `ripple` | `#00E0C0` | **podwójna fala — dwie nachodzące na siebie fali** |
+| `orbita` | `#C040FF` | **znaki kręcą elipsę (wężyk), faza od znaku** |
+| `skok` | `#FF7000` | **cały tekst podskakuje (hop, hop, hop)** |
+| `sway` | `#80FF80` | **delikatne kołysanie wahadłowe, faza po znakach** |
+| `hopwave` | `#00FF90` | **znaki podskakują po kolei (fala skoków)** |
+| `wobble` | `#E0C040` | **mikro-trzęsienie — jak kamera z ręki** |
+| `spin` | `#FF80C0` | **szybkie kręcenie — znaki wirują w kółko** |
+| `tremor` | `#A04000` | **trzęsienie ziemi — wybuchy trzęsienia co 3 s** |
+| `floaty` | `#60A0FF` | **płynne dryfowanie — cały tekst unosi się i opada** |
+| `zigzag` | `#B0B000` | **zygzak — twarde szarpnięcia w bok, fala po znakach** |
+| `spryna` | `#FF5070` | **sprężyna — wysoce częstotliwy dzwon, amplituda pulsuje** |
+| `szarp` | `#00B0B0` | **szarpanie — ciągłe szybkie przesuw w prawo i w lewo** |
 
 ### Czyste kolory (bez animacji — tekst po prostu kolorowy)
 | Tag | Kolor |
@@ -83,7 +108,7 @@ assets/minecraft/shaders/include/
 ├── tfx_common.fsh        # silnik: wspólne funkcje + importy efektów
 ├── tfx_blysk.vsh  +  tfx_blysk.fsh     # efekt: blysk
 ├── tfx_neonfala.vsh +  tfx_neonfala.fsh
-├── ... (25 par plików po jednym na efekt)
+├── ... (50 efektów: fragmentowe = .vsh + .fsh, kinetyczne = .vsh)
 ```
 Kolor spustowy + logika VSH leży w `tfx_<nazwa>.vsh`, wygląd pikselowy w `tfx_<nazwa>.fsh`
 (tylko efekty fragmentowe mają plik .fsh).
@@ -105,8 +130,8 @@ Animacje2.0/
 ├── pack.mcmeta           # pack_format 63 + overlays: old/ dla formatów 16–55
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
-├── KOMENDY.md            # gotowe rozkazy dla wszystkich 36 tagów
-├── assets/minecraft/shaders/...   # BAZA = 1.21.6+ (4 pary vsh/fsh 330 + 40 include'ów)
+├── KOMENDY.md            # gotowe rozkazy dla wszystkich 61 tagów
+├── assets/minecraft/shaders/...   # BAZA = 1.21.6+ (4 pary vsh/fsh 330 + 78 include'ów)
 └── old/assets/minecraft/shaders/...  # overlay ≤1.21.5 (4 pary vsh/fsh 150)
 ```
 

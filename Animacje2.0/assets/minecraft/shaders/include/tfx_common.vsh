@@ -49,4 +49,29 @@ void tfxDetect(ivec3 c, float g) {
     #moj_import <tfx_heartbeat.vsh>
     #moj_import <tfx_flicker.vsh>
     #moj_import <tfx_shake.vsh>
+    #moj_import <tfx_plazma.vsh>
+    #moj_import <tfx_ogien.vsh>
+    #moj_import <tfx_lod.vsh>
+    #moj_import <tfx_diament.vsh>
+    #moj_import <tfx_aurora.vsh>
+    #moj_import <tfx_ocean.vsh>
+    #moj_import <tfx_neon_grad.vsh>
+    #moj_import <tfx_chroma.vsh>
+    #moj_import <tfx_morse.vsh>
+    #moj_import <tfx_radar.vsh>
+    #moj_import <tfx_glow.vsh>
+    #moj_import <tfx_holo.vsh>
+    #moj_import <tfx_static_tv.vsh>
+    #moj_import <tfx_ripple.vsh>
+    #moj_import <tfx_orbita.vsh>
+    #moj_import <tfx_skok.vsh>
+    #moj_import <tfx_sway.vsh>
+    #moj_import <tfx_hopwave.vsh>
+    #moj_import <tfx_wobble.vsh>
+    #moj_import <tfx_spin.vsh>
+    #moj_import <tfx_tremor.vsh>
+    #moj_import <tfx_floaty.vsh>
+    #moj_import <tfx_zigzag.vsh>
+    #moj_import <tfx_spryna.vsh>
+    #moj_import <tfx_szarp.vsh>
 }

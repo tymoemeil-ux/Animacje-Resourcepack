@@ -24,3 +24,16 @@ vec3 tfxHsv(float h, float s, float v) {
     #moj_import <tfx_galaktyka.fsh>
     #moj_import <tfx_krew.fsh>
     #moj_import <tfx_piorun.fsh>
+    #moj_import <tfx_plazma.fsh>
+    #moj_import <tfx_ogien.fsh>
+    #moj_import <tfx_lod.fsh>
+    #moj_import <tfx_diament.fsh>
+    #moj_import <tfx_aurora.fsh>
+    #moj_import <tfx_ocean.fsh>
+    #moj_import <tfx_neon_grad.fsh>
+    #moj_import <tfx_chroma.fsh>
+    #moj_import <tfx_morse.fsh>
+    #moj_import <tfx_radar.fsh>
+    #moj_import <tfx_glow.fsh>
+    #moj_import <tfx_holo.fsh>
+    #moj_import <tfx_static_tv.fsh>

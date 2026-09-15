@@ -1,9 +1,9 @@
 # KOMENDY — Animacje 2.0
 
-Gotowe rozkazy dla wszystkich 36 tagów. Format **SNBT** (Minecraft 1.21.5+).
+Gotowe rozkazy dla wszystkich 61 tagów (50 animacji + 11 kolorów). Format **SNBT** (Minecraft 1.21.5+).
 Dla starszych serwerów (≤1.21.4) przepisz `{text: "..."}` na `{"text": "..."}` (cudzysłowy przy kluczach).
 
-## Fragmentowe (13)
+## Fragmentowe (26)
 ```
 /tellraw @a [{text: "WITAJ ", color: "#A0A000"}, {text: "BLYSK", color: "#A0A000"}]
 ```
@@ -37,7 +37,7 @@ Pełna lista (pojedynczy rozkaz na każdy efekt):
 /tellraw @a [{text: "Piorun!", color: "#A0A030"}]
 ```
 
-## Kinetyczne (12)
+## Kinetyczne (24)
 ```
 # wave
 /tellraw @a [{text: "Wave!", color: "#40E0FF"}]

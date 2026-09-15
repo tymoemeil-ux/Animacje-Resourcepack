@@ -53,6 +53,32 @@ void main() {
         color = tfxRenderKrew(uv, texColor, tfxColor);
     } else if (tfx == 13) {
         color = tfxRenderPiorun(uv, texColor, tfxColor);
+    } else if (tfx == 26) {
+        color = tfxRenderPlazma(uv, texColor, tfxColor);
+    } else if (tfx == 27) {
+        color = tfxRenderOgien(uv, texColor, tfxColor);
+    } else if (tfx == 28) {
+        color = tfxRenderLod(uv, texColor, tfxColor);
+    } else if (tfx == 29) {
+        color = tfxRenderDiament(uv, texColor, tfxColor);
+    } else if (tfx == 30) {
+        color = tfxRenderAurora(uv, texColor, tfxColor);
+    } else if (tfx == 31) {
+        color = tfxRenderOcean(uv, texColor, tfxColor);
+    } else if (tfx == 32) {
+        color = tfxRenderNeonGrad(uv, texColor, tfxColor);
+    } else if (tfx == 33) {
+        color = tfxRenderChroma(uv, texColor, tfxColor);
+    } else if (tfx == 34) {
+        color = tfxRenderMorse(uv, texColor, tfxColor);
+    } else if (tfx == 35) {
+        color = tfxRenderRadar(uv, texColor, tfxColor);
+    } else if (tfx == 36) {
+        color = tfxRenderGlow(uv, texColor, tfxColor);
+    } else if (tfx == 37) {
+        color = tfxRenderHolo(uv, texColor, tfxColor);
+    } else if (tfx == 38) {
+        color = tfxRenderStaticTv(uv, texColor, tfxColor);
     }
 
     if (color.a < 0.1) {
