@@ -1,0 +1,363 @@
+
+
+
+
+
+
+
+
+
+#define SHAKE_SPEED 1.0
+#define SHAKE_INTENSITY 1.0
+
+
+#define PULSE_SPEED 20.0
+#define PULSE_SIZE 0.4
+
+
+#define WAVE_SPEED 12000.0
+#define WAVE_AMPLITUDE 0.5
+
+
+#define WAVE_X_FREQUENCY 0.35
+
+
+#define RAINBOW_SPEED 500.0
+
+
+#define BOUNCE_SPEED 3000.0
+#define BOUNCE_AMPLITUDE 1.0
+
+
+#define BLINK_SPEED 0.5
+
+
+#define SPIN_SPEED 2500.0
+#define ONCE_SPIN_SPEED 5000.0
+
+
+#define FADE_SPEED 1.0
+
+
+#define ITERATING_SPEED 1.0
+#define ITERATING_SPACE 1.0
+
+
+#define GLITCH_SPEED 1.0
+#define GLITCH_INTENSITY 2.0
+
+
+#define GLITCH2_SPEED 1.0
+#define GLITCH2_INTENSITY 1.0
+
+
+#define SCALE_FACTOR 1.5
+#define SCALE_OFFSET_X 0.0
+#define SCALE_OFFSET_Y 0.0
+
+
+#define GRADIENT_START vec3(1.0, 0.0, 0.0)
+#define GRADIENT_END vec3(0.0, 0.0, 1.0)
+#define GRADIENT_DIRECTION 0.0
+
+
+#define DYN_GRADIENT_START vec3(1.0, 0.0, 0.0)
+#define DYN_GRADIENT_END vec3(0.0, 0.0, 1.0)
+#define DYN_GRADIENT_DIRECTION 0.0
+#define DYN_GRADIENT_SPEED 500.0
+
+
+#define AURORA_SPEED 500.0
+#define AURORA_COLOR_1 vec3(1.0, 0.3, 0.7)
+#define AURORA_COLOR_2 vec3(0.3, 1.0, 0.6)
+#define AURORA_COLOR_3 vec3(0.4, 0.6, 1.0)
+
+
+#define SPLIT_INTENSITY 1.5
+#define SPLIT_SPEED 1.0
+
+
+#define OUTLINE_COLOR vec4(0.0, 0.0, 0.0, 1.0)
+#define OUTLINE_THICKNESS 1.0
+
+
+#define HATCH_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define HATCH_SPEED 1000.0
+#define HATCH_DENSITY 1.5
+
+
+#define NEON_COLOR vec4(0.5, 0.9, 1.0, 1.0)
+#define NEON_INTENSITY 1.5
+#define NEON_SPEED 1.0
+
+
+#define CHROMATIC_INTENSITY 1.5
+#define CHROMATIC_SPEED 1.0
+
+
+#define EXTRUDE_DEPTH 1.0
+#define EXTRUDE_LAYERS 3.0
+#define EXTRUDE_COLOR vec4(0.0, 0.0, 0.0, 1.0)
+#define EXTRUDE_COLOR2 vec4(0.0, 0.0, 0.0, 1.0)
+#define EXTRUDE_COLOR3 vec4(0.0, 0.0, 0.0, 1.0)
+
+
+#define NOISE_INTENSITY 1.0
+#define NOISE_SPEED 1.0
+
+
+#define LIQUID_INTENSITY 1.0
+#define LIQUID_SPEED 1.0
+
+
+#define WATER_COLOR vec4(0.2, 0.6, 0.95, 1.0)
+#define WATER_LEVEL 0.55
+#define WATER_AMPLITUDE 1.0
+#define WATER_SPEED 1.0
+#define WATER_FREQUENCY 1.5
+
+#define BOB_SPEED 2.0
+#define BOB_AMPLITUDE 3.0
+#define SWAY_SPEED 1.6
+#define SWAY_AMPLITUDE 4.0
+#define ZIGZAG_SPEED 0.5
+#define ZIGZAG_AMPLITUDE 3.0
+#define WOBBLE_SPEED 2.5
+#define WOBBLE_AMPLITUDE 2.5
+#define FALL_SPEED 0.5
+#define RISE_SPEED 0.5
+#define ORBIT_SPEED 3.0
+#define ORBIT_RADIUS 3.0
+#define DRIFT_SPEED 0.4
+#define TYPEWRITER_SPEED 0.5
+#define ERASE_SPEED 0.5
+#define HEARTBEAT_SPEED 1.2
+#define HEARTBEAT_SIZE 0.5
+#define FLICKER_SPEED 1.0
+#define FLICKER_INTENSITY 1.0
+#define BREATHE_SPEED 1.5
+
+#define BLASK_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define BLASK_INTENSITY 0.9
+#define BLASK_SPEED 1.0
+#define BLASK_WIDTH 0.25
+#define ISKRY_COLOR vec4(1.0, 0.95, 0.75, 1.0)
+#define ISKRY_INTENSITY 1.0
+#define ISKRY_SPEED 1.0
+#define ISKRY_DENSITY 3.0
+#define PLOMIEN_INTENSITY 1.0
+#define PLOMIEN_SPEED 1.0
+#define POPCORN_SPEED 0.8
+#define POPCORN_SIZE 0.5
+#define EKSPLOZJA_SPEED 0.4
+#define EKSPLOZJA_RADIUS 8.0
+#define WINDA_SPEED 0.4
+#define DESZCZ_SPEED 0.5
+#define MRUGACZ_SPEED 1.0
+#define SKOCZKI_SPEED 1.0
+#define SKOCZKI_AMPLITUDE 3.0
+
+#define LASER_COLOR vec4(0.3, 0.9, 1.0, 1.0)
+#define LASER_SPEED 0.5
+#define LASER_WIDTH 0.08
+#define HOLO_COLOR vec4(0.4, 0.9, 1.0, 1.0)
+#define HOLO_SPEED 0.5
+#define HOLO_LINES 20.0
+#define GLITCH_HARD_COLOR vec4(1.0, 0.3, 0.5, 1.0)
+#define GLITCH_HARD_SPEED 1.0
+#define GLITCH_HARD_STRENGTH 1.0
+#define MATRIX_COLOR vec4(0.2, 1.0, 0.4, 1.0)
+#define MATRIX_SPEED 0.6
+#define MATRIX_COLS 8.0
+#define CAUSTICS_COLOR vec4(0.3, 0.8, 1.0, 1.0)
+#define CAUSTICS_SPEED 1.0
+#define CAUSTICS_SCALE 6.0
+#define WARP_COLOR vec4(0.8, 0.4, 1.0, 1.0)
+#define WARP_SPEED 1.0
+#define WARP_STRENGTH 1.0
+#define KRYSTZAL_COLOR vec4(0.7, 0.9, 1.0, 1.0)
+#define KRYSTZAL_SPEED 1.0
+#define KRYSTZAL_CELLS 4.0
+#define PORTAL_COLOR vec4(0.7, 0.4, 1.0, 1.0)
+#define PORTAL_SPEED 1.0
+#define PORTAL_SWIRLS 3.0
+#define XRAY_COLOR vec4(0.3, 1.0, 0.5, 1.0)
+#define XRAY_SPEED 0.5
+#define XRAY_WIDTH 0.1
+#define TERMOWIZJA_COLOR vec4(1.0, 0.5, 0.2, 1.0)
+#define TERMOWIZJA_SPEED 1.0
+#define TERMOWIZJA_CONTRAST 1.2
+#define TORNADO_SPEED 1.0
+#define TORNADO_SIZE 2.0
+#define WAHADLO_SPEED 1.0
+#define WAHADLO_SIZE 3.0
+#define WIBRACJA_SPEED 1.0
+#define WIBRACJA_SIZE 1.0
+#define PRZEGON_SPEED 1.0
+#define PRZEGON_SIZE 3.0
+#define BUMPER_SPEED 1.0
+#define BUMPER_SIZE 4.0
+#define HARMONIJKA_SPEED 1.0
+#define HARMONIJKA_SIZE 2.0
+
+#define NEON_PULS_COLOR vec4(0.4, 0.9, 1.0, 1.0)
+#define NEON_PULS_SPEED 1.0
+#define NEON_PULS_GLOW 1.0
+#define SZKLO_COLOR vec4(0.85, 0.95, 1.0, 1.0)
+#define SZKLO_SPEED 1.0
+#define SZKLO_WIDTH 0.08
+#define ZLOTY_BLASK_COLOR vec4(1.0, 0.85, 0.4, 1.0)
+#define ZLOTY_BLASK_SPEED 1.0
+#define ZLOTY_BLASK_WIDTH 0.25
+#define DIAMET_COLOR vec4(0.8, 0.9, 1.0, 1.0)
+#define DIAMET_SPEED 1.0
+#define DIAMET_DENSITY 4.0
+#define KREW_COLOR vec4(0.5, 0.05, 0.08, 1.0)
+#define KREW_SPEED 0.5
+#define KREW_COLS 5.0
+#define PIANKA_COLOR vec4(0.6, 0.9, 1.0, 1.0)
+#define PIANKA_SPEED 0.8
+#define PIANKA_SIZE 6.0
+#define DYM_COLOR vec4(0.7, 0.7, 0.75, 1.0)
+#define DYM_SPEED 0.8
+#define DYM_DRIFT 0.5
+#define PIORUN_COLOR vec4(0.9, 0.95, 1.0, 1.0)
+#define PIORUN_SPEED 1.0
+#define PIORUN_POWER 1.0
+#define RADIOAKTYWNY_COLOR vec4(0.4, 1.0, 0.2, 1.0)
+#define RADIOAKTYWNY_SPEED 1.0
+#define RADIOAKTYWNY_INTENSITY 1.0
+#define PULSAR_COLOR vec4(1.0, 0.5, 0.9, 1.0)
+#define PULSAR_SPEED 1.0
+#define PULSAR_RINGS 3.0
+#define GALAKTYKA_COLOR vec4(0.6, 0.4, 1.0, 1.0)
+#define GALAKTYKA_SPEED 1.0
+#define GALAKTYKA_STARS 8.0
+#define TRON_COLOR vec4(0.2, 0.9, 1.0, 1.0)
+#define TRON_SPEED 1.0
+#define TRON_GRID 5.0
+#define PRIZMA_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define PRIZMA_SPEED 1.0
+#define PRIZMA_ROWS 6.0
+#define CUKIEREK_COLOR vec4(1.0, 0.5, 0.8, 1.0)
+#define CUKIEREK_SPEED 1.0
+#define CUKIEREK_WIDTH 4.0
+#define OCEAN_COLOR vec4(0.2, 0.5, 1.0, 1.0)
+#define OCEAN_SPEED 1.0
+#define OCEAN_WAVES 1.0
+#define CZARNA_DZIURA_COLOR vec4(0.6, 0.3, 1.0, 1.0)
+#define CZARNA_DZIURA_SPEED 1.0
+#define CZARNA_DZIURA_STRENGTH 1.0
+#define MROZY_COLOR vec4(0.7, 0.9, 1.0, 1.0)
+#define MROZY_SPEED 1.0
+#define MROZY_CELLS 5.0
+#define MAGMA_COLOR vec4(1.0, 0.45, 0.05, 1.0)
+#define MAGMA_SPEED 0.6
+#define MAGMA_CRACKS 1.0
+#define PLASMA_COLOR vec4(0.5, 0.3, 1.0, 1.0)
+#define PLASMA_SPEED 1.0
+#define PLASMA_CONTRAST 1.2
+#define AUREOLA_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define AUREOLA_SPEED 1.0
+#define AUREOLA_INTENSITY 1.0
+#define KARUZELA_SPEED 1.0
+#define KARUZELA_SIZE 2.0
+#define SPIRALA_SPEED 1.0
+#define SPIRALA_SIZE 2.0
+#define POCIAG_SPEED 1.0
+#define POCIAG_SIZE 2.0
+#define BURZA_SPEED 1.0
+#define BURZA_SIZE 1.0
+#define TITAN_SPEED 1.0
+#define TITAN_SIZE 3.0
+#define METRONOM_SPEED 1.0
+#define METRONOM_SIZE 2.0
+#define FALA3D_SPEED 1.0
+#define FALA3D_SIZE 1.5
+#define PIORKA_SPEED 1.0
+#define PIORKA_SIZE 1.0
+
+#define BLYSK_COLOR vec4(0.85, 0.93, 1.0, 1.0)
+#define BLYSK_SPEED 0.7
+#define BLYSK_WIDTH 0.1
+#define SMUGA_COLOR vec4(0.9, 0.95, 1.0, 1.0)
+#define SMUGA_SPEED 0.8
+#define SMUGA_WIDTH 0.06
+#define ISKRENICE_COLOR vec4(1.0, 0.9, 0.5, 1.0)
+#define ISKRENICE_SPEED 1.0
+#define ISKRENICE_DENSITY 10.0
+#define TECAFALA_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define TECAFALA_SPEED 1.0
+#define TECAFALA_ROWS 1.5
+#define SERCE_COLOR vec4(1.0, 0.3, 0.4, 1.0)
+#define SERCE_SPEED 1.0
+#define SERCE_INTENSITY 1.0
+#define KULA_COLOR vec4(1.0, 0.6, 0.2, 1.0)
+#define KULA_SPEED 0.8
+#define KULA_RADIUS 1.0
+#define LUK_COLOR vec4(0.5, 0.9, 1.0, 1.0)
+#define LUK_SPEED 1.0
+#define LUK_ARCS 2.0
+#define MGLAWICA_COLOR vec4(0.4, 0.2, 0.6, 1.0)
+#define MGLAWICA_SPEED 0.6
+#define MGLAWICA_DRIFT 1.0
+#define SNIEG_COLOR vec4(0.9, 0.95, 1.0, 1.0)
+#define SNIEG_SPEED 0.5
+#define SNIEG_FLAKES 8.0
+#define REFLEKS_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define REFLEKS_SPEED 0.7
+#define REFLEKS_POWER 1.0
+#define KASKADA_COLOR vec4(0.7, 0.9, 1.0, 1.0)
+#define KASKADA_SPEED 0.8
+#define KASKADA_WIDTH 0.12
+#define NEONFALA_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define NEONFALA_SPEED 1.0
+#define NEONFALA_HUE 0.0
+#define PERLA_COLOR vec4(0.9, 0.92, 0.95, 1.0)
+#define PERLA_SPEED 0.7
+#define PERLA_IRI 1.0
+#define ZAR_COLOR vec4(1.0, 0.5, 0.15, 1.0)
+#define ZAR_SPEED 0.7
+#define ZAR_EMBERS 7.0
+#define FIRERAIN_COLOR vec4(1.0, 0.6, 0.2, 1.0)
+#define FIRERAIN_SPEED 1.0
+#define FIRERAIN_DROPS 7.0
+#define KOLUMNA_COLOR vec4(0.6, 0.9, 1.0, 1.0)
+#define KOLUMNA_SPEED 0.7
+#define KOLUMNA_COLUMNS 6.0
+#define LASER2_COLOR vec4(0.9, 0.4, 1.0, 1.0)
+#define LASER2_SPEED 0.8
+#define LASER2_WIDTH 0.05
+#define ODLAMKI_COLOR vec4(0.75, 0.9, 1.0, 1.0)
+#define ODLAMKI_SPEED 1.0
+#define ODLAMKI_SHARDS 6.0
+#define GRZMOT_COLOR vec4(0.8, 0.85, 1.0, 1.0)
+#define GRZMOT_SPEED 0.8
+#define GRZMOT_POWER 1.0
+#define SWIATLO_COLOR vec4(1.0, 0.95, 0.8, 1.0)
+#define SWIATLO_SPEED 0.8
+#define SWIATLO_RADIUS 1.0
+#define OBRYS_COLOR vec4(0.3, 1.0, 0.8, 1.0)
+#define OBRYS_SPEED 1.0
+#define OBRYS_INTENSITY 1.0
+#define GWIAZDY_COLOR vec4(0.9, 0.95, 1.0, 1.0)
+#define GWIAZDY_SPEED 0.5
+#define GWIAZDY_STARS 12.0
+#define ELASTYK_SPEED 1.0
+#define ELASTYK_SIZE 2.0
+#define ZEL_SPEED 1.0
+#define ZEL_SIZE 2.0
+#define SKOK_SPEED 1.0
+#define SKOK_SIZE 2.0
+#define FALA2_SPEED 1.0
+#define FALA2_SIZE 2.0
+#define ORBIT2_SPEED 1.0
+#define ORBIT2_SIZE 2.0
+#define GRZMOTW_SPEED 0.6
+#define GRZMOTW_SIZE 2.0
+#define TSUNAMI_SPEED 0.5
+#define TSUNAMI_SIZE 3.0
+#define EKSPRES_SPEED 1.5
+#define EKSPRES_SIZE 1.5
+#define TECTNO_SPEED 1.0
+#define TECTNO_SIZE 3.0

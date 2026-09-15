@@ -1,39 +1,35 @@
 # Animacje-Resourcepack
 
-Repozytorium resourcepacku do animowania tekstu w Minecraft Java Edition.
+Repozytorium resourcepacków do animowania tekstu w Minecraft Java Edition.
 
-## Zawartość
+## Wersje
 
 | Plik | Opis |
 |------|------|
-| `Animacje100/` | Pełny source: 140 animacji, 5 generacji efektów (blysk, smuga, serce, snieg, neonfala, gwiazdy + neon_puls, galaktyka, tron, plasma, aureola...), tutorial, mega komendy (TOP 10), 1000 przykładów, konwerter |
-| `Animacje100.zip` | Gotowy do użycia zip resourcepacku |
-| `Animacje-Datapack/` | Datapack (1.21.11) - animowany nick i hologramy |
-| `Animacje-Datapack.zip` | Gotowy zip datapacku |
-| `konwerter.py` | Konwerter `<animacja:wave>Test</animacja>` -> `/tellraw` |
+| `Animacje2.0/` + `Animacje2.0.zip` | **AKTUALNA (2.0)**: 25 mocnych animacji, wszystkie wyraźnie animowane, osobny pack |
+| `Animacje1.0/` + `Animacje1.0.zip` | Archiwum (1.0): pełne 140 animacji, tutorial, mega komendy, 1000 przykładów |
+| `Animacje-Datapack/` + `Animacje-Datapack.zip` | Datapack (1.21.11) - animowany nick i hologramy |
+| `konwerter.py` | Konwerter `<animacja:blysk>Test</animacja>` -> `/tellraw` (wersja 2.0) |
 | `Text_Effects.zip` | Oryginalny pack TheSalt's Text Effects (podstawa) |
 
-## Animacje 140 w skrócie
+## Animacje 2.0 w skrócie
 
-- **140 tagów**, wszystkie mocne i animowane (53 słabe usunięto, 43 nowe dodano)
-- Najnowsza generacja: **blysk**, smuga, iskrenice, teczafala, serce, kula, luk, mglawica, snieg, refleks, kaskada, neonfala, perla, zar, firerain, kolumna, laser2, odlamki, grzmot, swiatlo, obrys, gwiazdy + elastyk, zel, skok, fala2, orbit2, grzmot_w, tsunami, ekspres, tectno + mega_blysk
-- Animuje cały pipeline tekstu: czat, tytuły, actionbar, tabliczki, manekiny, GUI (1.21.4+)
-- **Rangi na serwerze**: prefixy LuckPerms z kolorami spustowymi = animowane rangi w czacie
-- Zero komentarzy w kodzie shaderów
-- README z **wszystkimi 140 rozkazami /tellraw**
+- **25 tagów**, wszystkie mocno animowane (zero subtelnych), nowe kolory spustowe `#A0A0xx`
+- Błyski i neon: blysk, neonfala, teczafala, kaskada, laser2, grzmot, obrys, neon, neon_puls, zloty_blask, galaktyka, krew, piorun
+- Ruchy: wave, wave_big, rainbow, glitch_hard, tsunami, karuzela, tornado, bumper, pulse, heartbeat, flicker, shake
+- Kompilacja shaderów: 34/34 OK (glslang 11.7.0, wszystkie warianty 1.21-26.2)
 - Wsparcie Minecraft 1.17-1.21.11 i 26.x (pack format 7-100)
 
-Szybki start:
+Szybki start (2.0):
 
 ```
 python3 konwerter.py "<animacja:blysk>Błysk</animacja>"
 ```
 
-Ranga w LuckPerms:
+Ranga w LuckPerms (kolor z 2.0):
 
 ```
-/lp user <gracz> prefix set {"text":"[OP] ","color":"#D0D000"}
+/lp user <gracz> prefix set {"text":"[OP] ","color":"#A0A000"}
 ```
 
-Szczegóły w `Animacje100/README.md` i `Animacje100/TUTORIAL.md`.
-
+Szczegóły: `Animacje2.0/README.md` i `Animacje2.0/KOMENDY.md`. Wersja 1.0 (140 animacji): `Animacje1.0/README.md`.
