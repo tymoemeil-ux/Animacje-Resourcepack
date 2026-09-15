@@ -92,23 +92,27 @@ Kolor spustowy + logika VSH leży w `tfx_<nazwa>.vsh`, wygląd pikselowy w `tfx_
 | Wersje | Format packa | Co się ładuje |
 |---|---|---|
 | 1.20.2 – 1.21.5 | 16 – 55 | szadery bazowe (GLSL 150, stary API mgle) |
-| 1.21.6 – 1.21.11 | 63 – 75 | **wariant `63/`** (GLSL 330, nowy API mgle: `apply_fog`, UBO `Fog`) |
-| 26.1 – 26.2 | 84 – 88 | pack się ładuje (pipeline tekstu w 26.x to inny zestaw plików — bez kreski, bez efektów) |
+| 1.21.6 – 1.21.11+ | 63 – 100 | **wariant `1_21_6/`** (GLSL 330, nowy API mgle: `apply_fog`, UBO `Fog`) |
 
-`pack.mcmeta`: `pack_format: 75` (1.21.11) + `min_format: [32,0]` + `max_format: [88,0]`.
+Mechanizm: **`overlays` w `pack.mcmeta`** (jedyny sposób, żeby wariant faktycznie się
+ładował — goły folder o dowolnej nazwie jest ignorowany):
+```json
+"overlays": { "entries": [ { "directory": "1_21_6", "min_format": 63, "max_format": 100, ... } ] }
+```
+To dokładnie ten sam schemat, co w packu TheSalt's Text Effects (sprawdzone, działa na 1.21.11).
 
-Wariant `63/` jest zgodny z **prawdziwym vanilla 1.21.11** (`fog.glsl`, `dynamictransforms.glsl`,
+Wariant `1_21_6/` jest zgodny z **prawdziwym vanilla 1.21.11** (`fog.glsl`, `dynamictransforms.glsl`,
 `projection.glsl`, `globals.glsl` pobrane z oficjalnych assetów i zweryfikowane kompilatorem GLSL).
 
 ## Struktura
 ```
 Animacje2.0/
-├── pack.mcmeta           # pack_format 75 (1.21.11), zakres 32–88
+├── pack.mcmeta           # pack_format 16 + overlays: 1_21_6/ dla formatów 63–100
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
 ├── KOMENDY.md            # gotowe rozkazy dla wszystkich 36 tagów
 ├── assets/minecraft/shaders/...   # silnik + efekty (baza: 1.20.2–1.21.5)
-└── 63/assets/minecraft/shaders/...  # wariant 1.21.6+ (4 pary vsh/fsh + 40 include'ów)
+└── 1_21_6/assets/minecraft/shaders/...  # overlay 1.21.6+ (4 pary vsh/fsh + 40 include'ów)
 ```
 
 ## Archiwum

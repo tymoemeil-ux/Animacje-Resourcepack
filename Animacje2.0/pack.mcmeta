@@ -1,14 +1,25 @@
 {
   "pack": {
-    "description": "\u00a7dAnimacje 2.0 \u00a77\u2014 25 animacji + 11 kolorow, nowy silnik od zera",
-    "pack_format": 75,
-    "min_format": [
-      32,
-      0
-    ],
-    "max_format": [
-      88,
-      0
+    "description": "§dAnimacje 2.0 §7— 25 animacji + 11 kolorow, nowy silnik od zera",
+    "pack_format": 16,
+    "supported_formats": {
+      "min_inclusive": 16,
+      "max_inclusive": 100
+    },
+    "min_format": 16,
+    "max_format": 100
+  },
+  "overlays": {
+    "entries": [
+      {
+        "formats": {
+          "min_inclusive": 63,
+          "max_inclusive": 100
+        },
+        "min_format": 63,
+        "max_format": 100,
+        "directory": "1_21_6"
+      }
     ]
   }
 }
