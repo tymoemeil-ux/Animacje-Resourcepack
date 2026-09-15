@@ -7,161 +7,53 @@ uniform vec4 ColorModulator;
 uniform float FogStart;
 uniform float FogEnd;
 uniform vec4 FogColor;
-
-#moj_import <text_data.glsl>
-#moj_import <spin_effect.glsl>
-#moj_import <neon_effect.glsl>
-#moj_import <neon_puls_effect.glsl>
-#moj_import <zloty_blask_effect.glsl>
-#moj_import <krew_effect.glsl>
-#moj_import <piorun_effect.glsl>
-#moj_import <galaktyka_effect.glsl>
-#moj_import <blysk_effect.glsl>
-#moj_import <tecafala_effect.glsl>
-#moj_import <kaskada_effect.glsl>
-#moj_import <neonfala_effect.glsl>
-#moj_import <laser2_effect.glsl>
-#moj_import <grzmot_effect.glsl>
-#moj_import <obrys_effect.glsl>
-
 uniform sampler2D Sampler0;
 
 in float vertexDistance;
 in vec4 vertexColor;
 in vec2 texCoord0;
 
-in vec3 spinT0;
-in vec3 spinT1;
-in vec3 spinT2;
-in vec3 spinT3;
-in float spinFlip;
-in float spinScale;
+in float tfxID;
+in vec4 tfxColor;
+in vec2 tfxPos;
 
-in float fshEffectID;
-in vec4 fshBaseColor;
-in vec2 fshCharUV;
-in vec4 fshEffectColor;
-in vec4 fshExtrudeColor2;
-in vec4 fshExtrudeColor3;
-in vec4 fshEffectParams;
-in vec3 fshGlyphT0;
-in vec3 fshGlyphT1;
-in vec3 fshGlyphT2;
-in vec3 fshGlyphT3;
-in float fshDisplayAlpha;
+#moj_import <tfx_common.fsh>
 
 out vec4 fragColor;
 
 void main() {
     vec2 uv = texCoord0;
+    vec4 texColor = texture(Sampler0, uv).rrrr;
+    vec4 color = texColor * vertexColor;
 
-    applySpinEffect(uv, spinT0, spinT1, spinT2, spinT3, spinScale, spinFlip, texCoord0, Sampler0);
-
-    int effectID = int(fshEffectID + 0.5);
-
-    if (effectID == 3) {
-
-        applyNeonEffect(uv, fshEffectColor, fshEffectParams,
-                        fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-                        GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 24) {
-
-        applyNeonPulsEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 26) {
-
-        applyZlotyBlaskEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 28) {
-
-        applyKrewEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 31) {
-
-        applyPiorunEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 34) {
-
-        applyGalaktykaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 44) {
-
-        applyBlyskEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 47) {
-
-        applyTecfalaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 54) {
-
-        applyKaskadaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 55) {
-
-        applyNeonfalaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 60) {
-
-        applyLaser2Effect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 62) {
-
-        applyGrzmotEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
-    } else if (effectID == 64) {
-
-        applyObrysEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
-             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
-             GameTime, Sampler0, fragColor);
-        fragColor.a *= fshDisplayAlpha;
-        return;
+    int tfx = int(tfxID + 0.5);
+    if (tfx == 1) {
+        color = tfxRenderBlysk(uv, texColor, tfxColor);
+    } else if (tfx == 2) {
+        color = tfxRenderNeonfala(uv, texColor, tfxColor);
+    } else if (tfx == 3) {
+        color = tfxRenderTecfala(uv, texColor, tfxColor);
+    } else if (tfx == 4) {
+        color = tfxRenderKaskada(uv, texColor, tfxColor);
+    } else if (tfx == 5) {
+        color = tfxRenderLaser2(uv, texColor, tfxColor);
+    } else if (tfx == 6) {
+        color = tfxRenderGrzmot(uv, texColor, tfxColor);
+    } else if (tfx == 7) {
+        color = tfxRenderObrys(uv, texColor, tfxColor);
+    } else if (tfx == 8) {
+        color = tfxRenderNeon(uv, texColor, tfxColor);
+    } else if (tfx == 9) {
+        color = tfxRenderNeonPuls(uv, texColor, tfxColor);
+    } else if (tfx == 10) {
+        color = tfxRenderZlotyBlask(uv, texColor, tfxColor);
+    } else if (tfx == 11) {
+        color = tfxRenderGalaktyka(uv, texColor, tfxColor);
+    } else if (tfx == 12) {
+        color = tfxRenderKrew(uv, texColor, tfxColor);
+    } else if (tfx == 13) {
+        color = tfxRenderPiorun(uv, texColor, tfxColor);
     }
-
-    vec4 color = texture(Sampler0, uv).rrrr * vertexColor * ColorModulator;
-
-    TextData textData;
-    textData.uv = uv;
-    textData.spinT0 = spinT0;
-    textData.spinT1 = spinT1;
-    textData.spinT2 = spinT2;
-    textData.spinT3 = spinT3;
-    textData.color = color;
-    textData.vertexColor = vertexColor;
 
     if (color.a < 0.1) {
         discard;

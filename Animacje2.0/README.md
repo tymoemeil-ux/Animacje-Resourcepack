@@ -1,103 +1,109 @@
-# Animacje 2.0
+# Animacje 2.0 — nowy silnik efektów tekstu
 
-Resourcepack z **25 animacjami tekstu** dla Minecraft Java Edition - tylko mocne, wszystkie wyraźnie animowane nawet na małym tekście czatu.
+Resourcepack, który animuje tekst w czacie Minecraft. **25 efektów animowanych + 11 czystych kolorów.**
+Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i czytelny.
 
-To wersja 2.0 (od nowa, z 25 wyselekcjonowanych efektów). Stara wersja z 140 animacjami jest archiwum: `Animacje1.0`.
+> Instaluj TYLKO JEDEN pack animacji naraz (1.0 i 2.0 konfliktują — oba nadpisują render tekstu).
 
-Napisz tekst w kolorze z tabeli, a client z włączonym packiem wyświetli go z animacją. Na serwerze i bez packa - zwykły tekst (animacja działa tylko po stronie klienta).
+## Jak to działa
+1. `konwerter.py` zamienia `<animacja:NAZWA>tekst</animacja>` na gotowy rozkaz `/tellraw` z kolorem spustowym.
+2. Shader (VSH) rozpoznaje dokładny kolor znaku i:
+   - **efekt kinetyczny** (14–25) — przesuwa/odwraca całe znaki w przestrzeni ekranu,
+   - **efekt fragmentowy** (1–13) — koloruje piksele znaku w czasie (FSH).
+3. Kolor bez efektu = zwykły tekst (dlatego "czyste kolory" niczego nie uruchamiają).
 
-> Nie jest kompatybilny z innymi packami nadpisującymi shader `rendertype_text` (w tym z Animacje 1.0 - używaj jednej wersji).
+## 25 efektów animowanych
 
-## Instalacja
+### Fragmentowe (kolor pikseli zmienia się w czasie)
+| Tag | Kolor | Co robi |
+|---|---|---|
+| `blysk` | `#A0A000` | jasna iskra z ogonem przetacza się przez tekst |
+| `neonfala` | `#A0A004` | neonowa fala kolorów (tęcza w tonie neonu) |
+| `tecafala` | `#A0A008` | przesuwająca się taśma pełnego spektrum |
+| `kaskada` | `#A0A00C` | spadające metaliczne pasma (złoto) |
+| `laser2` | `#A0A010` | poziomy snop lasera skanuje tekst |
+| `grzmot` | `#A0A014` | losowe białe błyski piorunów |
+| `obrys` | `#A0A018` | pulsujący pomarańczowy obrys znaków (wnętrze ciemne) |
+| `neon` | `#A0A01C` | pulsująca cyan-owa poświata |
+| `neon_puls` | `#A0A020` | ostre, szybkie pulsowanie (magenta) |
+| `zloty_blask` | `#A0A024` | złoty blask + przesuwający się połysk |
+| `galaktyka` | `#A0A028` | fioletowo-niebieska mgławica + mieniące gwiazdki |
+| `krew` | `#A0A02C` | pulsująca, cętkowana czerwień |
+| `piorun` | `#A0A030` | szybkie migotanie + rzadkie mocne rozbłyski |
 
-1. Wrzuć `Animacje2.0.zip` (lub folder `Animacje2.0`) do `.minecraft/resourcepacks`
-2. Włącz pack w `Pakiety zasobów`
-3. Używaj kolorów z tabeli w `/tellraw`, `/title` itp.
+### Kinetyczne (same znaki się ruszają)
+| Tag | Kolor | Co robi |
+|---|---|---|
+| `wave` | `#40E0FF` | znaki falują w górę i w dół |
+| `wave_big` | `#20B0FF` | duże, powolne fale |
+| `rainbow` | `#FF40FF` | każdy znak zmienia kolor (tęcza po znakach) |
+| `glitch_hard` | `#FF3050` | znaki szarpią się losowo (glitch) |
+| `tsunami` | `#4080FF` | wielka fala niesie znaki |
+| `karuzela` | `#FF9030` | znaki kręcą się w kółko |
+| `tornado` | `#90FF30` | znaki wirują jak w tornadzie |
+| `bumper` | `#FF30A0` | znaki podskakują jak bilardowe kulki |
+| `pulse` | `#FFFF30` | znaki "oddychają" (parzyste w górę, nieparzyste w dół) |
+| `heartbeat` | `#FF3030` | cały tekst bije jak serce (bum-bum) |
+| `flicker` | `#F0F0F0` | znaki migają (znikają i wracają) |
+| `shake` | `#FFA030` | cały tekst trzęsie się mocno |
 
-## 25 animacji
+### Czyste kolory (bez animacji — tekst po prostu kolorowy)
+| Tag | Kolor |
+|---|---|
+| `czerwony` | `#FF0000` |
+| `zielony` | `#00FF00` |
+| `niebieski` | `#0000FF` |
+| `zolty` | `#FFFF00` |
+| `pomaranczowy` | `#FF9900` |
+| `fioletowy` | `#CC00FF` |
+| `rozowy` | `#FF66CC` |
+| `cyjan` | `#00FFFF` |
+| `bialy` | `#FFFFFF` |
+| `szary` | `#999999` |
+| `brazowy` | `#8B4513` |
 
-Wszystkie 25 jest mocno animowanych - bez subtelnych. Kolor = tag.
-
-| # | Tag | Kolor | Efekt |
-|---|-----|-------|-------|
-| 1 | `animacja:blysk` | `#A0A000` | Błysk - podwójny rozbłysk przez tekst |
-| 2 | `animacja:neonfala` | `#A0A004` | Neonowa fala pełnych kolorów |
-| 3 | `animacja:tecafala` | `#A0A008` | Tęczowa fala płynąca przez tekst |
-| 4 | `animacja:kaskada` | `#A0A00C` | Gruba kaskada światła spływająca w dół |
-| 5 | `animacja:laser2` | `#A0A010` | Podwójne laserowe skanowanie |
-| 6 | `animacja:grzmot` | `#A0A014` | Gwałtowne rozbłyski grzmotu |
-| 7 | `animacja:obrys` | `#A0A018` | Świecący niebieski obrys liter |
-| 8 | `animacja:neon` | `#A0A01C` | Klasyczny niebieski neon |
-| 9 | `animacja:neon_puls` | `#A0A020` | Pulsująca neonowa poświata |
-| 10 | `animacja:zloty_blask` | `#A0A024` | Podwójna złota fala |
-| 11 | `animacja:galaktyka` | `#A0A028` | Fioletowa mgławica + gwiazdy |
-| 12 | `animacja:krew` | `#A0A02C` | Spływające czerwone krople |
-| 13 | `animacja:piorun` | `#A0A030` | Białe rozbłyski piorunów |
-| 14 | `animacja:wave` | `#A0A034` | Fala podnosząca litery |
-| 15 | `animacja:wave_big` | `#A0A038` | Wysoka, szybka fala |
-| 16 | `animacja:rainbow` | `#A0A03C` | Tęczowy przebieg kolorów |
-| 17 | `animacja:glitch_hard` | `#A0A040` | Mocny glicz / przesunięcia |
-| 18 | `animacja:tsunami` | `#A0A044` | Potężna fala tsunami |
-| 19 | `animacja:karuzela` | `#A0A048` | Litery krążą jak karuzela |
-| 20 | `animacja:tornado` | `#A0A04C` | Wirujący tornado |
-| 21 | `animacja:bumper` | `#A0A050` | Bumperowe odbicia liter |
-| 22 | `animacja:pulse` | `#A0A054` | Pulsowanie rozmiaru |
-| 23 | `animacja:heartbeat` | `#A0A058` | Uderzenia serca |
-| 24 | `animacja:flicker` | `#A0A05C` | Szybkie migotanie |
-| 25 | `animacja:shake` | `#A0A060` | Losowe trzęsienie |
-
-## Wszystkie 25 rozkazów /tellraw
-
+## Szybki start
 ```
-/tellraw @a {"text":"Test","color":"#A0A000"}
-/tellraw @a {"text":"Test","color":"#A0A004"}
-/tellraw @a {"text":"Test","color":"#A0A008"}
-/tellraw @a {"text":"Test","color":"#A0A00C"}
-/tellraw @a {"text":"Test","color":"#A0A010"}
-/tellraw @a {"text":"Test","color":"#A0A014"}
-/tellraw @a {"text":"Test","color":"#A0A018"}
-/tellraw @a {"text":"Test","color":"#A0A01C"}
-/tellraw @a {"text":"Test","color":"#A0A020"}
-/tellraw @a {"text":"Test","color":"#A0A024"}
-/tellraw @a {"text":"Test","color":"#A0A028"}
-/tellraw @a {"text":"Test","color":"#A0A02C"}
-/tellraw @a {"text":"Test","color":"#A0A030"}
-/tellraw @a {"text":"Test","color":"#A0A034"}
-/tellraw @a {"text":"Test","color":"#A0A038"}
-/tellraw @a {"text":"Test","color":"#A0A03C"}
-/tellraw @a {"text":"Test","color":"#A0A040"}
-/tellraw @a {"text":"Test","color":"#A0A044"}
-/tellraw @a {"text":"Test","color":"#A0A048"}
-/tellraw @a {"text":"Test","color":"#A0A04C"}
-/tellraw @a {"text":"Test","color":"#A0A050"}
-/tellraw @a {"text":"Test","color":"#A0A054"}
-/tellraw @a {"text":"Test","color":"#A0A058"}
-/tellraw @a {"text":"Test","color":"#A0A05C"}
-/tellraw @a {"text":"Test","color":"#A0A060"}
+# 1. Wgraj Animacje2.0.zip do .minecraft/resourcepacks i włącz go
+# 2. W konsoli/chat (jako admin) wklej rozkaz z konwertera:
+python3 konwerter.py "Witaj <animacja:blysk>SWIECIE</animacja>!"
+# -> /tellraw @a [{text: "Witaj "}, {text: "SWIECIE", color: "#A0A000"}, {text: "!"}]
 ```
 
-## Konwerter
+### Formaty rozkazów
+- **SNBT (domyślnie, Minecraft 1.21.5+):** `{text: "Test", color: "#A0A000"}`
+- **Stary JSON (Minecraft ≤ 1.21.4):** `python3 konwerter.py --json "..."` → `{"text": "Test", "color": "#A0A000"}`
 
+Jeśli serwer wyrzuca "Unknown or incomplete command" — użyj odpowiedniego formatu dla wersji serwera.
+
+## Pliki efektów (każdy efekt = osobny plik)
 ```
-python3 konwerter.py "<animacja:blysk>Błysk</animacja>"
+assets/minecraft/shaders/include/
+├── tfx_common.vsh        # silnik: stan efektu + detekcja koloru
+├── tfx_common.fsh        # silnik: wspólne funkcje + importy efektów
+├── tfx_blysk.vsh  +  tfx_blysk.fsh     # efekt: blysk
+├── tfx_neonfala.vsh +  tfx_neonfala.fsh
+├── ... (25 par plików po jednym na efekt)
+```
+Kolor spustowy + logika VSH leży w `tfx_<nazwa>.vsh`, wygląd pikselowy w `tfx_<nazwa>.fsh`
+(tylko efekty fragmentowe mają plik .fsh).
 
-/tellraw @a {"text": "Błysk", "color": "#A0A000"}
+## Wersje Minecraft
+Pack zawiera warianty shaderów dla: 1.20.5–1.21.1 (baza), 1.21.2, 1.21.6–1.21.9, 26.1, 26.2.
+
+## Struktura
+```
+Animacje2.0/
+├── pack.mcmeta
+├── konwerter.py          # generator rozkazów /tellraw
+├── README.md             # ten plik
+├── KOMENDY.md            # gotowe rozkazy dla wszystkich 36 tagów
+├── assets/minecraft/shaders/...   # silnik + efekty (baza)
+├── 1_21_2/ ...           # warianty wersji
+├── 1_21_6/ ...
+├── 26_1/ ...
+└── 26_2/ ...
 ```
 
-## Łączenie efektów
-
-Jedna komenda, dwa kolory = dwa efekty:
-
-```
-/tellraw @a {"text":"BŁYSK","color":"#A0A000","extra":[{"text":" + RAINBOW","color":"#A0A03C"}]}
-```
-
-Szczegóły gotowych komend: `KOMENDY.md`.
-
-## Wersje
-
-Pack format 7-100 (Minecraft 1.17 i nowsze, w tym 1.21.11 i 26.x). Overlady dla 1.21.2, 1.21.6, 26.1 i 26.2.
-
-## Licencja
-
-MIT. Pack oparty na TheSalt's Text Effects (MIT, TheSalt). Szczegóły w `LICENSE`.
+## Archiwum
+Stara wersja z 140 animacjami: `Animacje1.0/` + `Animacje1.0.zip` (zachowana do celów archiwalnych).

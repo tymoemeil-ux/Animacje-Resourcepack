@@ -1,49 +1,104 @@
-# Komendy Animacje 2.0 - wszystkie 25
+# KOMENDY — Animacje 2.0
 
-Każdą komendę skopiuj i wklej do czatu (albo `/title` / actionbar). Wszystkie 25 efektów jest mocno animowanych.
+Gotowe rozkazy dla wszystkich 36 tagów. Format **SNBT** (Minecraft 1.21.5+).
+Dla starszych serwerów (≤1.21.4) przepisz `{text: "..."}` na `{"text": "..."}` (cudzysłowy przy kluczach).
 
-| # | Tag | Komenda |
-|---|-----|---------|
-| 1 | `blysk` | /tellraw @a {"text":"Witaj na serwerze!","color":"#A0A000"} |
-| 2 | `neonfala` | /tellraw @a {"text":"Kopię i wklejam","color":"#A0A004"} |
-| 3 | `tecafala` | /tellraw @a {"text":"Super serwer","color":"#A0A008"} |
-| 4 | `kaskada` | /tellraw @a {"text":"Animacje 2.0","color":"#A0A00C"} |
-| 5 | `laser2` | /tellraw @a {"text":"Najlepszy pack","color":"#A0A010"} |
-| 6 | `grzmot` | /tellraw @a {"text":"Patrz na to","color":"#A0A014"} |
-| 7 | `obrys` | /tellraw @a {"text":"Legendarny tekst","color":"#A0A018"} |
-| 8 | `neon` | /tellraw @a {"text":"To jest top","color":"#A0A01C"} |
-| 9 | `neon_puls` | /tellraw @a {"text":"Totalnie ooh","color":"#A0A020"} |
-| 10 | `zloty_blask` | /tellraw @a {"text":"MEGA TEKST","color":"#A0A024"} |
-| 11 | `galaktyka` | /tellraw @a {"text":"Witaj na serwerze!","color":"#A0A028"} |
-| 12 | `krew` | /tellraw @a {"text":"Kopię i wklejam","color":"#A0A02C"} |
-| 13 | `piorun` | /tellraw @a {"text":"Super serwer","color":"#A0A030"} |
-| 14 | `wave` | /tellraw @a {"text":"Animacje 2.0","color":"#A0A034"} |
-| 15 | `wave_big` | /tellraw @a {"text":"Najlepszy pack","color":"#A0A038"} |
-| 16 | `rainbow` | /tellraw @a {"text":"Patrz na to","color":"#A0A03C"} |
-| 17 | `glitch_hard` | /tellraw @a {"text":"Legendarny tekst","color":"#A0A040"} |
-| 18 | `tsunami` | /tellraw @a {"text":"To jest top","color":"#A0A044"} |
-| 19 | `karuzela` | /tellraw @a {"text":"Totalnie ooh","color":"#A0A048"} |
-| 20 | `tornado` | /tellraw @a {"text":"MEGA TEKST","color":"#A0A04C"} |
-| 21 | `bumper` | /tellraw @a {"text":"Witaj na serwerze!","color":"#A0A050"} |
-| 22 | `pulse` | /tellraw @a {"text":"Kopię i wklejam","color":"#A0A054"} |
-| 23 | `heartbeat` | /tellraw @a {"text":"Super serwer","color":"#A0A058"} |
-| 24 | `flicker` | /tellraw @a {"text":"Animacje 2.0","color":"#A0A05C"} |
-| 25 | `shake` | /tellraw @a {"text":"Najlepszy pack","color":"#A0A060"} |
-
-## Gotowe frazy
-
+## Fragmentowe (13)
 ```
-/tellraw @a {"text":"GRATULACJE","color":"#A0A024"}
-/tellraw @a {"text":"SZEF SERWERA","color":"#A0A000"}
-/tellraw @a {"text":"NOWOŚĆ W SKLEPIE","color":"#A0A004"}
-/tellraw @a {"text":"UWAGA! BIAŁY TEKST","color":"#A0A03C"}
-/tellraw @a {"text":"BOSS POJAWIŁ SIĘ","color":"#A0A014"}
-/tellraw @a {"text":"DO ZOBACZENIA","color":"#A0A020"}
+/tellraw @a [{text: "WITAJ ", color: "#A0A000"}, {text: "BLYSK", color: "#A0A000"}]
+```
+Pełna lista (pojedynczy rozkaz na każdy efekt):
+```
+# blysk
+/tellraw @a [{text: "Blysk!", color: "#A0A000"}]
+# neonfala
+/tellraw @a [{text: "Neonfala!", color: "#A0A004"}]
+# teczafala
+/tellraw @a [{text: "Teczafala!", color: "#A0A008"}]
+# kaskada
+/tellraw @a [{text: "Kaskada!", color: "#A0A00C"}]
+# laser2
+/tellraw @a [{text: "Laser2!", color: "#A0A010"}]
+# grzmot
+/tellraw @a [{text: "Grzmot!", color: "#A0A014"}]
+# obrys
+/tellraw @a [{text: "Obrys!", color: "#A0A018"}]
+# neon
+/tellraw @a [{text: "Neon!", color: "#A0A01C"}]
+# neon_puls
+/tellraw @a [{text: "Neon Puls!", color: "#A0A020"}]
+# zloty_blask
+/tellraw @a [{text: "Zloty Blask!", color: "#A0A024"}]
+# galaktyka
+/tellraw @a [{text: "Galaktyka!", color: "#A0A028"}]
+# krew
+/tellraw @a [{text: "Krew!", color: "#A0A02C"}]
+# piorun
+/tellraw @a [{text: "Piorun!", color: "#A0A030"}]
 ```
 
-## Łączenie (extra)
-
+## Kinetyczne (12)
 ```
-/tellraw @a {"text":"BŁYSK","color":"#A0A000","extra":[{"text":" + TSUNAMI","color":"#A0A044"}]}
-/tellraw @a {"text":"GALAKTYKA","color":"#A0A028","extra":[{"text":" + WAVE","color":"#A0A034"}]}
+# wave
+/tellraw @a [{text: "Wave!", color: "#40E0FF"}]
+# wave_big
+/tellraw @a [{text: "Wave Big!", color: "#20B0FF"}]
+# rainbow
+/tellraw @a [{text: "Rainbow!", color: "#FF40FF"}]
+# glitch_hard
+/tellraw @a [{text: "Glitch!", color: "#FF3050"}]
+# tsunami
+/tellraw @a [{text: "Tsunami!", color: "#4080FF"}]
+# karuzela
+/tellraw @a [{text: "Karuzela!", color: "#FF9030"}]
+# tornado
+/tellraw @a [{text: "Tornado!", color: "#90FF30"}]
+# bumper
+/tellraw @a [{text: "Bumper!", color: "#FF30A0"}]
+# pulse
+/tellraw @a [{text: "Pulse!", color: "#FFFF30"}]
+# heartbeat
+/tellraw @a [{text: "Heartbeat!", color: "#FF3030"}]
+# flicker
+/tellraw @a [{text: "Flicker!", color: "#F0F0F0"}]
+# shake
+/tellraw @a [{text: "Shake!", color: "#FFA030"}]
+```
+
+## Czyste kolory (11)
+```
+/tellraw @a [{text: "Czerwony tekst", color: "#FF0000"}]
+/tellraw @a [{text: "Zielony tekst", color: "#00FF00"}]
+/tellraw @a [{text: "Niebieski tekst", color: "#0000FF"}]
+/tellraw @a [{text: "Zolty tekst", color: "#FFFF00"}]
+/tellraw @a [{text: "Pomaranczowy tekst", color: "#FF9900"}]
+/tellraw @a [{text: "Fioletowy tekst", color: "#CC00FF"}]
+/tellraw @a [{text: "Rozowy tekst", color: "#FF66CC"}]
+/tellraw @a [{text: "Cyjan tekst", color: "#00FFFF"}]
+/tellraw @a [{text: "Bialy tekst", color: "#FFFFFF"}]
+/tellraw @a [{text: "Szary tekst", color: "#999999"}]
+/tellraw @a [{text: "Brązowy tekst", color: "#8B4513"}]
+```
+
+## Gotowe frazy (mieszane)
+```
+# Ogloszenie z blyskiem
+/tellraw @a [{text: ">> ", color: "#A0A000"}, {text: "SERWER WYLACZANY ZAIWKA", color: "#A0A000"}, {text: " <<", color: "#A0A000"}]
+
+# Fala powitania
+/tellraw @a [{text: "Witaj na serwerze, ", color: "#40E0FF"}, {text: "Gracz", color: "#40E0FF"}]
+
+# Alerty
+/tellraw @a [{text: "UWAGA: HACKI", color: "#FF3050"}]
+/tellraw @a [{text: "BUMP! ", color: "#FF30A0"}, {text: "Nowy przedmiot w skrzynce!", color: "#FF30A0"}]
+
+# Serce (animacja) + kolor (statycznie)
+/tellraw @a [{text: "BUMP-BUMP ", color: "#FF3030"}, {text: "serduszko", color: "#FF66CC"}]
+```
+
+## Jak generować własne
+```
+python3 konwerter.py "Twój tekst <animacja:blysk>TUTAJ</animacja> dalej"
+python3 konwerter.py --json "..."   # stary format (Minecraft <= 1.21.4)
+python3 konwerter.py --lista        # pełna lista tagów + kolory
 ```
