@@ -6973,6 +6973,7 @@ Nakładanie dwóch efektów jednym rozkazem przez `extra`:
 
 ## Przykłady
 
+- **Najlepsze / mega dobre:** `MEGA_KOMENDY.md` (wybrane perełki z TOP 10)
 - 140 gotowych rozkazów: `TUTORIAL.md` (rozdział 5)
 - 1000 gotowych rozkazów: `PRZYKLADY_1000.md`
 

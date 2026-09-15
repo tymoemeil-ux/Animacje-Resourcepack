@@ -6,7 +6,7 @@ Repozytorium resourcepacku do animowania tekstu w Minecraft Java Edition.
 
 | Plik | Opis |
 |------|------|
-| `Animacje100/` | Pełny source: 140 animacji, 5 generacji efektów (blysk, smuga, serce, snieg, neonfala, gwiazdy + neon_puls, galaktyka, tron, plasma, aureola...), tutorial, 1000 przykładów, konwerter |
+| `Animacje100/` | Pełny source: 140 animacji, 5 generacji efektów (blysk, smuga, serce, snieg, neonfala, gwiazdy + neon_puls, galaktyka, tron, plasma, aureola...), tutorial, mega komendy (TOP 10), 1000 przykładów, konwerter |
 | `Animacje100.zip` | Gotowy do użycia zip resourcepacku |
 | `Animacje-Datapack/` | Datapack (1.21.11) - animowany nick i hologramy |
 | `Animacje-Datapack.zip` | Gotowy zip datapacku |
