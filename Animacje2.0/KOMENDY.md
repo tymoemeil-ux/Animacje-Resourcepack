@@ -314,6 +314,125 @@ Pełna lista (pojedynczy rozkaz na każdy efekt):
 /tellraw @a [{text: "BUMP-BUMP ", color: "#FF3030"}, {text: "serduszko", color: "#FF66CC"}]
 ```
 
+## NOWE 50 EFEKTÓW (156–205)
+### Ruchy (156–170)
+# kotwica
+/tellraw @a [{text: "kotwica", color: "#60B000"}]
+# piorko
+/tellraw @a [{text: "piorko", color: "#60B004"}]
+# strzala
+/tellraw @a [{text: "strzala", color: "#60B008"}]
+# most
+/tellraw @a [{text: "most", color: "#60B00C"}]
+# zegar
+/tellraw @a [{text: "zegar", color: "#60B010"}]
+# skakosz
+/tellraw @a [{text: "skakosz", color: "#60B014"}]
+# fala_kot
+/tellraw @a [{text: "fala_kot", color: "#60B018"}]
+# przepylacz
+/tellraw @a [{text: "przepylacz", color: "#60B01C"}]
+# wielblik
+/tellraw @a [{text: "wielblik", color: "#60B020"}]
+# deszczyk
+/tellraw @a [{text: "deszczyk", color: "#60B024"}]
+# ptaszek
+/tellraw @a [{text: "ptaszek", color: "#60B028"}]
+# rakieta
+/tellraw @a [{text: "rakieta", color: "#60B02C"}]
+# wahadlo
+/tellraw @a [{text: "wahadlo", color: "#60B030"}]
+# plyn
+/tellraw @a [{text: "plyn", color: "#60B034"}]
+# bumerang
+/tellraw @a [{text: "bumerang", color: "#60B038"}]
+
+### Kolory (171–185)
+# srebro
+/tellraw @a [{text: "srebro", color: "#60C000"}]
+# krystal
+/tellraw @a [{text: "krystal", color: "#60C004"}]
+# polarna
+/tellraw @a [{text: "polarna", color: "#60C008"}]
+# magma
+/tellraw @a [{text: "magma", color: "#60C00C"}]
+# mroz
+/tellraw @a [{text: "mroz", color: "#60C010"}]
+# pryzmat
+/tellraw @a [{text: "pryzmat", color: "#60C014"}]
+# szampan
+/tellraw @a [{text: "szampan", color: "#60C018"}]
+# grafit
+/tellraw @a [{text: "grafit", color: "#60C01C"}]
+# mosiadz
+/tellraw @a [{text: "mosiadz", color: "#60C020"}]
+# karmel
+/tellraw @a [{text: "karmel", color: "#60C024"}]
+# wisnia
+/tellraw @a [{text: "wisnia", color: "#60C028"}]
+# trawa
+/tellraw @a [{text: "trawa", color: "#60C02C"}]
+# niebo
+/tellraw @a [{text: "niebo", color: "#60C030"}]
+# wschod
+/tellraw @a [{text: "wschod", color: "#60C034"}]
+# zachod
+/tellraw @a [{text: "zachod", color: "#60C038"}]
+
+### Połączenia (186–205)
+# kotwica_srebro
+/tellraw @a [{text: "kotwica_srebro", color: "#60D000"}]
+# piorko_krystal
+/tellraw @a [{text: "piorko_krystal", color: "#60D004"}]
+# strzala_polarna
+/tellraw @a [{text: "strzala_polarna", color: "#60D008"}]
+# most_magma
+/tellraw @a [{text: "most_magma", color: "#60D00C"}]
+# zegar_mroz
+/tellraw @a [{text: "zegar_mroz", color: "#60D010"}]
+# skakosz_pryzmat
+/tellraw @a [{text: "skakosz_pryzmat", color: "#60D014"}]
+# fala_kot_szampan
+/tellraw @a [{text: "fala_kot_szampan", color: "#60D018"}]
+# przepylacz_grafit
+/tellraw @a [{text: "przepylacz_grafit", color: "#60D01C"}]
+# wielblik_mosiadz
+/tellraw @a [{text: "wielblik_mosiadz", color: "#60D020"}]
+# deszczyk_karmel
+/tellraw @a [{text: "deszczyk_karmel", color: "#60D024"}]
+# ptaszek_wisnia
+/tellraw @a [{text: "ptaszek_wisnia", color: "#60D028"}]
+# rakieta_trawa
+/tellraw @a [{text: "rakieta_trawa", color: "#60D02C"}]
+# wahadlo_niebo
+/tellraw @a [{text: "wahadlo_niebo", color: "#60D030"}]
+# plyn_wschod
+/tellraw @a [{text: "plyn_wschod", color: "#60D034"}]
+# bumerang_zachod
+/tellraw @a [{text: "bumerang_zachod", color: "#60D038"}]
+# kotwica_magma
+/tellraw @a [{text: "kotwica_magma", color: "#60D03C"}]
+# most_krystal
+/tellraw @a [{text: "most_krystal", color: "#60D040"}]
+# piorko_polarna
+/tellraw @a [{text: "piorko_polarna", color: "#60D044"}]
+# skakosz_szampan
+/tellraw @a [{text: "skakosz_szampan", color: "#60D048"}]
+# wielblik_pryzmat
+/tellraw @a [{text: "wielblik_pryzmat", color: "#60D04C"}]
+
+## KONFIG (kolory.json + konfig.json + generuj.py)
+```
+# zmiana hexa (np. rainbow na #B1E75C):
+# edytujesz kolory.json -> "rainbow": "#B1E75C"
+python3 generuj.py            # aplikuje hexy + konfig do shaderow/README/KOMENDY
+
+# opcje globalne w konfig.json:
+# "predkosc": 1.5       -> 1,5x szybciej
+# "amplituda": 1.5      -> wieksze ruchy
+# "intensywnosc": 1.3   -> jasniejsze kolory
+# "wylaczone": ["rainbow"]  -> efekt zostaje zwyklym kolorem
+```
 ## Jak generować własne
 ```
 python3 konwerter.py "Twój tekst <animacja:blysk>TUTAJ</animacja> dalej"

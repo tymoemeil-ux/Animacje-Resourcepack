@@ -17,6 +17,9 @@ vec3 tfxHsv(float h, float s, float v) {
     return v * mix(vec3(1.0), clamp(k - 1.0, 0.0, 1.0), s);
 }
 
+#define TFX_SPD 1.0
+#define TFX_AMP 1.0
+
 void tfxDetect(ivec3 c, float g) {
     tfxIDg = 0.0;
     tfxBaseg = vec4(1.0);
@@ -179,4 +182,54 @@ void tfxDetect(ivec3 c, float g) {
     #moj_import <tfx_trzesienie_pionowe_platyna.vsh>
     #moj_import <tfx_fala_od_srodka_miedz.vsh>
     #moj_import <tfx_bungee_lawenda.vsh>
+    #moj_import <tfx_kotwica.vsh>
+    #moj_import <tfx_piorko.vsh>
+    #moj_import <tfx_strzala.vsh>
+    #moj_import <tfx_most.vsh>
+    #moj_import <tfx_zegar.vsh>
+    #moj_import <tfx_skakosz.vsh>
+    #moj_import <tfx_fala_kot.vsh>
+    #moj_import <tfx_przepylacz.vsh>
+    #moj_import <tfx_wielblik.vsh>
+    #moj_import <tfx_deszczyk.vsh>
+    #moj_import <tfx_ptaszek.vsh>
+    #moj_import <tfx_rakieta.vsh>
+    #moj_import <tfx_wahadlo.vsh>
+    #moj_import <tfx_plyn.vsh>
+    #moj_import <tfx_bumerang.vsh>
+    #moj_import <tfx_srebro.vsh>
+    #moj_import <tfx_krystal.vsh>
+    #moj_import <tfx_polarna.vsh>
+    #moj_import <tfx_magma.vsh>
+    #moj_import <tfx_mroz.vsh>
+    #moj_import <tfx_pryzmat.vsh>
+    #moj_import <tfx_szampan.vsh>
+    #moj_import <tfx_grafit.vsh>
+    #moj_import <tfx_mosiadz.vsh>
+    #moj_import <tfx_karmel.vsh>
+    #moj_import <tfx_wisnia.vsh>
+    #moj_import <tfx_trawa.vsh>
+    #moj_import <tfx_niebo.vsh>
+    #moj_import <tfx_wschod.vsh>
+    #moj_import <tfx_zachod.vsh>
+    #moj_import <tfx_kotwica_srebro.vsh>
+    #moj_import <tfx_piorko_krystal.vsh>
+    #moj_import <tfx_strzala_polarna.vsh>
+    #moj_import <tfx_most_magma.vsh>
+    #moj_import <tfx_zegar_mroz.vsh>
+    #moj_import <tfx_skakosz_pryzmat.vsh>
+    #moj_import <tfx_fala_kot_szampan.vsh>
+    #moj_import <tfx_przepylacz_grafit.vsh>
+    #moj_import <tfx_wielblik_mosiadz.vsh>
+    #moj_import <tfx_deszczyk_karmel.vsh>
+    #moj_import <tfx_ptaszek_wisnia.vsh>
+    #moj_import <tfx_rakieta_trawa.vsh>
+    #moj_import <tfx_wahadlo_niebo.vsh>
+    #moj_import <tfx_plyn_wschod.vsh>
+    #moj_import <tfx_bumerang_zachod.vsh>
+    #moj_import <tfx_kotwica_magma.vsh>
+    #moj_import <tfx_most_krystal.vsh>
+    #moj_import <tfx_piorko_polarna.vsh>
+    #moj_import <tfx_skakosz_szampan.vsh>
+    #moj_import <tfx_wielblik_pryzmat.vsh>
 }

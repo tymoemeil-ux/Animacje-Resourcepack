@@ -12,7 +12,7 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
    - **efekt fragmentowy** (1–13, 26–38) — koloruje piksele znaku w czasie (FSH).
 3. Kolor bez efektu = zwykły tekst (dlatego "czyste kolory" niczego nie uruchamiają).
 
-## 155 efektów animowanych (każdy = kolor + ruch)
+## 205 efektów animowanych (każdy = kolor + ruch)
 
 ### Fragmentowe (kolor pikseli zmienia się w czasie)
 | Tag | Kolor | Co robi |
@@ -178,6 +178,82 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `trzesienie_pionowe_platyna` | `#80D000` | **ruch: trzesienie_pionowe + kolor: platyna** |
 | `fala_od_srodka_miedz` | `#80D004` | **ruch: fala_od_srodka + kolor: miedz** |
 | `bungee_lawenda` | `#80D008` | **ruch: bungee + kolor: lawenda** |
+
+### Nowe typy RUCHU — 15 (156–170)
+| `kotwica` | `#60B000` | znaki kołysze się na kotwicy (fala słabnie od lewej) |
+| `piorko` | `#60B004` | powolne dryfowanie jak piórko + drobne trzepotanie |
+| `strzala` | `#60B008` | znaki podskakują w górę serią, jak wystrzelone |
+| `most` | `#60B00C` | fala wznosi się w łuk (most) i przetacza |
+| `zegar` | `#60B010` | wahadło — znaki na przemian w lewo i w prawo |
+| `skakosz` | `#60B014` | sprężyne skoki, każdy znak z innym opóźnieniem |
+| `fala_kot` | `#60B018` | gładka fala S płynąca przez tekst |
+| `przepylacz` | `#60B01C` | trzepot jak u pszczoły — szybkie drobne drgania |
+| `wielblik` | `#60B020` | wielka, wolna, ciężka fala |
+| `deszczyk` | `#60B024` | znaki opadają w dół i zaczynają od nowa |
+| `ptaszek` | `#60B028` | trzepot skrzydeł: szybki lot + powolne unoszenie |
+| `rakieta` | `#60B02C` | szybki lot w górę, pauza, od nowa |
+| `wahadlo` | `#60B030` | długie wahadło — szerokie łuki |
+| `plyn` | `#60B034` | płynne, organiczne falowanie (dwie nakładające się fale) |
+| `bumerang` | `#60B038` | znaki lecą w bok i wracają (pętla) |
+
+### Nowe typy KOLORU — 15 (171–185)
+| `srebro` | `#60C000` | srebrny blask przetaczający się po znakach |
+| `krystal` | `#60C004` | lodowo-niebieskie kryształy migoczące |
+| `polarna` | `#60C008` | zielono-fioletowa zasłona zorzy polarnej |
+| `magma` | `#60C00C` | czerwona magma z pęknięciami żaru |
+| `mroz` | `#60C010` | bursztynowa biel + migoczące iskrzki |
+| `pryzmat` | `#60C014` | pełny tęczowy przesuw po całym tekście |
+| `szampan` | `#60C018` | złoto-szampanowe bąbelki |
+| `grafit` | `#60C01C` | ciemny grafit z metalicznym połyskiem |
+| `mosiadz` | `#60C020` | ciepły mosiądz z migotaniem |
+| `karmel` | `#60C024` | karmelowy bursztyn pulsuje |
+| `wisnia` | `#60C028` | głęboka wiśnia z połyskliwymi refleksami |
+| `trawa` | `#60C02C` | zielona trawa kołysana wiatrem |
+| `niebo` | `#60C030` | niebieskie niebo z dryfującymi chmurami |
+| `wschod` | `#60C034` | gradient wschodu słońca (ciepły → chłodny) |
+| `zachod` | `#60C038` | pomarańczowo-różowy zachód z poświatą |
+
+### POŁĄCZENIA ruch + kolor — 20 (186–205)
+| `kotwica_srebro` | `#60D000` | **ruch: kotwica + kolor: srebro** |
+| `piorko_krystal` | `#60D004` | **ruch: piorko + kolor: krystal** |
+| `strzala_polarna` | `#60D008` | **ruch: strzala + kolor: polarna** |
+| `most_magma` | `#60D00C` | **ruch: most + kolor: magma** |
+| `zegar_mroz` | `#60D010` | **ruch: zegar + kolor: mroz** |
+| `skakosz_pryzmat` | `#60D014` | **ruch: skakosz + kolor: pryzmat** |
+| `fala_kot_szampan` | `#60D018` | **ruch: fala_kot + kolor: szampan** |
+| `przepylacz_grafit` | `#60D01C` | **ruch: przepylacz + kolor: grafit** |
+| `wielblik_mosiadz` | `#60D020` | **ruch: wielblik + kolor: mosiadz** |
+| `deszczyk_karmel` | `#60D024` | **ruch: deszczyk + kolor: karmel** |
+| `ptaszek_wisnia` | `#60D028` | **ruch: ptaszek + kolor: wisnia** |
+| `rakieta_trawa` | `#60D02C` | **ruch: rakieta + kolor: trawa** |
+| `wahadlo_niebo` | `#60D030` | **ruch: wahadlo + kolor: niebo** |
+| `plyn_wschod` | `#60D034` | **ruch: plyn + kolor: wschod** |
+| `bumerang_zachod` | `#60D038` | **ruch: bumerang + kolor: zachod** |
+| `kotwica_magma` | `#60D03C` | **ruch: kotwica + kolor: magma** |
+| `most_krystal` | `#60D040` | **ruch: most + kolor: krystal** |
+| `piorko_polarna` | `#60D044` | **ruch: piorko + kolor: polarna** |
+| `skakosz_szampan` | `#60D048` | **ruch: skakosz + kolor: szampan** |
+| `wielblik_pryzmat` | `#60D04C` | **ruch: wielblik + kolor: pryzmat** |
+
+### KONFIG i WŁASNE HEXY (kolory.json + konfig.json)
+W folderze packa są dwa pliki, które możesz edytować:
+
+**`kolory.json`** — hexy WSZYSTKICH 205 efektów (11 kolorów też):
+```json
+{ "rainbow": "#B1E75C", "blysk": "#A0A000", ... }
+```
+**`konfig.json`** — opcje globalne:
+```json
+{ "predkosc": 1.0, "amplituda": 1.0, "intensywnosc": 1.0, "wylaczone": [] }
+```
+- `predkosc` — 1.5 = 1,5× szybciej (ruchy i kolory)
+- `amplituda` — 1.5 = większe ruchy
+- `intensywnosc` — 1.3 = jaśniejsze kolory
+- `wylaczone` — np. `["rainbow", "krew"]` = te efekty zostają zwykłymi kolorami
+
+Po edycji: **`python3 konfig/generuj.py`** (czyli `python3 generuj.py` w folderze packa) —
+shadery, README i KOMENDY odświeżą się same. Konwerter czuje `kolory.json`
+bez generowania (tellraw-y od razu z nowymi hexami).
 
 ### Hybrydowe — 25 (51–75)
 | `tancuj` | `#A0A068` | **znaki tańczą na przemian + pełna tęcza** |
