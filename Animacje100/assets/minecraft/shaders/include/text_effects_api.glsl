@@ -94,6 +94,37 @@ bool flagMrozy = false;
 bool flagMagma = false;
 bool flagPlasma = false;
 bool flagAureola = false;
+bool flagBlysk = false;
+bool flagSmuga = false;
+bool flagIskrenice = false;
+bool flagTecfala = false;
+bool flagSerce = false;
+bool flagKula = false;
+bool flagLuk = false;
+bool flagMglawica = false;
+bool flagSnieg = false;
+bool flagRefleks = false;
+bool flagKaskada = false;
+bool flagNeonfala = false;
+bool flagPerla = false;
+bool flagZar = false;
+bool flagFirerain = false;
+bool flagKolumna = false;
+bool flagLaser2 = false;
+bool flagOdlamki = false;
+bool flagGrzmot = false;
+bool flagSwiatlo = false;
+bool flagObrys = false;
+bool flagGwiazdy = false;
+bool flagElastyk = false;
+bool flagZel = false;
+bool flagSkok = false;
+bool flagFala2 = false;
+bool flagOrbit2 = false;
+bool flagGrzmotW = false;
+bool flagTsunami = false;
+bool flagEkspres = false;
+bool flagTectno = false;
 bool flagKaruzela = false;
 bool flagSpirala = false;
 bool flagPociag = false;
@@ -310,6 +341,90 @@ float paramPlasmaCONTRAST = PLASMA_CONTRAST;
 vec4 paramAureolaColor = AUREOLA_COLOR;
 float paramAureolaSPEED = AUREOLA_SPEED;
 float paramAureolaINTENSITY = AUREOLA_INTENSITY;
+vec4 paramBlyskColor = BLYSK_COLOR;
+float paramBlyskSPEED = BLYSK_SPEED;
+float paramBlyskWIDTH = BLYSK_WIDTH;
+vec4 paramSmugaColor = SMUGA_COLOR;
+float paramSmugaSPEED = SMUGA_SPEED;
+float paramSmugaWIDTH = SMUGA_WIDTH;
+vec4 paramIskreniceColor = ISKRENICE_COLOR;
+float paramIskreniceSPEED = ISKRENICE_SPEED;
+float paramIskreniceDENSITY = ISKRENICE_DENSITY;
+vec4 paramTecfalaColor = TECAFALA_COLOR;
+float paramTecfalaSPEED = TECAFALA_SPEED;
+float paramTecfalaROWS = TECAFALA_ROWS;
+vec4 paramSerceColor = SERCE_COLOR;
+float paramSerceSPEED = SERCE_SPEED;
+float paramSerceINTENSITY = SERCE_INTENSITY;
+vec4 paramKulaColor = KULA_COLOR;
+float paramKulaSPEED = KULA_SPEED;
+float paramKulaRADIUS = KULA_RADIUS;
+vec4 paramLukColor = LUK_COLOR;
+float paramLukSPEED = LUK_SPEED;
+float paramLukARCS = LUK_ARCS;
+vec4 paramMglawicaColor = MGLAWICA_COLOR;
+float paramMglawicaSPEED = MGLAWICA_SPEED;
+float paramMglawicaDRIFT = MGLAWICA_DRIFT;
+vec4 paramSniegColor = SNIEG_COLOR;
+float paramSniegSPEED = SNIEG_SPEED;
+float paramSniegFLAKES = SNIEG_FLAKES;
+vec4 paramRefleksColor = REFLEKS_COLOR;
+float paramRefleksSPEED = REFLEKS_SPEED;
+float paramRefleksPOWER = REFLEKS_POWER;
+vec4 paramKaskadaColor = KASKADA_COLOR;
+float paramKaskadaSPEED = KASKADA_SPEED;
+float paramKaskadaWIDTH = KASKADA_WIDTH;
+vec4 paramNeonfalaColor = NEONFALA_COLOR;
+float paramNeonfalaSPEED = NEONFALA_SPEED;
+float paramNeonfalaHUE = NEONFALA_HUE;
+vec4 paramPerlaColor = PERLA_COLOR;
+float paramPerlaSPEED = PERLA_SPEED;
+float paramPerlaIRI = PERLA_IRI;
+vec4 paramZarColor = ZAR_COLOR;
+float paramZarSPEED = ZAR_SPEED;
+float paramZarEMBERS = ZAR_EMBERS;
+vec4 paramFirerainColor = FIRERAIN_COLOR;
+float paramFirerainSPEED = FIRERAIN_SPEED;
+float paramFirerainDROPS = FIRERAIN_DROPS;
+vec4 paramKolumnaColor = KOLUMNA_COLOR;
+float paramKolumnaSPEED = KOLUMNA_SPEED;
+float paramKolumnaCOLUMNS = KOLUMNA_COLUMNS;
+vec4 paramLaser2Color = LASER2_COLOR;
+float paramLaser2SPEED = LASER2_SPEED;
+float paramLaser2WIDTH = LASER2_WIDTH;
+vec4 paramOdlamkiColor = ODLAMKI_COLOR;
+float paramOdlamkiSPEED = ODLAMKI_SPEED;
+float paramOdlamkiSHARDS = ODLAMKI_SHARDS;
+vec4 paramGrzmotColor = GRZMOT_COLOR;
+float paramGrzmotSPEED = GRZMOT_SPEED;
+float paramGrzmotPOWER = GRZMOT_POWER;
+vec4 paramSwiatloColor = SWIATLO_COLOR;
+float paramSwiatloSPEED = SWIATLO_SPEED;
+float paramSwiatloRADIUS = SWIATLO_RADIUS;
+vec4 paramObrysColor = OBRYS_COLOR;
+float paramObrysSPEED = OBRYS_SPEED;
+float paramObrysINTENSITY = OBRYS_INTENSITY;
+vec4 paramGwiazdyColor = GWIAZDY_COLOR;
+float paramGwiazdySPEED = GWIAZDY_SPEED;
+float paramGwiazdySTARS = GWIAZDY_STARS;
+float paramElastykSpeed = ELASTYK_SPEED;
+float paramElastykSize = ELASTYK_SIZE;
+float paramZelSpeed = ZEL_SPEED;
+float paramZelSize = ZEL_SIZE;
+float paramSkokSpeed = SKOK_SPEED;
+float paramSkokSize = SKOK_SIZE;
+float paramFala2Speed = FALA2_SPEED;
+float paramFala2Size = FALA2_SIZE;
+float paramOrbit2Speed = ORBIT2_SPEED;
+float paramOrbit2Size = ORBIT2_SIZE;
+float paramGrzmotWSpeed = GRZMOTW_SPEED;
+float paramGrzmotWSize = GRZMOTW_SIZE;
+float paramTsunamiSpeed = TSUNAMI_SPEED;
+float paramTsunamiSize = TSUNAMI_SIZE;
+float paramEkspresSpeed = EKSPRES_SPEED;
+float paramEkspresSize = EKSPRES_SIZE;
+float paramTectnoSpeed = TECTNO_SPEED;
+float paramTectnoSize = TECTNO_SIZE;
 float paramKaruzelaSpeed = KARUZELA_SPEED;
 float paramKaruzelaSize = KARUZELA_SIZE;
 float paramSpiralaSpeed = SPIRALA_SPEED;
@@ -412,7 +527,9 @@ bool hasAnyEffect() {
            flagWarp || flagKrysztal || flagPortal || flagXray || flagTermowizja ||
            flagTornado || flagWahadlo || flagWibracja || flagPrzegon || flagBumper || flagHarmonijka ||
            flagNeonPuls || flagSzklo || flagZlotyBlask || flagDiamet || flagKrew || flagPianka || flagDym || flagPiorun || flagRadioaktywny || flagPulsar || flagGalaktyka || flagTron || flagPrizma || flagCukierek || flagOcean || flagCzarnaDziura || flagMrozy || flagMagma || flagPlasma || flagAureola ||
-           flagKaruzela || flagSpirala || flagPociag || flagBurza || flagTitan || flagMetronom || flagFala3d || flagPiorka;
+           flagKaruzela || flagSpirala || flagPociag || flagBurza || flagTitan || flagMetronom || flagFala3d || flagPiorka ||
+           flagBlysk || flagSmuga || flagIskrenice || flagTecfala || flagSerce || flagKula || flagLuk || flagMglawica || flagSnieg || flagRefleks || flagKaskada || flagNeonfala || flagPerla || flagZar || flagFirerain || flagKolumna || flagLaser2 || flagOdlamki || flagGrzmot || flagSwiatlo || flagObrys || flagGwiazdy ||
+           flagElastyk || flagZel || flagSkok || flagFala2 || flagOrbit2 || flagGrzmotW || flagTsunami || flagEkspres || flagTectno;
 }
 
 
@@ -1835,4 +1952,469 @@ void apply_piorka(float speed, float size) {
     flagPiorka = true;
     paramPiorkaSpeed = speed;
     paramPiorkaSize = size;
+}
+
+void apply_blysk() {
+    flagBlysk = true;
+}
+
+void apply_blysk(float sPEED) {
+    flagBlysk = true;
+    paramBlyskSPEED = sPEED;
+}
+
+void apply_blysk(float sPEED, float wIDTH) {
+    flagBlysk = true;
+    paramBlyskSPEED = sPEED;
+    paramBlyskWIDTH = wIDTH;
+}
+
+void apply_smuga() {
+    flagSmuga = true;
+}
+
+void apply_smuga(float sPEED) {
+    flagSmuga = true;
+    paramSmugaSPEED = sPEED;
+}
+
+void apply_smuga(float sPEED, float wIDTH) {
+    flagSmuga = true;
+    paramSmugaSPEED = sPEED;
+    paramSmugaWIDTH = wIDTH;
+}
+
+void apply_iskrenice() {
+    flagIskrenice = true;
+}
+
+void apply_iskrenice(float sPEED) {
+    flagIskrenice = true;
+    paramIskreniceSPEED = sPEED;
+}
+
+void apply_iskrenice(float sPEED, float dENSITY) {
+    flagIskrenice = true;
+    paramIskreniceSPEED = sPEED;
+    paramIskreniceDENSITY = dENSITY;
+}
+
+void apply_tecafala() {
+    flagTecfala = true;
+}
+
+void apply_tecafala(float sPEED) {
+    flagTecfala = true;
+    paramTecfalaSPEED = sPEED;
+}
+
+void apply_tecafala(float sPEED, float rOWS) {
+    flagTecfala = true;
+    paramTecfalaSPEED = sPEED;
+    paramTecfalaROWS = rOWS;
+}
+
+void apply_serce() {
+    flagSerce = true;
+}
+
+void apply_serce(float sPEED) {
+    flagSerce = true;
+    paramSerceSPEED = sPEED;
+}
+
+void apply_serce(float sPEED, float iNTENSITY) {
+    flagSerce = true;
+    paramSerceSPEED = sPEED;
+    paramSerceINTENSITY = iNTENSITY;
+}
+
+void apply_kula() {
+    flagKula = true;
+}
+
+void apply_kula(float sPEED) {
+    flagKula = true;
+    paramKulaSPEED = sPEED;
+}
+
+void apply_kula(float sPEED, float rADIUS) {
+    flagKula = true;
+    paramKulaSPEED = sPEED;
+    paramKulaRADIUS = rADIUS;
+}
+
+void apply_luk() {
+    flagLuk = true;
+}
+
+void apply_luk(float sPEED) {
+    flagLuk = true;
+    paramLukSPEED = sPEED;
+}
+
+void apply_luk(float sPEED, float aRCS) {
+    flagLuk = true;
+    paramLukSPEED = sPEED;
+    paramLukARCS = aRCS;
+}
+
+void apply_mglawica() {
+    flagMglawica = true;
+}
+
+void apply_mglawica(float sPEED) {
+    flagMglawica = true;
+    paramMglawicaSPEED = sPEED;
+}
+
+void apply_mglawica(float sPEED, float dRIFT) {
+    flagMglawica = true;
+    paramMglawicaSPEED = sPEED;
+    paramMglawicaDRIFT = dRIFT;
+}
+
+void apply_snieg() {
+    flagSnieg = true;
+}
+
+void apply_snieg(float sPEED) {
+    flagSnieg = true;
+    paramSniegSPEED = sPEED;
+}
+
+void apply_snieg(float sPEED, float fLAKES) {
+    flagSnieg = true;
+    paramSniegSPEED = sPEED;
+    paramSniegFLAKES = fLAKES;
+}
+
+void apply_refleks() {
+    flagRefleks = true;
+}
+
+void apply_refleks(float sPEED) {
+    flagRefleks = true;
+    paramRefleksSPEED = sPEED;
+}
+
+void apply_refleks(float sPEED, float pOWER) {
+    flagRefleks = true;
+    paramRefleksSPEED = sPEED;
+    paramRefleksPOWER = pOWER;
+}
+
+void apply_kaskada() {
+    flagKaskada = true;
+}
+
+void apply_kaskada(float sPEED) {
+    flagKaskada = true;
+    paramKaskadaSPEED = sPEED;
+}
+
+void apply_kaskada(float sPEED, float wIDTH) {
+    flagKaskada = true;
+    paramKaskadaSPEED = sPEED;
+    paramKaskadaWIDTH = wIDTH;
+}
+
+void apply_neonfala() {
+    flagNeonfala = true;
+}
+
+void apply_neonfala(float sPEED) {
+    flagNeonfala = true;
+    paramNeonfalaSPEED = sPEED;
+}
+
+void apply_neonfala(float sPEED, float hUE) {
+    flagNeonfala = true;
+    paramNeonfalaSPEED = sPEED;
+    paramNeonfalaHUE = hUE;
+}
+
+void apply_perla() {
+    flagPerla = true;
+}
+
+void apply_perla(float sPEED) {
+    flagPerla = true;
+    paramPerlaSPEED = sPEED;
+}
+
+void apply_perla(float sPEED, float iRI) {
+    flagPerla = true;
+    paramPerlaSPEED = sPEED;
+    paramPerlaIRI = iRI;
+}
+
+void apply_zar() {
+    flagZar = true;
+}
+
+void apply_zar(float sPEED) {
+    flagZar = true;
+    paramZarSPEED = sPEED;
+}
+
+void apply_zar(float sPEED, float eMBERS) {
+    flagZar = true;
+    paramZarSPEED = sPEED;
+    paramZarEMBERS = eMBERS;
+}
+
+void apply_firerain() {
+    flagFirerain = true;
+}
+
+void apply_firerain(float sPEED) {
+    flagFirerain = true;
+    paramFirerainSPEED = sPEED;
+}
+
+void apply_firerain(float sPEED, float dROPS) {
+    flagFirerain = true;
+    paramFirerainSPEED = sPEED;
+    paramFirerainDROPS = dROPS;
+}
+
+void apply_kolumna() {
+    flagKolumna = true;
+}
+
+void apply_kolumna(float sPEED) {
+    flagKolumna = true;
+    paramKolumnaSPEED = sPEED;
+}
+
+void apply_kolumna(float sPEED, float cOLUMNS) {
+    flagKolumna = true;
+    paramKolumnaSPEED = sPEED;
+    paramKolumnaCOLUMNS = cOLUMNS;
+}
+
+void apply_laser2() {
+    flagLaser2 = true;
+}
+
+void apply_laser2(float sPEED) {
+    flagLaser2 = true;
+    paramLaser2SPEED = sPEED;
+}
+
+void apply_laser2(float sPEED, float wIDTH) {
+    flagLaser2 = true;
+    paramLaser2SPEED = sPEED;
+    paramLaser2WIDTH = wIDTH;
+}
+
+void apply_odlamki() {
+    flagOdlamki = true;
+}
+
+void apply_odlamki(float sPEED) {
+    flagOdlamki = true;
+    paramOdlamkiSPEED = sPEED;
+}
+
+void apply_odlamki(float sPEED, float sHARDS) {
+    flagOdlamki = true;
+    paramOdlamkiSPEED = sPEED;
+    paramOdlamkiSHARDS = sHARDS;
+}
+
+void apply_grzmot() {
+    flagGrzmot = true;
+}
+
+void apply_grzmot(float sPEED) {
+    flagGrzmot = true;
+    paramGrzmotSPEED = sPEED;
+}
+
+void apply_grzmot(float sPEED, float pOWER) {
+    flagGrzmot = true;
+    paramGrzmotSPEED = sPEED;
+    paramGrzmotPOWER = pOWER;
+}
+
+void apply_swiatlo() {
+    flagSwiatlo = true;
+}
+
+void apply_swiatlo(float sPEED) {
+    flagSwiatlo = true;
+    paramSwiatloSPEED = sPEED;
+}
+
+void apply_swiatlo(float sPEED, float rADIUS) {
+    flagSwiatlo = true;
+    paramSwiatloSPEED = sPEED;
+    paramSwiatloRADIUS = rADIUS;
+}
+
+void apply_obrys() {
+    flagObrys = true;
+}
+
+void apply_obrys(float sPEED) {
+    flagObrys = true;
+    paramObrysSPEED = sPEED;
+}
+
+void apply_obrys(float sPEED, float iNTENSITY) {
+    flagObrys = true;
+    paramObrysSPEED = sPEED;
+    paramObrysINTENSITY = iNTENSITY;
+}
+
+void apply_gwiazdy() {
+    flagGwiazdy = true;
+}
+
+void apply_gwiazdy(float sPEED) {
+    flagGwiazdy = true;
+    paramGwiazdySPEED = sPEED;
+}
+
+void apply_gwiazdy(float sPEED, float sTARS) {
+    flagGwiazdy = true;
+    paramGwiazdySPEED = sPEED;
+    paramGwiazdySTARS = sTARS;
+}
+
+void apply_elastyk() {
+    flagElastyk = true;
+}
+
+void apply_elastyk(float speed) {
+    flagElastyk = true;
+    paramElastykSpeed = speed;
+}
+
+void apply_elastyk(float speed, float size) {
+    flagElastyk = true;
+    paramElastykSpeed = speed;
+    paramElastykSize = size;
+}
+
+void apply_zel() {
+    flagZel = true;
+}
+
+void apply_zel(float speed) {
+    flagZel = true;
+    paramZelSpeed = speed;
+}
+
+void apply_zel(float speed, float size) {
+    flagZel = true;
+    paramZelSpeed = speed;
+    paramZelSize = size;
+}
+
+void apply_skok() {
+    flagSkok = true;
+}
+
+void apply_skok(float speed) {
+    flagSkok = true;
+    paramSkokSpeed = speed;
+}
+
+void apply_skok(float speed, float size) {
+    flagSkok = true;
+    paramSkokSpeed = speed;
+    paramSkokSize = size;
+}
+
+void apply_fala2() {
+    flagFala2 = true;
+}
+
+void apply_fala2(float speed) {
+    flagFala2 = true;
+    paramFala2Speed = speed;
+}
+
+void apply_fala2(float speed, float size) {
+    flagFala2 = true;
+    paramFala2Speed = speed;
+    paramFala2Size = size;
+}
+
+void apply_orbit2() {
+    flagOrbit2 = true;
+}
+
+void apply_orbit2(float speed) {
+    flagOrbit2 = true;
+    paramOrbit2Speed = speed;
+}
+
+void apply_orbit2(float speed, float size) {
+    flagOrbit2 = true;
+    paramOrbit2Speed = speed;
+    paramOrbit2Size = size;
+}
+
+void apply_grzmot_w() {
+    flagGrzmotW = true;
+}
+
+void apply_grzmot_w(float speed) {
+    flagGrzmotW = true;
+    paramGrzmotWSpeed = speed;
+}
+
+void apply_grzmot_w(float speed, float size) {
+    flagGrzmotW = true;
+    paramGrzmotWSpeed = speed;
+    paramGrzmotWSize = size;
+}
+
+void apply_tsunami() {
+    flagTsunami = true;
+}
+
+void apply_tsunami(float speed) {
+    flagTsunami = true;
+    paramTsunamiSpeed = speed;
+}
+
+void apply_tsunami(float speed, float size) {
+    flagTsunami = true;
+    paramTsunamiSpeed = speed;
+    paramTsunamiSize = size;
+}
+
+void apply_ekspres() {
+    flagEkspres = true;
+}
+
+void apply_ekspres(float speed) {
+    flagEkspres = true;
+    paramEkspresSpeed = speed;
+}
+
+void apply_ekspres(float speed, float size) {
+    flagEkspres = true;
+    paramEkspresSpeed = speed;
+    paramEkspresSize = size;
+}
+
+void apply_tectno() {
+    flagTectno = true;
+}
+
+void apply_tectno(float speed) {
+    flagTectno = true;
+    paramTectnoSpeed = speed;
+}
+
+void apply_tectno(float speed, float size) {
+    flagTectno = true;
+    paramTectnoSpeed = speed;
+    paramTectnoSize = size;
 }

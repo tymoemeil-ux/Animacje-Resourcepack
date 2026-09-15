@@ -6,33 +6,33 @@ Repozytorium resourcepacku do animowania tekstu w Minecraft Java Edition.
 
 | Plik | Opis |
 |------|------|
-| `Animacje100/` | Pełny source: 150 animacji, 4 generacje efektów (neon_puls, szklo, zloty_blask, diamet, krew, piorun, galaktyka, tron, plazma...), tutorial, 1000 przykładów, konwerter |
+| `Animacje100/` | Pełny source: 140 animacji, 5 generacji efektów (blysk, smuga, serce, snieg, neonfala, gwiazdy + neon_puls, galaktyka, tron, plasma, aureola...), tutorial, 1000 przykładów, konwerter |
 | `Animacje100.zip` | Gotowy do użycia zip resourcepacku |
 | `Animacje-Datapack/` | Datapack (1.21.11) - animowany nick i hologramy |
 | `Animacje-Datapack.zip` | Gotowy zip datapacku |
 | `konwerter.py` | Konwerter `<animacja:wave>Test</animacja>` -> `/tellraw` |
 | `Text_Effects.zip` | Oryginalny pack TheSalt's Text Effects (podstawa) |
 
-## Animacje 150 w skrócie
+## Animacje 140 w skrócie
 
-- **150 tagów**, wszystkie animowane, zero słabych efektów (48 najsłabszych usunięto)
-- Najnowsza generacja: neon_puls, szklo, zloty_blask, diamet, krew, pianka, dym, piorun, radioaktywny, pulsar, galaktyka, tron, prizma, cukierek, ocean, czarna_dziura, mrozy, magma, plasma, aureola + karuzela, spirala, burza, titan, metronom, fala_3d, piorka
+- **140 tagów**, wszystkie mocne i animowane (53 słabe usunięto, 43 nowe dodano)
+- Najnowsza generacja: **blysk**, smuga, iskrenice, teczafala, serce, kula, luk, mglawica, snieg, refleks, kaskada, neonfala, perla, zar, firerain, kolumna, laser2, odlamki, grzmot, swiatlo, obrys, gwiazdy + elastyk, zel, skok, fala2, orbit2, grzmot_w, tsunami, ekspres, tectno + mega_blysk
 - Animuje cały pipeline tekstu: czat, tytuły, actionbar, tabliczki, manekiny, GUI (1.21.4+)
 - **Rangi na serwerze**: prefixy LuckPerms z kolorami spustowymi = animowane rangi w czacie
 - Zero komentarzy w kodzie shaderów
-- README z **wszystkimi 150 rozkazami /tellraw**
+- README z **wszystkimi 140 rozkazami /tellraw**
 - Wsparcie Minecraft 1.17-1.21.11 i 26.x (pack format 7-100)
 
 Szybki start:
 
 ```
-python3 konwerter.py "<animacja:tron>Neo</animacja>"
+python3 konwerter.py "<animacja:blysk>Błysk</animacja>"
 ```
 
 Ranga w LuckPerms:
 
 ```
-/lp user <gracz> prefix set {"text":"[OP] ","color":"#D8D82C"}
+/lp user <gracz> prefix set {"text":"[OP] ","color":"#D0D000"}
 ```
 
 Szczegóły w `Animacje100/README.md` i `Animacje100/TUTORIAL.md`.

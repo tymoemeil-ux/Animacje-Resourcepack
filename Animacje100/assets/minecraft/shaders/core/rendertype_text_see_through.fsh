@@ -52,6 +52,28 @@ uniform vec4 FogColor;
 #moj_import <magma_effect.glsl>
 #moj_import <plasma_effect.glsl>
 #moj_import <aureola_effect.glsl>
+#moj_import <blysk_effect.glsl>
+#moj_import <smuga_effect.glsl>
+#moj_import <iskrenice_effect.glsl>
+#moj_import <tecafala_effect.glsl>
+#moj_import <serce_effect.glsl>
+#moj_import <kula_effect.glsl>
+#moj_import <luk_effect.glsl>
+#moj_import <mglawica_effect.glsl>
+#moj_import <snieg_effect.glsl>
+#moj_import <refleks_effect.glsl>
+#moj_import <kaskada_effect.glsl>
+#moj_import <neonfala_effect.glsl>
+#moj_import <perla_effect.glsl>
+#moj_import <zar_effect.glsl>
+#moj_import <firerain_effect.glsl>
+#moj_import <kolumna_effect.glsl>
+#moj_import <laser2_effect.glsl>
+#moj_import <odlamki_effect.glsl>
+#moj_import <grzmot_effect.glsl>
+#moj_import <swiatlo_effect.glsl>
+#moj_import <obrys_effect.glsl>
+#moj_import <gwiazdy_effect.glsl>
 
 uniform sampler2D Sampler0;
 
@@ -337,6 +359,138 @@ void main() {
         return;
     } else if (effectID == 43) {
         applyAureolaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 44) {
+        applyBlyskEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 45) {
+        applySmugaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 46) {
+        applyIskreniceEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 47) {
+        applyTecfalaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 48) {
+        applySerceEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 49) {
+        applyKulaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 50) {
+        applyLukEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 51) {
+        applyMglawicaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 52) {
+        applySniegEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 53) {
+        applyRefleksEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 54) {
+        applyKaskadaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 55) {
+        applyNeonfalaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 56) {
+        applyPerlaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 57) {
+        applyZarEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 58) {
+        applyFirerainEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 59) {
+        applyKolumnaEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 60) {
+        applyLaser2Effect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 61) {
+        applyOdlamkiEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 62) {
+        applyGrzmotEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 63) {
+        applySwiatloEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 64) {
+        applyObrysEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
+             fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
+             GameTime, Sampler0, fragColor);
+        fragColor.a *= fshDisplayAlpha;
+        return;
+    } else if (effectID == 65) {
+        applyGwiazdyEffect(uv, fshBaseColor, fshEffectColor, fshEffectParams,
              fshGlyphT0, fshGlyphT1, fshGlyphT2, fshGlyphT3,
              GameTime, Sampler0, fragColor);
         fragColor.a *= fshDisplayAlpha;
