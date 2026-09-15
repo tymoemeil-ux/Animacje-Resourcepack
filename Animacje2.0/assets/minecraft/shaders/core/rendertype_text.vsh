@@ -21,6 +21,9 @@ out float tfxID;
 out vec4 tfxColor;
 out vec2 tfxPos;
 
+// 1.21.6+: GameTime = ulek dnia (0..1 w 20 min) -> zamiana na sekundy (jak w starszych wersjach)
+#define GameTime (GameTime * 1200.0)
+
 #moj_import <minecraft:tfx_common.vsh>
 
 void main() {

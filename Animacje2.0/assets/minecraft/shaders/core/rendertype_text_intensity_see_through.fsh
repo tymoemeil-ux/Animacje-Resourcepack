@@ -13,6 +13,9 @@ in vec2 tfxPos;
 
 out vec4 fragColor;
 
+// 1.21.6+: GameTime = ulek dnia (0..1 w 20 min) -> zamiana na sekundy (jak w starszych wersjach)
+#define GameTime (GameTime * 1200.0)
+
 #moj_import <minecraft:tfx_common.fsh>
 
 void main() {
