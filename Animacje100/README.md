@@ -1,6 +1,6 @@
-# Animacje 100+
+# Animacje 150
 
-Resourcepack z **152 animacjami tekstu** dla Minecraft Java Edition.
+Resourcepack z **150 animacjami tekstu** dla Minecraft Java Edition.
 
 Napisz tekst w specjalnym kolorze, a client z włączonym packiem wyświetli go z animacją. Na serwerze i u graczy bez packa pozostaje zwykły tekst - animacja działa wyłącznie po stronie klienta.
 
@@ -8,35 +8,20 @@ Napisz tekst w specjalnym kolorze, a client z włączonym packiem wyświetli go 
 
 ## Czym to animuje (nie tylko czat!)
 
-Pack nadpisuje **cały pipeline renderowania tekstu** (wszystkie warianty `rendertype_text`: zwykły, intensity i see-through), więc animowane są:
-
-- czat i wiadomości `/tellraw`
-- tytuły (`/title`) i actionbar
-- **tabliczki** (front i tył)
-- **nazwy manekinów** (armor standy z `CustomName`)
-- tekst w GUI (1.21.4 i nowsze)
-- nick gracza ustawiony przez datapack `Animacje-Datapack` (1.21.11)
+Pack nadpisuje **cały pipeline renderowania tekstu** (wszystkie warianty `rendertype_text`), więc animowane są: czat, tytuły (`/title`), actionbar, **tabliczki**, **nazwy manekinów** i tekst w GUI (1.21.4+). Nick gracza - przez datapack `Animacje-Datapack` (1.21.11).
 
 ## Instalacja
 
-1. Wrzuć folder `Animacje100` (lub plik `Animacje100.zip`) do `.minecraft/resourcepacks`
+1. Wrzuć folder `Animacje100` (lub `Animacje100.zip`) do `.minecraft/resourcepacks`
 2. W opcjach gry włącz pack w sekcji `Pakiety zasobów`
-3. Wpisuj kolory z tabeli poniżej w komendach typu `/tellraw` lub `/title`
+3. Wpisuj kolory z tabeli poniżej w `/tellraw`, `/title` itp.
 
-Opcjonalnie: datapack `Animacje-Datapack` (Minecraft 1.21.11) do animacji na nickname'ach i hologramach - opis w `TUTORIAL.md`, rozdział 9.
+Opcjonalnie: `Animacje-Datapack` (1.21.11) - animowany nick i hologramy (TUTORIAL rozdz. 9).
 
 ## Szybki start
 
-Fala na słowie Test:
-
 ```
 /tellraw @a {"text":"Test","color":"#F8F800"}
-```
-
-Ten sam rozkaz możesz zapisać w formacie tagów i przekonwertować:
-
-```
-<animacja:wave>Test</animacja>
 ```
 
 ```
@@ -45,45 +30,46 @@ python3 konwerter.py "<animacja:wave>Test</animacja>"
 /tellraw @a {"text": "Test", "color": "#F8F800"}
 ```
 
-## Nowe efekty - druga generacja (101-116)
+## Rangi na serwerze (LuckPerms)
 
-- **blask** - błyszczący pas światła przetacza się po literach (jak po złocie)
-- **iskry** - losowe iskierki/gwiazdki rozbłyskują na literach
-- **plomien** - litery płoną (proceduralny ogień z migotaniem)
-- **popcorn**, **eksplozja**, **winda**, **deszcz**, **mrugacz**, **skoczki**
-- **mega_blask** - fala + trzęsienie + blask
+Prefixy i suffiksy w LuckPerms przyjmują pełne komponenty JSON z kolorami hex - czyli **rangi mogą być animowane**:
 
-## Nowe efekty - trzecia generacja (117-152)
+```
+/lp user <gracz> prefix set {"text":"[OP] ","color":"#D8D82C"}
 
-Efekty fragmentowe (renderowane piksel po pikselu - najładniejsze):
+/lp user <gracz> suffix set {"text":" | Ekipa","color":"#D8D800"}
+```
 
-- **laser** - laserowy skan przeszywający litery
-- **holo** - hologram: scanlines + przesuwający pas + migotanie
-- **glitch_hard** - twardy glicz: bloki wysuwają się, separacja RGB
-- **matrix** - zielony deszcz kodu
-- **caustics** - podwodne kaustyki (sieć światła)
-- **warp** - litery się roztopowują i wirową (zniekształcenie UV)
-- **krysztal** - fasetowany kryształ z przesuwającymi błyskami
-- **portal** - wirujący fioletowy portal
-- **xray** - prześwietlenie: świecące obrysy + linia skanująca
-- **termowizja** - animowana paleta kamery termowizyjnej
+- `<gracz>` - nazwa gracza; kolor spustowy bierzesz z tabeli (tu: `tron` i `neon_puls`)
+- Każdy wpis w czacie od tego gracza będzie mieć animowany prefix (u klientów z włączonym packiem; bez packa widać zwykły kolor)
+- Można też przez edytor webowy LuckPerms (luckperms.net): user - prefix/suffix - wklej JSON
+- Na singleplayer: `/function animacje:tag` / `animacje:nick` (datapack) zmienia twój nick na animowany
 
-Efekty kinetyczne (literki w ruchu):
+## Nowa generacja efektów (ostatnie 46 tagów)
 
-- **tornado** - litery wirowają
-- **wahadlo** - huśtanie jak wahadła
-- **wibracja** - drżenie
-- **przegon** - fala przelatuje przez litery
-- **bumper** - sekwencyjne podskoki
-- **harmonijka** - składanie/rozchodzenie
+Fragmentowe (piksel-po-pikselu, najładniejsze):
 
-Poza tym 20 gotowych kombinacji trzeciej generacji (laser_wavy, holo_float, glitch_killer, matrix_shake, caustics_float, warp_breathe, krysztal_pulse, portal_spin, xray_flicker, thermo_wavy, tornado_rainbow, tornado_blask, wahadlo_gold, przegon_neon, bumper_bouncy, harmonijka_glitch, mega_2, mega_cyber i inne - tabela poniżej).
+- **neon_puls** - pulsująca neonowa poświata, **szklo** - ostry metaliczny refleks
+- **zloty_blask** - błysk po złocie, **diamet** - mocne białoniebieskie iskrzenie
+- **krew** - spływające krople, **pianka** - bąbelki, **dym** - unoszący się dym
+- **piorun** - losowe rozbłyski, **radioaktywny** - trujące zielone światło
+- **pulsar** - rozszerzające się pierścienie, **galaktyka** - mgławica + gwiazdy
+- **tron** - neonowa siatka, **prizma** - tęczowe wiersze, **cukierek** - paski
+- **ocean** - fale + piana, **czarna_dziura** - wciąganie w środek
+- **mrozy** - kryształowa siatka, **magma** - świecące pęknięcia, **plasma** - płynna plazma
+- **aureola** - tęczowa poświata wokół liter
 
-Wszystkie 152 tagi są animowane - zero statycznych efektów (nawet `up`/`down`/`big`/`small` teraz pulsują/unoszą się).
+Kinetyczne: **karuzela** (krążenie), **spirala**, **pociag** (wagoniki), **burza** (teleporty), **titan** (gigantyczna fala), **metronom**, **fala_3d**, **piorka** (dryfowanie).
 
-## 152 animacje
+Poza tym 18 gotowych kombinacji premium (glow_wavy, szklo_shake, tron_holo, galaktyka_spin, dziura_shake, magma_shake, karuzela_rainbow, aureola_wavy i inne).
 
-Kolor = tag. Każdy tag ma swój unikalny kolor spustowy.
+## Usunięte słabe efekty
+
+Zgodnie z polityką jakości usunięto 48 słabych/redundantnych efektów: proste warianty (wave_soft, rainbow_fast, bouncy_high, blink_slow, pulse_big, spin_slow, flip_fast), statyczne przesunięcia i skalowanie (big, huge, small, up, down) oraz 36 prostych kombinacji (wave_rainbow, shake_neon, mega-lite i podobne). Pełna lista w historii commitów.
+
+## 150 animacji
+
+Kolor = tag. Każdy tag ma swój unikalny kolor spustowy. Wszystkie tagi są animowane.
 
 | # | Tag | Kolor | Efekt |
 |---|-----|-------|-------|
@@ -91,193 +77,179 @@ Kolor = tag. Każdy tag ma swój unikalny kolor spustowy.
 | 2 | `animacja:wave_big` | `#F8F804` | Wysoka fala |
 | 3 | `animacja:wave_slow` | `#F8F808` | Wolna fala |
 | 4 | `animacja:wave_fast` | `#F8F80C` | Szybka fala |
-| 5 | `animacja:wave_soft` | `#F8F810` | Delikatna fala |
-| 6 | `animacja:shake` | `#F8F814` | Losowe trzęsienie |
-| 7 | `animacja:shake_fast` | `#F8F818` | Szybkie trzęsienie |
-| 8 | `animacja:shake_mega` | `#F8F81C` | Mocne trzęsienie |
-| 9 | `animacja:tremor` | `#F8F820` | Drobne drżenie |
-| 10 | `animacja:rainbow` | `#F8F824` | Tęczowy przebieg kolorów |
-| 11 | `animacja:rainbow_fast` | `#F8F828` | Szybka tęcza |
-| 12 | `animacja:bouncy` | `#F8F82C` | Podskoki |
-| 13 | `animacja:bouncy_high` | `#F8F830` | Wysokie podskoki |
-| 14 | `animacja:blinking` | `#F8F834` | Miganie |
-| 15 | `animacja:blink_slow` | `#F8F838` | Wolne miganie |
-| 16 | `animacja:pulse` | `#F8F83C` | Pulsowanie |
-| 17 | `animacja:pulse_big` | `#F8F840` | Duże pulsowanie |
-| 18 | `animacja:heartbeat` | `#F8F844` | Uderzenia serca |
-| 19 | `animacja:spin` | `#F8F848` | Obrót (przewracanie) |
-| 20 | `animacja:spin_slow` | `#F8F84C` | Powolny obrót |
-| 21 | `animacja:flip` | `#F8F850` | Przewracanie liter kolejno |
-| 22 | `animacja:flip_fast` | `#F8F854` | Szybkie przewracanie liter |
-| 23 | `animacja:fade` | `#F8F858` | Zanikanie i pojawianie |
-| 24 | `animacja:breathe` | `#F8F85C` | Delikatny oddech |
-| 25 | `animacja:flicker` | `#F8F860` | Szybkie migotanie |
-| 26 | `animacja:jump` | `#F8F864` | Skoki liter kolejno |
-| 27 | `animacja:glitch` | `#F8F868` | Glicz / losowe przesunięcia |
-| 28 | `animacja:glitch_soft` | `#F8F86C` | Delikatny glicz |
-| 29 | `animacja:big` | `#F8F870` | Powiększenie x1.5 (pulsuje) |
-| 30 | `animacja:huge` | `#F8F874` | Powiększenie x2.5 (pulsuje) |
-| 31 | `animacja:small` | `#F8F878` | Pomniejszenie x0.8 (pulsuje) |
-| 32 | `animacja:up` | `#F8F87C` | Przesunięcie w górę + unoszenie |
-| 33 | `animacja:down` | `#F8F880` | Przesunięcie w dół + unoszenie |
-| 34 | `animacja:float` | `#F8F884` | Unoszenie góra-dół |
-| 35 | `animacja:sway` | `#F8F888` | Kołysanie na boki |
-| 36 | `animacja:zigzag` | `#F8F88C` | Literki na zmianę w górę/dół |
-| 37 | `animacja:wobble` | `#F8F890` | Chodzenie na zmianę |
-| 38 | `animacja:fall` | `#F8F894` | Spadanie tekstu |
-| 39 | `animacja:rise` | `#F8F898` | Wznoszenie tekstu |
-| 40 | `animacja:orbit` | `#F8F89C` | Krążenie liter po okręgu |
-| 41 | `animacja:drift` | `#F8F8A0` | Dryfowanie po przekątnej |
-| 42 | `animacja:type` | `#F8F8A4` | Pisanie maszynowe |
-| 43 | `animacja:erase` | `#F8F8A8` | Kasowanie liter kolejno |
-| 44 | `animacja:gradient_gd` | `#F8F8AC` | Gradient zielony→żółty |
-| 45 | `animacja:gradient_rb` | `#F8F8B0` | Gradient czerwony→niebieski |
-| 46 | `animacja:gradient_anim` | `#F8F8B4` | Animowany gradient |
-| 47 | `animacja:lava` | `#F8F8B8` | Płynąca lawa |
-| 48 | `animacja:aurora` | `#F8F8BC` | Aurora (3 kolory) |
-| 49 | `animacja:fire` | `#F8F8C0` | Ogień |
-| 50 | `animacja:ice` | `#F8F8C4` | Lód |
-| 51 | `animacja:gold` | `#F8F8C8` | Złoto |
-| 52 | `animacja:split` | `#F8F8CC` | Rozdzielanie liter na pół |
-| 53 | `animacja:outline` | `#F8F8D0` | Kontur wokół liter |
-| 54 | `animacja:hatch` | `#F8F8D4` | Kreskowanie |
-| 55 | `animacja:neon` | `#F8F8D8` | Neonowy blask |
-| 56 | `animacja:neon_pink` | `#F8F8DC` | Różowy neon |
-| 57 | `animacja:chroma` | `#F8F8E0` | Aberracja chromatyczna |
-| 58 | `animacja:extrude` | `#F8F8E4` | 3D / cień głębokości |
-| 59 | `animacja:extrude_deep` | `#F8F8E8` | Głębokie 3D |
-| 60 | `animacja:noise` | `#F8F8EC` | Szum / statyczny |
-| 61 | `animacja:liquid` | `#F8F8F0` | Płynna ciecz |
-| 62 | `animacja:water` | `#F8F8F4` | Wypełnianie wodą |
-| 63 | `animacja:water_tall` | `#F8F8F8` | Woda do góry (85%) |
-| 64 | `animacja:wave_rainbow` | `#F0F000` | Fala + tęcza |
-| 65 | `animacja:wave_neon` | `#F0F004` | Fala + neon |
-| 66 | `animacja:wave_aurora` | `#F0F008` | Fala + aurora |
-| 67 | `animacja:wave_fire` | `#F0F00C` | Fala + ogień |
-| 68 | `animacja:wave_ice` | `#F0F010` | Fala + lód |
-| 69 | `animacja:wave_gold` | `#F0F014` | Fala + złoto |
-| 70 | `animacja:shake_rainbow` | `#F0F018` | Trzęsienie + tęcza |
-| 71 | `animacja:shake_neon` | `#F0F01C` | Trzęsienie + neon |
-| 72 | `animacja:shake_glitch` | `#F0F020` | Trzęsienie + glicz |
-| 73 | `animacja:bouncy_rainbow` | `#F0F024` | Podskoki + tęcza |
-| 74 | `animacja:bouncy_neon` | `#F0F028` | Podskoki + różowy neon |
-| 75 | `animacja:bouncy_fire` | `#F0F02C` | Podskoki + ogień |
-| 76 | `animacja:pulse_rainbow` | `#F0F030` | Pulsowanie + tęcza |
-| 77 | `animacja:pulse_gold` | `#F0F034` | Pulsowanie + złoto |
-| 78 | `animacja:heartbeat_neon` | `#F0F038` | Serce + neon |
-| 79 | `animacja:spin_rainbow` | `#F0F03C` | Obrót + tęcza |
-| 80 | `animacja:spin_neon` | `#F0F040` | Obrót + neon |
-| 81 | `animacja:flip_aurora` | `#F0F044` | Przewracanie + aurora |
-| 82 | `animacja:fade_rainbow` | `#F0F048` | Zanikanie + tęcza |
-| 83 | `animacja:float_rainbow` | `#F0F04C` | Unoszenie + tęcza |
-| 84 | `animacja:float_neon` | `#F0F050` | Unoszenie + neon |
-| 85 | `animacja:sway_ice` | `#F0F054` | Kołysanie + lód |
-| 86 | `animacja:zigzag_bouncy` | `#F0F058` | Zigzag + podskoki |
-| 87 | `animacja:wobble_rainbow` | `#F0F05C` | Chodzenie + tęcza |
-| 88 | `animacja:orbit_rainbow` | `#F0F060` | Krążenie + tęcza |
-| 89 | `animacja:drift_ice` | `#F0F064` | Dryfowanie + lód |
-| 90 | `animacja:type_neon` | `#F0F068` | Pisanie + neon |
-| 91 | `animacja:erase_glitch` | `#F0F06C` | Kasowanie + glicz |
-| 92 | `animacja:glitch_chroma` | `#F0F070` | Glicz + aberracja |
-| 93 | `animacja:lava_shake` | `#F0F074` | Lawa + trzęsienie |
-| 94 | `animacja:lava_extrude` | `#F0F078` | Lawa + 3D |
-| 95 | `animacja:water_wave` | `#F0F07C` | Woda + fala |
-| 96 | `animacja:liquid_neon` | `#F0F080` | Ciecz + neon |
-| 97 | `animacja:noise_glitch` | `#F0F084` | Szum + glicz |
-| 98 | `animacja:split_shake` | `#F0F088` | Rozdzielanie + trzęsienie |
-| 99 | `animacja:outline_bouncy` | `#F0F08C` | Kontur + podskoki |
-| 100 | `animacja:mega` | `#F0F090` | Fala + trzęsienie + tęcza |
-| 101 | `animacja:blask` | `#E8E800` | Błyszczący przebieg światła po literach |
-| 102 | `animacja:blask_wave` | `#E8E804` | Blask + fala |
-| 103 | `animacja:blask_shake` | `#E8E808` | Blask + trzęsienie |
-| 104 | `animacja:iskry` | `#E8E80C` | Rozbłyskujące iskierki / gwiazdki na literach |
-| 105 | `animacja:iskry_float` | `#E8E810` | Iskry + unoszenie |
-| 106 | `animacja:iskry_bouncy` | `#E8E814` | Iskry + podskoki |
-| 107 | `animacja:plomien` | `#E8E818` | Płomienie na literach |
-| 108 | `animacja:plomien_wave` | `#E8E81C` | Płomienie + fala |
-| 109 | `animacja:plomien_shake` | `#E8E820` | Płomienie + trzęsienie |
-| 110 | `animacja:popcorn` | `#E8E824` | Literki wyskakują jak kukurydza |
-| 111 | `animacja:eksplozja` | `#E8E828` | Literki eksplodują na zewnątrz (z zanikiem) |
-| 112 | `animacja:winda` | `#E8E82C` | Tekst wjeżdża z dołu (pętla) |
-| 113 | `animacja:deszcz` | `#E8E830` | Tekst spada jak deszcz (pętla) |
-| 114 | `animacja:mrugacz` | `#E8E834` | Losowe literki znikają i wracają |
-| 115 | `animacja:skoczki` | `#E8E838` | Górne litery podskakują jak piłeczki |
-| 116 | `animacja:mega_blask` | `#E8E83C` | Fala + trzęsienie + blask |
-| 117 | `animacja:laser` | `#E0E004` | Laserowy skan przeszywający litery |
-| 118 | `animacja:holo` | `#E0E008` | Hologram (scanlines + migotanie) |
-| 119 | `animacja:glitch_hard` | `#E0E00C` | Twardy glicz: bloki się wysuwają + separacja RGB |
-| 120 | `animacja:matrix` | `#E0E010` | Zielony deszcz kodu (Matrix) |
-| 121 | `animacja:caustics` | `#E0E014` | Podwodne kaustyki (sieć światła) |
-| 122 | `animacja:warp` | `#E0E018` | Roztapianie / wir UV |
-| 123 | `animacja:krysztal` | `#E0E01C` | Fasetowany kryształ z błyskami |
-| 124 | `animacja:portal` | `#E0E020` | Wirujący portal (fiolet) |
-| 125 | `animacja:xray` | `#E0E024` | Prześwietlenie (świeżąca obrysy + skan) |
-| 126 | `animacja:termowizja` | `#E0E028` | Termowizyjna paleta (ciepło) |
-| 127 | `animacja:tornado` | `#E0E02C` | Literki wirowają jak w tornado |
-| 128 | `animacja:wahadlo` | `#E0E030` | Literki huśtają się jak wahadła |
-| 129 | `animacja:wibracja` | `#E0E034` | Wysokoczęstotliwościowa wibracja |
-| 130 | `animacja:przegon` | `#E0E038` | Fala przeganiająca przez litery |
-| 131 | `animacja:bumper` | `#E0E03C` | Literki podskakują jak piłeczki (sekwencja) |
-| 132 | `animacja:harmonijka` | `#E0E040` | Literki składają się i rozchodzą jak harmonijka |
-| 133 | `animacja:laser_wavy` | `#E0E044` | Laser + fala |
-| 134 | `animacja:laser_shake` | `#E0E048` | Laser + trzęsienie |
-| 135 | `animacja:holo_float` | `#E0E04C` | Hologram + unoszenie |
-| 136 | `animacja:holo_shake` | `#E0E050` | Hologram + trzęsienie |
-| 137 | `animacja:glitch_killer` | `#E0E054` | Twardy glicz + trzęsienie |
-| 138 | `animacja:matrix_shake` | `#E0E058` | Matrix + trzęsienie |
-| 139 | `animacja:caustics_float` | `#E0E05C` | Kaustyki + unoszenie |
-| 140 | `animacja:warp_breathe` | `#E0E060` | Roztapianie + oddech |
-| 141 | `animacja:krysztal_pulse` | `#E0E064` | Kryształ + pulsowanie |
-| 142 | `animacja:portal_spin` | `#E0E068` | Portal + obrót |
-| 143 | `animacja:xray_flicker` | `#E0E06C` | Prześwietlenie + migotanie |
-| 144 | `animacja:thermo_wavy` | `#E0E070` | Termowizja + fala |
-| 145 | `animacja:tornado_rainbow` | `#E0E074` | Tornado + tęcza |
-| 146 | `animacja:tornado_blask` | `#E0E078` | Tornado + blask |
-| 147 | `animacja:wahadlo_gold` | `#E0E07C` | Wahadła + złoto |
-| 148 | `animacja:przegon_neon` | `#E0E080` | Przegon + neon |
-| 149 | `animacja:bumper_bouncy` | `#E0E084` | Bumper + podskoki |
-| 150 | `animacja:harmonijka_glitch` | `#E0E088` | Harmonijka + glicz |
-| 151 | `animacja:mega_2` | `#E0E08C` | Tornado + trzęsienie + blask |
-| 152 | `animacja:mega_cyber` | `#E0E090` | Fala + trzęsienie + twardy glicz |
+| 5 | `animacja:shake` | `#F8F814` | Losowe trzęsienie |
+| 6 | `animacja:shake_fast` | `#F8F818` | Szybkie trzęsienie |
+| 7 | `animacja:shake_mega` | `#F8F81C` | Mocne trzęsienie |
+| 8 | `animacja:tremor` | `#F8F820` | Drobne drżenie |
+| 9 | `animacja:rainbow` | `#F8F824` | Tęczowy przebieg kolorów |
+| 10 | `animacja:bouncy` | `#F8F82C` | Podskoki |
+| 11 | `animacja:blinking` | `#F8F834` | Miganie |
+| 12 | `animacja:pulse` | `#F8F83C` | Pulsowanie |
+| 13 | `animacja:heartbeat` | `#F8F844` | Uderzenia serca |
+| 14 | `animacja:spin` | `#F8F848` | Obrót (przewracanie) |
+| 15 | `animacja:flip` | `#F8F850` | Przewracanie liter kolejno |
+| 16 | `animacja:fade` | `#F8F858` | Zanikanie i pojawianie |
+| 17 | `animacja:breathe` | `#F8F85C` | Delikatny oddech |
+| 18 | `animacja:flicker` | `#F8F860` | Szybkie migotanie |
+| 19 | `animacja:jump` | `#F8F864` | Skoki liter kolejno |
+| 20 | `animacja:glitch` | `#F8F868` | Glicz / losowe przesunięcia |
+| 21 | `animacja:glitch_soft` | `#F8F86C` | Delikatny glicz |
+| 22 | `animacja:float` | `#F8F884` | Unoszenie góra-dół |
+| 23 | `animacja:sway` | `#F8F888` | Kołysanie na boki |
+| 24 | `animacja:zigzag` | `#F8F88C` | Literki na zmianę w górę/dół |
+| 25 | `animacja:wobble` | `#F8F890` | Chodzenie na zmianę |
+| 26 | `animacja:fall` | `#F8F894` | Spadanie tekstu |
+| 27 | `animacja:rise` | `#F8F898` | Wznoszenie tekstu |
+| 28 | `animacja:orbit` | `#F8F89C` | Krążenie liter po okręgu |
+| 29 | `animacja:drift` | `#F8F8A0` | Dryfowanie po przekątnej |
+| 30 | `animacja:type` | `#F8F8A4` | Pisanie maszynowe |
+| 31 | `animacja:erase` | `#F8F8A8` | Kasowanie liter kolejno |
+| 32 | `animacja:gradient_gd` | `#F8F8AC` | Gradient zielony→żółty |
+| 33 | `animacja:gradient_rb` | `#F8F8B0` | Gradient czerwony→niebieski |
+| 34 | `animacja:gradient_anim` | `#F8F8B4` | Animowany gradient |
+| 35 | `animacja:lava` | `#F8F8B8` | Płynąca lawa |
+| 36 | `animacja:aurora` | `#F8F8BC` | Aurora (3 kolory) |
+| 37 | `animacja:fire` | `#F8F8C0` | Ogień |
+| 38 | `animacja:ice` | `#F8F8C4` | Lód |
+| 39 | `animacja:gold` | `#F8F8C8` | Złoto |
+| 40 | `animacja:split` | `#F8F8CC` | Rozdzielanie liter na pół |
+| 41 | `animacja:outline` | `#F8F8D0` | Kontur wokół liter |
+| 42 | `animacja:hatch` | `#F8F8D4` | Kreskowanie |
+| 43 | `animacja:neon` | `#F8F8D8` | Neonowy blask |
+| 44 | `animacja:neon_pink` | `#F8F8DC` | Różowy neon |
+| 45 | `animacja:chroma` | `#F8F8E0` | Aberracja chromatyczna |
+| 46 | `animacja:extrude` | `#F8F8E4` | 3D / cień głębokości |
+| 47 | `animacja:extrude_deep` | `#F8F8E8` | Głębokie 3D |
+| 48 | `animacja:noise` | `#F8F8EC` | Szum / statyczny |
+| 49 | `animacja:liquid` | `#F8F8F0` | Płynna ciecz |
+| 50 | `animacja:water` | `#F8F8F4` | Wypełnianie wodą |
+| 51 | `animacja:water_tall` | `#F8F8F8` | Woda do góry (85%) |
+| 52 | `animacja:mega` | `#F0F090` | Fala + trzęsienie + tęcza |
+| 53 | `animacja:blask` | `#E8E800` | Błyszczący przebieg światła po literach |
+| 54 | `animacja:blask_wave` | `#E8E804` | Blask + fala |
+| 55 | `animacja:blask_shake` | `#E8E808` | Blask + trzęsienie |
+| 56 | `animacja:iskry` | `#E8E80C` | Rozbłyskujące iskierki / gwiazdki na literach |
+| 57 | `animacja:iskry_float` | `#E8E810` | Iskry + unoszenie |
+| 58 | `animacja:iskry_bouncy` | `#E8E814` | Iskry + podskoki |
+| 59 | `animacja:plomien` | `#E8E818` | Płomienie na literach |
+| 60 | `animacja:plomien_wave` | `#E8E81C` | Płomienie + fala |
+| 61 | `animacja:plomien_shake` | `#E8E820` | Płomienie + trzęsienie |
+| 62 | `animacja:popcorn` | `#E8E824` | Literki wyskakują jak kukurydza |
+| 63 | `animacja:eksplozja` | `#E8E828` | Literki eksplodują na zewnątrz (z zanikiem) |
+| 64 | `animacja:winda` | `#E8E82C` | Tekst wjeżdża z dołu (pętla) |
+| 65 | `animacja:deszcz` | `#E8E830` | Tekst spada jak deszcz (pętla) |
+| 66 | `animacja:mrugacz` | `#E8E834` | Losowe literki znikają i wracają |
+| 67 | `animacja:skoczki` | `#E8E838` | Górne litery podskakują jak piłeczki |
+| 68 | `animacja:mega_blask` | `#E8E83C` | Fala + trzęsienie + blask |
+| 69 | `animacja:laser` | `#E0E004` | Laserowy skan przeszywający litery |
+| 70 | `animacja:holo` | `#E0E008` | Hologram (scanlines + migotanie) |
+| 71 | `animacja:glitch_hard` | `#E0E00C` | Twardy glicz: bloki wysuwają się + separacja RGB |
+| 72 | `animacja:matrix` | `#E0E010` | Zielony deszcz kodu (Matrix) |
+| 73 | `animacja:caustics` | `#E0E014` | Podwodne kaustyki (sieć światła) |
+| 74 | `animacja:warp` | `#E0E018` | Roztapianie / wir UV |
+| 75 | `animacja:krysztal` | `#E0E01C` | Fasetowany kryształ z błyskami |
+| 76 | `animacja:portal` | `#E0E020` | Wirujący fioletowy portal |
+| 77 | `animacja:xray` | `#E0E024` | Prześwietlenie (świecące obrysy + skan) |
+| 78 | `animacja:termowizja` | `#E0E028` | Animowana paleta kamery termowizyjnej |
+| 79 | `animacja:tornado` | `#E0E02C` | Literki wirowają jak w tornado |
+| 80 | `animacja:wahadlo` | `#E0E030` | Literki huśtają się jak wahadła |
+| 81 | `animacja:wibracja` | `#E0E034` | Wysokoczęstotliwościowa wibracja |
+| 82 | `animacja:przegon` | `#E0E038` | Fala przelatuje przez litery |
+| 83 | `animacja:bumper` | `#E0E03C` | Literki podskakują sekwencyjnie |
+| 84 | `animacja:harmonijka` | `#E0E040` | Literki składają się i rozchodzą |
+| 85 | `animacja:laser_wavy` | `#E0E044` | Laser + fala |
+| 86 | `animacja:laser_shake` | `#E0E048` | Laser + trzęsienie |
+| 87 | `animacja:holo_float` | `#E0E04C` | Hologram + unoszenie |
+| 88 | `animacja:holo_shake` | `#E0E050` | Hologram + trzęsienie |
+| 89 | `animacja:glitch_killer` | `#E0E054` | Twardy glicz + trzęsienie |
+| 90 | `animacja:matrix_shake` | `#E0E058` | Matrix + trzęsienie |
+| 91 | `animacja:caustics_float` | `#E0E05C` | Kaustyki + unoszenie |
+| 92 | `animacja:warp_breathe` | `#E0E060` | Roztapianie + oddech |
+| 93 | `animacja:krysztal_pulse` | `#E0E064` | Kryształ + pulsowanie |
+| 94 | `animacja:portal_spin` | `#E0E068` | Portal + obrót |
+| 95 | `animacja:xray_flicker` | `#E0E06C` | Prześwietlenie + migotanie |
+| 96 | `animacja:thermo_wavy` | `#E0E070` | Termowizja + fala |
+| 97 | `animacja:tornado_rainbow` | `#E0E074` | Tornado + tęcza |
+| 98 | `animacja:tornado_blask` | `#E0E078` | Tornado + blask |
+| 99 | `animacja:wahadlo_gold` | `#E0E07C` | Wahadła + złoto |
+| 100 | `animacja:przegon_neon` | `#E0E080` | Przegon + neon |
+| 101 | `animacja:bumper_bouncy` | `#E0E084` | Bumper + podskoki |
+| 102 | `animacja:harmonijka_glitch` | `#E0E088` | Harmonijka + glicz |
+| 103 | `animacja:mega_2` | `#E0E08C` | Tornado + trzęsienie + blask |
+| 104 | `animacja:mega_cyber` | `#E0E090` | Fala + trzęsienie + twardy glicz |
+| 105 | `animacja:neon_puls` | `#D8D800` | Pulsujący neonowy blask (oddychająca poświata) |
+| 106 | `animacja:szklo` | `#D8D804` | Szklisty metaliczny blask (ostry refleks) |
+| 107 | `animacja:zloty_blask` | `#D8D808` | Złoty blask (błysk po złocie) |
+| 108 | `animacja:diamet` | `#D8D80C` | Diament (mocne białoniebieskie iskrzenie) |
+| 109 | `animacja:krew` | `#D8D810` | Ciemnoczerwone krople spływające po literach |
+| 110 | `animacja:pianka` | `#D8D814` | Bąbelki wypływające w górę |
+| 111 | `animacja:dym` | `#D8D818` | Dym unoszący się z liter |
+| 112 | `animacja:piorun` | `#D8D81C` | Błyski piorunowe (losowe rozbłyski) |
+| 113 | `animacja:radioaktywny` | `#D8D820` | Trujące zielone światło z szumem |
+| 114 | `animacja:pulsar` | `#D8D824` | Rozszerzające się pierścienie |
+| 115 | `animacja:galaktyka` | `#D8D828` | Galaktyka (mgławica + migoczące gwiazdy) |
+| 116 | `animacja:tron` | `#D8D82C` | Neonowa siatka (styl Tron) |
+| 117 | `animacja:prizma` | `#D8D830` | Prizma (każdy wiersz w innym kolorze, animowane) |
+| 118 | `animacja:cukierek` | `#D8D834` | Cukierkowe paski (przesuwane) |
+| 119 | `animacja:ocean` | `#D8D838` | Ocean (fale + biała piana) |
+| 120 | `animacja:czarna_dziura` | `#D8D83C` | Czarna dziura (litery wciągane w środek) |
+| 121 | `animacja:mrozy` | `#D8D840` | Mrozy (kryształowa siatka + błyski) |
+| 122 | `animacja:magma` | `#D8D844` | Magma (ciemna skała + świecące pęknięcia) |
+| 123 | `animacja:plasma` | `#D8D848` | Płynąca plazma (fioletowa/zieleń) |
+| 124 | `animacja:aureola` | `#D8D84C` | Tęczowa aureola wokół liter |
+| 125 | `animacja:karuzela` | `#D8D850` | Literki krążą po kole (karuzela) |
+| 126 | `animacja:spirala` | `#D8D854` | Literki wirują w spiralę (wypychanie/wciąganie) |
+| 127 | `animacja:pociag` | `#D8D858` | Literki jadą jak wagoniki (fala po przekątnej) |
+| 128 | `animacja:burza` | `#D8D85C` | Literki teleportują się losowo (burza) |
+| 129 | `animacja:titan` | `#D8D860` | Wolna gigantyczna fala |
+| 130 | `animacja:metronom` | `#D8D864` | Szybkie huśtanie jak metronom |
+| 131 | `animacja:fala_3d` | `#D8D868` | Fala 3D (iluzja przestrzennej fali) |
+| 132 | `animacja:piorka` | `#D8D86C` | Piórka (powolne dryfowanie w dół + kołysanie) |
+| 133 | `animacja:glow_wavy` | `#D8D870` | Neonowy puls + fala |
+| 134 | `animacja:szklo_shake` | `#D8D874` | Szkło + trzęsienie |
+| 135 | `animacja:zloty_bouncy` | `#D8D878` | Złoty blask + podskoki |
+| 136 | `animacja:diamet_float` | `#D8D87C` | Diamet + unoszenie |
+| 137 | `animacja:krew_shake` | `#D8D880` | Krew + trzęsienie |
+| 138 | `animacja:piorun_shake` | `#D8D884` | Piorun + trzęsienie |
+| 139 | `animacja:pulsar_breathe` | `#D8D888` | Pulsar + oddech |
+| 140 | `animacja:galaktyka_spin` | `#D8D88C` | Galaktyka + obrót |
+| 141 | `animacja:tron_holo` | `#D8D890` | Tron + hologram |
+| 142 | `animacja:prizma_wavy` | `#D8D894` | Prizma + fala |
+| 143 | `animacja:ocean_wavy` | `#D8D898` | Ocean + fala |
+| 144 | `animacja:dziura_shake` | `#D8D89C` | Czarna dziura + trzęsienie |
+| 145 | `animacja:mrozy_float` | `#D8D8A0` | Mrozy + unoszenie |
+| 146 | `animacja:magma_shake` | `#D8D8A4` | Magma + trzęsienie |
+| 147 | `animacja:plasma_breathe` | `#D8D8A8` | Plazma + oddech |
+| 148 | `animacja:karuzela_rainbow` | `#D8D8AC` | Karuzela + tęcza |
+| 149 | `animacja:aureola_wavy` | `#D8D8B0` | Aureola + fala |
+| 150 | `animacja:cukierek_shake` | `#D8D8B4` | Cukierek + trzęsienie |
 
 ## Wszystkie rozkazy /tellraw
 
-Każdy z 152 tagów jako gotowy rozkaz (tekst `Test`):
+Każdy z 150 tagów jako gotowy rozkaz (tekst `Test`):
 
 ```
 /tellraw @a {"text":"Test","color":"#F8F800"}
 /tellraw @a {"text":"Test","color":"#F8F804"}
 /tellraw @a {"text":"Test","color":"#F8F808"}
 /tellraw @a {"text":"Test","color":"#F8F80C"}
-/tellraw @a {"text":"Test","color":"#F8F810"}
 /tellraw @a {"text":"Test","color":"#F8F814"}
 /tellraw @a {"text":"Test","color":"#F8F818"}
 /tellraw @a {"text":"Test","color":"#F8F81C"}
 /tellraw @a {"text":"Test","color":"#F8F820"}
 /tellraw @a {"text":"Test","color":"#F8F824"}
-/tellraw @a {"text":"Test","color":"#F8F828"}
 /tellraw @a {"text":"Test","color":"#F8F82C"}
-/tellraw @a {"text":"Test","color":"#F8F830"}
 /tellraw @a {"text":"Test","color":"#F8F834"}
-/tellraw @a {"text":"Test","color":"#F8F838"}
 /tellraw @a {"text":"Test","color":"#F8F83C"}
-/tellraw @a {"text":"Test","color":"#F8F840"}
 /tellraw @a {"text":"Test","color":"#F8F844"}
 /tellraw @a {"text":"Test","color":"#F8F848"}
-/tellraw @a {"text":"Test","color":"#F8F84C"}
 /tellraw @a {"text":"Test","color":"#F8F850"}
-/tellraw @a {"text":"Test","color":"#F8F854"}
 /tellraw @a {"text":"Test","color":"#F8F858"}
 /tellraw @a {"text":"Test","color":"#F8F85C"}
 /tellraw @a {"text":"Test","color":"#F8F860"}
 /tellraw @a {"text":"Test","color":"#F8F864"}
 /tellraw @a {"text":"Test","color":"#F8F868"}
 /tellraw @a {"text":"Test","color":"#F8F86C"}
-/tellraw @a {"text":"Test","color":"#F8F870"}
-/tellraw @a {"text":"Test","color":"#F8F874"}
-/tellraw @a {"text":"Test","color":"#F8F878"}
-/tellraw @a {"text":"Test","color":"#F8F87C"}
-/tellraw @a {"text":"Test","color":"#F8F880"}
 /tellraw @a {"text":"Test","color":"#F8F884"}
 /tellraw @a {"text":"Test","color":"#F8F888"}
 /tellraw @a {"text":"Test","color":"#F8F88C"}
@@ -308,42 +280,6 @@ Każdy z 152 tagów jako gotowy rozkaz (tekst `Test`):
 /tellraw @a {"text":"Test","color":"#F8F8F0"}
 /tellraw @a {"text":"Test","color":"#F8F8F4"}
 /tellraw @a {"text":"Test","color":"#F8F8F8"}
-/tellraw @a {"text":"Test","color":"#F0F000"}
-/tellraw @a {"text":"Test","color":"#F0F004"}
-/tellraw @a {"text":"Test","color":"#F0F008"}
-/tellraw @a {"text":"Test","color":"#F0F00C"}
-/tellraw @a {"text":"Test","color":"#F0F010"}
-/tellraw @a {"text":"Test","color":"#F0F014"}
-/tellraw @a {"text":"Test","color":"#F0F018"}
-/tellraw @a {"text":"Test","color":"#F0F01C"}
-/tellraw @a {"text":"Test","color":"#F0F020"}
-/tellraw @a {"text":"Test","color":"#F0F024"}
-/tellraw @a {"text":"Test","color":"#F0F028"}
-/tellraw @a {"text":"Test","color":"#F0F02C"}
-/tellraw @a {"text":"Test","color":"#F0F030"}
-/tellraw @a {"text":"Test","color":"#F0F034"}
-/tellraw @a {"text":"Test","color":"#F0F038"}
-/tellraw @a {"text":"Test","color":"#F0F03C"}
-/tellraw @a {"text":"Test","color":"#F0F040"}
-/tellraw @a {"text":"Test","color":"#F0F044"}
-/tellraw @a {"text":"Test","color":"#F0F048"}
-/tellraw @a {"text":"Test","color":"#F0F04C"}
-/tellraw @a {"text":"Test","color":"#F0F050"}
-/tellraw @a {"text":"Test","color":"#F0F054"}
-/tellraw @a {"text":"Test","color":"#F0F058"}
-/tellraw @a {"text":"Test","color":"#F0F05C"}
-/tellraw @a {"text":"Test","color":"#F0F060"}
-/tellraw @a {"text":"Test","color":"#F0F064"}
-/tellraw @a {"text":"Test","color":"#F0F068"}
-/tellraw @a {"text":"Test","color":"#F0F06C"}
-/tellraw @a {"text":"Test","color":"#F0F070"}
-/tellraw @a {"text":"Test","color":"#F0F074"}
-/tellraw @a {"text":"Test","color":"#F0F078"}
-/tellraw @a {"text":"Test","color":"#F0F07C"}
-/tellraw @a {"text":"Test","color":"#F0F080"}
-/tellraw @a {"text":"Test","color":"#F0F084"}
-/tellraw @a {"text":"Test","color":"#F0F088"}
-/tellraw @a {"text":"Test","color":"#F0F08C"}
 /tellraw @a {"text":"Test","color":"#F0F090"}
 /tellraw @a {"text":"Test","color":"#E8E800"}
 /tellraw @a {"text":"Test","color":"#E8E804"}
@@ -397,20 +333,64 @@ Każdy z 152 tagów jako gotowy rozkaz (tekst `Test`):
 /tellraw @a {"text":"Test","color":"#E0E088"}
 /tellraw @a {"text":"Test","color":"#E0E08C"}
 /tellraw @a {"text":"Test","color":"#E0E090"}
+/tellraw @a {"text":"Test","color":"#D8D800"}
+/tellraw @a {"text":"Test","color":"#D8D804"}
+/tellraw @a {"text":"Test","color":"#D8D808"}
+/tellraw @a {"text":"Test","color":"#D8D80C"}
+/tellraw @a {"text":"Test","color":"#D8D810"}
+/tellraw @a {"text":"Test","color":"#D8D814"}
+/tellraw @a {"text":"Test","color":"#D8D818"}
+/tellraw @a {"text":"Test","color":"#D8D81C"}
+/tellraw @a {"text":"Test","color":"#D8D820"}
+/tellraw @a {"text":"Test","color":"#D8D824"}
+/tellraw @a {"text":"Test","color":"#D8D828"}
+/tellraw @a {"text":"Test","color":"#D8D82C"}
+/tellraw @a {"text":"Test","color":"#D8D830"}
+/tellraw @a {"text":"Test","color":"#D8D834"}
+/tellraw @a {"text":"Test","color":"#D8D838"}
+/tellraw @a {"text":"Test","color":"#D8D83C"}
+/tellraw @a {"text":"Test","color":"#D8D840"}
+/tellraw @a {"text":"Test","color":"#D8D844"}
+/tellraw @a {"text":"Test","color":"#D8D848"}
+/tellraw @a {"text":"Test","color":"#D8D84C"}
+/tellraw @a {"text":"Test","color":"#D8D850"}
+/tellraw @a {"text":"Test","color":"#D8D854"}
+/tellraw @a {"text":"Test","color":"#D8D858"}
+/tellraw @a {"text":"Test","color":"#D8D85C"}
+/tellraw @a {"text":"Test","color":"#D8D860"}
+/tellraw @a {"text":"Test","color":"#D8D864"}
+/tellraw @a {"text":"Test","color":"#D8D868"}
+/tellraw @a {"text":"Test","color":"#D8D86C"}
+/tellraw @a {"text":"Test","color":"#D8D870"}
+/tellraw @a {"text":"Test","color":"#D8D874"}
+/tellraw @a {"text":"Test","color":"#D8D878"}
+/tellraw @a {"text":"Test","color":"#D8D87C"}
+/tellraw @a {"text":"Test","color":"#D8D880"}
+/tellraw @a {"text":"Test","color":"#D8D884"}
+/tellraw @a {"text":"Test","color":"#D8D888"}
+/tellraw @a {"text":"Test","color":"#D8D88C"}
+/tellraw @a {"text":"Test","color":"#D8D890"}
+/tellraw @a {"text":"Test","color":"#D8D894"}
+/tellraw @a {"text":"Test","color":"#D8D898"}
+/tellraw @a {"text":"Test","color":"#D8D89C"}
+/tellraw @a {"text":"Test","color":"#D8D8A0"}
+/tellraw @a {"text":"Test","color":"#D8D8A4"}
+/tellraw @a {"text":"Test","color":"#D8D8A8"}
+/tellraw @a {"text":"Test","color":"#D8D8AC"}
+/tellraw @a {"text":"Test","color":"#D8D8B0"}
+/tellraw @a {"text":"Test","color":"#D8D8B4"}
 ```
 
 ## Łączenie efektów
 
-Tagi 64-100 to gotowe kombinacje dwóch (a `mega` trzech) efektów. Tagi 101-152 to nowa generacja, w tym 30+ kombinacji.
-
 Zasady łączenia:
 
 - dwa efekty wierzchołkowe (np. fala + trzęsienie) - tak
-- efekt wierzchołkowy + fragmentowy (np. blask + tornado) - tak
+- efekt wierzchołkowy + fragmentowy (np. karuzela + neon_puls) - tak
 - efekt fragmentowy + kolor/faza (np. neon + blask) - nie, fragmentowy ma pierwszeństwo
 - dwa fragmentowe naraz - nie (jeden efekt fragmentowy na kolor)
 
-Własne kombinacje dodasz w pliku `assets/minecraft/shaders/include/_config.glsl`:
+Własne kombinacje dodasz w `assets/minecraft/shaders/include/_config.glsl`:
 
 ```
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 244, 248)) {
@@ -420,22 +400,20 @@ TEXT_EFFECT_WITH_SHADOW(rgb(248, 244, 248)) {
 }
 ```
 
-Po zmianie pliku zrestartuj grę (lub przeładuj paczki zasobów).
-
-Można też nakładać dwa efekty jednym rozkazem przez segment `extra` - drugi segment renderuje się w tym samym miejscu na wierzchu:
+Nakładanie dwóch efektów jednym rozkazem przez `extra`:
 
 ```
-/tellraw @a {"text":"Test","color":"#F8F800","extra":[{"text":"Test","color":"#F0F004"}]}
+/tellraw @a {"text":"Test","color":"#F8F800","extra":[{"text":"Test","color":"#F0F090"}]}
 ```
 
 ## Przykłady
 
-- 152 gotowych rozkazów: `TUTORIAL.md` (rozdział 5)
+- 150 gotowych rozkazów: `TUTORIAL.md` (rozdział 5)
 - 1000 gotowych rozkazów: `PRZYKLADY_1000.md`
 
 ## Wersje
 
-Pack format 7-100 (Minecraft 1.17 i nowsze). Overlady dla 1.21.2, 1.21.6, 26.1 i 26.2.
+Pack format 7-100 (Minecraft 1.17 i nowsze, w tym 1.21.11). Overlady dla 1.21.2, 1.21.6, 26.1 i 26.2.
 
 ## Licencja
 

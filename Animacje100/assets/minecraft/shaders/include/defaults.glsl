@@ -199,3 +199,80 @@
 #define BUMPER_SIZE 4.0
 #define HARMONIJKA_SPEED 1.0
 #define HARMONIJKA_SIZE 2.0
+
+#define NEON_PULS_COLOR vec4(0.4, 0.9, 1.0, 1.0)
+#define NEON_PULS_SPEED 1.0
+#define NEON_PULS_GLOW 1.0
+#define SZKLO_COLOR vec4(0.85, 0.95, 1.0, 1.0)
+#define SZKLO_SPEED 1.0
+#define SZKLO_WIDTH 0.08
+#define ZLOTY_BLASK_COLOR vec4(1.0, 0.85, 0.4, 1.0)
+#define ZLOTY_BLASK_SPEED 1.0
+#define ZLOTY_BLASK_WIDTH 0.25
+#define DIAMET_COLOR vec4(0.8, 0.9, 1.0, 1.0)
+#define DIAMET_SPEED 1.0
+#define DIAMET_DENSITY 4.0
+#define KREW_COLOR vec4(0.5, 0.05, 0.08, 1.0)
+#define KREW_SPEED 0.5
+#define KREW_COLS 5.0
+#define PIANKA_COLOR vec4(0.6, 0.9, 1.0, 1.0)
+#define PIANKA_SPEED 0.8
+#define PIANKA_SIZE 6.0
+#define DYM_COLOR vec4(0.7, 0.7, 0.75, 1.0)
+#define DYM_SPEED 0.8
+#define DYM_DRIFT 0.5
+#define PIORUN_COLOR vec4(0.9, 0.95, 1.0, 1.0)
+#define PIORUN_SPEED 1.0
+#define PIORUN_POWER 1.0
+#define RADIOAKTYWNY_COLOR vec4(0.4, 1.0, 0.2, 1.0)
+#define RADIOAKTYWNY_SPEED 1.0
+#define RADIOAKTYWNY_INTENSITY 1.0
+#define PULSAR_COLOR vec4(1.0, 0.5, 0.9, 1.0)
+#define PULSAR_SPEED 1.0
+#define PULSAR_RINGS 3.0
+#define GALAKTYKA_COLOR vec4(0.6, 0.4, 1.0, 1.0)
+#define GALAKTYKA_SPEED 1.0
+#define GALAKTYKA_STARS 8.0
+#define TRON_COLOR vec4(0.2, 0.9, 1.0, 1.0)
+#define TRON_SPEED 1.0
+#define TRON_GRID 5.0
+#define PRIZMA_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define PRIZMA_SPEED 1.0
+#define PRIZMA_ROWS 6.0
+#define CUKIEREK_COLOR vec4(1.0, 0.5, 0.8, 1.0)
+#define CUKIEREK_SPEED 1.0
+#define CUKIEREK_WIDTH 4.0
+#define OCEAN_COLOR vec4(0.2, 0.5, 1.0, 1.0)
+#define OCEAN_SPEED 1.0
+#define OCEAN_WAVES 1.0
+#define CZARNA_DZIURA_COLOR vec4(0.6, 0.3, 1.0, 1.0)
+#define CZARNA_DZIURA_SPEED 1.0
+#define CZARNA_DZIURA_STRENGTH 1.0
+#define MROZY_COLOR vec4(0.7, 0.9, 1.0, 1.0)
+#define MROZY_SPEED 1.0
+#define MROZY_CELLS 5.0
+#define MAGMA_COLOR vec4(1.0, 0.45, 0.05, 1.0)
+#define MAGMA_SPEED 0.6
+#define MAGMA_CRACKS 1.0
+#define PLASMA_COLOR vec4(0.5, 0.3, 1.0, 1.0)
+#define PLASMA_SPEED 1.0
+#define PLASMA_CONTRAST 1.2
+#define AUREOLA_COLOR vec4(1.0, 1.0, 1.0, 1.0)
+#define AUREOLA_SPEED 1.0
+#define AUREOLA_INTENSITY 1.0
+#define KARUZELA_SPEED 1.0
+#define KARUZELA_SIZE 2.0
+#define SPIRALA_SPEED 1.0
+#define SPIRALA_SIZE 2.0
+#define POCIAG_SPEED 1.0
+#define POCIAG_SIZE 2.0
+#define BURZA_SPEED 1.0
+#define BURZA_SIZE 1.0
+#define TITAN_SPEED 1.0
+#define TITAN_SIZE 3.0
+#define METRONOM_SPEED 1.0
+#define METRONOM_SIZE 2.0
+#define FALA3D_SPEED 1.0
+#define FALA3D_SIZE 1.5
+#define PIORKA_SPEED 1.0
+#define PIORKA_SIZE 1.0

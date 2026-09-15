@@ -18,11 +18,6 @@ TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 12)) {
     apply_color(rgb(0, 255, 255));
 }
 
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 16)) {
-    apply_wavy(8000.0, 0.35);
-    apply_color(rgb(255, 255, 200));
-}
-
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 20)) {
     apply_shake();
     apply_color(rgb(255, 80, 80));
@@ -47,18 +42,9 @@ TEXT_EFFECT(rgb(248, 248, 36)) {
     apply_rainbow();
 }
 
-TEXT_EFFECT(rgb(248, 248, 40)) {
-    apply_rainbow(1200.0);
-}
-
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 44)) {
     apply_bouncy();
     apply_color(rgb(255, 170, 0));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 48)) {
-    apply_bouncy(3000.0, 3.0);
-    apply_color(rgb(255, 255, 255));
 }
 
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 52)) {
@@ -66,19 +52,9 @@ TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 52)) {
     apply_color(rgb(80, 80, 255));
 }
 
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 56)) {
-    apply_blinking(0.25);
-    apply_color(rgb(80, 255, 80));
-}
-
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 60)) {
     apply_pulse();
     apply_color(rgb(80, 255, 255));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 64)) {
-    apply_pulse(20.0, 0.8);
-    apply_color(rgb(255, 255, 255));
 }
 
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 68)) {
@@ -91,19 +67,9 @@ TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 72)) {
     apply_color(rgb(255, 80, 255));
 }
 
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 76)) {
-    apply_spin(1000.0);
-    apply_color(rgb(255, 255, 255));
-}
-
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 80)) {
     apply_sequential_spin();
     apply_color(rgb(255, 255, 255));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 84)) {
-    apply_sequential_spin(5000.0);
-    apply_color(rgb(255, 255, 80));
 }
 
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 88)) {
@@ -134,36 +100,6 @@ TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 104)) {
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 108)) {
     apply_glitch(0.5, 1.0);
     apply_color(rgb(200, 200, 255));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 112)) {
-    apply_scale(1.5);
-    apply_pulse();
-    apply_color(rgb(80, 255, 255));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 116)) {
-    apply_scale(2.5);
-    apply_pulse();
-    apply_color(rgb(255, 120, 255));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 120)) {
-    apply_scale(0.8);
-    apply_pulse();
-    apply_color(rgb(255, 255, 255));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 124)) {
-    apply_offset(0.0, 40.0);
-    apply_bob();
-    apply_color(rgb(255, 170, 0));
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 128)) {
-    apply_offset(0.0, -30.0);
-    apply_bob();
-    apply_color(rgb(80, 255, 255));
 }
 
 TEXT_EFFECT_WITH_SHADOW(rgb(248, 248, 132)) {
@@ -304,191 +240,6 @@ TEXT_EFFECT(rgb(248, 248, 244)) {
 TEXT_EFFECT(rgb(248, 248, 248)) {
     apply_color(rgb(40, 60, 60));
     apply_water(rgb(0, 200, 200), 0.85, 1.5, 1.2);
-}
-
-TEXT_EFFECT(rgb(240, 240, 0)) {
-    apply_wavy();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 4)) {
-    apply_wavy();
-    apply_neon(rgb(80, 220, 255), 1.5);
-}
-
-TEXT_EFFECT(rgb(240, 240, 8)) {
-    apply_wavy();
-    apply_aurora();
-}
-
-TEXT_EFFECT(rgb(240, 240, 12)) {
-    apply_wavy();
-    apply_aurora(rgb(255, 60, 0), rgb(255, 200, 0), rgb(255, 120, 160), 900.0);
-}
-
-TEXT_EFFECT(rgb(240, 240, 16)) {
-    apply_wavy();
-    apply_aurora(rgb(140, 210, 255), rgb(230, 250, 255), rgb(110, 170, 255), 400.0);
-}
-
-TEXT_EFFECT(rgb(240, 240, 20)) {
-    apply_wavy();
-    apply_aurora(rgb(255, 200, 40), rgb(255, 240, 150), rgb(210, 150, 30), 500.0);
-}
-
-TEXT_EFFECT(rgb(240, 240, 24)) {
-    apply_shake();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 28)) {
-    apply_shake();
-    apply_neon(rgb(80, 220, 255), 1.5);
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(240, 240, 32)) {
-    apply_shake();
-    apply_glitch();
-}
-
-TEXT_EFFECT(rgb(240, 240, 36)) {
-    apply_bouncy();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 40)) {
-    apply_bouncy();
-    apply_neon(rgb(255, 100, 220), 1.8);
-}
-
-TEXT_EFFECT(rgb(240, 240, 44)) {
-    apply_bouncy();
-    apply_aurora(rgb(255, 60, 0), rgb(255, 200, 0), rgb(255, 120, 160), 900.0);
-}
-
-TEXT_EFFECT(rgb(240, 240, 48)) {
-    apply_pulse();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 52)) {
-    apply_pulse();
-    apply_aurora(rgb(255, 200, 40), rgb(255, 240, 150), rgb(210, 150, 30), 500.0);
-}
-
-TEXT_EFFECT(rgb(240, 240, 56)) {
-    apply_heartbeat();
-    apply_neon(rgb(255, 80, 120), 1.6);
-}
-
-TEXT_EFFECT(rgb(240, 240, 60)) {
-    apply_spin();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 64)) {
-    apply_spin();
-    apply_neon(rgb(80, 220, 255), 1.5);
-}
-
-TEXT_EFFECT(rgb(240, 240, 68)) {
-    apply_sequential_spin();
-    apply_aurora();
-}
-
-TEXT_EFFECT(rgb(240, 240, 72)) {
-    apply_fade();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 76)) {
-    apply_bob();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 80)) {
-    apply_bob();
-    apply_neon(rgb(80, 220, 255), 1.5);
-}
-
-TEXT_EFFECT(rgb(240, 240, 84)) {
-    apply_sway();
-    apply_aurora(rgb(140, 210, 255), rgb(230, 250, 255), rgb(110, 170, 255), 400.0);
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(240, 240, 88)) {
-    apply_zigzag();
-    apply_bouncy();
-}
-
-TEXT_EFFECT(rgb(240, 240, 92)) {
-    apply_wobble();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 96)) {
-    apply_orbit();
-    apply_rainbow();
-}
-
-TEXT_EFFECT(rgb(240, 240, 100)) {
-    apply_drift();
-    apply_aurora(rgb(140, 210, 255), rgb(230, 250, 255), rgb(110, 170, 255), 400.0);
-}
-
-TEXT_EFFECT(rgb(240, 240, 104)) {
-    apply_typewriter();
-    apply_neon(rgb(120, 255, 160), 1.5);
-}
-
-TEXT_EFFECT_WITH_SHADOW(rgb(240, 240, 108)) {
-    apply_erase();
-    apply_glitch();
-}
-
-TEXT_EFFECT(rgb(240, 240, 112)) {
-    apply_glitch();
-    apply_chromatic(1.5, 1.0);
-    apply_color(rgb(255, 255, 255));
-}
-
-TEXT_EFFECT(rgb(240, 240, 116)) {
-    apply_shake();
-    apply_lava();
-}
-
-TEXT_EFFECT(rgb(240, 240, 120)) {
-    apply_extrude(1.0, 3.0);
-    apply_lava();
-}
-
-TEXT_EFFECT(rgb(240, 240, 124)) {
-    apply_wavy();
-    apply_color(rgb(60, 60, 80));
-    apply_water(rgb(40, 150, 240));
-}
-
-TEXT_EFFECT(rgb(240, 240, 128)) {
-    apply_liquid(1.0, 1.0);
-    apply_neon(rgb(80, 220, 255), 1.5);
-}
-
-TEXT_EFFECT(rgb(240, 240, 132)) {
-    apply_glitch();
-    apply_noise(1.0, 1.0);
-    apply_color(rgb(255, 255, 255));
-}
-
-TEXT_EFFECT(rgb(240, 240, 136)) {
-    apply_shake();
-    apply_split();
-    apply_color(rgb(255, 100, 200));
-}
-
-TEXT_EFFECT(rgb(240, 240, 140)) {
-    apply_bouncy();
-    apply_outline(rgb(0, 0, 0), 1.0);
-    apply_color(rgb(255, 255, 255));
 }
 
 TEXT_EFFECT(rgb(240, 240, 144)) {
@@ -892,5 +643,317 @@ TEXT_EFFECT(rgb(224, 224, 144)) {
     apply_shake();
 
     apply_glitch_hard();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 0)) {
+
+    apply_neon_puls();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 4)) {
+
+    apply_szklo();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 8)) {
+
+    apply_zloty_blask();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 12)) {
+
+    apply_diamet();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 16)) {
+
+    apply_krew();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 20)) {
+
+    apply_pianka();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 24)) {
+
+    apply_dym();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 28)) {
+
+    apply_piorun();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 32)) {
+
+    apply_radioaktywny();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 36)) {
+
+    apply_pulsar();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 40)) {
+
+    apply_galaktyka();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 44)) {
+
+    apply_tron();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 48)) {
+
+    apply_prizma();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 52)) {
+
+    apply_cukierek();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 56)) {
+
+    apply_ocean();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 60)) {
+
+    apply_czarna_dziura();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 64)) {
+
+    apply_mrozy();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 68)) {
+
+    apply_magma();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 72)) {
+
+    apply_plasma();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 76)) {
+
+    apply_aureola();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 80)) {
+
+    apply_karuzela();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 84)) {
+
+    apply_spirala();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 88)) {
+
+    apply_pociag();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 92)) {
+
+    apply_burza();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 96)) {
+
+    apply_titan();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 100)) {
+
+    apply_metronom();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 104)) {
+
+    apply_fala_3d();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 108)) {
+
+    apply_piorka();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 112)) {
+
+    apply_wavy();
+
+    apply_neon_puls();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 116)) {
+
+    apply_shake();
+
+    apply_szklo();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 120)) {
+
+    apply_bouncy();
+
+    apply_zloty_blask();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 124)) {
+
+    apply_bob();
+
+    apply_diamet();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 128)) {
+
+    apply_shake();
+
+    apply_krew();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 132)) {
+
+    apply_shake();
+
+    apply_piorun();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 136)) {
+
+    apply_breathe();
+
+    apply_pulsar();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 140)) {
+
+    apply_spin();
+
+    apply_galaktyka();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 144)) {
+
+    apply_holo();
+
+    apply_tron();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 148)) {
+
+    apply_wavy();
+
+    apply_prizma();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 152)) {
+
+    apply_wavy();
+
+    apply_ocean();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 156)) {
+
+    apply_shake();
+
+    apply_czarna_dziura();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 160)) {
+
+    apply_bob();
+
+    apply_mrozy();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 164)) {
+
+    apply_shake();
+
+    apply_magma();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 168)) {
+
+    apply_breathe();
+
+    apply_plasma();
+
+}
+
+TEXT_EFFECT_WITH_SHADOW(rgb(216, 216, 172)) {
+
+    apply_karuzela();
+
+    apply_rainbow();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 176)) {
+
+    apply_wavy();
+
+    apply_aureola();
+
+}
+
+TEXT_EFFECT(rgb(216, 216, 180)) {
+
+    apply_shake();
+
+    apply_cukierek();
 
 }

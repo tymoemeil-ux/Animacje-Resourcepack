@@ -6,33 +6,34 @@ Repozytorium resourcepacku do animowania tekstu w Minecraft Java Edition.
 
 | Plik | Opis |
 |------|------|
-| `Animacje100/` | Pełny source packa: 152 animacje, 3 generacje efektów (w tym fragmentowe: laser, holo, matrix, portal, xray, termowizja...), tutorial, 1000 przykładów, konwerter |
+| `Animacje100/` | Pełny source: 150 animacji, 4 generacje efektów (neon_puls, szklo, zloty_blask, diamet, krew, piorun, galaktyka, tron, plazma...), tutorial, 1000 przykładów, konwerter |
 | `Animacje100.zip` | Gotowy do użycia zip resourcepacku |
-| `Animacje-Datapack/` | Datapack (Minecraft 1.21.11) - animowany nick i hologramy |
-| `Animacje-Datapack.zip` | Gotowy do użycia zip datapacku |
+| `Animacje-Datapack/` | Datapack (1.21.11) - animowany nick i hologramy |
+| `Animacje-Datapack.zip` | Gotowy zip datapacku |
 | `konwerter.py` | Konwerter `<animacja:wave>Test</animacja>` -> `/tellraw` |
 | `Text_Effects.zip` | Oryginalny pack TheSalt's Text Effects (podstawa) |
 
-## Animacje 100+ w skrócie
+## Animacje 150 w skrócie
 
-- **152 tagi** animacji, wszystkie animowane (zero efektów statycznych)
-- 3 generacje efektów: klasyczne (1-100), blask/iskry/płomień (101-116), laser/holo/matrix/portal/xray/termowizja + tornado/wahadlo/harmonijka (117-152)
+- **150 tagów**, wszystkie animowane, zero słabych efektów (48 najsłabszych usunięto)
+- Najnowsza generacja: neon_puls, szklo, zloty_blask, diamet, krew, pianka, dym, piorun, radioaktywny, pulsar, galaktyka, tron, prizma, cukierek, ocean, czarna_dziura, mrozy, magma, plasma, aureola + karuzela, spirala, burza, titan, metronom, fala_3d, piorka
 - Animuje cały pipeline tekstu: czat, tytuły, actionbar, tabliczki, manekiny, GUI (1.21.4+)
+- **Rangi na serwerze**: prefixy LuckPerms z kolorami spustowymi = animowane rangi w czacie
 - Zero komentarzy w kodzie shaderów
-- Łączenie efektów: 57+ gotowych kombinacji + własne w `_config.glsl` + segment `extra`
-- README z **wszystkimi 152 rozkazami /tellraw**
-- Datapack do nicka i hologramów (1.21.11)
-- Wsparcie Minecraft 1.17+ (pack format 7-100) z overlayami dla 1.21.2, 1.21.6, 26.1, 26.2
+- README z **wszystkimi 150 rozkazami /tellraw**
+- Wsparcie Minecraft 1.17-1.21.11 i 26.x (pack format 7-100)
 
 Szybki start:
 
 ```
-python3 konwerter.py "<animacja:wave>Test</animacja>"
-
-/tellraw @a {"text": "Test", "color": "#F8F800"}
+python3 konwerter.py "<animacja:tron>Neo</animacja>"
 ```
 
-Nick z animacją (datapack, 1.21.11): `/function animacje:tag`
+Ranga w LuckPerms:
+
+```
+/lp user <gracz> prefix set {"text":"[OP] ","color":"#D8D82C"}
+```
 
 Szczegóły w `Animacje100/README.md` i `Animacje100/TUTORIAL.md`.
 

@@ -380,6 +380,67 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         applyOffset(vertex);
     }
 
+    if (flagKaruzela) {
+        float krCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float krAngle = GameTime * paramKaruzelaSpeed * 3.0 + krCharId * 0.45;
+        float krRadius = paramKaruzelaSize * 2.0;
+        setOffset(cos(krAngle) * krRadius, sin(krAngle) * krRadius * 0.6);
+        applyOffset(vertex);
+    }
+
+    if (flagSpirala) {
+        float spCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float spAngle = GameTime * paramSpiralaSpeed * 2.0 + spCharId * 0.5;
+        float spRadius = paramSpiralaSize * (0.5 + 0.5 * sin(GameTime * paramSpiralaSpeed * 0.7)) * 2.5;
+        setOffset(cos(spAngle) * spRadius, sin(spAngle) * spRadius * 0.5);
+        applyOffset(vertex);
+    }
+
+    if (flagPociag) {
+        float pcCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float pcPhase = sin(GameTime * paramPociagSpeed * 3.0 - pcCharId * 0.7);
+        setOffset(pcPhase * paramPociagSize * 1.5, pcPhase * paramPociagSize * 2.5);
+        applyOffset(vertex);
+    }
+
+    if (flagBurza) {
+        float bzCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float bzStep = floor(GameTime * paramBurzaSpeed * 5.0);
+        float bz1 = random(vec2(bzCharId, bzStep)) - 0.5;
+        float bz2 = random(vec2(bzCharId + 9.0, bzStep)) - 0.5;
+        setOffset(bz1 * paramBurzaSize * 6.0, bz2 * paramBurzaSize * 5.0);
+        applyOffset(vertex);
+    }
+
+    if (flagTitan) {
+        float tiCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float tiWave = sin(GameTime * paramTitanSpeed * 1.5 + tiCharId * 0.2) * paramTitanSize * 4.0;
+        setOffset(0.0, tiWave);
+        applyOffset(vertex);
+    }
+
+    if (flagMetronom) {
+        float mnCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float mnAngle = sin(GameTime * paramMetronomSpeed * 4.0 + mnCharId * 0.2);
+        setOffset(mnAngle * paramMetronomSize * 3.0, -abs(mnAngle) * paramMetronomSize);
+        applyOffset(vertex);
+    }
+
+    if (flagFala3d) {
+        float f3CharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float f3Phase = GameTime * paramFala3dSpeed * 3.0 - f3CharId * 0.4;
+        setOffset(sin(f3Phase) * paramFala3dSize, cos(f3Phase) * paramFala3dSize * 1.5);
+        applyOffset(vertex);
+    }
+
+    if (flagPiorka) {
+        float pfCharId = (ProjMat[3][3] != 0.0) ? floor(Position.x / 6.0) : floor(float(gl_VertexID) / 4.0);
+        float pfPhase = fract(GameTime * paramPiorkaSpeed * 0.3 + pfCharId * 0.17);
+        float pfSway = sin((GameTime * 2.0 + pfCharId) * 1.5) * 1.5;
+        setOffset(pfSway, (pfPhase * 12.0 - 6.0) * paramPiorkaSize * 0.5);
+        applyOffset(vertex);
+    }
+
     float preX = vertex.x;
     float preY = vertex.y;
 
@@ -601,6 +662,86 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         fshEffectID = 23.0;
         fshEffectColor = paramTermowizjaColor;
         fshEffectParams = vec4(paramTermowizjaSpeed, paramTermowizjaContrast, 0.0, 0.0);
+    } else if (flagNeonPuls) {
+        fshEffectID = 24.0;
+        fshEffectColor = paramNeonPulsColor;
+        fshEffectParams = vec4(paramNeonPulsSPEED, paramNeonPulsGLOW, 0.0, 0.0);
+    } else if (flagSzklo) {
+        fshEffectID = 25.0;
+        fshEffectColor = paramSzkloColor;
+        fshEffectParams = vec4(paramSzkloSPEED, paramSzkloWIDTH, 0.0, 0.0);
+    } else if (flagZlotyBlask) {
+        fshEffectID = 26.0;
+        fshEffectColor = paramZlotyBlaskColor;
+        fshEffectParams = vec4(paramZlotyBlaskSPEED, paramZlotyBlaskWIDTH, 0.0, 0.0);
+    } else if (flagDiamet) {
+        fshEffectID = 27.0;
+        fshEffectColor = paramDiametColor;
+        fshEffectParams = vec4(paramDiametSPEED, paramDiametDENSITY, 0.0, 0.0);
+    } else if (flagKrew) {
+        fshEffectID = 28.0;
+        fshEffectColor = paramKrewColor;
+        fshEffectParams = vec4(paramKrewSPEED, paramKrewCOLS, 0.0, 0.0);
+    } else if (flagPianka) {
+        fshEffectID = 29.0;
+        fshEffectColor = paramPiankaColor;
+        fshEffectParams = vec4(paramPiankaSPEED, paramPiankaSIZE, 0.0, 0.0);
+    } else if (flagDym) {
+        fshEffectID = 30.0;
+        fshEffectColor = paramDymColor;
+        fshEffectParams = vec4(paramDymSPEED, paramDymDRIFT, 0.0, 0.0);
+    } else if (flagPiorun) {
+        fshEffectID = 31.0;
+        fshEffectColor = paramPiorunColor;
+        fshEffectParams = vec4(paramPiorunSPEED, paramPiorunPOWER, 0.0, 0.0);
+    } else if (flagRadioaktywny) {
+        fshEffectID = 32.0;
+        fshEffectColor = paramRadioaktywnyColor;
+        fshEffectParams = vec4(paramRadioaktywnySPEED, paramRadioaktywnyINTENSITY, 0.0, 0.0);
+    } else if (flagPulsar) {
+        fshEffectID = 33.0;
+        fshEffectColor = paramPulsarColor;
+        fshEffectParams = vec4(paramPulsarSPEED, paramPulsarRINGS, 0.0, 0.0);
+    } else if (flagGalaktyka) {
+        fshEffectID = 34.0;
+        fshEffectColor = paramGalaktykaColor;
+        fshEffectParams = vec4(paramGalaktykaSPEED, paramGalaktykaSTARS, 0.0, 0.0);
+    } else if (flagTron) {
+        fshEffectID = 35.0;
+        fshEffectColor = paramTronColor;
+        fshEffectParams = vec4(paramTronSPEED, paramTronGRID, 0.0, 0.0);
+    } else if (flagPrizma) {
+        fshEffectID = 36.0;
+        fshEffectColor = paramPrizmaColor;
+        fshEffectParams = vec4(paramPrizmaSPEED, paramPrizmaROWS, 0.0, 0.0);
+    } else if (flagCukierek) {
+        fshEffectID = 37.0;
+        fshEffectColor = paramCukierekColor;
+        fshEffectParams = vec4(paramCukierekSPEED, paramCukierekWIDTH, 0.0, 0.0);
+    } else if (flagOcean) {
+        fshEffectID = 38.0;
+        fshEffectColor = paramOceanColor;
+        fshEffectParams = vec4(paramOceanSPEED, paramOceanWAVES, 0.0, 0.0);
+    } else if (flagCzarnaDziura) {
+        fshEffectID = 39.0;
+        fshEffectColor = paramCzarnaDziuraColor;
+        fshEffectParams = vec4(paramCzarnaDziuraSPEED, paramCzarnaDziuraSTRENGTH, 0.0, 0.0);
+    } else if (flagMrozy) {
+        fshEffectID = 40.0;
+        fshEffectColor = paramMrozyColor;
+        fshEffectParams = vec4(paramMrozySPEED, paramMrozyCELLS, 0.0, 0.0);
+    } else if (flagMagma) {
+        fshEffectID = 41.0;
+        fshEffectColor = paramMagmaColor;
+        fshEffectParams = vec4(paramMagmaSPEED, paramMagmaCRACKS, 0.0, 0.0);
+    } else if (flagPlasma) {
+        fshEffectID = 42.0;
+        fshEffectColor = paramPlasmaColor;
+        fshEffectParams = vec4(paramPlasmaSPEED, paramPlasmaCONTRAST, 0.0, 0.0);
+    } else if (flagAureola) {
+        fshEffectID = 43.0;
+        fshEffectColor = paramAureolaColor;
+        fshEffectParams = vec4(paramAureolaSPEED, paramAureolaINTENSITY, 0.0, 0.0);
     }
     fshGlyphT0 = vec3(0.0);
     fshGlyphT1 = vec3(0.0);
@@ -610,7 +751,8 @@ void applyEffect(inout vec4 vertex, vec4 baseColor, bool isShadow) {
         flagChromatic || flagExtrude || flagNoise || flagLiquid || flagWater ||
         flagBlask || flagIskry || flagPlomien || flagLaser || flagHolo ||
         flagGlitchHard || flagMatrix || flagCaustics || flagWarp || flagKrysztal ||
-        flagPortal || flagXray || flagTermowizja) {
+        flagPortal || flagXray || flagTermowizja ||
+        flagNeonPuls || flagSzklo || flagZlotyBlask || flagDiamet || flagKrew || flagPianka || flagDym || flagPiorun || flagRadioaktywny || flagPulsar || flagGalaktyka || flagTron || flagPrizma || flagCukierek || flagOcean || flagCzarnaDziura || flagMrozy || flagMagma || flagPlasma || flagAureola) {
         int vid_glyph = gl_VertexID % 4;
         if (vid_glyph == 0) fshGlyphT0 = vec3(UV0, 1.0);
         if (vid_glyph == 1) fshGlyphT2 = vec3(UV0, 1.0);

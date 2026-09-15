@@ -74,6 +74,34 @@ bool flagWibracja = false;
 bool flagPrzegon = false;
 bool flagBumper = false;
 bool flagHarmonijka = false;
+bool flagNeonPuls = false;
+bool flagSzklo = false;
+bool flagZlotyBlask = false;
+bool flagDiamet = false;
+bool flagKrew = false;
+bool flagPianka = false;
+bool flagDym = false;
+bool flagPiorun = false;
+bool flagRadioaktywny = false;
+bool flagPulsar = false;
+bool flagGalaktyka = false;
+bool flagTron = false;
+bool flagPrizma = false;
+bool flagCukierek = false;
+bool flagOcean = false;
+bool flagCzarnaDziura = false;
+bool flagMrozy = false;
+bool flagMagma = false;
+bool flagPlasma = false;
+bool flagAureola = false;
+bool flagKaruzela = false;
+bool flagSpirala = false;
+bool flagPociag = false;
+bool flagBurza = false;
+bool flagTitan = false;
+bool flagMetronom = false;
+bool flagFala3d = false;
+bool flagPiorka = false;
 
 
 float paramShakeSpeed = SHAKE_SPEED;
@@ -222,6 +250,82 @@ float paramBumperSpeed = BUMPER_SPEED;
 float paramBumperSize = BUMPER_SIZE;
 float paramHarmonijkaSpeed = HARMONIJKA_SPEED;
 float paramHarmonijkaSize = HARMONIJKA_SIZE;
+vec4 paramNeonPulsColor = NEON_PULS_COLOR;
+float paramNeonPulsSPEED = NEON_PULS_SPEED;
+float paramNeonPulsGLOW = NEON_PULS_GLOW;
+vec4 paramSzkloColor = SZKLO_COLOR;
+float paramSzkloSPEED = SZKLO_SPEED;
+float paramSzkloWIDTH = SZKLO_WIDTH;
+vec4 paramZlotyBlaskColor = ZLOTY_BLASK_COLOR;
+float paramZlotyBlaskSPEED = ZLOTY_BLASK_SPEED;
+float paramZlotyBlaskWIDTH = ZLOTY_BLASK_WIDTH;
+vec4 paramDiametColor = DIAMET_COLOR;
+float paramDiametSPEED = DIAMET_SPEED;
+float paramDiametDENSITY = DIAMET_DENSITY;
+vec4 paramKrewColor = KREW_COLOR;
+float paramKrewSPEED = KREW_SPEED;
+float paramKrewCOLS = KREW_COLS;
+vec4 paramPiankaColor = PIANKA_COLOR;
+float paramPiankaSPEED = PIANKA_SPEED;
+float paramPiankaSIZE = PIANKA_SIZE;
+vec4 paramDymColor = DYM_COLOR;
+float paramDymSPEED = DYM_SPEED;
+float paramDymDRIFT = DYM_DRIFT;
+vec4 paramPiorunColor = PIORUN_COLOR;
+float paramPiorunSPEED = PIORUN_SPEED;
+float paramPiorunPOWER = PIORUN_POWER;
+vec4 paramRadioaktywnyColor = RADIOAKTYWNY_COLOR;
+float paramRadioaktywnySPEED = RADIOAKTYWNY_SPEED;
+float paramRadioaktywnyINTENSITY = RADIOAKTYWNY_INTENSITY;
+vec4 paramPulsarColor = PULSAR_COLOR;
+float paramPulsarSPEED = PULSAR_SPEED;
+float paramPulsarRINGS = PULSAR_RINGS;
+vec4 paramGalaktykaColor = GALAKTYKA_COLOR;
+float paramGalaktykaSPEED = GALAKTYKA_SPEED;
+float paramGalaktykaSTARS = GALAKTYKA_STARS;
+vec4 paramTronColor = TRON_COLOR;
+float paramTronSPEED = TRON_SPEED;
+float paramTronGRID = TRON_GRID;
+vec4 paramPrizmaColor = PRIZMA_COLOR;
+float paramPrizmaSPEED = PRIZMA_SPEED;
+float paramPrizmaROWS = PRIZMA_ROWS;
+vec4 paramCukierekColor = CUKIEREK_COLOR;
+float paramCukierekSPEED = CUKIEREK_SPEED;
+float paramCukierekWIDTH = CUKIEREK_WIDTH;
+vec4 paramOceanColor = OCEAN_COLOR;
+float paramOceanSPEED = OCEAN_SPEED;
+float paramOceanWAVES = OCEAN_WAVES;
+vec4 paramCzarnaDziuraColor = CZARNA_DZIURA_COLOR;
+float paramCzarnaDziuraSPEED = CZARNA_DZIURA_SPEED;
+float paramCzarnaDziuraSTRENGTH = CZARNA_DZIURA_STRENGTH;
+vec4 paramMrozyColor = MROZY_COLOR;
+float paramMrozySPEED = MROZY_SPEED;
+float paramMrozyCELLS = MROZY_CELLS;
+vec4 paramMagmaColor = MAGMA_COLOR;
+float paramMagmaSPEED = MAGMA_SPEED;
+float paramMagmaCRACKS = MAGMA_CRACKS;
+vec4 paramPlasmaColor = PLASMA_COLOR;
+float paramPlasmaSPEED = PLASMA_SPEED;
+float paramPlasmaCONTRAST = PLASMA_CONTRAST;
+vec4 paramAureolaColor = AUREOLA_COLOR;
+float paramAureolaSPEED = AUREOLA_SPEED;
+float paramAureolaINTENSITY = AUREOLA_INTENSITY;
+float paramKaruzelaSpeed = KARUZELA_SPEED;
+float paramKaruzelaSize = KARUZELA_SIZE;
+float paramSpiralaSpeed = SPIRALA_SPEED;
+float paramSpiralaSize = SPIRALA_SIZE;
+float paramPociagSpeed = POCIAG_SPEED;
+float paramPociagSize = POCIAG_SIZE;
+float paramBurzaSpeed = BURZA_SPEED;
+float paramBurzaSize = BURZA_SIZE;
+float paramTitanSpeed = TITAN_SPEED;
+float paramTitanSize = TITAN_SIZE;
+float paramMetronomSpeed = METRONOM_SPEED;
+float paramMetronomSize = METRONOM_SIZE;
+float paramFala3dSpeed = FALA3D_SPEED;
+float paramFala3dSize = FALA3D_SIZE;
+float paramPiorkaSpeed = PIORKA_SPEED;
+float paramPiorkaSize = PIORKA_SIZE;
 
 
 vec3 rgb(float r, float g, float b) {
@@ -306,7 +410,9 @@ bool hasAnyEffect() {
            flagWinda || flagDeszcz || flagMrugacz || flagSkoczki ||
            flagLaser || flagHolo || flagGlitchHard || flagMatrix || flagCaustics ||
            flagWarp || flagKrysztal || flagPortal || flagXray || flagTermowizja ||
-           flagTornado || flagWahadlo || flagWibracja || flagPrzegon || flagBumper || flagHarmonijka;
+           flagTornado || flagWahadlo || flagWibracja || flagPrzegon || flagBumper || flagHarmonijka ||
+           flagNeonPuls || flagSzklo || flagZlotyBlask || flagDiamet || flagKrew || flagPianka || flagDym || flagPiorun || flagRadioaktywny || flagPulsar || flagGalaktyka || flagTron || flagPrizma || flagCukierek || flagOcean || flagCzarnaDziura || flagMrozy || flagMagma || flagPlasma || flagAureola ||
+           flagKaruzela || flagSpirala || flagPociag || flagBurza || flagTitan || flagMetronom || flagFala3d || flagPiorka;
 }
 
 
@@ -1309,4 +1415,424 @@ void apply_harmonijka(float speed, float Size) {
     flagHarmonijka = true;
     paramHarmonijkaSize = speed;
     paramHarmonijkaSize = Size;
+}
+
+void apply_neon_puls() {
+    flagNeonPuls = true;
+}
+
+void apply_neon_puls(float sPEED) {
+    flagNeonPuls = true;
+    paramNeonPulsSPEED = sPEED;
+}
+
+void apply_neon_puls(float sPEED, float gLOW) {
+    flagNeonPuls = true;
+    paramNeonPulsSPEED = sPEED;
+    paramNeonPulsGLOW = gLOW;
+}
+
+void apply_szklo() {
+    flagSzklo = true;
+}
+
+void apply_szklo(float sPEED) {
+    flagSzklo = true;
+    paramSzkloSPEED = sPEED;
+}
+
+void apply_szklo(float sPEED, float wIDTH) {
+    flagSzklo = true;
+    paramSzkloSPEED = sPEED;
+    paramSzkloWIDTH = wIDTH;
+}
+
+void apply_zloty_blask() {
+    flagZlotyBlask = true;
+}
+
+void apply_zloty_blask(float sPEED) {
+    flagZlotyBlask = true;
+    paramZlotyBlaskSPEED = sPEED;
+}
+
+void apply_zloty_blask(float sPEED, float wIDTH) {
+    flagZlotyBlask = true;
+    paramZlotyBlaskSPEED = sPEED;
+    paramZlotyBlaskWIDTH = wIDTH;
+}
+
+void apply_diamet() {
+    flagDiamet = true;
+}
+
+void apply_diamet(float sPEED) {
+    flagDiamet = true;
+    paramDiametSPEED = sPEED;
+}
+
+void apply_diamet(float sPEED, float dENSITY) {
+    flagDiamet = true;
+    paramDiametSPEED = sPEED;
+    paramDiametDENSITY = dENSITY;
+}
+
+void apply_krew() {
+    flagKrew = true;
+}
+
+void apply_krew(float sPEED) {
+    flagKrew = true;
+    paramKrewSPEED = sPEED;
+}
+
+void apply_krew(float sPEED, float cOLS) {
+    flagKrew = true;
+    paramKrewSPEED = sPEED;
+    paramKrewCOLS = cOLS;
+}
+
+void apply_pianka() {
+    flagPianka = true;
+}
+
+void apply_pianka(float sPEED) {
+    flagPianka = true;
+    paramPiankaSPEED = sPEED;
+}
+
+void apply_pianka(float sPEED, float sIZE) {
+    flagPianka = true;
+    paramPiankaSPEED = sPEED;
+    paramPiankaSIZE = sIZE;
+}
+
+void apply_dym() {
+    flagDym = true;
+}
+
+void apply_dym(float sPEED) {
+    flagDym = true;
+    paramDymSPEED = sPEED;
+}
+
+void apply_dym(float sPEED, float dRIFT) {
+    flagDym = true;
+    paramDymSPEED = sPEED;
+    paramDymDRIFT = dRIFT;
+}
+
+void apply_piorun() {
+    flagPiorun = true;
+}
+
+void apply_piorun(float sPEED) {
+    flagPiorun = true;
+    paramPiorunSPEED = sPEED;
+}
+
+void apply_piorun(float sPEED, float pOWER) {
+    flagPiorun = true;
+    paramPiorunSPEED = sPEED;
+    paramPiorunPOWER = pOWER;
+}
+
+void apply_radioaktywny() {
+    flagRadioaktywny = true;
+}
+
+void apply_radioaktywny(float sPEED) {
+    flagRadioaktywny = true;
+    paramRadioaktywnySPEED = sPEED;
+}
+
+void apply_radioaktywny(float sPEED, float iNTENSITY) {
+    flagRadioaktywny = true;
+    paramRadioaktywnySPEED = sPEED;
+    paramRadioaktywnyINTENSITY = iNTENSITY;
+}
+
+void apply_pulsar() {
+    flagPulsar = true;
+}
+
+void apply_pulsar(float sPEED) {
+    flagPulsar = true;
+    paramPulsarSPEED = sPEED;
+}
+
+void apply_pulsar(float sPEED, float rINGS) {
+    flagPulsar = true;
+    paramPulsarSPEED = sPEED;
+    paramPulsarRINGS = rINGS;
+}
+
+void apply_galaktyka() {
+    flagGalaktyka = true;
+}
+
+void apply_galaktyka(float sPEED) {
+    flagGalaktyka = true;
+    paramGalaktykaSPEED = sPEED;
+}
+
+void apply_galaktyka(float sPEED, float sTARS) {
+    flagGalaktyka = true;
+    paramGalaktykaSPEED = sPEED;
+    paramGalaktykaSTARS = sTARS;
+}
+
+void apply_tron() {
+    flagTron = true;
+}
+
+void apply_tron(float sPEED) {
+    flagTron = true;
+    paramTronSPEED = sPEED;
+}
+
+void apply_tron(float sPEED, float gRID) {
+    flagTron = true;
+    paramTronSPEED = sPEED;
+    paramTronGRID = gRID;
+}
+
+void apply_prizma() {
+    flagPrizma = true;
+}
+
+void apply_prizma(float sPEED) {
+    flagPrizma = true;
+    paramPrizmaSPEED = sPEED;
+}
+
+void apply_prizma(float sPEED, float rOWS) {
+    flagPrizma = true;
+    paramPrizmaSPEED = sPEED;
+    paramPrizmaROWS = rOWS;
+}
+
+void apply_cukierek() {
+    flagCukierek = true;
+}
+
+void apply_cukierek(float sPEED) {
+    flagCukierek = true;
+    paramCukierekSPEED = sPEED;
+}
+
+void apply_cukierek(float sPEED, float wIDTH) {
+    flagCukierek = true;
+    paramCukierekSPEED = sPEED;
+    paramCukierekWIDTH = wIDTH;
+}
+
+void apply_ocean() {
+    flagOcean = true;
+}
+
+void apply_ocean(float sPEED) {
+    flagOcean = true;
+    paramOceanSPEED = sPEED;
+}
+
+void apply_ocean(float sPEED, float wAVES) {
+    flagOcean = true;
+    paramOceanSPEED = sPEED;
+    paramOceanWAVES = wAVES;
+}
+
+void apply_czarna_dziura() {
+    flagCzarnaDziura = true;
+}
+
+void apply_czarna_dziura(float sPEED) {
+    flagCzarnaDziura = true;
+    paramCzarnaDziuraSPEED = sPEED;
+}
+
+void apply_czarna_dziura(float sPEED, float sTRENGTH) {
+    flagCzarnaDziura = true;
+    paramCzarnaDziuraSPEED = sPEED;
+    paramCzarnaDziuraSTRENGTH = sTRENGTH;
+}
+
+void apply_mrozy() {
+    flagMrozy = true;
+}
+
+void apply_mrozy(float sPEED) {
+    flagMrozy = true;
+    paramMrozySPEED = sPEED;
+}
+
+void apply_mrozy(float sPEED, float cELLS) {
+    flagMrozy = true;
+    paramMrozySPEED = sPEED;
+    paramMrozyCELLS = cELLS;
+}
+
+void apply_magma() {
+    flagMagma = true;
+}
+
+void apply_magma(float sPEED) {
+    flagMagma = true;
+    paramMagmaSPEED = sPEED;
+}
+
+void apply_magma(float sPEED, float cRACKS) {
+    flagMagma = true;
+    paramMagmaSPEED = sPEED;
+    paramMagmaCRACKS = cRACKS;
+}
+
+void apply_plasma() {
+    flagPlasma = true;
+}
+
+void apply_plasma(float sPEED) {
+    flagPlasma = true;
+    paramPlasmaSPEED = sPEED;
+}
+
+void apply_plasma(float sPEED, float cONTRAST) {
+    flagPlasma = true;
+    paramPlasmaSPEED = sPEED;
+    paramPlasmaCONTRAST = cONTRAST;
+}
+
+void apply_aureola() {
+    flagAureola = true;
+}
+
+void apply_aureola(float sPEED) {
+    flagAureola = true;
+    paramAureolaSPEED = sPEED;
+}
+
+void apply_aureola(float sPEED, float iNTENSITY) {
+    flagAureola = true;
+    paramAureolaSPEED = sPEED;
+    paramAureolaINTENSITY = iNTENSITY;
+}
+
+void apply_karuzela() {
+    flagKaruzela = true;
+}
+
+void apply_karuzela(float speed) {
+    flagKaruzela = true;
+    paramKaruzelaSpeed = speed;
+}
+
+void apply_karuzela(float speed, float size) {
+    flagKaruzela = true;
+    paramKaruzelaSpeed = speed;
+    paramKaruzelaSize = size;
+}
+
+void apply_spirala() {
+    flagSpirala = true;
+}
+
+void apply_spirala(float speed) {
+    flagSpirala = true;
+    paramSpiralaSpeed = speed;
+}
+
+void apply_spirala(float speed, float size) {
+    flagSpirala = true;
+    paramSpiralaSpeed = speed;
+    paramSpiralaSize = size;
+}
+
+void apply_pociag() {
+    flagPociag = true;
+}
+
+void apply_pociag(float speed) {
+    flagPociag = true;
+    paramPociagSpeed = speed;
+}
+
+void apply_pociag(float speed, float size) {
+    flagPociag = true;
+    paramPociagSpeed = speed;
+    paramPociagSize = size;
+}
+
+void apply_burza() {
+    flagBurza = true;
+}
+
+void apply_burza(float speed) {
+    flagBurza = true;
+    paramBurzaSpeed = speed;
+}
+
+void apply_burza(float speed, float size) {
+    flagBurza = true;
+    paramBurzaSpeed = speed;
+    paramBurzaSize = size;
+}
+
+void apply_titan() {
+    flagTitan = true;
+}
+
+void apply_titan(float speed) {
+    flagTitan = true;
+    paramTitanSpeed = speed;
+}
+
+void apply_titan(float speed, float size) {
+    flagTitan = true;
+    paramTitanSpeed = speed;
+    paramTitanSize = size;
+}
+
+void apply_metronom() {
+    flagMetronom = true;
+}
+
+void apply_metronom(float speed) {
+    flagMetronom = true;
+    paramMetronomSpeed = speed;
+}
+
+void apply_metronom(float speed, float size) {
+    flagMetronom = true;
+    paramMetronomSpeed = speed;
+    paramMetronomSize = size;
+}
+
+void apply_fala_3d() {
+    flagFala3d = true;
+}
+
+void apply_fala_3d(float speed) {
+    flagFala3d = true;
+    paramFala3dSpeed = speed;
+}
+
+void apply_fala_3d(float speed, float size) {
+    flagFala3d = true;
+    paramFala3dSpeed = speed;
+    paramFala3dSize = size;
+}
+
+void apply_piorka() {
+    flagPiorka = true;
+}
+
+void apply_piorka(float speed) {
+    flagPiorka = true;
+    paramPiorkaSpeed = speed;
+}
+
+void apply_piorka(float speed, float size) {
+    flagPiorka = true;
+    paramPiorkaSpeed = speed;
+    paramPiorkaSize = size;
 }
