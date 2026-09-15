@@ -79,6 +79,104 @@ void main() {
         color = tfxRenderHolo(uv, texColor, tfxColor);
     } else if (tfx == 38) {
         color = tfxRenderStaticTv(uv, texColor, tfxColor);
+    } else if (tfx == 14) {
+        color = tfxRenderWaveColor(uv, texColor, tfxColor);
+    } else if (tfx == 15) {
+        color = tfxRenderWaveBigColor(uv, texColor, tfxColor);
+    } else if (tfx == 16) {
+        color = tfxRenderRainbowColor(uv, texColor, tfxColor);
+    } else if (tfx == 17) {
+        color = tfxRenderGlitchHardColor(uv, texColor, tfxColor);
+    } else if (tfx == 18) {
+        color = tfxRenderTsunamiColor(uv, texColor, tfxColor);
+    } else if (tfx == 19) {
+        color = tfxRenderKaruzelaColor(uv, texColor, tfxColor);
+    } else if (tfx == 20) {
+        color = tfxRenderTornadoColor(uv, texColor, tfxColor);
+    } else if (tfx == 21) {
+        color = tfxRenderBumperColor(uv, texColor, tfxColor);
+    } else if (tfx == 22) {
+        color = tfxRenderPulseColor(uv, texColor, tfxColor);
+    } else if (tfx == 23) {
+        color = tfxRenderHeartbeatColor(uv, texColor, tfxColor);
+    } else if (tfx == 24) {
+        color = tfxRenderFlickerColor(uv, texColor, tfxColor);
+    } else if (tfx == 25) {
+        color = tfxRenderShakeColor(uv, texColor, tfxColor);
+    } else if (tfx == 39) {
+        color = tfxRenderRippleColor(uv, texColor, tfxColor);
+    } else if (tfx == 40) {
+        color = tfxRenderOrbitaColor(uv, texColor, tfxColor);
+    } else if (tfx == 41) {
+        color = tfxRenderSkokColor(uv, texColor, tfxColor);
+    } else if (tfx == 42) {
+        color = tfxRenderSwayColor(uv, texColor, tfxColor);
+    } else if (tfx == 43) {
+        color = tfxRenderHopwaveColor(uv, texColor, tfxColor);
+    } else if (tfx == 44) {
+        color = tfxRenderWobbleColor(uv, texColor, tfxColor);
+    } else if (tfx == 45) {
+        color = tfxRenderSpinColor(uv, texColor, tfxColor);
+    } else if (tfx == 46) {
+        color = tfxRenderTremorColor(uv, texColor, tfxColor);
+    } else if (tfx == 47) {
+        color = tfxRenderFloatyColor(uv, texColor, tfxColor);
+    } else if (tfx == 48) {
+        color = tfxRenderZigzagColor(uv, texColor, tfxColor);
+    } else if (tfx == 49) {
+        color = tfxRenderSprynaColor(uv, texColor, tfxColor);
+    } else if (tfx == 50) {
+        color = tfxRenderSzarpColor(uv, texColor, tfxColor);
+    } else if (tfx == 51) {
+        color = tfxRenderTancuj(uv, texColor, tfxColor);
+    } else if (tfx == 52) {
+        color = tfxRenderLawina(uv, texColor, tfxColor);
+    } else if (tfx == 53) {
+        color = tfxRenderDym(uv, texColor, tfxColor);
+    } else if (tfx == 54) {
+        color = tfxRenderNeonOdech(uv, texColor, tfxColor);
+    } else if (tfx == 55) {
+        color = tfxRenderWinda(uv, texColor, tfxColor);
+    } else if (tfx == 56) {
+        color = tfxRenderKaruzelaNeon(uv, texColor, tfxColor);
+    } else if (tfx == 57) {
+        color = tfxRenderNeonDeszcz(uv, texColor, tfxColor);
+    } else if (tfx == 58) {
+        color = tfxRenderKonfetti(uv, texColor, tfxColor);
+    } else if (tfx == 59) {
+        color = tfxRenderFalaFioletowa(uv, texColor, tfxColor);
+    } else if (tfx == 60) {
+        color = tfxRenderFalaZlota(uv, texColor, tfxColor);
+    } else if (tfx == 61) {
+        color = tfxRenderMagnes(uv, texColor, tfxColor);
+    } else if (tfx == 62) {
+        color = tfxRenderSznurek(uv, texColor, tfxColor);
+    } else if (tfx == 63) {
+        color = tfxRenderFalaZielona(uv, texColor, tfxColor);
+    } else if (tfx == 64) {
+        color = tfxRenderFalaRozowa(uv, texColor, tfxColor);
+    } else if (tfx == 65) {
+        color = tfxRenderPrad(uv, texColor, tfxColor);
+    } else if (tfx == 66) {
+        color = tfxRenderLuna(uv, texColor, tfxColor);
+    } else if (tfx == 67) {
+        color = tfxRenderBateria(uv, texColor, tfxColor);
+    } else if (tfx == 68) {
+        color = tfxRenderWyskok(uv, texColor, tfxColor);
+    } else if (tfx == 69) {
+        color = tfxRenderTarcza(uv, texColor, tfxColor);
+    } else if (tfx == 70) {
+        color = tfxRenderGwiazdki(uv, texColor, tfxColor);
+    } else if (tfx == 71) {
+        color = tfxRenderNeonLaser(uv, texColor, tfxColor);
+    } else if (tfx == 72) {
+        color = tfxRenderWstecz(uv, texColor, tfxColor);
+    } else if (tfx == 73) {
+        color = tfxRenderMorska(uv, texColor, tfxColor);
+    } else if (tfx == 74) {
+        color = tfxRenderKarmazyn(uv, texColor, tfxColor);
+    } else if (tfx == 75) {
+        color = tfxRenderWizja(uv, texColor, tfxColor);
     }
 
     if (color.a < 0.1) {

@@ -1,8 +1,9 @@
 // ============================================================
-// EFEKT: CHROMA   |   kolor spustowy: #A0A050
+// EFEKT (HYBRYDA: kolor + ruch): CHROMA   |   kolor spustowy: #A0A050
 // caly tekst płynnie obiega pelne spektrum kolorow
 // ============================================================
 if (c == ivec3(160, 160, 80)) {
         tfxIDg = 33.0;
         tfxBaseg = vec4(1.0);
+        tfxOffg.y += sin(GameTime * 3.0) * 0.006;
 }

@@ -1,6 +1,6 @@
 # Animacje 2.0 — nowy silnik efektów tekstu
 
-Resourcepack, który animuje tekst w czacie Minecraft. **50 efektów animowanych + 11 czystych kolorów.**
+Resourcepack, który animuje tekst w czacie Minecraft. **75 efektów animowanych + 11 czystych kolorów.** Każdy efekt to **połączenie koloru i ruchu**.
 Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i czytelny.
 
 > Instaluj TYLKO JEDEN pack animacji naraz (1.0 i 2.0 konfliktują — oba nadpisują render tekstu).
@@ -12,7 +12,7 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
    - **efekt fragmentowy** (1–13, 26–38) — koloruje piksele znaku w czasie (FSH).
 3. Kolor bez efektu = zwykły tekst (dlatego "czyste kolory" niczego nie uruchamiają).
 
-## 50 efektów animowanych
+## 75 efektów animowanych (każdy = kolor + ruch)
 
 ### Fragmentowe (kolor pikseli zmienia się w czasie)
 | Tag | Kolor | Co robi |
@@ -87,6 +87,33 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `szary` | `#999999` |
 | `brazowy` | `#8B4513` |
 
+### Hybrydowe — 25 nowych (51–75)
+| `tancuj` | `#A0A068` | **znaki tańczą na przemian + pełna tęcza** |
+| `lawina` | `#A0A06C` | **znaki spadają lawinowo + śnieżna biel** |
+| `dym` | `#A0A070` | **znaki unoszą się jak dym + szaro-niebieskie migotanie** |
+| `neon_oddech` | `#A0A074` | **neon oddycha: magenta↔cyjan + puls w dół** |
+| `winda` | `#A0A078` | **tekst jeździ „windą” + gradient cyjan→fiolet** |
+| `karuzela_neon` | `#A0A07C` | **szybka karuzela + tęcza po znakach** |
+| `neon_deszcz` | `#A0A080` | **znaki spadają jak krople + cyjanowe smugi** |
+| `konfetti` | `#A0A084` | **losowe skoki jak konfetti + losowe jasne kolory** |
+| `fala_fioletowa` | `#A0A088` | **fioletowa fala + mieniący się purpur** |
+| `fala_zlota` | `#A0A08C` | **złota fala + iskry** |
+| `magnes` | `#A0A090` | **przyciąganie w lewo i szarpnięcie + elektryczny błękit** |
+| `sznurek` | `#A0A094` | **znaki wiszą na sznurku + turkus** |
+| `fala_zielona` | `#A0A098` | **zielona fala neonowa** |
+| `fala_rozowa` | `#A0A09C` | **różowa fala neonowa** |
+| `prad` | `#A0A0A0` | **porażenie prądem: trzęsienie + białe rozbłyski** |
+| `luna` | `#A0A0A4` | **wolny dryf + srebrno-niebieskie światło księżyca** |
+| `bateria` | `#A0A0A8` | **zielony puls ładującej baterii + docisk** |
+| `wyskok` | `#A0A0AC` | **wielki powolny skok + pomarańczowy zachód** |
+| `tarcza` | `#A0A0B0` | **fala na boki + cyjanowy blask** |
+| `gwiazdki` | `#A0A0B4` | **małe kółka + migocące gwiazdki** |
+| `neon_laser` | `#A0A0B8` | **fala + czerwony laser skanujący pionowo** |
+| `wstecz` | `#A0A0BC` | **tekst sunie w lewo (marquee) + taśma odcieni** |
+| `morska` | `#A0A0C0` | **duża wolna morska fala + głęboki błękit** |
+| `karmazyn` | `#A0A0C4` | **karmazynowa fala + ciemnoczerwona poświata** |
+| `wizja` | `#A0A0C8` | **szybki flicker + scanlines, białoniebieski** |
+
 ## Szybki start
 ```
 # 1. Wgraj Animacje2.0.zip do .minecraft/resourcepacks i włącz go
@@ -130,8 +157,8 @@ Animacje2.0/
 ├── pack.mcmeta           # pack_format 63 + overlays: old/ dla formatów 16–55
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
-├── KOMENDY.md            # gotowe rozkazy dla wszystkich 61 tagów
-├── assets/minecraft/shaders/...   # BAZA = 1.21.6+ (4 pary vsh/fsh 330 + 78 include'ów)
+├── KOMENDY.md            # gotowe rozkazy dla wszystkich 86 tagów
+├── assets/minecraft/shaders/...   # BAZA = 1.21.6+ (4 pary vsh/fsh 330 + 126 include'ów)
 └── old/assets/minecraft/shaders/...  # overlay ≤1.21.5 (4 pary vsh/fsh 150)
 ```
 

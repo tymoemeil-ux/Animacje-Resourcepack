@@ -1,6 +1,6 @@
 # KOMENDY — Animacje 2.0
 
-Gotowe rozkazy dla wszystkich 61 tagów (50 animacji + 11 kolorów). Format **SNBT** (Minecraft 1.21.5+).
+Gotowe rozkazy dla wszystkich 86 tagów (75 animacji, każda = kolor + ruch, + 11 kolorów). Format **SNBT** (Minecraft 1.21.5+).
 Dla starszych serwerów (≤1.21.4) przepisz `{text: "..."}` na `{"text": "..."}` (cudzysłowy przy kluczach).
 
 ## Fragmentowe (26)
@@ -80,6 +80,60 @@ Pełna lista (pojedynczy rozkaz na każdy efekt):
 /tellraw @a [{text: "Brązowy tekst", color: "#8B4513"}]
 ```
 
+
+## Hybrydowe (25) — kolor + ruch
+```
+# tancuj
+/tellraw @a [{text: "Tancuj!", color: "#A0A068"}]
+# lawina
+/tellraw @a [{text: "Lawina!", color: "#A0A06C"}]
+# dym
+/tellraw @a [{text: "Dym!", color: "#A0A070"}]
+# neon_oddech
+/tellraw @a [{text: "Neon Oddech!", color: "#A0A074"}]
+# winda
+/tellraw @a [{text: "Winda!", color: "#A0A078"}]
+# karuzela_neon
+/tellraw @a [{text: "Karuzela Neon!", color: "#A0A07C"}]
+# neon_deszcz
+/tellraw @a [{text: "Neon Deszcz!", color: "#A0A080"}]
+# konfetti
+/tellraw @a [{text: "Konfetti!", color: "#A0A084"}]
+# fala_fioletowa
+/tellraw @a [{text: "Fala Fioletowa!", color: "#A0A088"}]
+# fala_zlota
+/tellraw @a [{text: "Fala Zlota!", color: "#A0A08C"}]
+# magnes
+/tellraw @a [{text: "Magnes!", color: "#A0A090"}]
+# sznurek
+/tellraw @a [{text: "Sznurek!", color: "#A0A094"}]
+# fala_zielona
+/tellraw @a [{text: "Fala Zielona!", color: "#A0A098"}]
+# fala_rozowa
+/tellraw @a [{text: "Fala Rozowa!", color: "#A0A09C"}]
+# prad
+/tellraw @a [{text: "Prad!", color: "#A0A0A0"}]
+# luna
+/tellraw @a [{text: "Luna!", color: "#A0A0A4"}]
+# bateria
+/tellraw @a [{text: "Bateria!", color: "#A0A0A8"}]
+# wyskok
+/tellraw @a [{text: "Wyskok!", color: "#A0A0AC"}]
+# tarcza
+/tellraw @a [{text: "Tarcza!", color: "#A0A0B0"}]
+# gwiazdki
+/tellraw @a [{text: "Gwiazdki!", color: "#A0A0B4"}]
+# neon_laser
+/tellraw @a [{text: "Neon Laser!", color: "#A0A0B8"}]
+# wstecz
+/tellraw @a [{text: "Wstecz!", color: "#A0A0BC"}]
+# morska
+/tellraw @a [{text: "Morska!", color: "#A0A0C0"}]
+# karmazyn
+/tellraw @a [{text: "Karmazyn!", color: "#A0A0C4"}]
+# wizja
+/tellraw @a [{text: "Wizja!", color: "#A0A0C8"}]
+```
 ## Gotowe frazy (mieszane)
 ```
 # Ogloszenie z blyskiem

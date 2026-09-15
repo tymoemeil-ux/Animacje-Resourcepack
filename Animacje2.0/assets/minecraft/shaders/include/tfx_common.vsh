@@ -74,4 +74,29 @@ void tfxDetect(ivec3 c, float g) {
     #moj_import <tfx_zigzag.vsh>
     #moj_import <tfx_spryna.vsh>
     #moj_import <tfx_szarp.vsh>
+    #moj_import <tfx_tancuj.vsh>
+    #moj_import <tfx_lawina.vsh>
+    #moj_import <tfx_dym.vsh>
+    #moj_import <tfx_neon_oddech.vsh>
+    #moj_import <tfx_winda.vsh>
+    #moj_import <tfx_karuzela_neon.vsh>
+    #moj_import <tfx_neon_deszcz.vsh>
+    #moj_import <tfx_konfetti.vsh>
+    #moj_import <tfx_fala_fioletowa.vsh>
+    #moj_import <tfx_fala_zlota.vsh>
+    #moj_import <tfx_magnes.vsh>
+    #moj_import <tfx_sznurek.vsh>
+    #moj_import <tfx_fala_zielona.vsh>
+    #moj_import <tfx_fala_rozowa.vsh>
+    #moj_import <tfx_prad.vsh>
+    #moj_import <tfx_luna.vsh>
+    #moj_import <tfx_bateria.vsh>
+    #moj_import <tfx_wyskok.vsh>
+    #moj_import <tfx_tarcza.vsh>
+    #moj_import <tfx_gwiazdki.vsh>
+    #moj_import <tfx_neon_laser.vsh>
+    #moj_import <tfx_wstecz.vsh>
+    #moj_import <tfx_morska.vsh>
+    #moj_import <tfx_karmazyn.vsh>
+    #moj_import <tfx_wizja.vsh>
 }

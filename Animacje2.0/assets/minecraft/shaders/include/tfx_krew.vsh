@@ -1,8 +1,9 @@
 // ============================================================
-// EFEKT: KREW   |   kolor spustowy: #A0A02C
+// EFEKT (HYBRYDA: kolor + ruch): KREW   |   kolor spustowy: #A0A02C
 // pulsuujaca krew
 // ============================================================
 if (c == ivec3(160, 160, 44)) {
         tfxIDg = 12.0;
         tfxBaseg = vec4(1.0);
+        tfxOffg.y += sin(GameTime * 5.0) * 0.006;
 }

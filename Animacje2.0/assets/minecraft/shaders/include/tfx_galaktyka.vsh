@@ -1,8 +1,10 @@
 // ============================================================
-// EFEKT: GALAKTYKA   |   kolor spustowy: #A0A028
+// EFEKT (HYBRYDA: kolor + ruch): GALAKTYKA   |   kolor spustowy: #A0A028
 // gwiazdy i mglawica
 // ============================================================
 if (c == ivec3(160, 160, 40)) {
         tfxIDg = 11.0;
         tfxBaseg = vec4(1.0);
+        tfxOffg.x += cos(GameTime * 1.5 + g * 0.4) * 0.006;
+        tfxOffg.y += sin(GameTime * 1.5 + g * 0.4) * 0.006;
 }
