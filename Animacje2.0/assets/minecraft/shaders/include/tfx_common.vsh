@@ -17,6 +17,8 @@ vec3 tfxHsv(float h, float s, float v) {
     return v * mix(vec3(1.0), clamp(k - 1.0, 0.0, 1.0), s);
 }
 
+#moj_import <tfx_procedural.vsh>
+
 void tfxDetect(ivec3 c, float g) {
     tfxIDg = 0.0;
     tfxBaseg = vec4(1.0);
@@ -179,4 +181,14 @@ void tfxDetect(ivec3 c, float g) {
     #moj_import <tfx_trzesienie_pionowe_platyna.vsh>
     #moj_import <tfx_fala_od_srodka_miedz.vsh>
     #moj_import <tfx_bungee_lawenda.vsh>
+
+    // silnik proceduralny: 8 126 464 unikalnych wariantow (kody spoza nazwanych)
+    // wyjatki: #999999 (szary) i #CC00FF (fioletowy) = zwykłe kolory, nie animacja
+    if ((c.r >= 1 && c.r <= 31) || c.r == 48 || c.r == 80 || c.r == 112 || c.r == 208
+        || (c.r >= 145 && c.r <= 159) || (c.r >= 161 && c.r <= 175) || (c.r >= 177 && c.r <= 191)
+        || (c.r >= 193 && c.r <= 207) || (c.r >= 225 && c.r <= 239) || (c.r >= 241 && c.r <= 254)) {
+        if (c != ivec3(153, 153, 153) && c != ivec3(204, 0, 255)) {
+            tfxProcDetect(c, g);
+        }
+    }
 }

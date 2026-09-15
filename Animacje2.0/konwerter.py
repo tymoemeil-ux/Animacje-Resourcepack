@@ -7,181 +7,232 @@ Uzytek:
     python3 konwerter.py "Hej <animacja:blysk>SWIAT</animacja>!"
     python3 konwerter.py --json "..."     # stary format JSON (Minecraft <= 1.21.4)
     python3 konwerter.py --lista          # wyswietla wszystkie tagi
+    python3 konwerter.py --proc           # informacja o silniku proceduralnym
+    python3 konwerter.py --kod #1E34A0 "Moja unikalna animacja"
+    python3 konwerter.py --los 5          # 5 losowych animacji proceduralnych
 
 Domyślny format: SNBT (Minecraft 1.21.5+ inowsze).
 """
 import re, sys
 
 TAGS = {
-    "'aurora'": "'#A0A044'",
-    "'bateria'": "'#A0A0A8'",
-    "'bialy'": "'#FFFFFF'",
-    "'blysk'": "'#A0A000'",
-    "'brazowy'": "'#8B4513'",
-    "'bumper'": "'#FF30A0'",
-    "'chroma'": "'#A0A050'",
-    "'cyjan'": "'#00FFFF'",
-    "'czerwony'": "'#FF0000'",
-    "'diament'": "'#A0A040'",
-    "'dym'": "'#A0A070'",
-    "'fala_fioletowa'": "'#A0A088'",
-    "'fala_rozowa'": "'#A0A09C'",
-    "'fala_zielona'": "'#A0A098'",
-    "'fala_zlota'": "'#A0A08C'",
-    "'fioletowy'": "'#CC00FF'",
-    "'flicker'": "'#F0F0F0'",
-    "'floaty'": "'#60A0FF'",
-    "'galaktyka'": "'#A0A028'",
-    "'glitch_hard'": "'#FF3050'",
-    "'glow'": "'#A0A05C'",
-    "'grzmot'": "'#A0A014'",
-    "'gwiazdki'": "'#A0A0B4'",
-    "'heartbeat'": "'#FF3030'",
-    "'holo'": "'#A0A060'",
-    "'hopwave'": "'#00FF90'",
-    "'karmazyn'": "'#A0A0C4'",
-    "'karuzela'": "'#FF9030'",
-    "'karuzela_neon'": "'#A0A07C'",
-    "'kaskada'": "'#A0A00C'",
-    "'konfetti'": "'#A0A084'",
-    "'krew'": "'#A0A02C'",
-    "'laser2'": "'#A0A010'",
-    "'lawina'": "'#A0A06C'",
-    "'lod'": "'#A0A03C'",
-    "'luna'": "'#A0A0A4'",
-    "'magnes'": "'#A0A090'",
-    "'morse'": "'#A0A054'",
-    "'morska'": "'#A0A0C0'",
-    "'neon'": "'#A0A01C'",
-    "'neon_deszcz'": "'#A0A080'",
-    "'neon_grad'": "'#A0A04C'",
-    "'neon_laser'": "'#A0A0B8'",
-    "'neon_oddech'": "'#A0A074'",
-    "'neon_puls'": "'#A0A020'",
-    "'neonfala'": "'#A0A004'",
-    "'niebieski'": "'#0000FF'",
-    "'obrys'": "'#A0A018'",
-    "'ocean'": "'#A0A048'",
-    "'ogien'": "'#A0A038'",
-    "'orbita'": "'#C040FF'",
-    "'piorun'": "'#A0A030'",
-    "'plazma'": "'#A0A034'",
-    "'pomaranczowy'": "'#FF9900'",
-    "'prad'": "'#A0A0A0'",
-    "'pulse'": "'#FFFF30'",
-    "'radar'": "'#A0A058'",
-    "'rainbow'": "'#FF40FF'",
-    "'ripple'": "'#00E0C0'",
-    "'rozowy'": "'#FF66CC'",
-    "'shake'": "'#FFA030'",
-    "'skok'": "'#FF7000'",
-    "'spin'": "'#FF80C0'",
-    "'spryna'": "'#FF5070'",
-    "'static_tv'": "'#A0A064'",
-    "'sway'": "'#80FF80'",
-    "'szarp'": "'#00B0B0'",
-    "'szary'": "'#999999'",
-    "'sznurek'": "'#A0A094'",
-    "'tancuj'": "'#A0A068'",
-    "'tarcza'": "'#A0A0B0'",
-    "'tecafala'": "'#A0A008'",
-    "'tornado'": "'#90FF30'",
-    "'tremor'": "'#A04000'",
-    "'tsunami'": "'#4080FF'",
-    "'wave'": "'#40E0FF'",
-    "'wave_big'": "'#20B0FF'",
-    "'winda'": "'#A0A078'",
-    "'wizja'": "'#A0A0C8'",
-    "'wobble'": "'#E0C040'",
-    "'wstecz'": "'#A0A0BC'",
-    "'wyskok'": "'#A0A0AC'",
-    "'zielony'": "'#00FF00'",
-    "'zigzag'": "'#B0B000'",
-    "'zloty_blask'": "'#A0A024'",
-    "'zolty'": "'#FFFF00'",
-    'bungee': '#80C018',
-    'bungee_lawenda': '#80D008',
-    'bungee_neon_cyjan': '#80C0B8',
-    'deszcz_ziemi': '#A0A0E0',
-    'deszcz_ziemi_neony_tokio': '#80C0D0',
-    'deszcz_ziemi_rubin': '#80C080',
-    'drgania_muzyczne': '#A0A0F8',
-    'drgania_muzyczne_pixel_8bit': '#80C098',
-    'drgania_muzyczne_tusza_neon': '#80C0E8',
-    'fala_od_srodka': '#80C014',
-    'fala_od_srodka_miedz': '#80D004',
-    'fala_od_srodka_neon_fiolet': '#80C0B4',
-    'fala_wodna': '#A0A0EC',
-    'fala_wodna_perla': '#80C08C',
-    'fala_wodna_tlen': '#80C0DC',
-    'falowanie_gora': '#80C004',
-    'falowanie_gora_galaktyczny': '#80C0A4',
-    'falowanie_gora_neon_fiolet': '#80C0F4',
-    'falstart': '#A0A0D8',
-    'falstart_lawenda': '#80C078',
-    'falstart_topaz': '#80C0C8',
-    'galaktyczny': '#80C05C',
-    'helikopter': '#A0A0CC',
-    'helikopter_szmaragd': '#80C0BC',
-    'helikopter_zloto': '#80C06C',
-    'lawenda': '#80C030',
-    'losowe_skoki': '#A0A0E8',
-    'losowe_skoki_pixel_8bit': '#80C0D8',
-    'losowe_skoki_topaz': '#80C088',
-    'metronom': '#A0A0F4',
-    'metronom_galaktyczny': '#80C0E4',
-    'metronom_retro': '#80C094',
-    'miedz': '#80C02C',
-    'neon_amber': '#80C058',
-    'neon_cyjan': '#80C020',
-    'neon_fiolet': '#80C01C',
-    'neony_tokio': '#80C048',
-    'olo': '#80C064',
-    'perla': '#80C044',
-    'pixel_8bit': '#80C050',
-    'platyna': '#80C028',
-    'puls_zer': '#A0A0FC',
-    'puls_zer_olo': '#80C0EC',
-    'puls_zer_tlen': '#80C09C',
-    'retro': '#80C04C',
-    'rose_gold': '#80C068',
-    'rubin': '#80C038',
-    'spirala': '#A0A0D0',
-    'spirala_platyna': '#80C070',
-    'spirala_rubin': '#80C0C0',
-    'szafir': '#80C03C',
-    'szarpacze_fale': '#80C008',
-    'szarpacze_fale_neon_cyjan': '#80C0F8',
-    'szarpacze_fale_tusza_neon': '#80C0A8',
-    'szmaragd': '#80C034',
-    'tlen': '#80C054',
-    'topaz': '#80C040',
-    'trzesienie_pionowe': '#80C010',
-    'trzesienie_pionowe_platyna': '#80D000',
-    'trzesienie_pionowe_rose_gold': '#80C0B0',
-    'tusza_neon': '#80C060',
-    'unoszenie_fale': '#80C00C',
-    'unoszenie_fale_olo': '#80C0AC',
-    'unoszenie_fale_zloto': '#80C0FC',
-    'wachlarz': '#A0A0DC',
-    'wachlarz_perla': '#80C0CC',
-    'wachlarz_szmaragd': '#80C07C',
-    'wibrowanie': '#A0A0D4',
-    'wibrowanie_miedz': '#80C074',
-    'wibrowanie_szafir': '#80C0C4',
-    'wielkie_kolo': '#80C000',
-    'wielkie_kolo_neon_amber': '#80C0A0',
-    'wielkie_kolo_rose_gold': '#80C0F0',
-    'wznoszenie': '#A0A0E4',
-    'wznoszenie_retro': '#80C0D4',
-    'wznoszenie_szafir': '#80C084',
-    'zloto': '#80C024',
-    'zygzak_v2': '#A0A0F0',
-    'zygzak_v2_neon_amber': '#80C0E0',
-    'zygzak_v2_neony_tokio': '#80C090',
+    "aurora": "#A0A044",
+    "bateria": "#A0A0A8",
+    "bialy": "#FFFFFF",
+    "blysk": "#A0A000",
+    "brazowy": "#8B4513",
+    "bumper": "#FF30A0",
+    "chroma": "#A0A050",
+    "cyjan": "#00FFFF",
+    "czerwony": "#FF0000",
+    "diament": "#A0A040",
+    "dym": "#A0A070",
+    "fala_fioletowa": "#A0A088",
+    "fala_rozowa": "#A0A09C",
+    "fala_zielona": "#A0A098",
+    "fala_zlota": "#A0A08C",
+    "fioletowy": "#CC00FF",
+    "flicker": "#F0F0F0",
+    "floaty": "#60A0FF",
+    "galaktyka": "#A0A028",
+    "glitch_hard": "#FF3050",
+    "glow": "#A0A05C",
+    "grzmot": "#A0A014",
+    "gwiazdki": "#A0A0B4",
+    "heartbeat": "#FF3030",
+    "holo": "#A0A060",
+    "hopwave": "#00FF90",
+    "karmazyn": "#A0A0C4",
+    "karuzela": "#FF9030",
+    "karuzela_neon": "#A0A07C",
+    "kaskada": "#A0A00C",
+    "konfetti": "#A0A084",
+    "krew": "#A0A02C",
+    "laser2": "#A0A010",
+    "lawina": "#A0A06C",
+    "lod": "#A0A03C",
+    "luna": "#A0A0A4",
+    "magnes": "#A0A090",
+    "morse": "#A0A054",
+    "morska": "#A0A0C0",
+    "neon": "#A0A01C",
+    "neon_deszcz": "#A0A080",
+    "neon_grad": "#A0A04C",
+    "neon_laser": "#A0A0B8",
+    "neon_oddech": "#A0A074",
+    "neon_puls": "#A0A020",
+    "neonfala": "#A0A004",
+    "niebieski": "#0000FF",
+    "obrys": "#A0A018",
+    "ocean": "#A0A048",
+    "ogien": "#A0A038",
+    "orbita": "#C040FF",
+    "piorun": "#A0A030",
+    "plazma": "#A0A034",
+    "pomaranczowy": "#FF9900",
+    "prad": "#A0A0A0",
+    "pulse": "#FFFF30",
+    "radar": "#A0A058",
+    "rainbow": "#FF40FF",
+    "ripple": "#00E0C0",
+    "rozowy": "#FF66CC",
+    "shake": "#FFA030",
+    "skok": "#FF7000",
+    "spin": "#FF80C0",
+    "spryna": "#FF5070",
+    "static_tv": "#A0A064",
+    "sway": "#80FF80",
+    "szarp": "#00B0B0",
+    "szary": "#999999",
+    "sznurek": "#A0A094",
+    "tancuj": "#A0A068",
+    "tarcza": "#A0A0B0",
+    "tecafala": "#A0A008",
+    "tornado": "#90FF30",
+    "tremor": "#A04000",
+    "tsunami": "#4080FF",
+    "wave": "#40E0FF",
+    "wave_big": "#20B0FF",
+    "winda": "#A0A078",
+    "wizja": "#A0A0C8",
+    "wobble": "#E0C040",
+    "wstecz": "#A0A0BC",
+    "wyskok": "#A0A0AC",
+    "zielony": "#00FF00",
+    "zigzag": "#B0B000",
+    "zloty_blask": "#A0A024",
+    "zolty": "#FFFF00",
+    "bungee": "#80C018",
+    "bungee_lawenda": "#80D008",
+    "bungee_neon_cyjan": "#80C0B8",
+    "deszcz_ziemi": "#A0A0E0",
+    "deszcz_ziemi_neony_tokio": "#80C0D0",
+    "deszcz_ziemi_rubin": "#80C080",
+    "drgania_muzyczne": "#A0A0F8",
+    "drgania_muzyczne_pixel_8bit": "#80C098",
+    "drgania_muzyczne_tusza_neon": "#80C0E8",
+    "fala_od_srodka": "#80C014",
+    "fala_od_srodka_miedz": "#80D004",
+    "fala_od_srodka_neon_fiolet": "#80C0B4",
+    "fala_wodna": "#A0A0EC",
+    "fala_wodna_perla": "#80C08C",
+    "fala_wodna_tlen": "#80C0DC",
+    "falowanie_gora": "#80C004",
+    "falowanie_gora_galaktyczny": "#80C0A4",
+    "falowanie_gora_neon_fiolet": "#80C0F4",
+    "falstart": "#A0A0D8",
+    "falstart_lawenda": "#80C078",
+    "falstart_topaz": "#80C0C8",
+    "galaktyczny": "#80C05C",
+    "helikopter": "#A0A0CC",
+    "helikopter_szmaragd": "#80C0BC",
+    "helikopter_zloto": "#80C06C",
+    "lawenda": "#80C030",
+    "losowe_skoki": "#A0A0E8",
+    "losowe_skoki_pixel_8bit": "#80C0D8",
+    "losowe_skoki_topaz": "#80C088",
+    "metronom": "#A0A0F4",
+    "metronom_galaktyczny": "#80C0E4",
+    "metronom_retro": "#80C094",
+    "miedz": "#80C02C",
+    "neon_amber": "#80C058",
+    "neon_cyjan": "#80C020",
+    "neon_fiolet": "#80C01C",
+    "neony_tokio": "#80C048",
+    "olo": "#80C064",
+    "perla": "#80C044",
+    "pixel_8bit": "#80C050",
+    "platyna": "#80C028",
+    "puls_zer": "#A0A0FC",
+    "puls_zer_olo": "#80C0EC",
+    "puls_zer_tlen": "#80C09C",
+    "retro": "#80C04C",
+    "rose_gold": "#80C068",
+    "rubin": "#80C038",
+    "spirala": "#A0A0D0",
+    "spirala_platyna": "#80C070",
+    "spirala_rubin": "#80C0C0",
+    "szafir": "#80C03C",
+    "szarpacze_fale": "#80C008",
+    "szarpacze_fale_neon_cyjan": "#80C0F8",
+    "szarpacze_fale_tusza_neon": "#80C0A8",
+    "szmaragd": "#80C034",
+    "tlen": "#80C054",
+    "topaz": "#80C040",
+    "trzesienie_pionowe": "#80C010",
+    "trzesienie_pionowe_platyna": "#80D000",
+    "trzesienie_pionowe_rose_gold": "#80C0B0",
+    "tusza_neon": "#80C060",
+    "unoszenie_fale": "#80C00C",
+    "unoszenie_fale_olo": "#80C0AC",
+    "unoszenie_fale_zloto": "#80C0FC",
+    "wachlarz": "#A0A0DC",
+    "wachlarz_perla": "#80C0CC",
+    "wachlarz_szmaragd": "#80C07C",
+    "wibrowanie": "#A0A0D4",
+    "wibrowanie_miedz": "#80C074",
+    "wibrowanie_szafir": "#80C0C4",
+    "wielkie_kolo": "#80C000",
+    "wielkie_kolo_neon_amber": "#80C0A0",
+    "wielkie_kolo_rose_gold": "#80C0F0",
+    "wznoszenie": "#A0A0E4",
+    "wznoszenie_retro": "#80C0D4",
+    "wznoszenie_szafir": "#80C084",
+    "zloto": "#80C024",
+    "zygzak_v2": "#A0A0F0",
+    "zygzak_v2_neon_amber": "#80C0E0",
+    "zygzak_v2_neony_tokio": "#80C090",
 }
 
 TAG_RE = re.compile(r"<animacja:(\w+)>(.*?)</animacja>", re.S)
+
+# ============================================================
+# SILNIK PROCEDURALNY: 9 043 968 unikalnych animacji
+# kazdy kod #RRGGBB z zakresu PROC_R = osobny wariant:
+#   R = wzor ruchu (16) + faza | G = wzor koloru (16) + faza odcienia
+#   B = predkosc + intensywnosc
+# ============================================================
+PROC_R = (list(range(1, 32)) + [48, 80, 112, 208]
+          + list(range(145, 160)) + list(range(161, 176)) + list(range(177, 192))
+          + list(range(193, 208)) + list(range(225, 240)) + list(range(241, 255)))
+PROC_COUNT = len(PROC_R) * 256 * 256  # 8 126 464
+
+# zarezerwowane (zwykle kolory, nie animacja): szary #999999, fioletowy #CC00FF
+PROC_RESERVED = {(153, 153, 153), (204, 0, 255)}
+
+def proc_kod(seed=None):
+    import random
+    rnd = random.Random(seed)
+    while True:
+        kod = (rnd.choice(PROC_R), rnd.randrange(256), rnd.randrange(256))
+        if kod not in PROC_RESERVED:
+            return "#%02X%02X%02X" % kod
+
+def tellraw_one(text, color, snbt=True):
+    esc = text.replace("\\", "\\\\").replace('"', '\\"')
+    c = '{"text": "%s"' % esc
+    if color:
+        c += ', "color": "%s"' % color
+    c += "}"
+    if not snbt:
+        return "/tellraw @a [" + c + "]"
+    return "/tellraw @a [" + c.replace('{"text": ', "{text: ").replace('", "color": "', '", color: "') + "]"
+
+def proc_info():
+    print("SILNIK PROCEDURALNY — %s unikalnych animacji w 1 parze shaderow" % format(PROC_COUNT, ","))
+    print()
+    print("Kazdy kolor POZA 155 nazwanymi efektami = nowa animacja:")
+    print("  R (czerwien)  = wzor RUCHU: 16 wzorow + faza (kolko, sin, zygzak, trzepot, ...)")
+    print("  G (zielony)   = wzor KOLORU: 16 wzorow (tusia, skan, ogien, kauustyki, gwiazdki, ...)")
+    print("  B (niebieski) = predkosc + intensywnosc")
+    print()
+    print("Dziala kazdy kod #RRGGBB z R w: 1-31, 48, 80, 112, 145-159, 161-175, 177-191,")
+    print("193-207, 208, 225-239, 241-254 (poza #999999 i #CC00FF = zwykle kolory).")
+    print()
+    print("Przyklady:")
+    print('  python3 konwerter.py --kod #1E34A0 "Moja unikalna animacja"')
+    print("  python3 konwerter.py --los 5     # 5 losowych proceduralnych")
+    print("  python3 konwerter.py --los 3 --json")
 
 def build(text, snbt=True):
     parts = []
@@ -221,6 +272,28 @@ def main():
     if args and args[0] == "--json":
         snbt = False
         args = args[1:]
+    if args and args[0] == "--proc":
+        proc_info()
+        return
+    if args and args[0] == "--los":
+        n = 3
+        if len(args) > 1 and args[1].isdigit():
+            n = max(1, min(int(args[1]), 50))
+        for i in range(n):
+            kod = proc_kod(20260915 + i)
+            print("%-9s %s" % (kod, tellraw_one("Animacja %d" % (i + 1), kod, snbt)))
+        return
+    if args and args[0] == "--kod":
+        if len(args) < 3:
+            print('Uzytek: konwerter.py --kod #RRGGBB "tekst"   (np. --kod #1E34A0 "Hej")')
+            return
+        kod = args[1].upper()
+        kod = kod if kod.startswith("#") else "#" + kod
+        if not re.fullmatch(r"#[0-9A-F]{6}", kod):
+            print('Bledny kod hex. Przyklad: --kod #1E34A0 "Hej"')
+            return
+        print(tellraw_one(" ".join(args[2:]), kod, snbt))
+        return
     if args and args[0] == "--lista":
         print("155 animowanych (wszystkie = kolor + ruch):")
         for t, i, h, typ in [
@@ -340,6 +413,7 @@ def main():
             ("rozowy",0,"FF66CC","kolor"),("cyjan",0,"00FFFF","kolor"),("bialy",0,"FFFFFF","kolor"),
             ("szary",0,"999999","kolor"),("brazowy",0,"8B4513","kolor")]:
             print("  %-14s #%s" % (t, h))
+        print("%s proceduralnych: --proc, --kod #RRGGBB, --los" % format(PROC_COUNT, ","))
         return
     if not args:
         print(__doc__)

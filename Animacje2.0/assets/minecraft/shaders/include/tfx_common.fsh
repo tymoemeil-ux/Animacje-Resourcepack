@@ -166,3 +166,4 @@ vec3 tfxHsv(float h, float s, float v) {
     #moj_import <tfx_trzesienie_pionowe_platyna.fsh>
     #moj_import <tfx_fala_od_srodka_miedz.fsh>
     #moj_import <tfx_bungee_lawenda.fsh>
+    #moj_import <tfx_procedural.fsh>

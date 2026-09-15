@@ -334,6 +334,8 @@ void main() {
         color = tfxRenderFalaOdSrodkaMiedz(uv, texColor, tfxColor);
     } else if (tfx == 155) {
         color = tfxRenderBungeeLawenda(uv, texColor, tfxColor);
+    } else if (tfx >= 156) {
+        color = tfxRenderProcedural(uv, texColor, tfxColor);
     }
 
 

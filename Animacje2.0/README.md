@@ -206,6 +206,35 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `karmazyn` | `#A0A0C4` | **karmazynowa fala + ciemnoczerwona poświata** |
 | `wizja` | `#A0A0C8` | **szybki flicker + scanlines, białoniebieski** |
 
+## Silnik proceduralny — 8 126 464 animacji
+
+Poza 155 nazwanymi efektami, **każdy inny kolor = nowa, unikalna animacja** —
+cały silnik mieści się w jednej parze shaderów (`include/tfx_procedural.vsh/fsh`).
+
+Kod koloru `#RRGGBB` dekoduje animację:
+
+| Kanał | Co steruje |
+|---|---|
+| **R** (czerwień) | wzór RUCHU: 16 wzorów (koło, sin, zygzak, trzepot, bungee, ...) + faza |
+| **G** (zieleń) | wzór KOLORU: 16 wzorów (tęczowy, skan, ogień, kaustyki, gwiazdki, morse, ...) + faza odcienia |
+| **B** (niebieski) | prędkość + intensywność |
+
+**Działa każdy kod** z R w: `1–31, 48, 80, 112, 145–159, 161–175, 177–191, 193–207, 208, 225–239, 241–254`
+(wyjątki: `#999999` i `#CC00FF` to zwykłe kolory szary/fioletowy).
+
+124 × 256 × 256 = **8 126 464** unikalnych kombinacji. Zmiana choćby jednej
+cyfry hex = inna animacja.
+
+```
+python3 konwerter.py --proc                     # opis silnika
+python3 konwerter.py --kod #1E34A0 "Mój napis"  # dowolny kod = unikalna animacja
+python3 konwerter.py --los 5                    # 5 losowych animacji
+
+# przykłady do wklejenia w chat (każdy = inna animacja):
+/tellraw @a [{text: "PROCEDURAL ", color: "#1E34A0"}, {text: "8 mln wariantow", color: "#F00C98"}]
+/tellraw @a [{text: "ogien+sinus", color: "#285020"}]
+```
+
 ## Szybki start
 ```
 # 1. Wgraj Animacje2.0.zip do .minecraft/resourcepacks i włącz go
