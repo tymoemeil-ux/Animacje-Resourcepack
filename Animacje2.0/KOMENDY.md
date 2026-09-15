@@ -314,31 +314,9 @@ Pełna lista (pojedynczy rozkaz na każdy efekt):
 /tellraw @a [{text: "BUMP-BUMP ", color: "#FF3030"}, {text: "serduszko", color: "#FF66CC"}]
 ```
 
-## SILNIK PROCEDURALNY (8 126 464 animacji)
-
-Każdy kolor spoza 155 nazwanych efektów = unikalna animacja (1 para shaderów):
-R = ruch (16 wzorów + faza), G = kolor (16 wzorów + faza), B = prędkość/intensywność.
-
-```
-# generowanie:
-python3 konwerter.py --proc                     # opis silnika
-python3 konwerter.py --kod #1E34A0 "Mój napis"  # dowolny kod = unikalna animacja
-python3 konwerter.py --los 5                    # 5 losowych animacji
-
-# przykłady do wklejenia (każdy kod = inna animacja):
-/tellraw @a [{text: "PROCEDURAL", color: "#1E34A0"}]
-/tellraw @a [{text: "PROCEDURAL", color: "#285020"}]
-/tellraw @a [{text: "PROCEDURAL", color: "#F00C98"}]
-/tellraw @a [{text: "PROCEDURAL", color: "#C33569"}]
-/tellraw @a [{text: "Mieszane: ", color: "#FFFFFF"}, {text: "nazwane", color: "#A0A000"}, {text: " + proceduralne", color: "#1E34A0"}]
-```
-
 ## Jak generować własne
 ```
 python3 konwerter.py "Twój tekst <animacja:blysk>TUTAJ</animacja> dalej"
 python3 konwerter.py --json "..."   # stary format (Minecraft <= 1.21.4)
 python3 konwerter.py --lista        # pełna lista tagów + kolory
-python3 konwerter.py --proc         # silnik proceduralny (8 mln animacji)
-python3 konwerter.py --kod #1E34A0 "unikalna animacja"
-python3 konwerter.py --los 5        # losowe proceduralne
 ```
