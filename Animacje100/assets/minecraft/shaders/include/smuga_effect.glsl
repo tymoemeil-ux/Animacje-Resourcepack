@@ -22,8 +22,8 @@ void applySmugaEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPara
     float t = gameTime * speed;
     float head = fract(t * 0.7);
     float p = fract(uNorm - head);
-    float headGlow = 1.0 - smoothstep(0.0, width, p);
-    float tail = exp(-p * 12.0);
-    vec3 color = baseColor.rgb * 0.55 + vec3(0.9, 0.95, 1.0) * (headGlow * 1.8 + tail * 0.7);
+    float headGlow = 1.0 - smoothstep(0.0, width * 1.5, p);
+    float tail = exp(-p * 7.0);
+    vec3 color = baseColor.rgb * 0.5 + vec3(0.9, 0.95, 1.0) * (headGlow * 2.2 + tail * 1.1);
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

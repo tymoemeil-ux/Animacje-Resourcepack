@@ -23,11 +23,11 @@ void applyZarEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectParams
     vec2 cell = floor(g);
     vec2 f = fract(g);
     float h2 = fract(sin(dot(vec2(cell.x, cell.y + 9.3), vec2(12.9898, 78.233))) * 43758.5453);
-    float y = fract(gameTime * speed * (0.15 + h2 * 0.3) + h2);
-    float x = 0.5 + (h2 - 0.5) * 0.7 + sin(gameTime * 3.0 + h2 * 20.0) * 0.08;
-    float d = length(f - vec2(x, y)) * 4.0;
-    float ember = (1.0 - smoothstep(0.1, 0.35, d)) * (0.4 + 0.6 * y);
-    vec3 col = mix(vec3(0.9, 0.3, 0.05), vec3(1.0, 0.75, 0.2), y);
-    vec3 color = baseColor.rgb * 0.75 + col * ember * 1.5;
+    float y = fract(gameTime * speed * (0.2 + h2 * 0.35) + h2);
+    float x = 0.5 + (h2 - 0.5) * 0.7 + sin(gameTime * 3.5 + h2 * 20.0) * 0.08;
+    float d = length(f - vec2(x, y)) * 2.5;
+    float ember = (1.0 - smoothstep(0.15, 0.5, d)) * (0.4 + 0.6 * y);
+    vec3 col = mix(vec3(0.9, 0.3, 0.05), vec3(1.0, 0.8, 0.25), y);
+    vec3 color = baseColor.rgb * 0.6 + col * ember * 2.0;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

@@ -20,9 +20,9 @@ void applyLaser2Effect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPar
     float speed = max(effectParams.x, 0.1);
     float width = max(effectParams.y, 0.04);
     float t = gameTime * speed;
-    float p1 = fract(0.6 * uNorm + 0.4 * vNorm - t * 0.55);
-    float p2 = fract(0.6 * uNorm + 0.4 * (1.0 - vNorm) - (1.0 - t * 0.4));
-    float l1 = min((1.0 - smoothstep(0.0, width, p1)) + (1.0 - smoothstep(0.0, width, p2)), 1.5);
-    vec3 color = baseColor.rgb * 0.55 + vec3(0.9, 0.4, 1.0) * l1 * 1.2;
+    float p1 = fract(0.6 * uNorm + 0.4 * vNorm - t * 0.7);
+    float p2 = fract(0.6 * uNorm + 0.4 * (1.0 - vNorm) - (1.0 - t * 0.5));
+    float l1 = min((1.0 - smoothstep(0.0, width * 1.5, p1)) + (1.0 - smoothstep(0.0, width * 1.5, p2)), 1.5);
+    vec3 color = baseColor.rgb * 0.45 + vec3(0.9, 0.4, 1.0) * l1 * 1.7;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

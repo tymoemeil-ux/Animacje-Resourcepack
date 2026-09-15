@@ -20,10 +20,10 @@ void applyTecfalaEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     float speed = max(effectParams.x, 0.1);
     float rows = max(effectParams.y, 1.0);
     float t = gameTime * speed;
-    float v = fract((uNorm * 0.4 + vNorm * 0.2) * rows - t * 0.25);
+    float v = fract((uNorm * 0.4 + vNorm * 0.2) * rows - t * 0.4);
     float r = clamp(abs(v * 6.0 - 3.0) - 1.0, 0.0, 1.0);
     float g = clamp(2.0 - abs(v * 6.0 - 2.0), 0.0, 1.0);
     float b = clamp(2.0 - abs(v * 6.0 - 4.0), 0.0, 1.0);
-    vec3 color = mix(baseColor.rgb, vec3(r, g, b), 0.9);
-    result = vec4(color, a * baseColor.a);
+    vec3 color = mix(baseColor.rgb, vec3(r, g, b) * 1.15, 0.95);
+    result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

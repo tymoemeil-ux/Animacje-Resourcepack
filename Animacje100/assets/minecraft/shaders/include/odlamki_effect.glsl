@@ -23,9 +23,9 @@ void applyOdlamkiEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     vec2 cell = floor(g);
     vec2 f = fract(g);
     float h2 = fract(sin(dot(vec2(cell.x, cell.y + 13.9), vec2(12.9898, 78.233))) * 43758.5453);
-    float y = fract(gameTime * speed * (0.5 + h2 * 0.5) + h2 * 5.0);
-    float d = abs(f.x - (0.5 + (h2 - 0.5) * 0.6)) * 4.0 + abs(f.y - y) * 1.5;
-    float shard = (1.0 - smoothstep(0.05, 0.3, d)) * step(0.4, h2);
-    vec3 color = baseColor.rgb * 0.75 + vec3(0.75, 0.9, 1.0) * shard * 1.3;
+    float y = fract(gameTime * speed * (0.6 + h2 * 0.5) + h2 * 5.0);
+    float d = abs(f.x - (0.5 + (h2 - 0.5) * 0.6)) * 3.0 + abs(f.y - y) * 1.2;
+    float shard = (1.0 - smoothstep(0.08, 0.45, d)) * step(0.35, h2);
+    vec3 color = baseColor.rgb * 0.6 + vec3(0.75, 0.9, 1.0) * shard * 1.8;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

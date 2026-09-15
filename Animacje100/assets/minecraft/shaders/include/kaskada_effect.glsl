@@ -20,9 +20,9 @@ void applyKaskadaEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     float speed = max(effectParams.x, 0.1);
     float width = max(effectParams.y, 0.05);
     float t = gameTime * speed;
-    float d = fract((1.0 - vNorm) + t * 0.5);
-    float band = 1.0 - smoothstep(0.0, width, d);
-    float trail = exp(-d * 8.0) * 0.4;
-    vec3 color = baseColor.rgb * 0.7 + vec3(0.7, 0.9, 1.0) * (band * 1.4 + trail);
+    float d = fract((1.0 - vNorm) + t * 0.8);
+    float band = 1.0 - smoothstep(0.0, width * 2.0, d);
+    float trail = exp(-d * 5.0) * 0.5;
+    vec3 color = baseColor.rgb * 0.55 + vec3(0.7, 0.9, 1.0) * (band * 1.8 + trail);
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

@@ -20,10 +20,10 @@ void applyNeonfalaEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectP
     float speed = max(effectParams.x, 0.1);
     float hueShift = effectParams.y;
     float t = gameTime * speed;
-    float v = fract(uNorm * 0.5 + vNorm * 0.3 - t * 0.2 + hueShift);
+    float v = fract(uNorm * 0.5 + vNorm * 0.3 - t * 0.35 + hueShift);
     float r = clamp(abs(v * 6.0 - 3.0) - 1.0, 0.0, 1.0);
     float g = clamp(2.0 - abs(v * 6.0 - 2.0), 0.0, 1.0);
     float b = clamp(2.0 - abs(v * 6.0 - 4.0), 0.0, 1.0);
-    vec3 color = vec3(r, g, b) * 0.9 + vec3(1.0) * 0.15;
-    result = vec4(color, a * baseColor.a);
+    vec3 color = vec3(r, g, b) * 1.05 + vec3(1.0) * 0.15;
+    result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

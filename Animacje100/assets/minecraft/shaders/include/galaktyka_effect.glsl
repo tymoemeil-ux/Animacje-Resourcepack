@@ -24,13 +24,13 @@ void applyGalaktykaEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effect
     float rad = length(p) * 2.0;
     float t = gameTime * speed;
     float swirl = 0.5 + 0.5 * sin(ang * 2.0 - rad * 6.0 - t * 1.5);
-    vec3 neb = mix(vec3(0.18, 0.08, 0.45), vec3(0.5, 0.2, 0.7), swirl);
+    vec3 neb = mix(vec3(0.3, 0.12, 0.6), vec3(0.7, 0.3, 0.95), swirl);
     vec2 g = vec2(uNorm, 1.0 - vNorm) * stars * 2.0;
     vec2 cell = floor(g);
     vec2 f = fract(g);
     float seed = fract(sin(dot(cell, vec2(12.9898, 78.233))) * 43758.5453);
-    float tw = 0.5 + 0.5 * sin(t * 3.0 + seed * 20.0);
-    float star = step(0.9, seed) * tw * (1.0 - smoothstep(0.0, 0.4, length(f - 0.5) * 2.0));
-    vec3 color = neb * (0.7 + 0.55 * swirl) + vec3(1.0) * star * 1.5;
+    float tw = 0.5 + 0.5 * sin(t * 3.5 + seed * 20.0);
+    float star = step(0.72, seed) * tw * (1.0 - smoothstep(0.0, 0.55, length(f - 0.5) * 2.0));
+    vec3 color = neb * (0.85 + 0.6 * swirl) + vec3(1.0) * star * 2.0;
     result = vec4(color, a * baseColor.a);
 }

@@ -23,10 +23,10 @@ void applySniegEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPara
     vec2 cell = floor(g);
     vec2 f = fract(g);
     float h2 = fract(sin(dot(vec2(cell.x, cell.y + 5.7), vec2(12.9898, 78.233))) * 43758.5453);
-    float y = fract(gameTime * speed * (0.3 + h2 * 0.4) + h2 * 3.0);
-    float x = 0.5 + (h2 - 0.5) * 0.8 + sin(gameTime * 1.5 + h2 * 10.0) * 0.1;
-    float d = length(f - vec2(x, y)) * 3.0;
-    float flake = 1.0 - smoothstep(0.15, 0.4, d);
-    vec3 color = baseColor.rgb * (0.8 + flake * 0.3) + vec3(0.9, 0.95, 1.0) * flake * 1.3;
+    float y = fract(gameTime * speed * (0.4 + h2 * 0.5) + h2 * 3.0);
+    float x = 0.5 + (h2 - 0.5) * 0.8 + sin(gameTime * 2.0 + h2 * 10.0) * 0.12;
+    float d = length(f - vec2(x, y)) * 2.2;
+    float flake = 1.0 - smoothstep(0.25, 0.6, d);
+    vec3 color = baseColor.rgb * (0.65 + flake * 0.4) + vec3(0.9, 0.95, 1.0) * flake * 1.8;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

@@ -20,7 +20,7 @@ void applySerceEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPara
     float speed = max(effectParams.x, 0.1);
     float intensity = max(effectParams.y, 0.1);
     float t = gameTime * speed;
-    float thump = pow(max(0.0, sin(t * 3.0)), 6.0) + 0.5 * pow(max(0.0, sin(t * 3.0 - 0.9)), 6.0);
-    vec3 color = baseColor.rgb * (0.7 + 0.3 * thump) + vec3(1.0, 0.3, 0.4) * thump * intensity;
-    result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a * (0.85 + 0.15 * thump));
+    float thump = pow(max(0.0, sin(t * 4.0)), 5.0) + 0.5 * pow(max(0.0, sin(t * 4.0 - 0.9)), 5.0);
+    vec3 color = baseColor.rgb * (0.55 + 0.45 * thump) + vec3(1.0, 0.3, 0.4) * thump * 1.6 * intensity;
+    result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a * (0.8 + 0.2 * thump));
 }

@@ -20,10 +20,10 @@ void applyRefleksEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     float speed = max(effectParams.x, 0.1);
     float power = max(effectParams.y, 0.1);
     float t = gameTime * speed;
-    float flash = pow(max(0.0, sin(t * 2.2)), 12.0);
+    float flash = pow(max(0.0, sin(t * 3.0)), 8.0);
     vec2 p = vec2(uNorm, vNorm) - 0.5;
-    float cross = min((1.0 - smoothstep(0.0, 0.03, abs(p.x))) + (1.0 - smoothstep(0.0, 0.03, abs(p.y))), 1.0);
-    float glow = (1.0 - smoothstep(0.0, 0.5, length(p))) * 0.5;
-    vec3 color = baseColor.rgb * (0.7 + flash * 0.5) + vec3(1.0) * flash * (cross * 1.6 + glow) * power;
+    float cross = min((1.0 - smoothstep(0.0, 0.06, abs(p.x))) + (1.0 - smoothstep(0.0, 0.06, abs(p.y))), 1.0);
+    float glow = (1.0 - smoothstep(0.0, 0.7, length(p))) * 0.8;
+    vec3 color = baseColor.rgb * (0.6 + flash * 0.6) + vec3(1.0) * flash * (cross * 2.0 + glow) * power;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

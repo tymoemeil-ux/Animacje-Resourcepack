@@ -22,9 +22,9 @@ void applyKolumnaEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     float t = gameTime * speed;
     float col = floor(uNorm * columns);
     float seed = fract(sin(col * 7.31) * 43758.5453);
-    float y = fract((1.0 - vNorm) + t * (0.4 + seed * 0.3) + seed * 2.0);
-    float band = (1.0 - smoothstep(0.0, 0.15, y)) * step(0.3, seed);
-    float glow = exp(-y * 3.0) * 0.3 * step(0.3, seed);
-    vec3 color = baseColor.rgb * 0.7 + vec3(0.6, 0.9, 1.0) * (band * 1.3 + glow);
+    float y = fract((1.0 - vNorm) + t * (0.5 + seed * 0.4) + seed * 2.0);
+    float band = (1.0 - smoothstep(0.0, 0.28, y)) * step(0.25, seed);
+    float glow = exp(-y * 2.5) * 0.45 * step(0.25, seed);
+    vec3 color = baseColor.rgb * 0.55 + vec3(0.6, 0.9, 1.0) * (band * 1.7 + glow);
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

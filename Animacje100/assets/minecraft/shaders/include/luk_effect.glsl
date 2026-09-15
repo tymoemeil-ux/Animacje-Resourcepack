@@ -20,12 +20,12 @@ void applyLukEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectParams
     float speed = max(effectParams.x, 0.1);
     float arcs = max(effectParams.y, 1.0);
     float t = gameTime * speed;
-    float stepF = floor(t * 10.0);
+    float stepF = floor(t * 12.0);
     float col = floor(uNorm * 14.0);
     float seed = fract(sin(col * 5.1 + stepF * 13.7) * 43758.5453);
-    float lineY = 0.5 + (seed - 0.5) * 0.6;
+    float lineY = 0.5 + (seed - 0.5) * 0.7;
     float d = abs((1.0 - vNorm) - lineY);
-    float arc = (1.0 - smoothstep(0.0, 0.05 + 0.03 * arcs, d)) * step(0.4, seed);
-    vec3 color = baseColor.rgb * 0.8 + vec3(0.5, 0.9, 1.0) * arc * 1.6;
-    result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a * (0.9 + 0.1 * arc));
+    float arc = (1.0 - smoothstep(0.0, 0.08 + 0.04 * arcs, d)) * step(0.25, seed);
+    vec3 color = baseColor.rgb * 0.7 + vec3(0.5, 0.9, 1.0) * arc * 2.0;
+    result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a * (0.85 + 0.15 * arc));
 }

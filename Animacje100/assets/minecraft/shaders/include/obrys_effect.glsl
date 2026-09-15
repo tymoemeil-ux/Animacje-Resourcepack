@@ -25,7 +25,7 @@ void applyObrysEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPara
     float aU = texture(tex, uv + vec2(0.0, 0.004)).a;
     float edge = (abs(aR - aL) + abs(aU - aD)) * 0.5;
     float t = gameTime * speed;
-    float pulse = 0.7 + 0.3 * sin(t * 3.0 + vNorm * 6.0);
-    vec3 color = baseColor.rgb * 0.45 + vec3(0.3, 1.0, 0.8) * edge * 2.6 * intensity * pulse;
+    float pulse = 0.5 + 0.5 * sin(t * 3.0 + vNorm * 6.0);
+    vec3 color = baseColor.rgb * 0.35 + vec3(0.3, 1.0, 0.8) * edge * 3.4 * intensity * (0.5 + pulse);
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

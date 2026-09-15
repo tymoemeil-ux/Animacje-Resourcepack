@@ -21,10 +21,12 @@ void applyZlotyBlaskEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effec
     float width = max(effectParams.y, 0.05);
     float t = gameTime * speed;
     float d = 0.7 * uNorm + 0.3 * vNorm;
-    float p = fract(d - t * 0.25);
-    float glow = smoothstep(0.0, width * 0.5, p) * (1.0 - smoothstep(width * 0.5, width, p));
+    float p = fract(d - t * 0.45);
+    float p2 = fract(d + 0.5 - t * 0.3);
+    float glow = (1.0 - smoothstep(0.0, width * 1.8, p));
+    float glow2 = (1.0 - smoothstep(0.0, width * 2.5, p2));
     vec3 gold = vec3(1.0, 0.8, 0.3);
     vec3 gold2 = vec3(1.0, 0.96, 0.72);
-    vec3 color = baseColor.rgb * 0.85 + mix(gold, gold2, glow) * (0.3 + glow * 1.4);
+    vec3 color = baseColor.rgb * 0.6 + mix(gold, gold2, glow) * (0.45 + glow * 1.8 + glow2 * 0.9);
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

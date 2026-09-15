@@ -20,10 +20,10 @@ void applySwiatloEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     float speed = max(effectParams.x, 0.1);
     float radius = max(effectParams.y, 0.1);
     float t = gameTime * speed;
-    float pulse = 0.5 + 0.5 * sin(t * 2.5);
+    float pulse = 0.5 + 0.5 * sin(t * 3.5);
     vec2 p = vec2(uNorm, vNorm) - 0.5;
     float d = length(p) * 2.2 / radius;
-    float orb = (1.0 - smoothstep(0.0, 0.7, d)) * (0.5 + 0.5 * pulse);
-    vec3 color = baseColor.rgb * (0.6 + orb * 0.5) + vec3(1.0, 0.95, 0.8) * orb * 1.3;
+    float orb = (1.0 - smoothstep(0.0, 0.9, d)) * (0.55 + 0.45 * pulse);
+    vec3 color = baseColor.rgb * (0.5 + orb * 0.6) + vec3(1.0, 0.95, 0.8) * orb * 1.7;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

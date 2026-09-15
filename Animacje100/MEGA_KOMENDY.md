@@ -3,6 +3,10 @@
 Osobny, wyselekcjonowany zestaw z 140 animacji - same perełki, bez nudy.
 Każdą komendę możesz skopiować i wkleić do czatu (albo `/title` / actionbar).
 
+**Wersja wzmocniona:** wszystkie efekty fragmentowe (blysk, smuga, serce, snieg, galaktyka,
+zloty_blask i inne) dostały mocniejszy, szybszy i jaśniejszy wygląd - teraz widać je
+jasno nawet na małym tekście czatu. Po podmianie packa: restart gry lub `F3+T`.
+
 ## TOP 10 - absolutnie najlepsze
 
 | # | Tag | Komenda |
@@ -18,6 +22,31 @@ Każdą komendę możesz skopiować i wkleić do czatu (albo `/title` / actionba
 | 9 | `tsunami` | /tellraw @a {"text":"Legendarny tekst","color":"#D0D070"} |
 | 10 | `aurora` | /tellraw @a {"text":"MEGA TEKST","color":"#F8F8BC"} |
 
+
+## Pewniaki w czacie (100% widać)
+
+Efekty, które na małym tekście czatu są zawsze i wyraźnie widoczne - zaczynaj od nich:
+
+| Tag | Komenda |
+|-----|---------|
+| `blysk` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D000"} |
+| `mega_blysk` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D0A8"} |
+| `neonfala` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D02C"} |
+| `tecafala` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D00C"} |
+| `rainbow` | /tellraw @a {"text":"WIDZISZ TO?","color":"#F8F824"} |
+| `wave` | /tellraw @a {"text":"WIDZISZ TO?","color":"#F8F800"} |
+| `glitch_hard` | /tellraw @a {"text":"WIDZISZ TO?","color":"#E0E00C"} |
+| `kaskada` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D028"} |
+| `laser2` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D040"} |
+| `grzmot` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D048"} |
+| `obrys` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D050"} |
+| `krew` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D8D810"} |
+| `piorun` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D8D81C"} |
+| `neon` | /tellraw @a {"text":"WIDZISZ TO?","color":"#F8F8D8"} |
+| `neon_puls` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D8D800"} |
+| `tsunami` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D0D070"} |
+| `galaktyka` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D8D828"} |
+| `zloty_blask` | /tellraw @a {"text":"WIDZISZ TO?","color":"#D8D808"} |
 ## Błyski i neon (najjaśniejsze)
 
 | Tag | Co to | Komenda |
@@ -161,11 +190,12 @@ Każdą komendę możesz skopiować i wkleić do czatu (albo `/title` / actionba
 ```
 /tellraw @a {"text":"GRATULACJE","color":"#D8D808"}
 /tellraw @a {"text":"SZEF SERWERA","color":"#D0D000"}
-/tellraw @a {"text":"NOWOŚĆ W SKLEPIE","color":"#D8D828"}
+/tellraw @a {"text":"NOWOŚĆ W SKLEPIE","color":"#D0D02C"}
 /tellraw @a {"text":"UWAGA! BIAŁY TEKST","color":"#F8F824"}
 /tellraw @a {"text":"SEZON ZIMOWY","color":"#D0D020"}
 /tellraw @a {"text":"WIELKI WYPRZEDAŻ","color":"#D0D038"}
-/tellraw @a {"text":"BOSS POJAWIŁ SIĘ","color":"#D8D81C"}
+/tellraw @a {"text":"BOSS POJAWIŁ SIĘ","color":"#D0D0A8"}
+/tellraw @a {"text":"GALAKTYKA PRZED NAMI","color":"#D8D828"}
 /tellraw @a {"text":"DO ZOBACZENIA","color":"#F8F844"}
 ```
 

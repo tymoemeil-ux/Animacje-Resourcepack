@@ -22,8 +22,10 @@ void applyBlyskEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPara
     float t = gameTime * speed;
     float d = 0.6 * uNorm + 0.4 * vNorm;
     float p = fract(d - t * 0.6);
+    float p2 = fract(d + 1.0 - t * 0.9);
     float flash = 1.0 - smoothstep(0.0, width, p);
-    float tail = (1.0 - smoothstep(0.0, width * 6.0, p)) * 0.35;
-    vec3 color = baseColor.rgb * 0.6 + vec3(0.85, 0.93, 1.0) * (flash * 1.8 + tail);
+    float flash2 = 1.0 - smoothstep(0.0, width * 1.5, p2);
+    float tail = (1.0 - smoothstep(0.0, width * 6.0, p)) * 0.5;
+    vec3 color = baseColor.rgb * 0.5 + vec3(0.85, 0.93, 1.0) * (flash * 2.2 + flash2 * 1.2 + tail);
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }

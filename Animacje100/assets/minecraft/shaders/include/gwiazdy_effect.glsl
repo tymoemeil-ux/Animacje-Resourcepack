@@ -20,12 +20,12 @@ void applyGwiazdyEffect(vec2 uv, vec4 baseColor, vec4 effectColor, vec4 effectPa
     float speed = max(effectParams.x, 0.1);
     float stars = max(effectParams.y, 4.0);
     float t = gameTime * speed;
-    vec2 g = vec2(uNorm + t * 0.05, 1.0 - vNorm) * stars;
+    vec2 g = vec2(uNorm + t * 0.08, 1.0 - vNorm) * stars;
     vec2 cell = floor(g);
     vec2 f = fract(g);
     float h2 = fract(sin(dot(vec2(cell.x, cell.y + 17.3), vec2(12.9898, 78.233))) * 43758.5453);
-    float tw = 0.5 + 0.5 * sin(t * 2.5 + h2 * 30.0);
-    float star = step(0.75, h2) * tw * (1.0 - smoothstep(0.0, 0.3, length(f - 0.5) * 2.0));
-    vec3 color = baseColor.rgb * 0.75 + vec3(0.9, 0.95, 1.0) * star * 1.5;
+    float tw = 0.5 + 0.5 * sin(t * 3.5 + h2 * 30.0);
+    float star = step(0.6, h2) * tw * (1.0 - smoothstep(0.0, 0.45, length(f - 0.5) * 2.0));
+    vec3 color = baseColor.rgb * 0.65 + vec3(0.9, 0.95, 1.0) * star * 2.0;
     result = vec4(clamp(color, 0.0, 1.0), a * baseColor.a);
 }
