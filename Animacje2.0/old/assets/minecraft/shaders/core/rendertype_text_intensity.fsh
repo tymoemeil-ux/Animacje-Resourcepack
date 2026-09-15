@@ -1,9 +1,15 @@
-#version 330
+#version 150
 
-#moj_import <minecraft:dynamictransforms.glsl>
-#moj_import <minecraft:globals.glsl>
+#moj_import <fog.glsl>
 
+uniform float GameTime;
+uniform vec4 ColorModulator;
+uniform float FogStart;
+uniform float FogEnd;
+uniform vec4 FogColor;
 uniform sampler2D Sampler0;
+
+in float vertexDistance;
 in vec4 vertexColor;
 in vec2 texCoord0;
 
@@ -11,14 +17,14 @@ in float tfxID;
 in vec4 tfxColor;
 in vec2 tfxPos;
 
-out vec4 fragColor;
+#moj_import <tfx_common.fsh>
 
-#moj_import <minecraft:tfx_common.fsh>
+out vec4 fragColor;
 
 void main() {
     vec2 uv = texCoord0;
     vec4 texColor = texture(Sampler0, uv).rrrr;
-    vec4 color = texColor * vertexColor;
+    vec4 color = texColor * vertexColor * ColorModulator;
 
     int tfx = int(tfxID + 0.5);
     if (tfx == 1) {
@@ -48,9 +54,14 @@ void main() {
     } else if (tfx == 13) {
         color = tfxRenderPiorun(uv, texColor, tfxColor);
     }
+
     if (color.a < 0.1) {
         discard;
     }
 
-    fragColor = color * ColorModulator;
+    fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
+
+    if (vertexColor.rgb == vec3(1.0, 1.0, 1.0)) {
+        fragColor = color;
+    }
 }

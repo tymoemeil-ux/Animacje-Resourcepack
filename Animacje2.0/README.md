@@ -89,30 +89,25 @@ Kolor spustowy + logika VSH leży w `tfx_<nazwa>.vsh`, wygląd pikselowy w `tfx_
 (tylko efekty fragmentowe mają plik .fsh).
 
 ## Wersje Minecraft
+**Architektura „baza = najnowsze API”:**
 | Wersje | Format packa | Co się ładuje |
 |---|---|---|
-| 1.20.2 – 1.21.5 | 16 – 55 | szadery bazowe (GLSL 150, stary API mgle) |
-| 1.21.6 – 1.21.11+ | 63 – 100 | **wariant `1_21_6/`** (GLSL 330, nowy API mgle: `apply_fog`, UBO `Fog`) |
+| **1.21.6 → 1.21.11+ (Twój)** | **63 – 100** | **BAZA** (GLSL 330, nowy API mgle: `apply_fog`, UBO `Fog`, `GameTime` z UBO `Globals`) — ładowana ZAWSZE, niezależnie od mechanizmu wariantów |
+| 1.20.2 – 1.21.5 | 16 – 55 | overlay `old/` (GLSL 150, stary API mgle) przez `overlays` w pack.mcmeta |
 
-Mechanizm: **`overlays` w `pack.mcmeta`** (jedyny sposób, żeby wariant faktycznie się
-ładował — goły folder o dowolnej nazwie jest ignorowany):
-```json
-"overlays": { "entries": [ { "directory": "1_21_6", "min_format": 63, "max_format": 100, ... } ] }
-```
-To dokładnie ten sam schemat, co w packu TheSalt's Text Effects (sprawdzone, działa na 1.21.11).
-
-Wariant `1_21_6/` jest zgodny z **prawdziwym vanilla 1.21.11** (`fog.glsl`, `dynamictransforms.glsl`,
-`projection.glsl`, `globals.glsl` pobrane z oficjalnych assetów i zweryfikowane kompilatorem GLSL).
+Baza jest zgodna z **prawdziwym vanilla 1.21.11** (`fog.glsl`, `dynamictransforms.glsl`,
+`projection.glsl`, `globals.glsl` pobrane z oficjalnych assetów i zweryfikowane kompilatorem GLSL —
+ten sam schemat, co w działającym packu TheSalt's Text Effects).
 
 ## Struktura
 ```
 Animacje2.0/
-├── pack.mcmeta           # pack_format 16 + overlays: 1_21_6/ dla formatów 63–100
+├── pack.mcmeta           # pack_format 63 + overlays: old/ dla formatów 16–55
 ├── konwerter.py          # generator rozkazów /tellraw
 ├── README.md             # ten plik
 ├── KOMENDY.md            # gotowe rozkazy dla wszystkich 36 tagów
-├── assets/minecraft/shaders/...   # silnik + efekty (baza: 1.20.2–1.21.5)
-└── 1_21_6/assets/minecraft/shaders/...  # overlay 1.21.6+ (4 pary vsh/fsh + 40 include'ów)
+├── assets/minecraft/shaders/...   # BAZA = 1.21.6+ (4 pary vsh/fsh 330 + 40 include'ów)
+└── old/assets/minecraft/shaders/...  # overlay ≤1.21.5 (4 pary vsh/fsh 150)
 ```
 
 ## Archiwum
