@@ -27,12 +27,21 @@ public final class AnimacjeHub extends JavaPlugin {
     public void onEnable() {
         instance = this;
         try {
-            Class<?> m = Class.forName("org.bukkit.inventory.Material");
-            Object diament = m.getField("DIAMOND").get(null);
-            logInfo("API check: Material OK (" + diament + ")");
+            java.net.URL rMat = getClass().getClassLoader().getResource("org/bukkit/inventory/Material.class");
+            java.net.URL rBuk = getClass().getClassLoader().getResource("org/bukkit/Bukkit.class");
+            logInfo("DIAG Material.class resource: " + rMat);
+            logInfo("DIAG Bukkit.class resource: " + rBuk);
+            logInfo("DIAG java.class.path: " + System.getProperty("java.class.path"));
+            ClassLoader cl = getClass().getClassLoader();
+            int i = 0;
+            while (cl != null && i < 8) {
+                logInfo("DIAG loader[" + i + "]: " + cl.getClass().getName() + " @ " + cl);
+                cl = cl.getParent();
+                i++;
+            }
+            logInfo("DIAG loader[app] parent = " + (cl == null ? "null (bootstrap)" : cl.getClass().getName()));
         } catch (Throwable t) {
-            logError("API check: BRAK org.bukkit.inventory.Material! (" + t + ")");
-            logError("To problem STRONY SERWERA (API/Java), nie pluginu. Jaka to wersja Paper i jaki Java?");
+            logError("DIAG blad: " + t);
         }
         saveDefaultConfig();
         cfg = getConfig();
