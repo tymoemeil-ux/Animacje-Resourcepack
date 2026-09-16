@@ -26,6 +26,14 @@ public final class AnimacjeHub extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        try {
+            Class<?> m = Class.forName("org.bukkit.inventory.Material");
+            Object diament = m.getField("DIAMOND").get(null);
+            logInfo("API check: Material OK (" + diament + ")");
+        } catch (Throwable t) {
+            logError("API check: BRAK org.bukkit.inventory.Material! (" + t + ")");
+            logError("To problem STRONY SERWERA (API/Java), nie pluginu. Jaka to wersja Paper i jaki Java?");
+        }
         saveDefaultConfig();
         cfg = getConfig();
         FxKatalog.wczytaj();
@@ -57,6 +65,10 @@ public final class AnimacjeHub extends JavaPlugin {
 
     public void logInfo(String s) {
         getLogger().info("[AnimacjeHub] " + s);
+    }
+
+    public void logError(String s) {
+        getLogger().severe("[AnimacjeHub] " + s);
     }
 
     public PlayerData dane(Player p) {

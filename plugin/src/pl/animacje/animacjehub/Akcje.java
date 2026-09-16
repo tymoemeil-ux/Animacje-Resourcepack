@@ -50,7 +50,7 @@ public final class Akcje {
                 if (tekst.length() == 0) return;
                 FxKatalog.Fx fx = FxKatalog.nazwa(ogloszenieFx);
                 String prefiks = fx != null ? fx.spust() : "";
-                Bukkit.broadcastMessage(prefiks + "\u00A7r" + tekst);
+                broadcast(prefiks + "\u00A7r" + tekst);
                 if (ogloszenieDzwiek) {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 0.5f, 1.3f);
@@ -77,11 +77,16 @@ public final class Akcje {
         return fx != null ? fx : FxKatalog.ANIMOWANE.get(RND.nextInt(FxKatalog.ANIMOWANE.size()));
     }
 
+    private static void broadcast(String msg) {
+        for (Player p : Bukkit.getOnlinePlayers()) p.sendMessage(msg);
+        try { Bukkit.getConsoleSender().sendMessage(msg); } catch (Throwable ignored) {}
+    }
+
     public static void trollCzat(AnimacjeHub hub, Player od, String tekst, boolean jakoSerwer) {
         PlayerData d = hub.dane(od);
         FxKatalog.Fx fx = fxTrollu(d);
         String nadawca = jakoSerwer ? "SERWER" : od.getName();
-        Bukkit.broadcastMessage(fx.spust() + "\u00A7r" + tekst + " \u00A78- " + nadawca);
+        broadcast(fx.spust() + "\u00A7r" + tekst + " \u00A78- " + nadawca);
         if (d.dzwieki) od.playSound(od.getLocation(), Sound.ENTITY_VILLAGER_NO, 0.8f, 0.6f);
     }
 

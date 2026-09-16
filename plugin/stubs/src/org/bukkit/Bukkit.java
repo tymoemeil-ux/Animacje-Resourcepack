@@ -9,6 +9,7 @@ import java.util.UUID;
 public final class Bukkit {
     private Bukkit() {}
     public static Collection<? extends Player> getOnlinePlayers() { return null; }
+    public static org.bukkit.command.CommandSender getConsoleSender() { return null; }
     public static Player getPlayer(String name) { return null; }
     public static Player getPlayer(UUID id) { return null; }
     public static Inventory createInventory(InventoryHolder owner, int size, String title) { return null; }
