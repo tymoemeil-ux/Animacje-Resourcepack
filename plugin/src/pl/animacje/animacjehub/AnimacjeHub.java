@@ -9,7 +9,6 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +21,7 @@ public final class AnimacjeHub extends JavaPlugin {
     private final Map<UUID, Prompt> prompty = new HashMap<UUID, Prompt>();
     private final Map<UUID, Long> cooldowny = new HashMap<UUID, Long>();
     private Gui gui;
+    private GuiViews views;
 
     @Override
     public void onEnable() {
@@ -30,15 +30,13 @@ public final class AnimacjeHub extends JavaPlugin {
         cfg = getConfig();
         FxKatalog.wczytaj();
         RankEngine.init(cfg);
-        gui = new Gui(this);
+        views = new GuiViews(this);
+        gui = new Gui(views);
         Api.init(this);
         Api.registerEvents(gui, this);
         Api.registerEvents(new ChatHook(this), this);
-        PluginCommand c = (PluginCommand) getCommand("anim");
-        if (c != null) {
-            c.setExecutor(this);
-            c.setTabCompleter(this);
-        }
+        Object c = Api.getCommand(this, "anim");
+        Api.commandSet(c, this, this);
         if (cfg.getBoolean("ogloszenia.wlacz", false)) {
             Akcje.ogloszeniaStart(this, true);
         }
@@ -129,12 +127,12 @@ public final class AnimacjeHub extends JavaPlugin {
         Player p = (Player) sender;
         if (args.length == 0) {
             if (!p.hasPermission("animacjehub.use")) { p.sendMessage("\u00A7c> Brak praw."); return true; }
-            gui.otworz(p, Gui.Tab.GLOWNA);
+            views.otworz(p, GuiViews.Tab.GLOWNA);
             return true;
         }
         String a = args[0].toLowerCase();
         if (a.equals("gui")) {
-            gui.otworz(p, Gui.Tab.GLOWNA);
+            views.otworz(p, GuiViews.Tab.GLOWNA);
         } else if (a.equals("reload")) {
             if (!p.hasPermission("animacjehub.admin")) { p.sendMessage("\u00A7c> Brak praw."); return true; }
             pelnyReload();

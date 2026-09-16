@@ -3,8 +3,11 @@ package pl.animacje.animacjehub;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,11 +16,14 @@ public final class Api {
     private static Object pluginManager;
     private static Method regEvents;
     private static Object scheduler;
+    private static Logger log;
     private static final Map<String, Method> cache = new HashMap<String, Method>();
 
     private Api() {}
 
     public static void init(JavaPlugin plugin) {
+        log = plugin.getLogger();
+        // --- plugin manager ---
         try {
             Method m = Bukkit.class.getMethod("getPluginManager");
             pluginManager = m.invoke(null);
@@ -30,8 +36,9 @@ public final class Api {
                 }
             }
         } catch (Throwable t) {
-            t.printStackTrace();
+            log.severe("Api: getPluginManager nie dziala: " + t);
         }
+        // --- scheduler: najpierw JavaPlugin#getScheduler(), fallback Bukkit#getScheduler() ---
         try {
             Method sm = null;
             for (Method mm : JavaPlugin.class.getMethods()) {
@@ -42,19 +49,53 @@ public final class Api {
             }
             if (sm != null) {
                 scheduler = sm.invoke(plugin);
-                cache.clear();
             }
         } catch (Throwable t) {
-            t.printStackTrace();
+            scheduler = null;
+        }
+        if (scheduler == null) {
+            try {
+                scheduler = Bukkit.class.getMethod("getScheduler").invoke(null);
+            } catch (Throwable t) {
+                log.severe("Api: brak schedulera: " + t);
+            }
+        }
+        if (scheduler != null) {
+            cache.clear();
+            log.info("Api: scheduler = " + scheduler.getClass().getName());
         }
     }
 
     public static void registerEvents(Listener l, JavaPlugin p) {
         try {
-            if (regEvents != null) regEvents.invoke(pluginManager, l, p);
+            if (regEvents != null) {
+                regEvents.invoke(pluginManager, l, p);
+            } else {
+                log.severe("Api: brak metody registerEvents");
+            }
         } catch (Throwable t) {
-            t.printStackTrace();
+            log.severe("Api: registerEvents nie dziala: " + t);
         }
+    }
+
+    public static Object getCommand(JavaPlugin p, String name) {
+        try {
+            for (Method m : p.getClass().getMethods()) {
+                if (m.getName().equals("getCommand") && m.getParameterCount() == 1
+                        && m.getParameterTypes()[0].isAssignableFrom(String.class)) {
+                    return m.invoke(p, name);
+                }
+            }
+        } catch (Throwable t) {
+            log.severe("Api: getCommand nie dziala: " + t);
+        }
+        return null;
+    }
+
+    public static void commandSet(Object cmd, CommandExecutor ex, TabCompleter tc) {
+        if (cmd == null) return;
+        call(cmd, "setExecutor", ex);
+        call(cmd, "setTabCompleter", tc);
     }
 
     public static Object runTask(JavaPlugin p, Runnable r) {
@@ -75,21 +116,27 @@ public final class Api {
 
     public static void taskCancel(Object task) {
         if (task == null) return;
+        call(task, "cancel");
+    }
+
+    private static void call(Object obj, String name, Object... args) {
         try {
-            Method m = task.getClass().getMethod("cancel");
-            m.invoke(task);
+            for (Method m : obj.getClass().getMethods()) {
+                if (m.getName().equals(name) && m.getParameterCount() == args.length) {
+                    m.invoke(obj, args);
+                    return;
+                }
+            }
+            log.severe("Api: brak metody " + name + "/" + args.length + " na " + obj.getClass().getName());
         } catch (Throwable t) {
-            t.printStackTrace();
+            log.severe("Api: " + name + " nie dziala: " + t);
         }
     }
 
     private static synchronized Method find(String name, Object... args) {
         if (scheduler == null) return null;
         Method hit = cache.get(name);
-        if (hit != null) {
-            if (hit.getParameterCount() == args.length) return hit;
-            hit = null;
-        }
+        if (hit != null && hit.getParameterCount() == args.length) return hit;
         for (Method m : scheduler.getClass().getMethods()) {
             if (!m.getName().equals(name) || m.getParameterCount() != args.length) continue;
             Class<?>[] pt = m.getParameterTypes();
@@ -117,7 +164,7 @@ public final class Api {
             try {
                 return m.invoke(scheduler, args);
             } catch (Throwable t) {
-                // spadamy na fallback
+                // fallback
             }
         }
         if (scheduler != null) {
@@ -130,7 +177,8 @@ public final class Api {
                 }
             }
         }
-        System.err.println("[AnimacjeHub] brak dzialajacej metody schedulera: " + name + "/" + args.length);
+        log.severe("Api: brak dzialajacej metody schedulera: " + name + "/" + args.length
+                + (scheduler != null ? " (scheduler: " + scheduler.getClass().getName() + ")" : ""));
         return null;
     }
 }
