@@ -10,14 +10,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemMeta;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Material;
-import org.bukkit.scheduler.BukkitTask;
 
 public final class Akcje {
     private static final Random RND = new Random();
 
     public static String ogloszenieFx = "neon";
     public static int ogloszenieOdstep = 90;
-    public static BukkitTask ogloszenieTask = null;
+    public static Object ogloszenieTask = null;
     public static boolean ogloszenieDzwiek = true;
     public static String ogloszenieTekst = "";
     private static int ogloszenieIdx = 0;
@@ -40,7 +39,7 @@ public final class Akcje {
         }
         if (ogloszenieTekst.length() == 0) return;
         long ticki = ogloszenieOdstep * 20L;
-        ogloszenieTask = hub.getScheduler().runTaskTimer(hub, new Runnable() {
+        ogloszenieTask = Api.runTaskTimer(hub, new Runnable() {
             public void run() {
                 List<String> teksty = hub.cfg.getStringList("ogloszenia.teksty");
                 String tekst = ogloszenieTekst;
@@ -64,7 +63,7 @@ public final class Akcje {
 
     public static void ogloszeniaStop() {
         if (ogloszenieTask != null) {
-            ogloszenieTask.cancel();
+            Api.taskCancel(ogloszenieTask);
             ogloszenieTask = null;
         }
     }

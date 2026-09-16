@@ -23,7 +23,7 @@ public final class ChatHook implements Listener {
         if (pr != null) {
             final String wartosc = e.getMessage();
             e.setCancelled(true);
-            hub.getScheduler().runTask(hub, new Runnable() {
+            Api.runTask(hub, new Runnable() {
                 public void run() {
                     if (!p.isOnline()) return;
                     if (wartosc.equalsIgnoreCase("off") || wartosc.equalsIgnoreCase("anuluj") || wartosc.length() == 0) {

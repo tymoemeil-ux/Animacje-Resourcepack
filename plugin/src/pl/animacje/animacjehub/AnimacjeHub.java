@@ -31,8 +31,9 @@ public final class AnimacjeHub extends JavaPlugin {
         FxKatalog.wczytaj();
         RankEngine.init(cfg);
         gui = new Gui(this);
-        Bukkit.getPluginManager().registerEvents(gui, this);
-        Bukkit.getPluginManager().registerEvents(new ChatHook(this), this);
+        Api.init(this);
+        Api.registerEvents(gui, this);
+        Api.registerEvents(new ChatHook(this), this);
         PluginCommand c = (PluginCommand) getCommand("anim");
         if (c != null) {
             c.setExecutor(this);
@@ -53,7 +54,7 @@ public final class AnimacjeHub extends JavaPlugin {
             PlayerData d = daneMap.get(p.getUniqueId());
             if (d != null) d.zapisz(PlayerData.plik(p.getUniqueId()));
         }
-        getScheduler().cancelTasks(this);
+        Api.cancelTasks(this);
     }
 
     public void logInfo(String s) {
