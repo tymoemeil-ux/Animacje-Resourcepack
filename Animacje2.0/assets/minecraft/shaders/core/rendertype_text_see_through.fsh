@@ -455,55 +455,55 @@ void main() {
         color = tfxRenderBackdoor(uv, texColor, tfxColor);
     } else if (tfx == 216) {
         color = tfxRenderLampaBiala(uv, texColor, tfxColor);
- else if (tfx == 217) {
+    } else if (tfx == 217) {
         color = tfxRenderLampaZlota(uv, texColor, tfxColor);
- else if (tfx == 221) {
+    } else if (tfx == 221) {
         color = tfxRenderLaserZielony(uv, texColor, tfxColor);
- else if (tfx == 222) {
+    } else if (tfx == 222) {
         color = tfxRenderLaserFioletowy(uv, texColor, tfxColor);
- else if (tfx == 226) {
+    } else if (tfx == 226) {
         color = tfxRenderFala2Morska(uv, texColor, tfxColor);
- else if (tfx == 227) {
+    } else if (tfx == 227) {
         color = tfxRenderFala2Lawendowa(uv, texColor, tfxColor);
- else if (tfx == 231) {
+    } else if (tfx == 231) {
         color = tfxRenderSkanerNeon(uv, texColor, tfxColor);
- else if (tfx == 232) {
+    } else if (tfx == 232) {
         color = tfxRenderSkanerPlazmowy(uv, texColor, tfxColor);
- else if (tfx == 236) {
+    } else if (tfx == 236) {
         color = tfxRenderGwiazdySnieg(uv, texColor, tfxColor);
- else if (tfx == 237) {
+    } else if (tfx == 237) {
         color = tfxRenderGwiazdyZloto(uv, texColor, tfxColor);
- else if (tfx == 241) {
+    } else if (tfx == 241) {
         color = tfxRenderPulsarKarmazyn(uv, texColor, tfxColor);
- else if (tfx == 242) {
+    } else if (tfx == 242) {
         color = tfxRenderPulsarNeonowy(uv, texColor, tfxColor);
- else if (tfx == 246) {
+    } else if (tfx == 246) {
         color = tfxRenderDrganieSiebie(uv, texColor, tfxColor);
- else if (tfx == 247) {
+    } else if (tfx == 247) {
         color = tfxRenderDrganieFali(uv, texColor, tfxColor);
- else if (tfx == 251) {
+    } else if (tfx == 251) {
         color = tfxRenderSkokWesoly(uv, texColor, tfxColor);
- else if (tfx == 252) {
+    } else if (tfx == 252) {
         color = tfxRenderSkokSprint(uv, texColor, tfxColor);
- else if (tfx == 256) {
+    } else if (tfx == 256) {
         color = tfxRenderWahadloZegar(uv, texColor, tfxColor);
- else if (tfx == 257) {
+    } else if (tfx == 257) {
         color = tfxRenderWahadloLuna(uv, texColor, tfxColor);
- else if (tfx == 261) {
+    } else if (tfx == 261) {
         color = tfxRenderWirGalaktyka(uv, texColor, tfxColor);
- else if (tfx == 262) {
+    } else if (tfx == 262) {
         color = tfxRenderWirOcean(uv, texColor, tfxColor);
- else if (tfx == 266) {
+    } else if (tfx == 266) {
         color = tfxRenderKapKropla(uv, texColor, tfxColor);
- else if (tfx == 267) {
+    } else if (tfx == 267) {
         color = tfxRenderKapWodny(uv, texColor, tfxColor);
- else if (tfx == 271) {
+    } else if (tfx == 271) {
         color = tfxRenderDryfChmura(uv, texColor, tfxColor);
- else if (tfx == 272) {
+    } else if (tfx == 272) {
         color = tfxRenderDryfZarny(uv, texColor, tfxColor);
- else if (tfx == 276) {
+    } else if (tfx == 276) {
         color = tfxRenderMatrixZielony(uv, texColor, tfxColor);
- else if (tfx == 279) {
+    } else if (tfx == 279) {
         color = tfxRenderMatrixFiolet(uv, texColor, tfxColor);
     }
 

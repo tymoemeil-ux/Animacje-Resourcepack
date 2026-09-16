@@ -120,7 +120,8 @@ public final class AnimacjeHub extends JavaPlugin {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        try {
+            if (!(sender instanceof Player)) {
             sender.sendMessage("AnimacjeHub dziala tylko z gry (/anim).");
             return true;
         }
@@ -178,8 +179,18 @@ public final class AnimacjeHub extends JavaPlugin {
             p.sendMessage("\u00A77Wybierz: \u00A7f/anim \u00A77(menu FX)");
         } else {
             p.sendMessage("\u00A78[Animacje] \u00A7f/anim \u00A78- menu | \u00A7f/anim nick <tx> \u00A78- nick | \u00A7f/anim item <tx> \u00A78- item | \u00A7f/anim troll <tx>");
+            }
+            return true;
+        } catch (Throwable t) {
+            t.printStackTrace();
+            if (sender instanceof Player) {
+                try {
+                    ((Player) sender).sendMessage("\u00A7c> AnimacjeHub: b" + "l" + "ad: " + t.getClass().getSimpleName() + (t.getMessage() == null ? "" : " - " + t.getMessage()));
+                    ((Player) sender).sendMessage("\u00A77W plugins/ musi byc DOKLADNIE JEDEN jar AnimacjeHub (usun stare pobrania, np. z (1), (2)).");
+                } catch (Throwable ignored) {}
+            }
+            return true;
         }
-        return true;
     }
 
     private static String scal(String[] args, int od) {
