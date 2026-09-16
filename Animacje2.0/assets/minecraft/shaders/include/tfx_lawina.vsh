@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: LAWINA   |   kolor spustowy: #A0A06C
-// znaki spadaja lawinowo po kolei, sniegowa biel (HYBRYDA: kolor + ruch)
-// ============================================================
 if (c == ivec3(160, 160, 108)) {
         tfxIDg = 52.0;
         float ph = fract(GameTime * 0.8 + g * 0.08);

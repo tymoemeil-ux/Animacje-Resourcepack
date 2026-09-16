@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch rakieta + kolor trawa): RAKIETA_TRAWA   |   kolor spustowy: #60D02C
-// rakieta_trawa
-// ============================================================
 if (c == ivec3(96, 208, 44)) {
         tfxIDg = 197.0;
 

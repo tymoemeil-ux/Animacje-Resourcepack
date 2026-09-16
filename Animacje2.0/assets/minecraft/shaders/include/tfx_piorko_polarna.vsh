@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch piorko + kolor polarna): PIORKO_POLARNA   |   kolor spustowy: #60D044
-// piorko_polarna
-// ============================================================
 if (c == ivec3(96, 208, 68)) {
         tfxIDg = 203.0;
 

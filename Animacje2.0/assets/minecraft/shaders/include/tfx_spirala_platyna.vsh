@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): SPIRALA_PLATYNA   |   kolor spustowy: #80C070
-// polaczenie: ruch spirala + kolor platyna
-// ============================================================
 if (c == ivec3(128, 192, 112)) {
         tfxIDg = 117.0;
         float ph = GameTime * 2.0 + g * 0.3;

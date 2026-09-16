@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch plyn + kolor wschod): PLYN_WSCHOD   |   kolor spustowy: #60D034
-// plyn_wschod
-// ============================================================
 if (c == ivec3(96, 208, 52)) {
         tfxIDg = 199.0;
 

@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: TREMOR   |   kolor spustowy: #A04000
-// trzesienie ziemi — wybuchy tresu co 3 sekundy
-// ============================================================
 if (c == ivec3(160, 64, 0)) {
         tfxIDg = 46.0;
         float ph = fract(GameTime / 3.0);

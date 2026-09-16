@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): BUNGEE_LAWENDA   |   kolor spustowy: #80D008
-// polaczenie: ruch bungee + kolor lawenda
-// ============================================================
 if (c == ivec3(128, 208, 8)) {
         tfxIDg = 155.0;
         float ph = fract(GameTime * 0.6);

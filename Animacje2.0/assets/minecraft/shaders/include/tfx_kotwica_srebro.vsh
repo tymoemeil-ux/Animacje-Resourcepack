@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch kotwica + kolor srebro): KOTWICA_SREBRO   |   kolor spustowy: #60D000
-// kotwica_srebro
-// ============================================================
 if (c == ivec3(96, 208, 0)) {
         tfxIDg = 186.0;
 

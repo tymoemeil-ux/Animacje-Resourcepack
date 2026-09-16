@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch deszczyk + kolor karmel): DESZCZYK_KARMEL   |   kolor spustowy: #60D024
-// deszczyk_karmel
-// ============================================================
 if (c == ivec3(96, 208, 36)) {
         tfxIDg = 195.0;
 

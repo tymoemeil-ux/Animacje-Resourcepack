@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (RUCH): BUNGEE   |   kolor spustowy: #80C018
-// spad i sprzynczyste odbicia (bungee), pomaranczowo-czerwony
-// ============================================================
 if (c == ivec3(128, 192, 24)) {
         tfxIDg = 95.0;
         float ph = fract(GameTime * 0.6);

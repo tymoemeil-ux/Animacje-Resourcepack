@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): METRONOM_GALAKTYCZNY   |   kolor spustowy: #80C0E4
-// polaczenie: ruch metronom + kolor galaktyczny
-// ============================================================
 if (c == ivec3(128, 192, 228)) {
         tfxIDg = 146.0;
         float e = smoothstep(0.0, 0.5, 0.5 + 0.5 * sin(GameTime * 2.2));

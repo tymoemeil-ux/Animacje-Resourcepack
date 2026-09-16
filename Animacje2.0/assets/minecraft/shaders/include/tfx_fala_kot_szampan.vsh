@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch fala_kot + kolor szampan): FALA_KOT_SZAMPAN   |   kolor spustowy: #60D018
-// fala_kot_szampan
-// ============================================================
 if (c == ivec3(96, 208, 24)) {
         tfxIDg = 192.0;
 

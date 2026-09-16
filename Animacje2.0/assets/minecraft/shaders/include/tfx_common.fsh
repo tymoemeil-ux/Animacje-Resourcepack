@@ -1,7 +1,3 @@
-// ============================================================
-// Animacje 2.0 — funkcje efektow fragmentowych (FSH)
-// kazdy efekt = osobny plik tfx_<nazwa>.fsh
-// ============================================================
 float tfxHashF(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }

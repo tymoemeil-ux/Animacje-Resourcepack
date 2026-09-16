@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (RUCH): LOSOWE_SKOKI   |   kolor spustowy: #A0A0E8
-// znaki teleporutuja losowo co 0.25s, neon zielen
-// ============================================================
 if (c == ivec3(160, 160, 232)) {
         tfxIDg = 83.0;
         float f = floor(GameTime * 4.0);

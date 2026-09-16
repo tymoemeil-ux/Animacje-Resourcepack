@@ -1,4 +1,3 @@
-
 vec4 tfxRenderNeon(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float p = 0.5 + 0.5 * sin(GameTime * 5.0);

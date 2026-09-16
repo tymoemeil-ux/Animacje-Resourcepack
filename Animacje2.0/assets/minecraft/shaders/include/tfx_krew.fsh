@@ -1,4 +1,3 @@
-
 vec4 tfxRenderKrew(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float m = tfxHashF(floor(gl_FragCoord.xy / 6.0) + vec2(floor(GameTime * 2.0)));

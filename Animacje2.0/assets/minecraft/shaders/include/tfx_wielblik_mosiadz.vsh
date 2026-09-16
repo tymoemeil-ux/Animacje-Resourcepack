@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch wielblik + kolor mosiadz): WIELBLIK_MOSIADZ   |   kolor spustowy: #60D020
-// wielblik_mosiadz
-// ============================================================
 if (c == ivec3(96, 208, 32)) {
         tfxIDg = 194.0;
 

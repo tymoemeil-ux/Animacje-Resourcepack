@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): FALA_WODNA_PERLA   |   kolor spustowy: #80C08C
-// polaczenie: ruch fala_wodna + kolor perla
-// ============================================================
 if (c == ivec3(128, 192, 140)) {
         tfxIDg = 124.0;
         float t = GameTime;

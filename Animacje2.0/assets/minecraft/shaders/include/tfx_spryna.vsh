@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: SPRYNA   |   kolor spustowy: #FF5070
-// spryzna — wysoce czestotliwy dzwon, amplituda pulsuje
-// ============================================================
 if (c == ivec3(255, 80, 112)) {
         tfxIDg = 49.0;
         float env = 0.5 + 0.5 * sin(GameTime * 0.9);

@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch kotwica + kolor magma): KOTWICA_MAGMA   |   kolor spustowy: #60D03C
-// kotwica_magma
-// ============================================================
 if (c == ivec3(96, 208, 60)) {
         tfxIDg = 201.0;
 

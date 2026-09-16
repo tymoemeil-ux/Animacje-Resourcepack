@@ -459,7 +459,6 @@ void main() {
         color = tfxRenderBackdoor(uv, texColor, tfxColor);
     }
 
-
     if (color.a < 0.1) {
         discard;
     }

@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: SKOK   |   kolor spustowy: #FF7000
-// caly tekst podskakuje (hop, hop, hop)
-// ============================================================
 if (c == ivec3(255, 112, 0)) {
         tfxIDg = 41.0;
         float ph = fract(GameTime * 0.85);

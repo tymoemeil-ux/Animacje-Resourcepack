@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch piorko + kolor krystal): PIORKO_KRYSTAL   |   kolor spustowy: #60D004
-// piorko_krystal
-// ============================================================
 if (c == ivec3(96, 208, 4)) {
         tfxIDg = 187.0;
 

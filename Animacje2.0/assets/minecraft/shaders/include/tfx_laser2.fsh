@@ -1,4 +1,3 @@
-
 vec4 tfxRenderLaser2(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float b = fract(gl_FragCoord.y * 0.02 + GameTime * 0.45);

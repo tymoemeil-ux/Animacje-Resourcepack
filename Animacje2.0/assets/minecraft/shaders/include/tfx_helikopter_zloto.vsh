@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): HELIKOPTER_ZLOTO   |   kolor spustowy: #80C06C
-// polaczenie: ruch helikopter + kolor zloto
-// ============================================================
 if (c == ivec3(128, 192, 108)) {
         tfxIDg = 116.0;
         float ph = GameTime * 3.0 + g * 0.35;

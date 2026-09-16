@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: DYM   |   kolor spustowy: #A0A070
-// znaki unosza sie jak dym, szaro-niebieskie migotanie (HYBRYDA: kolor + ruch)
-// ============================================================
 if (c == ivec3(160, 160, 112)) {
         tfxIDg = 53.0;
         float ph = fract(GameTime * 0.5 + g * 0.05);

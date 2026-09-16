@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): BUNGEE_NEON_CYJAN   |   kolor spustowy: #80C0B8
-// polaczenie: ruch bungee + kolor neon_cyjan
-// ============================================================
 if (c == ivec3(128, 192, 184)) {
         tfxIDg = 135.0;
         float ph = fract(GameTime * 0.6);

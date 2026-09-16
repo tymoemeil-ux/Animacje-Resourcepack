@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: HOPWAVE   |   kolor spustowy: #00FF90
-// znaki podskakuja po kolei (fala skokow)
-// ============================================================
 if (c == ivec3(0, 255, 144)) {
         tfxIDg = 43.0;
         float ph = fract(g * 0.10 - GameTime * 0.75);

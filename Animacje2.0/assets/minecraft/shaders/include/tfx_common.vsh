@@ -1,7 +1,3 @@
-// ============================================================
-// Animacje 2.0 — silnik efektow (VSH) — nowy kod od zera
-// Stan efektu: kazdy efekt (osobny plik) ustawia zmienne tfx*g
-// ============================================================
 float tfxIDg = 0.0;
 vec4  tfxBaseg = vec4(1.0);
 vec2  tfxOffg = vec2(0.0);

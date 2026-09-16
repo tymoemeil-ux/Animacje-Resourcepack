@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: PRAD   |   kolor spustowy: #A0A0A0
-// znaki porazone pradem (trzesienie + biale rozblyski), elektryczny (HYBRYDA: kolor + ruch)
-// ============================================================
 if (c == ivec3(160, 160, 160)) {
         tfxIDg = 65.0;
         float ph = fract(GameTime / 2.0);

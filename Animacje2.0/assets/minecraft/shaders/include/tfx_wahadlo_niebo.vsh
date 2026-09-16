@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch wahadlo + kolor niebo): WAHADLO_NIEBO   |   kolor spustowy: #60D030
-// wahadlo_niebo
-// ============================================================
 if (c == ivec3(96, 208, 48)) {
         tfxIDg = 198.0;
 

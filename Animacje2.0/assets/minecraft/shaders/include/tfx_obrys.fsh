@@ -1,4 +1,3 @@
-
 vec4 tfxRenderObrys(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float n = 0.0;

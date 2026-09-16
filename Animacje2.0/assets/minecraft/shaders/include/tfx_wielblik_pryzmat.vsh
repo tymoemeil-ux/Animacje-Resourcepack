@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch wielblik + kolor pryzmat): WIELBLIK_PRYZMAT   |   kolor spustowy: #60D04C
-// wielblik_pryzmat
-// ============================================================
 if (c == ivec3(96, 208, 76)) {
         tfxIDg = 205.0;
 

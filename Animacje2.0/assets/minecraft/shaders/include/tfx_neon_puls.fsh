@@ -1,4 +1,3 @@
-
 vec4 tfxRenderNeonPuls(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float t = fract(GameTime * 1.5);

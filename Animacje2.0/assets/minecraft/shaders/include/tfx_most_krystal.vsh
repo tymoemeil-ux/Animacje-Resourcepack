@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch most + kolor krystal): MOST_KRYSTAL   |   kolor spustowy: #60D040
-// most_krystal
-// ============================================================
 if (c == ivec3(96, 208, 64)) {
         tfxIDg = 202.0;
 

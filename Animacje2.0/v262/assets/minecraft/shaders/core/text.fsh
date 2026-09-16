@@ -7,7 +7,6 @@
 #moj_import <minecraft:dynamictransforms.glsl>
 #moj_import <minecraft:globals.glsl>
 
-// 26.x: GameTime = ulek dnia (0..1 w 20 min) -> zamiana na sekundy
 #define GameTime (GameTime * 1200.0)
 
 uniform sampler2D Sampler0;
@@ -474,7 +473,6 @@ void main() {
     } else if (tfx == 215) {
         color = tfxRenderBackdoor(uv, texColor, tfxColor);
     }
-
 
     if (color.a < 0.1) {
         discard;

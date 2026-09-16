@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch przepylacz + kolor grafit): PRZEPYLACZ_GRAFIT   |   kolor spustowy: #60D01C
-// przepylacz_grafit
-// ============================================================
 if (c == ivec3(96, 208, 28)) {
         tfxIDg = 193.0;
 

@@ -1,4 +1,3 @@
-
 vec4 tfxRenderGalaktyka(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     vec2 px = floor(gl_FragCoord.xy / 3.0);

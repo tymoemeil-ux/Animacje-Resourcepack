@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: MAGNES   |   kolor spustowy: #A0A090
-// caly tekst jest przyciagany w lewo i szarpie z powrotem, elektryczny niebieski (HYBRYDA: kolor + ruch)
-// ============================================================
 if (c == ivec3(160, 160, 144)) {
         tfxIDg = 61.0;
         float ph = fract(GameTime * 1.2);

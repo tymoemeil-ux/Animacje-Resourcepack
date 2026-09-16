@@ -1,4 +1,3 @@
-
 vec4 tfxRenderTecfala(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float d = gl_FragCoord.x * 0.008 + gl_FragCoord.y * 0.002;

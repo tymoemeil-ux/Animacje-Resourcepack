@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch bumerang + kolor zachod): BUMERANG_ZACHOD   |   kolor spustowy: #60D038
-// bumerang_zachod
-// ============================================================
 if (c == ivec3(96, 208, 56)) {
         tfxIDg = 200.0;
 

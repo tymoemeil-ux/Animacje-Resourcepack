@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (HYBRYDA: kolor + ruch): NEON   |   kolor spustowy: #A0A01C
-// pulsujace swiatlo neonowe
-// ============================================================
 if (c == ivec3(160, 160, 28)) {
         tfxIDg = 8.0;
         tfxBaseg = vec4(1.0);

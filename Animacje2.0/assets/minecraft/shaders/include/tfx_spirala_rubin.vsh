@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): SPIRALA_RUBIN   |   kolor spustowy: #80C0C0
-// polaczenie: ruch spirala + kolor rubin
-// ============================================================
 if (c == ivec3(128, 192, 192)) {
         tfxIDg = 137.0;
         float ph = GameTime * 2.0 + g * 0.3;

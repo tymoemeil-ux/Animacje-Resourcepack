@@ -1,4 +1,3 @@
-
 vec4 tfxRenderKaskada(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float d = gl_FragCoord.x * 0.005 + gl_FragCoord.y * 0.009;

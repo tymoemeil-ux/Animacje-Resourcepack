@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: ZIGZAG   |   kolor spustowy: #B0B000
-// zygzak — twarde szarpniecia w bok, fala po znakach
-// ============================================================
 if (c == ivec3(176, 176, 0)) {
         tfxIDg = 48.0;
         float q = GameTime * 1.4 + g * 0.04;

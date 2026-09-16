@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: WOBBLE   |   kolor spustowy: #E0C040
-// mikro-trzes — jak kamera z rek
-// ============================================================
 if (c == ivec3(224, 192, 64)) {
         tfxIDg = 44.0;
         float f = floor(GameTime * 22.0);

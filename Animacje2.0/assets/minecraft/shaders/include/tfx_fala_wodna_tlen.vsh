@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): FALA_WODNA_TLEN   |   kolor spustowy: #80C0DC
-// polaczenie: ruch fala_wodna + kolor tlen
-// ============================================================
 if (c == ivec3(128, 192, 220)) {
         tfxIDg = 144.0;
         float t = GameTime;

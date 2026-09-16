@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch ptaszek + kolor wisnia): PTASZEK_WISNIA   |   kolor spustowy: #60D028
-// ptaszek_wisnia
-// ============================================================
 if (c == ivec3(96, 208, 40)) {
         tfxIDg = 196.0;
 

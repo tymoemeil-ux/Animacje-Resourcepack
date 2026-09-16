@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (RUCH): DRGANIA_MUZYCZNE   |   kolor spustowy: #A0A0F8
-// kop w dol przy kazdym bicie (1 Hz), magenta
-// ============================================================
 if (c == ivec3(160, 160, 248)) {
         tfxIDg = 87.0;
         float ph = fract(GameTime);

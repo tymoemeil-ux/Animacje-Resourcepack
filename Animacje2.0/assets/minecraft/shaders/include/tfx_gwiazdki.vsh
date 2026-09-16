@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT: GWIAZDKI   |   kolor spustowy: #A0A0B4
-// znaki kraca male kolka, migocace gwiazdki (HYBRYDA: kolor + ruch)
-// ============================================================
 if (c == ivec3(160, 160, 180)) {
         tfxIDg = 70.0;
         float ph = g * 0.8 + GameTime * 2.0;

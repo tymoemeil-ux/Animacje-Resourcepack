@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch skakosz + kolor szampan): SKAKOSZ_SZAMPAN   |   kolor spustowy: #60D048
-// skakosz_szampan
-// ============================================================
 if (c == ivec3(96, 208, 72)) {
         tfxIDg = 204.0;
 

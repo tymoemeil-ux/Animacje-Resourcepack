@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch strzala + kolor polarna): STRZALA_POLARNA   |   kolor spustowy: #60D008
-// strzala_polarna
-// ============================================================
 if (c == ivec3(96, 208, 8)) {
         tfxIDg = 188.0;
 

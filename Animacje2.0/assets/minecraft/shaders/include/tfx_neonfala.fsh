@@ -1,4 +1,3 @@
-
 vec4 tfxRenderNeonfala(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
     float d = gl_FragCoord.x * 0.004;

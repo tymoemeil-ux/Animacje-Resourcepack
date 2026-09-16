@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch skakosz + kolor pryzmat): SKAKOSZ_PRYZMAT   |   kolor spustowy: #60D014
-// skakosz_pryzmat
-// ============================================================
 if (c == ivec3(96, 208, 20)) {
         tfxIDg = 191.0;
 

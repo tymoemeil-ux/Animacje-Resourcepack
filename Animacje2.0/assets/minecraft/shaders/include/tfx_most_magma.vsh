@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (polaczenie: ruch most + kolor magma): MOST_MAGMA   |   kolor spustowy: #60D00C
-// most_magma
-// ============================================================
 if (c == ivec3(96, 208, 12)) {
         tfxIDg = 189.0;
 

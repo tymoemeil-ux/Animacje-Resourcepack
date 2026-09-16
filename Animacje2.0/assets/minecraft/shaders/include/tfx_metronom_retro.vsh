@@ -1,7 +1,3 @@
-// ============================================================
-// EFEKT (POLACZENIE): METRONOM_RETRO   |   kolor spustowy: #80C094
-// polaczenie: ruch metronom + kolor retro
-// ============================================================
 if (c == ivec3(128, 192, 148)) {
         tfxIDg = 126.0;
         float e = smoothstep(0.0, 0.5, 0.5 + 0.5 * sin(GameTime * 2.2));
