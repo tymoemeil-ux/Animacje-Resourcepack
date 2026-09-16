@@ -1,0 +1,71 @@
+# ============================================================
+#  AnimacjeHub - konfiguracja
+#  /anim = menu GLOW (ogloszenia, nick, itemki, trolle, rangi,
+#  wybór FX, opcje)
+# ============================================================
+
+rangi:
+  # skad brac ranye: auto | luckperms | lucj | vanilla
+  zrodlo: auto
+  # true = kolor rangi pokazany jako najblizszy ANIMOWANY efekt
+  # (hex z konfigu -> FX z pakietu), false = czysty kolor
+  animowane: true
+  # kolejnosc sprawdzania rang (pierwsza wygrana = twoja ranga)
+  kolejnosc: [admin, moderator, vip, user]
+  # klucze kolorow (uzywaj w config): kolory-klucze + kolory.<ranga>
+  kolory-klucze: [admin, moderator, vip, user]
+  kolory:
+    admin: "#FF5555"
+    moderator: "#55FF55"
+    vip: "#5555FF"
+    user: "#AAAAAA"
+  # tylko dla zrodlo: vanilla (lub auto gdy nie ma LuckPerms)
+  # {ranga: node.uprawnienia}
+  vanilla-klucze: []
+  vanilla: {}
+
+chat:
+  # animowany nick w czacie (nick ustawiany w /anim)
+  nick_w_czacie: true
+  # kolorowanie tresci wiadomosci kolorem rangi
+  kolor_rangi: true
+
+ogloszenia:
+  # wlacz ogloszenia przy starcie serwera (mozna tez z GUI)
+  wlacz: false
+  # co ile sekund
+  odstep_s: 90
+  # dzwiek przy ogloszeniu
+  dzwiek: true
+  # FX uzywany przez ogloszenia (nazwa z /anim list)
+  fx: neon
+  # lista tekstow - przy >1 wpisach rotacja, przy 1 = ten tekst
+  # (można tez ustawic tekst w GUI: Ogloszenia -> Zmień tekst)
+  teksty:
+    - "Witaj na serwerze!"
+    - "Animacje 2.0 - wez pack i /anim!"
+
+trolle:
+  # cooldown miedzy trollami (sekundy)
+  cooldown_s: 15
+  # gotowe frazy trolli (GUI: trolle z losowa fraza)
+  teksty:
+    - "Hej, czy ty tez widzisz te animacje? Bo ja tak."
+    - "Kto tu zgubil swietlisto? Bo ja je widze."
+    - "Nie pisz, ze nie wiesz, co to /anim. Wiesz."
+    - "Twój nick jest taki... zwykly. Ustaw animowany!"
+    - "Znalazlem bug: text sie rusza. Odlaczam od sieci."
+    - "Czy wiesz, ze ten tekst ma w sobie FX? A ja od dawna."
+    - "Gdyby Minecraft mial tryb nocny, ten tekst by sie blyskal."
+    - "Nie, to nie lag. To animacja. Spokojnie."
+    - "Twój chat jest taki smutny bez efektow. Odbierz prezent."
+    - "Powiedz 'blysk' w czacie z animacja, to ci pokaże magię."
+    - "Serwer działa, grafika działa, ja też działam. Wszyscy szczęśliwi."
+    - "Znalazłem 280 sposobów na to, by tekst żył. Który lubisz?"
+    - "Ten troll jest od AnimacjeHub. Podziękuj shaderowi."
+    - "Jeśli czytasz to, to właśnie się trolujesz. Gratulacje."
+    - "PS: to zdanie też jest animowane. Zobacz, ile razy je przeczytałeś."
+
+gui:
+  # globalny dzwiek klikniec (osobno: opcje w GUI)
+  dzwieki: true

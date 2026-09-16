@@ -1,0 +1,28 @@
+name: AnimacjeHub
+main: pl.animacje.animacjehub.AnimacjeHub
+version: 1.0.0
+api-version: '1.21'
+description: Animacje 2.0 - ogloszenia, animowany nick, itemki, trolle, kolory per ranga (GUI /anim)
+author: Animacje
+softdepend: [LuckPerms]
+commands:
+  anim:
+    description: GLOW Animacje Hub
+    usage: /anim [gui|nick|item|troll|fx|list|reload]
+    aliases: [animacje, ah]
+permissions:
+  animacjehub.use:
+    description: Otwarcie menu /anim
+    default: true
+  animacjehub.nick:
+    description: Zmiana animowanego nicku
+    default: true
+  animacjehub.item:
+    description: Nazywanie itemow
+    default: true
+  animacjehub.troll:
+    description: Trollowanie
+    default: true
+  animacjehub.admin:
+    description: Ogloszenia, reload, troll serwera
+    default: op

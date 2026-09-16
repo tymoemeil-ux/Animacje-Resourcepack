@@ -6,7 +6,7 @@ Repozytorium resourcepacków do animowania tekstu w Minecraft Java Edition.
 
 | Plik | Opis |
 |------|------|
-| `Animacje2.0/` + `Animacje2.0.zip` | **AKTUALNA (2.0)**: nowy silnik od zera — **279 animowanych efektów + 11 czystych kolorów**, każdy efekt w osobnym pliku |
+| `Animacje2.0/` + `Animacje2.0.zip` | **AKTUALNA (2.0)**: nowy silnik od zera — **280 animowanych efektów + 11 czystych kolorów**, każdy efekt w osobnym pliku |
 | `Animacje1.0/` + `Animacje1.0.zip` | Archiwum (1.0): pełne 140 animacji |
 | `Animacje-Datapack/` + `Animacje-Datapack.zip` | Datapack (1.21.11) — animowany nick i hologramy |
 | `konwerter.py` | `<animacja:blysk>Test</animacja>` → gotowy `/tellraw` (wersja 2.0) |
@@ -14,7 +14,7 @@ Repozytorium resourcepacków do animowania tekstu w Minecraft Java Edition.
 
 ## Animacje 2.0 — nowy silnik (przebudowa od zera)
 
-- **279 efektów animowanych** — wszystkie wyraźnie animowane (zero subtelnych); pełna lista: `python3 narzedzia/konwerter.py --lista`
+- **280 efektów animowanych** — wszystkie wyraźnie animowane (zero subtelnych); pełna lista: `python3 narzedzia/konwerter.py --lista`
   - jaskrawe (fragmentowe/kinetyczne): blysk, neonfala, teczafala, kaskada, laser2, grzmot, neon, galaktyka, piorun, rainbow, glitch_hard, tsunami, karuzela, tornado, pulse, heartbeat, shake, ...
   - hybrydy i ruchy: tancuj, lawina, dym, helikopter, spirala, wibrowanie, zygzak_v2, skakosz, wahadlo, ...
   - serie tematyczne: neon (18), kruszce i kamienie (15), łączenia (40), ruchy 156-205, seria hakerska (10) + **partia 216-280: lampa, laser, fala2, skaner, gwiazdy, pulsar, drganie, skok, wahadlo, wir, kap, dryf, matrix (13 rodzin × 5)**

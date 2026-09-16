@@ -364,7 +364,7 @@ def main():
         snbt = False
         args = args[1:]
     if args and args[0] == "--lista":
-        print("279 animowanych (wszystkie = kolor + ruch):")
+        print("280 animowanych (wszystkie = kolor + ruch):")
         for t, i, h, typ in [
             ("blysk",1,"A0A000","fragment"),("neonfala",2,"A0A004","fragment"),("tecafala",3,"A0A008","fragment"),
             ("kaskada",4,"A0A00C","fragment"),("laser2",5,"A0A010","fragment"),("grzmot",6,"A0A014","fragment"),
