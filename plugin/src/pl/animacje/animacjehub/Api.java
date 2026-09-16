@@ -112,16 +112,25 @@ public final class Api {
     }
 
     private static Object invoke(String name, Object... args) {
-        try {
-            Method m = find(name, args);
-            if (m == null) {
-                System.err.println("[AnimacjeHub] brak metody schedulera: " + name + "/" + args.length);
-                return null;
+        Method m = find(name, args);
+        if (m != null) {
+            try {
+                return m.invoke(scheduler, args);
+            } catch (Throwable t) {
+                // spadamy na fallback
             }
-            return m.invoke(scheduler, args);
-        } catch (Throwable t) {
-            t.printStackTrace();
-            return null;
         }
+        if (scheduler != null) {
+            for (Method c : scheduler.getClass().getMethods()) {
+                if (!c.getName().equals(name) || c.getParameterCount() != args.length) continue;
+                try {
+                    return c.invoke(scheduler, args);
+                } catch (Throwable t) {
+                    // nastepna kandydatura
+                }
+            }
+        }
+        System.err.println("[AnimacjeHub] brak dzialajacej metody schedulera: " + name + "/" + args.length);
+        return null;
     }
 }
