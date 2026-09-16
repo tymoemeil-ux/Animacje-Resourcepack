@@ -232,4 +232,14 @@ void tfxDetect(ivec3 c, float g) {
     #moj_import <tfx_piorko_polarna.vsh>
     #moj_import <tfx_skakosz_szampan.vsh>
     #moj_import <tfx_wielblik_pryzmat.vsh>
+    #moj_import <tfx_matrix.vsh>
+    #moj_import <tfx_haker.vsh>
+    #moj_import <tfx_binarny.vsh>
+    #moj_import <tfx_terminal.vsh>
+    #moj_import <tfx_kod.vsh>
+    #moj_import <tfx_glitch_binarny.vsh>
+    #moj_import <tfx_deszcz_kodu.vsh>
+    #moj_import <tfx_zerojedynka.vsh>
+    #moj_import <tfx_cyber.vsh>
+    #moj_import <tfx_backdoor.vsh>
 }

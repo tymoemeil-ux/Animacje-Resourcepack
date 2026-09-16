@@ -12,7 +12,7 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
    - **efekt fragmentowy** (1–13, 26–38) — koloruje piksele znaku w czasie (FSH).
 3. Kolor bez efektu = zwykły tekst (dlatego "czyste kolory" niczego nie uruchamiają).
 
-## 205 efektów animowanych (każdy = kolor + ruch)
+## 215 efektów animowanych (każdy = kolor + ruch)
 
 ### Fragmentowe (kolor pikseli zmienia się w czasie)
 | Tag | Kolor | Co robi |
@@ -234,6 +234,18 @@ Zbudowany od zera: każdy efekt ma **osobny plik**, wspólny silnik jest mały i
 | `piorko_polarna` | `#60D044` | **ruch: piorko + kolor: polarna** |
 | `skakosz_szampan` | `#60D048` | **ruch: skakosz + kolor: szampan** |
 | `wielblik_pryzmat` | `#60D04C` | **ruch: wielblik + kolor: pryzmat** |
+
+### SERIA HAKERSKA — 10 (206–215)
+| `matrix` | `#211000` | deszcz macierzy: padające bity + scanline |
+| `haker` | `#211004` | zielony flicker + szum bitowy |
+| `binarny` | `#211008` | twarde 0/1: znaki przełączają się w rytm 010101 |
+| `terminal` | `#21100C` | zielony fosfor terminala + migotanie |
+| `kod` | `#211010` | szybko zmieniające się kody: zieleń↔bursztyn |
+| `glitch_binarny` | `#211014` | poziome plastry: zieleń↔biel (glitch) |
+| `deszcz_kodu` | `#211018` | szybkie padające smugi kodu |
+| `zerojedynka` | `#21101C` | 01010101: twardy pulsor 0 i 1 |
+| `cyber` | `#211020` | neon cyber: zieleń↔cyjan |
+| `backdoor` | `#211024` | "hacking": pasek postępu + iskry |
 
 ### KONFIG i WŁASNE HEXY (kolory.json + konfig.json)
 W folderze packa są dwa pliki, które możesz edytować:

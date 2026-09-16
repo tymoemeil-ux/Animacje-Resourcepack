@@ -219,3 +219,13 @@ vec3 tfxHsv(float h, float s, float v) {
     #moj_import <tfx_piorko_polarna.fsh>
     #moj_import <tfx_skakosz_szampan.fsh>
     #moj_import <tfx_wielblik_pryzmat.fsh>
+    #moj_import <tfx_matrix.fsh>
+    #moj_import <tfx_haker.fsh>
+    #moj_import <tfx_binarny.fsh>
+    #moj_import <tfx_terminal.fsh>
+    #moj_import <tfx_kod.fsh>
+    #moj_import <tfx_glitch_binarny.fsh>
+    #moj_import <tfx_deszcz_kodu.fsh>
+    #moj_import <tfx_zerojedynka.fsh>
+    #moj_import <tfx_cyber.fsh>
+    #moj_import <tfx_backdoor.fsh>

@@ -214,5 +214,15 @@
  "zolty": "#FFFF00",
  "zygzak_v2": "#A0A0F0",
  "zygzak_v2_neon_amber": "#80C0E0",
- "zygzak_v2_neony_tokio": "#80C090"
+ "zygzak_v2_neony_tokio": "#80C090",
+ "matrix": "#211000",
+ "haker": "#211004",
+ "binarny": "#211008",
+ "terminal": "#21100C",
+ "kod": "#211010",
+ "glitch_binarny": "#211014",
+ "deszcz_kodu": "#211018",
+ "zerojedynka": "#21101C",
+ "cyber": "#211020",
+ "backdoor": "#211024"
 }

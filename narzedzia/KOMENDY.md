@@ -421,6 +421,34 @@ Pełna lista (pojedynczy rozkaz na każdy efekt):
 # wielblik_pryzmat
 /tellraw @a [{text: "wielblik_pryzmat", color: "#60D04C"}]
 
+## SERIA HAKERSKA (206–215) — 0101010
+### binary / matrix / terminal
+# matrix
+/tellraw @a [{text: "matrix", color: "#211000"}]
+# haker
+/tellraw @a [{text: "haker", color: "#211004"}]
+# binarny
+/tellraw @a [{text: "binarny", color: "#211008"}]
+# terminal
+/tellraw @a [{text: "terminal", color: "#21100C"}]
+# kod
+/tellraw @a [{text: "kod", color: "#211010"}]
+# glitch_binarny
+/tellraw @a [{text: "glitch_binarny", color: "#211014"}]
+# deszcz_kodu
+/tellraw @a [{text: "deszcz_kodu", color: "#211018"}]
+# zerojedynka
+/tellraw @a [{text: "zerojedynka", color: "#21101C"}]
+# cyber
+/tellraw @a [{text: "cyber", color: "#211020"}]
+# backdoor
+/tellraw @a [{text: "backdoor", color: "#211024"}]
+
+### przyklady "hakerskie"
+/tellraw @a [{text: "ACCESS ", color: "#211000"}, {text: "GRANTED", color: "#21101C"}]
+/tellraw @a [{text: "10101001 ", color: "#211008"}, {text: "= haker w tobie", color: "#211020"}]
+/tellraw @a [{text: "h4cking...", color: "#21100C"}]
+
 ## KONFIG (kolory.json + konfig.json + generuj.py)
 ```
 # zmiana hexa (np. rainbow na #B1E75C):

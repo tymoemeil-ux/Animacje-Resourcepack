@@ -19,14 +19,26 @@ generuj.py aplikuje je do shaderow (w grze) oraz do README.md i KOMENDY.md.
 """
 import io, json, os, re, sys
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+def _znajdz_pack():
+    # pack = folder z pack.mcmeta (skrypt moze siedziec w packu albo obok)
+    if os.path.isfile(os.path.join(HERE, "pack.mcmeta")):
+        return HERE
+    for kandydat in (os.path.join(HERE, "..", "Animacje2.0"),):
+        if os.path.isfile(os.path.join(kandydat, "pack.mcmeta")):
+            return os.path.abspath(kandydat)
+    sys.exit("Nie znalazlem packa z pack.mcmeta (spodziewam sie: Animacje2.0/)")
+
+ROOT = _znajdz_pack()          # pack (shadery)
+DOC_ROOT = HERE                # README/KOMENDY siedza obok skryptu
 INCL = os.path.join(ROOT, "assets", "minecraft", "shaders", "include")
 CORES = (os.path.join(ROOT, "assets", "minecraft", "shaders", "core"),
          os.path.join(ROOT, "old", "assets", "minecraft", "shaders", "core"),
          os.path.join(ROOT, "v262", "assets", "minecraft", "shaders", "core"))
 
 def load_json(name, default):
-    p = os.path.join(ROOT, name)
+    p = os.path.join(DOC_ROOT, name)
     if os.path.isfile(p):
         try:
             return json.load(io.open(p, encoding="utf-8"))
@@ -146,7 +158,7 @@ def main():
                 io.open(p, "w", encoding="utf-8").write(s)
 
     # ---------- 4) README.md ----------
-    p = os.path.join(ROOT, "README.md")
+    p = os.path.join(DOC_ROOT, "README_animacje.md")
     s = io.open(p, encoding="utf-8").read()
     o = s
     for tag, hexk in kolory.items():
@@ -156,7 +168,7 @@ def main():
         io.open(p, "w", encoding="utf-8").write(s)
 
     # ---------- 5) KOMENDY.md ----------
-    p = os.path.join(ROOT, "KOMENDY.md")
+    p = os.path.join(DOC_ROOT, "KOMENDY.md")
     s = io.open(p, encoding="utf-8").read()
     o = s
     lines = s.splitlines(keepends=True)

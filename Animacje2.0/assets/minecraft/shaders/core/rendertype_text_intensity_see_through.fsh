@@ -434,6 +434,26 @@ void main() {
         color = tfxRenderSkakoszSzampan(uv, texColor, tfxColor);
     } else if (tfx == 205) {
         color = tfxRenderWielblikPryzmat(uv, texColor, tfxColor);
+    } else if (tfx == 206) {
+        color = tfxRenderMatrix(uv, texColor, tfxColor);
+    } else if (tfx == 207) {
+        color = tfxRenderHaker(uv, texColor, tfxColor);
+    } else if (tfx == 208) {
+        color = tfxRenderBinarny(uv, texColor, tfxColor);
+    } else if (tfx == 209) {
+        color = tfxRenderTerminal(uv, texColor, tfxColor);
+    } else if (tfx == 210) {
+        color = tfxRenderKod(uv, texColor, tfxColor);
+    } else if (tfx == 211) {
+        color = tfxRenderGlitchBinarny(uv, texColor, tfxColor);
+    } else if (tfx == 212) {
+        color = tfxRenderDeszczKodu(uv, texColor, tfxColor);
+    } else if (tfx == 213) {
+        color = tfxRenderZerojedynka(uv, texColor, tfxColor);
+    } else if (tfx == 214) {
+        color = tfxRenderCyber(uv, texColor, tfxColor);
+    } else if (tfx == 215) {
+        color = tfxRenderBackdoor(uv, texColor, tfxColor);
     }
 
 

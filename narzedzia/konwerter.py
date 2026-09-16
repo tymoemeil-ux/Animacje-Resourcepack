@@ -229,6 +229,16 @@ TAGS = {
     'piorko_polarna': '#60D044',
     'skakosz_szampan': '#60D048',
     'wielblik_pryzmat': '#60D04C',
+    'matrix': '#211000',
+    'haker': '#211004',
+    'binarny': '#211008',
+    'terminal': '#21100C',
+    'kod': '#211010',
+    'glitch_binarny': '#211014',
+    'deszcz_kodu': '#211018',
+    'zerojedynka': '#21101C',
+    'cyber': '#211020',
+    'backdoor': '#211024',
 }
 
 def _load_kolory():
@@ -289,7 +299,7 @@ def main():
         snbt = False
         args = args[1:]
     if args and args[0] == "--lista":
-        print("205 animowanych (wszystkie = kolor + ruch):")
+        print("215 animowanych (wszystkie = kolor + ruch):")
         for t, i, h, typ in [
             ("blysk",1,"A0A000","fragment"),("neonfala",2,"A0A004","fragment"),("tecafala",3,"A0A008","fragment"),
             ("kaskada",4,"A0A00C","fragment"),("laser2",5,"A0A010","fragment"),("grzmot",6,"A0A014","fragment"),
@@ -418,6 +428,10 @@ def main():
             ("bumerang_zachod",200,"60D038","polaczenie"),("kotwica_magma",201,"60D03C","polaczenie"),
             ("most_krystal",202,"60D040","polaczenie"),("piorko_polarna",203,"60D044","polaczenie"),
             ("skakosz_szampan",204,"60D048","polaczenie"),("wielblik_pryzmat",205,"60D04C","polaczenie"),
+            ("matrix",206,"211000","haker"),("haker",207,"211004","haker"),("binarny",208,"211008","haker"),
+            ("terminal",209,"21100C","haker"),("kod",210,"211010","haker"),("glitch_binarny",211,"211014","haker"),
+            ("deszcz_kodu",212,"211018","haker"),("zerojedynka",213,"21101C","haker"),("cyber",214,"211020","haker"),
+            ("backdoor",215,"211024","haker"),
         ]:
             print("  %-14s #%s  (%s)" % (t, h, typ))
         print("11 kolorow:")
