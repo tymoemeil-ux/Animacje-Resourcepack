@@ -23,23 +23,44 @@ public final class AnimacjeHub extends JavaPlugin {
     private Gui gui;
     private GuiViews views;
 
+    private final java.util.List<String> raport = new java.util.ArrayList<String>();
+    private boolean raportWyslany = false;
+
     @Override
     public void onEnable() {
         instance = this;
         try {
-            java.net.URL rMat = getClass().getClassLoader().getResource("org/bukkit/inventory/Material.class");
-            java.net.URL rBuk = getClass().getClassLoader().getResource("org/bukkit/Bukkit.class");
-            logInfo("DIAG Material.class resource: " + rMat);
-            logInfo("DIAG Bukkit.class resource: " + rBuk);
-            logInfo("DIAG java.class.path: " + System.getProperty("java.class.path"));
+            String[] linie = {
+                "serwer: " + Bukkit.getName() + " | java: " + System.getProperty("java.version") + " | plugin: " + getDescription().getVersion(),
+                "codeSource(getClass): " + getClass().getProtectionDomain().getCodeSource().getLocation(),
+                "resource Material.class: " + getClass().getClassLoader().getResource("org/bukkit/inventory/Material.class"),
+                "resource Bukkit.class: " + getClass().getClassLoader().getResource("org/bukkit/Bukkit.class"),
+                "resource Material via systemCL: " + ClassLoader.getSystemClassLoader().getResource("org/bukkit/inventory/Material.class")
+            };
+            for (String l : linie) raport.add(l);
+            java.lang.String cp = System.getProperty("java.class.path");
+            for (int i = 0; i < cp.length(); i += 200) raport.add("class.path: " + cp.substring(i, Math.min(cp.length(), i + 200)));
             ClassLoader cl = getClass().getClassLoader();
             int i = 0;
             while (cl != null && i < 8) {
-                logInfo("DIAG loader[" + i + "]: " + cl.getClass().getName() + " @ " + cl);
+                raport.add("loader[" + i + "]: " + cl.getClass().getName());
                 cl = cl.getParent();
                 i++;
             }
-            logInfo("DIAG loader[app] parent = " + (cl == null ? "null (bootstrap)" : cl.getClass().getName()));
+            raport.add("loader parent koniec = " + (cl == null ? "null (bootstrap)" : cl.getClass().getName()));
+            try {
+                Class.forName("org.bukkit.inventory.Material");
+                raport.add("Material: ZNALAZI");
+            } catch (Throwable t) {
+                raport.add("Material: BRAK (" + t + ")");
+            }
+            for (String l : raport) logInfo("DIAG " + l);
+            try {
+                java.io.File f = new java.io.File(getDataFolder().getParentFile(), "animacjehub-diag.txt");
+                java.io.PrintWriter pw = new java.io.PrintWriter(f, "UTF-8");
+                for (String l : raport) pw.println(l);
+                pw.close();
+            } catch (Throwable t) { logError("DIAG nie moge zapisac pliku: " + t); }
         } catch (Throwable t) {
             logError("DIAG blad: " + t);
         }
@@ -78,6 +99,14 @@ public final class AnimacjeHub extends JavaPlugin {
 
     public void logError(String s) {
         getLogger().severe("[AnimacjeHub] " + s);
+    }
+
+    public void wyslijRaport(Player p) {
+        if (raportWyslany || raport.isEmpty()) return;
+        raportWyslany = true;
+        p.sendMessage("\u00A7c=== AnimacjeHub: RAPORT DIAGNOSTYCZNY (screenshot) ===");
+        for (String l : raport) p.sendMessage("\u00A77" + l);
+        p.sendMessage("\u00A7c=== koniec - wklej ten tekst do rozmowy z agentem ===");
     }
 
     public PlayerData dane(Player p) {

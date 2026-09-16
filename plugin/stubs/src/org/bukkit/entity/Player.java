@@ -17,4 +17,5 @@ public interface Player extends HumanEntity, org.bukkit.OfflinePlayer {
     void playSound(Location location, Sound sound, float volume, float pitch);
     Location getLocation();
     void kickPlayer(String message);
+    boolean isOp();
 }

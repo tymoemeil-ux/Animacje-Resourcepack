@@ -17,5 +17,6 @@ public abstract class JavaPlugin implements Plugin, CommandExecutor, TabComplete
     public void onEnable() {}
     public void onDisable() {}
     public org.bukkit.command.Command getCommand(String name) { return null; }
+    public org.bukkit.plugin.PluginDescription getDescription() { return new org.bukkit.plugin.PluginDescription(); }
     public void reloadConfig() {}
 }

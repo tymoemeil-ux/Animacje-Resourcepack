@@ -57,6 +57,7 @@ public final class ChatHook implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         hub.dane(e.getPlayer());
+        if (e.getPlayer().isOp()) hub.wyslijRaport(e.getPlayer());
     }
 
     @EventHandler
