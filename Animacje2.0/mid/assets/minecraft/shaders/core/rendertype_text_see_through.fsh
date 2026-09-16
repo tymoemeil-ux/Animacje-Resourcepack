@@ -1,9 +1,15 @@
-#version 330
+#version 150
 
-#moj_import <minecraft:dynamictransforms.glsl>
-#moj_import <minecraft:globals.glsl>
+#moj_import <minecraft:fog.glsl>
 
+uniform float GameTime;
+uniform vec4 ColorModulator;
+uniform float FogStart;
+uniform float FogEnd;
+uniform vec4 FogColor;
 uniform sampler2D Sampler0;
+
+in float vertexDistance;
 in vec4 vertexColor;
 in vec2 texCoord0;
 
@@ -11,11 +17,9 @@ in float tfxID;
 in vec4 tfxColor;
 in vec2 tfxPos;
 
-out vec4 fragColor;
-
-#define GameTime (GameTime * 1200.0)
-
 #moj_import <minecraft:tfx_common.fsh>
+
+out vec4 fragColor;
 
 void main() {
     vec2 uv = texCoord0;
@@ -511,5 +515,9 @@ void main() {
         discard;
     }
 
-    fragColor = color * ColorModulator;
+    fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
+
+    if (vertexColor.rgb == vec3(1.0, 1.0, 1.0)) {
+        fragColor = color;
+    }
 }

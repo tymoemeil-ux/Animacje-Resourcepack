@@ -227,66 +227,27 @@ vec3 tfxHsv(float h, float s, float v) {
     #moj_import <tfx_backdoor.fsh>
     #moj_import <tfx_lampa_biala.fsh>
     #moj_import <tfx_lampa_zlota.fsh>
-    #moj_import <tfx_lampa_cyjanowa.fsh>
-    #moj_import <tfx_lampa_lazurowa.fsh>
-    #moj_import <tfx_lampa_rubrowa.fsh>
     #moj_import <tfx_laser_zielony.fsh>
     #moj_import <tfx_laser_fioletowy.fsh>
-    #moj_import <tfx_laser_zyty.fsh>
-    #moj_import <tfx_laser_czerwony.fsh>
-    #moj_import <tfx_laser_bialy.fsh>
     #moj_import <tfx_fala2_morska.fsh>
     #moj_import <tfx_fala2_lawendowa.fsh>
-    #moj_import <tfx_fala2_zlota.fsh>
-    #moj_import <tfx_fala2_ziemia.fsh>
-    #moj_import <tfx_fala2_polarna.fsh>
     #moj_import <tfx_skaner_neon.fsh>
     #moj_import <tfx_skaner_plazmowy.fsh>
-    #moj_import <tfx_skaner_lodowy.fsh>
-    #moj_import <tfx_skaner_agatowy.fsh>
-    #moj_import <tfx_skaner_zarny.fsh>
     #moj_import <tfx_gwiazdy_snieg.fsh>
     #moj_import <tfx_gwiazdy_zloto.fsh>
-    #moj_import <tfx_gwiazdy_iskra.fsh>
-    #moj_import <tfx_gwiazdy_szmaragd.fsh>
-    #moj_import <tfx_gwiazdy_kosmos.fsh>
     #moj_import <tfx_pulsar_karmazyn.fsh>
     #moj_import <tfx_pulsar_neonowy.fsh>
-    #moj_import <tfx_pulsar_zarz.fsh>
-    #moj_import <tfx_pulsar_bledny.fsh>
-    #moj_import <tfx_pulsar_wulkan.fsh>
     #moj_import <tfx_drganie_siebie.fsh>
     #moj_import <tfx_drganie_fali.fsh>
-    #moj_import <tfx_drganie_blysku.fsh>
-    #moj_import <tfx_drganie_czerwony.fsh>
-    #moj_import <tfx_drganie_tremoru.fsh>
     #moj_import <tfx_skok_wesoly.fsh>
     #moj_import <tfx_skok_sprint.fsh>
-    #moj_import <tfx_skok_luna.fsh>
-    #moj_import <tfx_skok_iskra.fsh>
-    #moj_import <tfx_skok_mega.fsh>
     #moj_import <tfx_wahadlo_zegar.fsh>
     #moj_import <tfx_wahadlo_luna.fsh>
-    #moj_import <tfx_wahadlo_zloto.fsh>
-    #moj_import <tfx_wahadlo_lodowy.fsh>
-    #moj_import <tfx_wahadlo_fala.fsh>
     #moj_import <tfx_wir_galaktyka.fsh>
     #moj_import <tfx_wir_ocean.fsh>
-    #moj_import <tfx_wir_plazmowy.fsh>
-    #moj_import <tfx_wir_bursztyn.fsh>
-    #moj_import <tfx_wir_kosmosowy.fsh>
     #moj_import <tfx_kap_kropla.fsh>
     #moj_import <tfx_kap_wodny.fsh>
-    #moj_import <tfx_kap_spadek.fsh>
-    #moj_import <tfx_kap_zlota.fsh>
-    #moj_import <tfx_kap_srebna.fsh>
     #moj_import <tfx_dryf_chmura.fsh>
     #moj_import <tfx_dryf_zarny.fsh>
-    #moj_import <tfx_dryf_luna.fsh>
-    #moj_import <tfx_dryf_ocean.fsh>
-    #moj_import <tfx_dryf_wiosna.fsh>
     #moj_import <tfx_matrix_zielony.fsh>
-    #moj_import <tfx_matrix_zloto.fsh>
-    #moj_import <tfx_matrix_cyjan.fsh>
     #moj_import <tfx_matrix_fiolet.fsh>
-    #moj_import <tfx_matrix_bialy.fsh>
