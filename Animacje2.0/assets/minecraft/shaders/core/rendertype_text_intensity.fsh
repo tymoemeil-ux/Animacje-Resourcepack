@@ -456,6 +456,136 @@ void main() {
         color = tfxRenderCyber(uv, texColor, tfxColor);
     } else if (tfx == 215) {
         color = tfxRenderBackdoor(uv, texColor, tfxColor);
+    } else if (tfx == 216) {
+        color = tfxRenderLampaBiala(uv, texColor, tfxColor);
+ else if (tfx == 217) {
+        color = tfxRenderLampaZlota(uv, texColor, tfxColor);
+ else if (tfx == 218) {
+        color = tfxRenderLampaCyjanowa(uv, texColor, tfxColor);
+ else if (tfx == 219) {
+        color = tfxRenderLampaLazurowa(uv, texColor, tfxColor);
+ else if (tfx == 220) {
+        color = tfxRenderLampaRubrowa(uv, texColor, tfxColor);
+ else if (tfx == 221) {
+        color = tfxRenderLaserZielony(uv, texColor, tfxColor);
+ else if (tfx == 222) {
+        color = tfxRenderLaserFioletowy(uv, texColor, tfxColor);
+ else if (tfx == 223) {
+        color = tfxRenderLaserZyty(uv, texColor, tfxColor);
+ else if (tfx == 224) {
+        color = tfxRenderLaserCzerwony(uv, texColor, tfxColor);
+ else if (tfx == 225) {
+        color = tfxRenderLaserBialy(uv, texColor, tfxColor);
+ else if (tfx == 226) {
+        color = tfxRenderFala2Morska(uv, texColor, tfxColor);
+ else if (tfx == 227) {
+        color = tfxRenderFala2Lawendowa(uv, texColor, tfxColor);
+ else if (tfx == 228) {
+        color = tfxRenderFala2Zlota(uv, texColor, tfxColor);
+ else if (tfx == 229) {
+        color = tfxRenderFala2Ziemia(uv, texColor, tfxColor);
+ else if (tfx == 230) {
+        color = tfxRenderFala2Polarna(uv, texColor, tfxColor);
+ else if (tfx == 231) {
+        color = tfxRenderSkanerNeon(uv, texColor, tfxColor);
+ else if (tfx == 232) {
+        color = tfxRenderSkanerPlazmowy(uv, texColor, tfxColor);
+ else if (tfx == 233) {
+        color = tfxRenderSkanerLodowy(uv, texColor, tfxColor);
+ else if (tfx == 234) {
+        color = tfxRenderSkanerAgatowy(uv, texColor, tfxColor);
+ else if (tfx == 235) {
+        color = tfxRenderSkanerZarny(uv, texColor, tfxColor);
+ else if (tfx == 236) {
+        color = tfxRenderGwiazdySnieg(uv, texColor, tfxColor);
+ else if (tfx == 237) {
+        color = tfxRenderGwiazdyZloto(uv, texColor, tfxColor);
+ else if (tfx == 238) {
+        color = tfxRenderGwiazdyIskra(uv, texColor, tfxColor);
+ else if (tfx == 239) {
+        color = tfxRenderGwiazdySzmaragd(uv, texColor, tfxColor);
+ else if (tfx == 240) {
+        color = tfxRenderGwiazdyKosmos(uv, texColor, tfxColor);
+ else if (tfx == 241) {
+        color = tfxRenderPulsarKarmazyn(uv, texColor, tfxColor);
+ else if (tfx == 242) {
+        color = tfxRenderPulsarNeonowy(uv, texColor, tfxColor);
+ else if (tfx == 243) {
+        color = tfxRenderPulsarZarz(uv, texColor, tfxColor);
+ else if (tfx == 244) {
+        color = tfxRenderPulsarBledny(uv, texColor, tfxColor);
+ else if (tfx == 245) {
+        color = tfxRenderPulsarWulkan(uv, texColor, tfxColor);
+ else if (tfx == 246) {
+        color = tfxRenderDrganieSiebie(uv, texColor, tfxColor);
+ else if (tfx == 247) {
+        color = tfxRenderDrganieFali(uv, texColor, tfxColor);
+ else if (tfx == 248) {
+        color = tfxRenderDrganieBlysku(uv, texColor, tfxColor);
+ else if (tfx == 249) {
+        color = tfxRenderDrganieCzerwony(uv, texColor, tfxColor);
+ else if (tfx == 250) {
+        color = tfxRenderDrganieTremoru(uv, texColor, tfxColor);
+ else if (tfx == 251) {
+        color = tfxRenderSkokWesoly(uv, texColor, tfxColor);
+ else if (tfx == 252) {
+        color = tfxRenderSkokSprint(uv, texColor, tfxColor);
+ else if (tfx == 253) {
+        color = tfxRenderSkokLuna(uv, texColor, tfxColor);
+ else if (tfx == 254) {
+        color = tfxRenderSkokIskra(uv, texColor, tfxColor);
+ else if (tfx == 255) {
+        color = tfxRenderSkokMega(uv, texColor, tfxColor);
+ else if (tfx == 256) {
+        color = tfxRenderWahadloZegar(uv, texColor, tfxColor);
+ else if (tfx == 257) {
+        color = tfxRenderWahadloLuna(uv, texColor, tfxColor);
+ else if (tfx == 258) {
+        color = tfxRenderWahadloZloto(uv, texColor, tfxColor);
+ else if (tfx == 259) {
+        color = tfxRenderWahadloLodowy(uv, texColor, tfxColor);
+ else if (tfx == 260) {
+        color = tfxRenderWahadloFala(uv, texColor, tfxColor);
+ else if (tfx == 261) {
+        color = tfxRenderWirGalaktyka(uv, texColor, tfxColor);
+ else if (tfx == 262) {
+        color = tfxRenderWirOcean(uv, texColor, tfxColor);
+ else if (tfx == 263) {
+        color = tfxRenderWirPlazmowy(uv, texColor, tfxColor);
+ else if (tfx == 264) {
+        color = tfxRenderWirBursztyn(uv, texColor, tfxColor);
+ else if (tfx == 265) {
+        color = tfxRenderWirKosmosowy(uv, texColor, tfxColor);
+ else if (tfx == 266) {
+        color = tfxRenderKapKropla(uv, texColor, tfxColor);
+ else if (tfx == 267) {
+        color = tfxRenderKapWodny(uv, texColor, tfxColor);
+ else if (tfx == 268) {
+        color = tfxRenderKapSpadek(uv, texColor, tfxColor);
+ else if (tfx == 269) {
+        color = tfxRenderKapZlota(uv, texColor, tfxColor);
+ else if (tfx == 270) {
+        color = tfxRenderKapSrebna(uv, texColor, tfxColor);
+ else if (tfx == 271) {
+        color = tfxRenderDryfChmura(uv, texColor, tfxColor);
+ else if (tfx == 272) {
+        color = tfxRenderDryfZarny(uv, texColor, tfxColor);
+ else if (tfx == 273) {
+        color = tfxRenderDryfLuna(uv, texColor, tfxColor);
+ else if (tfx == 274) {
+        color = tfxRenderDryfOcean(uv, texColor, tfxColor);
+ else if (tfx == 275) {
+        color = tfxRenderDryfWiosna(uv, texColor, tfxColor);
+ else if (tfx == 276) {
+        color = tfxRenderMatrixZielony(uv, texColor, tfxColor);
+ else if (tfx == 277) {
+        color = tfxRenderMatrixZloto(uv, texColor, tfxColor);
+ else if (tfx == 278) {
+        color = tfxRenderMatrixCyjan(uv, texColor, tfxColor);
+ else if (tfx == 279) {
+        color = tfxRenderMatrixFiolet(uv, texColor, tfxColor);
+ else if (tfx == 280) {
+        color = tfxRenderMatrixBialy(uv, texColor, tfxColor);
     }
 
     if (color.a < 0.1) {
