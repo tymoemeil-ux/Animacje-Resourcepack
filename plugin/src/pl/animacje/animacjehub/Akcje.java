@@ -119,7 +119,7 @@ public final class Akcje {
     }
 
     public static void nazwijItem(AnimacjeHub hub, Player p, String nazwa, boolean losowyFx) {
-        ItemStack item = p.getItemInMainHand();
+        ItemStack item = p.getItemInHand();
         if (item == null || item.getType() == Material.AIR) {
             p.sendMessage("\u00A7c> Wez cos w reke najpierw!");
             return;
@@ -145,7 +145,7 @@ public final class Akcje {
     }
 
     public static void usunNazweItema(AnimacjeHub hub, Player p) {
-        ItemStack item = p.getItemInMainHand();
+        ItemStack item = p.getItemInHand();
         if (item == null || item.getType() == Material.AIR) {
             p.sendMessage("\u00A7c> Wez cos w reke najpierw!");
             return;

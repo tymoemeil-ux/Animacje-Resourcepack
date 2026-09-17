@@ -30,40 +30,58 @@ public final class AnimacjeHub extends JavaPlugin {
     public void onEnable() {
         instance = this;
         try {
-            String[] linie = {
-                "serwer: " + Bukkit.getName() + " | java: " + System.getProperty("java.version") + " | plugin: " + getDescription().getVersion(),
-                "codeSource(getClass): " + getClass().getProtectionDomain().getCodeSource().getLocation(),
-                "resource Material.class: " + getClass().getClassLoader().getResource("org/bukkit/inventory/Material.class"),
-                "resource Bukkit.class: " + getClass().getClassLoader().getResource("org/bukkit/Bukkit.class"),
-                "resource Material via systemCL: " + ClassLoader.getSystemClassLoader().getResource("org/bukkit/inventory/Material.class")
-            };
-            for (String l : linie) raport.add(l);
-            java.lang.String cp = System.getProperty("java.class.path");
-            for (int i = 0; i < cp.length(); i += 200) raport.add("class.path: " + cp.substring(i, Math.min(cp.length(), i + 200)));
-            ClassLoader cl = getClass().getClassLoader();
-            int i = 0;
-            while (cl != null && i < 8) {
-                raport.add("loader[" + i + "]: " + cl.getClass().getName());
-                cl = cl.getParent();
-                i++;
+            raport.add("serwer: " + Bukkit.getName() + " | java: " + System.getProperty("java.version") + " | plugin: AnimacjeHub v1.2.5");
+        } catch (Throwable t) { raport.add("serwer: blad (" + t + ")"); }
+        try {
+            raport.add("codeSource: " + getClass().getProtectionDomain().getCodeSource().getLocation());
+        } catch (Throwable t) { raport.add("codeSource: blad (" + t + ")"); }
+        try {
+            raport.add("resource Material.class: " + getClass().getClassLoader().getResource("org/bukkit/inventory/Material.class"));
+        } catch (Throwable t) { raport.add("resource Material: blad (" + t + ")"); }
+        try {
+            raport.add("resource Bukkit.class: " + getClass().getClassLoader().getResource("org/bukkit/Bukkit.class"));
+        } catch (Throwable t) { raport.add("resource Bukkit: blad (" + t + ")"); }
+        try {
+            raport.add("resource ItemStack.class: " + getClass().getClassLoader().getResource("org/bukkit/inventory/ItemStack.class"));
+        } catch (Throwable t) { raport.add("resource ItemStack: blad (" + t + ")"); }
+        try {
+            String cp = System.getProperty("java.class.path");
+            raport.add("class.path dlugosc: " + cp.length() + " | start: " + cp.substring(0, Math.min(150, cp.length())));
+        } catch (Throwable t) { raport.add("class.path: blad (" + t + ")"); }
+        try {
+            java.io.File lib = new java.io.File("libraries");
+            if (lib.isDirectory()) {
+                java.io.File[] sub = lib.listFiles();
+                raport.add("libraries/: " + (sub == null ? "BRAK DOSTEPU" : sub.length) + " pozycji");
+                if (sub != null) {
+                    for (java.io.File f : sub) raport.add("  lib: " + f.getName());
+                    java.io.File[] api = new java.io.File(lib, "io").listFiles();
+                    if (api != null) for (java.io.File f : api) raport.add("  lib/io: " + f.getName());
+                    java.io.File bukkitDir = new java.io.File(lib, "org/bukkit");
+                    raport.add("  lib org/bukkit: " + (bukkitDir.isDirectory() ? java.util.Arrays.toString(bukkitDir.list()) : "BRAK"));
+                }
+            } else {
+                raport.add("libraries/: BRAK KATALOGU (serwer trzymaj API w jarach w srodiskorzeniu?)");
             }
-            raport.add("loader parent koniec = " + (cl == null ? "null (bootstrap)" : cl.getClass().getName()));
-            try {
-                Class.forName("org.bukkit.inventory.Material");
-                raport.add("Material: ZNALAZI");
-            } catch (Throwable t) {
-                raport.add("Material: BRAK (" + t + ")");
-            }
-            for (String l : raport) logInfo("DIAG " + l);
-            try {
-                java.io.File f = new java.io.File(getDataFolder().getParentFile(), "animacjehub-diag.txt");
-                java.io.PrintWriter pw = new java.io.PrintWriter(f, "UTF-8");
-                for (String l : raport) pw.println(l);
-                pw.close();
-            } catch (Throwable t) { logError("DIAG nie moge zapisac pliku: " + t); }
+        } catch (Throwable t) { raport.add("libraries: blad (" + t + ")"); }
+        try {
+            java.io.File[] root = new java.io.File(".").listFiles((d, n) -> n.toLowerCase().endsWith(".jar"));
+            if (root != null) for (java.io.File f : root) raport.add("root jar: " + f.getName() + " (" + f.length() + " B)");
+        } catch (Throwable t) { raport.add("root jars: blad (" + t + ")"); }
+        try {
+            Class.forName("org.bukkit.inventory.Material");
+            raport.add("Material: ZNALAZI");
         } catch (Throwable t) {
-            logError("DIAG blad: " + t);
+            raport.add("Material: BRAK (" + t + ")");
         }
+        for (String l : raport) logInfo("DIAG " + l);
+        try {
+            java.io.File f = new java.io.File(getDataFolder().getParentFile(), "animacjehub-diag.txt");
+            java.io.PrintWriter pw = new java.io.PrintWriter(f, "UTF-8");
+            for (String l : raport) pw.println(l);
+            pw.close();
+            raport.add("zapisano: plugins/animacjehub-diag.txt");
+        } catch (Throwable t) { logError("DIAG nie moge zapisac pliku: " + t); }
         saveDefaultConfig();
         cfg = getConfig();
         FxKatalog.wczytaj();

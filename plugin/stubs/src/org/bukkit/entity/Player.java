@@ -9,7 +9,7 @@ public interface Player extends HumanEntity, org.bukkit.OfflinePlayer {
     void openInventory(Inventory inventory);
     void closeInventory();
     Inventory getInventory();
-    ItemStack getItemInMainHand();
+    ItemStack getItemInHand();
     void setItemInMainHand(ItemStack item);
     ItemStack getItemInOffHand();
     void setItemInOffHand(ItemStack item);
