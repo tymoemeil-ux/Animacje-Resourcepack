@@ -69,6 +69,36 @@ public final class AnimacjeHub extends JavaPlugin {
             if (root != null) for (java.io.File f : root) raport.add("root jar: " + f.getName() + " (" + f.length() + " B)");
         } catch (Throwable t) { raport.add("root jars: blad (" + t + ")"); }
         try {
+            final java.util.List<java.io.File> jars = new java.util.ArrayList<java.io.File>();
+            AnimacjeHub.zbierzJary(new java.io.File("libraries"), jars, 0);
+            AnimacjeHub.zbierzJary(new java.io.File("."), jars, 0);
+            for (java.io.File j : jars) {
+                String n = j.getName().toLowerCase();
+                if (n.contains("paper") || n.contains("bukkit") || n.contains("mojang") || n.contains("api")) {
+                    try {
+                        java.util.zip.ZipFile zf = new java.util.zip.ZipFile(j);
+                        java.util.zip.ZipEntry eMat = zf.getEntry("org/bukkit/inventory/Material.class");
+                        java.util.zip.ZipEntry eBuk = zf.getEntry("org/bukkit/Bukkit.class");
+                        int total = 0;
+                        for (java.util.Enumeration<? extends java.util.zip.ZipEntry> en = zf.entries(); en.hasMoreElements(); en.nextElement()) total++;
+                        raport.add("JAR " + j.getPath() + " | entry=" + total + " | Bukkit=" + (eBuk == null ? "BRAK" : eBuk.getSize() + "B") + " | Material=" + (eMat == null ? "BRAK" : eMat.getSize() + "B"));
+                        if (eMat != null) {
+                            java.io.InputStream is = zf.getInputStream(eMat);
+                            int odczytane = 0;
+                            byte[] bufor = new byte[8192];
+                            int r;
+                            while ((r = is.read(bufor)) > 0) odczytane += r;
+                            is.close();
+                            raport.add("  odczyt Material.class z tego zipa: " + (odczytane > 4 ? "OK (" + odczytane + " B)" : "BLAD - pusty/pisarski (" + odczytane + " B)"));
+                        }
+                        zf.close();
+                    } catch (Throwable t2) {
+                        raport.add("JAR " + j.getPath() + " | otwarcie: BLAD (" + t2 + ")");
+                    }
+                }
+            }
+        } catch (Throwable t) { raport.add("skan jarow: blad (" + t + ")"); }
+        try {
             Class.forName("org.bukkit.inventory.Material");
             raport.add("Material: ZNALAZI");
         } catch (Throwable t) {
@@ -117,6 +147,16 @@ public final class AnimacjeHub extends JavaPlugin {
 
     public void logError(String s) {
         getLogger().severe("[AnimacjeHub] " + s);
+    }
+
+    static void zbierzJary(java.io.File dir, java.util.List<java.io.File> wyj, int gleb) {
+        if (dir == null || !dir.isDirectory() || gleb > 6 || wyj.size() > 300) return;
+        java.io.File[] pl = dir.listFiles();
+        if (pl == null) return;
+        for (java.io.File f : pl) {
+            if (f.isDirectory()) zbierzJary(f, wyj, gleb + 1);
+            else if (f.getName().toLowerCase().endsWith(".jar")) wyj.add(f);
+        }
     }
 
     public void wyslijRaport(Player p) {
