@@ -14,7 +14,7 @@ public final class Silnik {
         Katalog.Fx f = fx != null ? fx : Katalog.losowyAnimowany();
         String hex = f != null ? f.hex : "ffffff";
         s = s.replace("{gracz}", p != null ? p.getName() : "gracz");
-        s = s.replace("{ranga}", p != null ? Animacje.instancja().rangi().ranga(p) : "?");
+        s = s.replace("{ranga}", p != null ? AnimacjeHubV3.instancja().rangi().ranga(p) : "?");
         s = s.replace("{fx}", f != null ? f.spust() : "");
         s = s.replace("{fxid}", f != null ? String.valueOf(f.id) : "0");
         s = s.replace("{hex}", hex);

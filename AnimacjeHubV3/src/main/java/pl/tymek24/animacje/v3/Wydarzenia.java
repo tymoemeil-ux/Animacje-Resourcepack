@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 /** Listener: czat (nick), join/quit (kolor rangi), klik GUI. */
 public final class Wydarzenia implements Listener {
 
-    private final Animacje main;
+    private final AnimacjeHubV3 main;
 
-    public Wydarzenia(Animacje main) { this.main = main; }
+    public Wydarzenia(AnimacjeHubV3 main) { this.main = main; }
 
     @EventHandler
     public void czat(PlayerChatEvent e) {

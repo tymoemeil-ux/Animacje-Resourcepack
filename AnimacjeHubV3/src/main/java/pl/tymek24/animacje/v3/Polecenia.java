@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 /** /anim (+ aliasy) — router podpolecen. */
 public final class Polecenia implements org.bukkit.command.CommandExecutor, TabCompleter {
 
-    private final Animacje main;
+    private final AnimacjeHubV3 main;
 
-    public Polecenia(Animacje main) { this.main = main; }
+    public Polecenia(AnimacjeHubV3 main) { this.main = main; }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

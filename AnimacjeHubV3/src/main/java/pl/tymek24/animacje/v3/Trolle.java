@@ -23,8 +23,8 @@ public final class Trolle {
             BossBar bar = Bukkit.createBossBar(fx.spust() + "!!!", BarColor.RED, BarStyle.SEGMENTED_10);
             bar.setProgress(0.3);
             bar.addPlayer(cel);
-            Bukkit.getScheduler().runTaskLater(Animacje.instancja(), () -> bar.setProgress(1.0), 40L);
-            Bukkit.getScheduler().runTaskLater(Animacje.instancja(), () -> {
+            Bukkit.getScheduler().runTaskLater(AnimacjeHubV3.instancja(), () -> bar.setProgress(1.0), 40L);
+            Bukkit.getScheduler().runTaskLater(AnimacjeHubV3.instancja(), () -> {
                 bar.removeAll();
                 bar.hide();
             }, 70L);
