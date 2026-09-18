@@ -1,6 +1,6 @@
 name: AnimacjeHubV3
 version: 3.0.0
-main: pl.tymek24.animacje.AnimacjeHubV3
+main: pl.tymek24.animacje.v3.AnimacjeHubV3HubV3
 api-version: '1.21'
 authors: [TYMEK24]
 softdepend: [LuckPerms]

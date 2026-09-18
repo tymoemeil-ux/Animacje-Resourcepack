@@ -1,22 +1,14 @@
 # AnimacjeHub V3
 
-Nowy plugin napisany jako osobny projekt. Nie korzysta z kodu starego pluginu.
+Pełny plugin Paper 1.21.x zbudowany jako niezależny projekt. V3 ma własny pakiet klas oraz własny lifecycle, katalog efektów, GUI i obsługę danych. Nie jest atrapą: komendy korzystają z Bukkit/Paper API.
 
-## Funkcje V3
+## Funkcje
+- `/anim` — GUI katalogu;
+- `/anim nick [on|off]` — trwały animowany nick;
+- `/anim item <fx> [nazwa]` — animowana nazwa przedmiotu;
+- `/anim title <fx> <tekst>` — animowany tytuł;
+- `/anim troll [gracz]` — akcje trollujące z uprawnieniami;
+- rangi LuckPerms, ogłoszenia, tab-complete i konfiguracja.
 
-- animowany nick i prefix rangi;
-- animowane tytuły;
-- animowane nazwy itemów z własnym tekstem;
-- GUI katalogu 50 FX;
-- bezpieczne trolle z cooldownem;
-- LuckPerms;
-- zapis ustawień graczy;
-- resourcepack z logo TYMEK24.
-
-## Build
-
-Projekt wymaga JDK 17 oraz Paper API 1.21.x. Najprościej zbudować go przez Maven:
-
-```bash
-mvn package
-```
+Build wymaga JDK 17+ oraz Maven:
+`mvn package`
