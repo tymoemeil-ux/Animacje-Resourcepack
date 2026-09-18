@@ -1,4 +1,5 @@
 package org.bukkit.inventory;
+import org.bukkit.Material;
 public class ItemStack {
     public ItemStack(Material type) {}
     public ItemStack(Material type, int amount) {}
