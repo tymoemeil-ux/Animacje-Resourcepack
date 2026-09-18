@@ -1,0 +1,14 @@
+name: AnimacjeHubV3
+version: 3.0.0
+main: pl.tymek24.animacje.AnimacjeHubV3
+api-version: '1.21'
+authors: [TYMEK24]
+softdepend: [LuckPerms]
+commands:
+  anim:
+    aliases: [animacje, ah]
+    description: AnimacjeHub V3
+permissions:
+  animacje.v3.use: {default: true}
+  animacje.v3.troll: {default: op}
+  animacje.v3.admin: {default: op}
