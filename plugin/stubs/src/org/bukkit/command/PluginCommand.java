@@ -1,6 +1,6 @@
 package org.bukkit.command;
-public class PluginCommand extends Command {
-    public PluginCommand(String name) {}
-    @Override
-    public String getName() { return null; }
+public class PluginCommand implements Command {
+    public void setExecutor(CommandExecutor executor) {}
+    public void setTabCompleter(TabCompleter tabCompleter) {}
+    public void setFallbackExecutor(CommandExecutor executor) {}
 }

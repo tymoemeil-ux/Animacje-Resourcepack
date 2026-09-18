@@ -1,16 +1,14 @@
 package org.bukkit.configuration.file;
 import java.util.List;
-public class FileConfiguration {
-    public String getString(String path) { return null; }
-    public String getString(String path, String def) { return def; }
-    public int getInt(String path) { return 0; }
-    public int getInt(String path, int def) { return def; }
-    public boolean getBoolean(String path) { return false; }
-    public boolean getBoolean(String path, boolean def) { return def; }
-    public double getDouble(String path, double def) { return def; }
-    public List<String> getStringList(String path) { return null; }
-    public boolean contains(String path) { return false; }
-    public void set(String path, Object value) {}
-    public FileConfigurationOptions options() { return null; }
-    public int getKeysSize() { return 0; }
+import java.util.Set;
+public interface FileConfiguration {
+    String getString(String path);
+    String getString(String path, String def);
+    List<String> getStringList(String path);
+    boolean getBoolean(String path, boolean def);
+    int getInt(String path, int def);
+    boolean contains(String path);
+    MemorySection getConfigurationSection(String path);
+    Set<String> getKeys(boolean deep);
+    FileConfigurationOptions options();
 }

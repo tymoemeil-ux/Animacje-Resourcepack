@@ -1,7 +1,11 @@
 package org.bukkit.entity;
 import java.util.UUID;
+import org.bukkit.Location;
+import org.bukkit.World;
 public interface Entity {
     UUID getUniqueId();
     String getName();
-    boolean isOnline();
+    Location getLocation();
+    World getWorld();
+    double getHealth();
 }

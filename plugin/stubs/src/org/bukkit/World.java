@@ -1,3 +1,2 @@
 package org.bukkit;
-public class World {
-}
+public interface World {}

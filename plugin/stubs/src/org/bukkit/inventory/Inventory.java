@@ -1,10 +1,8 @@
 package org.bukkit.inventory;
 public interface Inventory {
-    int size();
+    int getSize();
     ItemStack getItem(int slot);
     void setItem(int slot, ItemStack item);
-    void clear();
+    void setItem(ItemStack item);
     InventoryHolder getHolder();
-    String getTitle();
-    void close();
 }

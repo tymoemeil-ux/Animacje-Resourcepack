@@ -1,4 +1,2 @@
 package org.bukkit.inventory;
-public interface InventoryHolder {
-    Inventory getInventory();
-}
+public interface InventoryHolder {}

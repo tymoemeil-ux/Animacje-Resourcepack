@@ -1,21 +1,26 @@
 package org.bukkit.entity;
+import java.util.UUID;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-public interface Player extends HumanEntity, org.bukkit.OfflinePlayer {
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.InventoryView;
+public interface Player extends HumanEntity, OfflinePlayer {
     void sendMessage(String message);
     void sendActionBar(String message);
+    void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
+    void sendTitle(String title, String subtitle);
+    void whisper(OfflinePlayer player, String message);
+    void setDisplayName(String name);
+    String getDisplayName();
+    boolean hasPermission(String permission);
+    boolean isOp();
+    void playSound(Location location, Sound sound, float volume, float pitch);
     void openInventory(Inventory inventory);
     void closeInventory();
-    Inventory getInventory();
-    ItemStack getItemInHand();
-    void setItemInMainHand(ItemStack item);
-    ItemStack getItemInOffHand();
-    void setItemInOffHand(ItemStack item);
-    boolean hasPermission(String permission);
-    void playSound(Location location, Sound sound, float volume, float pitch);
-    Location getLocation();
-    void kickPlayer(String message);
-    boolean isOp();
+    PlayerInventory getInventory();
+    InventoryView getOpenInventory();
+    boolean isOnline();
+    UUID getUniqueId();
 }

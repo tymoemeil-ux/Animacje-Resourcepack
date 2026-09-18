@@ -1,14 +1,14 @@
 {
   "pack": {
     "name": "Animacje 2.0 (256 FX)",
-    "description": "\u00a7dAnimacje 2.0 \u00a77\u2014 256 animacji (kolor + ruch) + 11 kolorow | wszystkie wersje \u00a78| \u00a7bFIX4: czas x1200",
+    "description": "\u00a7dAnimacje 2.0 \u00a77\u2014 256 animacji (kolor + ruch) + 11 kolorow | wersje 1.21-26.3 \u00a78| \u00a7bFIX4: czas x1200",
     "pack_format": 63,
     "supported_formats": {
       "min_inclusive": 16,
-      "max_inclusive": 100
+      "max_inclusive": 110
     },
     "min_format": 16,
-    "max_format": 100
+    "max_format": 110
   },
   "overlays": {
     "entries": [
@@ -33,10 +33,10 @@
       {
         "formats": {
           "min_inclusive": 88,
-          "max_inclusive": 100
+          "max_inclusive": 110
         },
         "min_format": 88,
-        "max_format": 100,
+        "max_format": 110,
         "directory": "v262"
       }
     ]

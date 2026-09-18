@@ -6,4 +6,5 @@ public interface ItemMeta {
     boolean hasDisplayName();
     void setLore(List<String> lore);
     List<String> getLore();
+    boolean hasLore();
 }

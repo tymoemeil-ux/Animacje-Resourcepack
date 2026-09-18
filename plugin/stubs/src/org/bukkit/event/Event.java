@@ -1,3 +1,2 @@
 package org.bukkit.event;
-public class Event {
-}
+public abstract class Event {}

@@ -1,6 +1,7 @@
 package org.bukkit.plugin.manager;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 public interface PluginManager {
-    void registerEvents(Listener listener, Plugin plugin);
+    Plugin getPlugin(String name);
+    boolean isPluginEnabled(String name);
+    void registerEvents(org.bukkit.event.Listener listener, Plugin plugin);
 }
