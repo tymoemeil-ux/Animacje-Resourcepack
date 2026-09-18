@@ -82,7 +82,9 @@ public final class Polecenia implements org.bukkit.command.CommandExecutor, TabC
                 } else {
                     Katalog.Fx f = Katalog.poNazwie(args[1]);
                     if (f == null || !f.animowany()) { sender.sendMessage("§cBrak FX: §f" + args[1]); break; }
-                    main.hub().nazwijItem(p, f);
+                    StringBuilder customName = new StringBuilder();
+                    for (int i = 2; i < args.length; i++) { if (i > 2) customName.append(" "); customName.append(args[i]); }
+                    main.hub().nazwijItem(p, f, customName.length() == 0 ? null : customName.toString());
                 }
                 break;
             case "title":

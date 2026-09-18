@@ -202,15 +202,19 @@ public final class Hub {
     }
 
     /** Nazwanie itemu z reki spustem FX. */
-    public void nazwijItem(Player p, Katalog.Fx f) {
+    public void nazwijItem(Player p, Katalog.Fx f) { nazwijItem(p, f, null); }
+
+    /** Ustawia własną nazwę itemu zamiast wymuszać nazwę „item”. */
+    public void nazwijItem(Player p, Katalog.Fx f, String wlasnaNazwa) {
         org.bukkit.inventory.PlayerInventory pi = p.getInventory();
         ItemStack it = pi.getItemInMainHand();
         if (it == null || it.getType() == Material.AIR) {
             p.sendMessage("§cTrzymaj item w reku.");
             return;
         }
-        String stara = it.getItemMeta() != null && it.getItemMeta().hasDisplayName()
-                ? it.getItemMeta().getDisplayName() : "item";
+        String stara = wlasnaNazwa != null && !wlasnaNazwa.trim().isEmpty() ? wlasnaNazwa.trim()
+                : (it.getItemMeta() != null && it.getItemMeta().hasDisplayName()
+                ? it.getItemMeta().getDisplayName() : "item");
         ItemMeta meta = it.getItemMeta();
         meta.setDisplayName(f.spust() + stara + "§r");
         meta.setLore(java.util.Arrays.asList(
