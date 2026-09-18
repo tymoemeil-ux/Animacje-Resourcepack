@@ -11,7 +11,7 @@ javac -encoding UTF-8 --release 17 \
 # tylko pl/ do jarze (stubs org/bukkit sa tylko po to, zeby sie skompilowalo)
 mkdir -p build/stage
 cp -r build/classes/pl build/stage/
-jar cfm AnimacjeHub.jar build/manifest.txt \
+jar cfm AnimacjeHub.jar res/manifest.txt \
   -C build/stage . \
   -C res plugin.yml \
   -C res config.yml \

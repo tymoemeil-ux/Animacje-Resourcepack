@@ -265,3 +265,18 @@ void tfxDetect(ivec3 c, float g) {
     #moj_import <tfx_matrix_zielony.vsh>
     #moj_import <tfx_matrix_fiolet.vsh>
 }
+#moj_import <tfx_mgla.vsh>
+#moj_import <tfx_bursztyn.vsh>
+#moj_import <tfx_lodowy.vsh>
+#moj_import <tfx_iskry.vsh>
+#moj_import <tfx_falowanie.vsh>
+#moj_import <tfx_poziomice.vsh>
+#moj_import <tfx_metal.vsh>
+#moj_import <tfx_woda.vsh>
+#moj_import <tfx_noc.vsh>
+#moj_import <tfx_poranek.vsh>
+#moj_import <tfx_pustynia.vsh>
+#moj_import <tfx_wino.vsh>
+#moj_import <tfx_swieca.vsh>
+#moj_import <tfx_chmura.vsh>
+#moj_import <tfx_mech.vsh>

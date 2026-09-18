@@ -1,4 +1,5 @@
-if (c == ivec3(128, 192, 52)) {
-        tfxIDg = 102.0;
-        tfxOffg.y += sin(GameTime * 2.4 + g * 0.35) * 0.005;
+if (c == ivec3(19, 0, 16)) {
+        tfxIDg = 285.0;
+        tfxBaseg = vec4(1.0);
+        tfxOffg.y += sin(GameTime * 1.4) * 0.0050;
 }

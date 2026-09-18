@@ -1,7 +1,7 @@
 vec4 tfxRenderRubin(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
+    vec2 p = gl_FragCoord.xy;
     float t = GameTime;
-    float inner = pow(0.5 + 0.5 * sin(t * 3.0), 2.0);
-    vec3 col = vec3(0.7, 0.02, 0.1) * (0.6 + 0.5 * inner) + vec3(0.25, 0.0, 0.03) + vec3(0.4, 0.05, 0.1) * inner;
-    return vec4(clamp(col, 0.0, 1.0), a);
+    vec3 c = tfxHsv(0.985, 0.68, 0.50); c *= 0.78 + 0.34 * sin(p.x * 0.020 - t * 1.1 + sin(p.y * 0.010 + t * 0.5));
+    return vec4(clamp(c, 0.0, 1.0), a);
 }

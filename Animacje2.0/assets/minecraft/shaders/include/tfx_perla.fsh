@@ -1,8 +1,7 @@
 vec4 tfxRenderPerla(vec2 uv, vec4 tex, vec4 base) {
     float a = tex.a;
+    vec2 p = gl_FragCoord.xy;
     float t = GameTime;
-    float h = fract(t * 0.08 + tfxPos.x * 0.01);
-    float v = 0.75 + 0.2 * sin(t * 2.0 + gl_FragCoord.x * 0.01);
-    vec3 col = tfxHsv(h, 0.25, v);
-    return vec4(col, a);
+    vec3 c = tfxHsv(0.58, 0.12, 0.78 + 0.14 * sin(t * 0.9 + p.x * 0.004 + p.y * 0.002));
+    return vec4(clamp(c, 0.0, 1.0), a);
 }
