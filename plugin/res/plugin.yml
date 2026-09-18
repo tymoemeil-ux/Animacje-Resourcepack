@@ -1,15 +1,15 @@
 name: AnimacjeHub
-version: 2.0.1
+version: 3.0.0
 main: dev.tymek24.animacje.Animacje
 api-version: '1.21'
 authors: [tymek24]
-description: "Animacje 2.0 Hub - 256 FX, nick animowany, itemy, trolle, glosy (1.21-26.3)"
+description: "Animacje Hub - 50 curated FX, animated nick, titles, items and safe pranks"
 softdepend: [LuckPerms]
 
 commands:
   anim:
     description: Animacje Hub (menu, fx, nick, item, troll, glos)
-    usage: /anim [fx|nick|item|troll|kolor|glos|lista|gui|info|reload]
+    usage: /anim [fx|nick|item|title|troll|kolor|glos|lista|gui|info|reload]
     aliases: [an, animacje]
 
 permissions:
@@ -22,6 +22,9 @@ permissions:
   animacje.troll.inny:
     description: Trollowanie innych graczy
     default: op
+  animacje.title:
+    description: Wysylanie animowanych tytulow
+    default: true
   animacje.admin:
     description: /anim reload
     default: op

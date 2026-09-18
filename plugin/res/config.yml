@@ -7,7 +7,7 @@ ogloszenia:
   wlaczone: true
   odstep_s: 180
   lista:
-    - "§x{fx} §8» §7{gracz} gra z §f256 animacjami §8na tym serwerze"
+    - "§x{fx} §8» §7{gracz} gra z §f50 animacjami §8na tym serwerze"
     - "§x{fx} §8» §f/anim §7— §fekty, nick, itemy i trolle w jednym"
     - "§x{fx} §8» §eWskazowka: §f/anim item §7— animowana nazwa itemu"
     - "§x{fx} §8» §bPack: §fAnimacje2.0.zip §7— wersje 1.21 do 26.3"

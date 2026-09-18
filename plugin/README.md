@@ -1,6 +1,6 @@
 # AnimacjeHub — plugin do packa Animacje 2.0
 
-Podłącza pack **Animacje 2.0 (280 FX + 11 kolorów)** do serwera: ogłoszenia,
+Podłącza pack **Animacje 2.0 (50 FX + 11 kolorów)** do serwera: ogłoszenia,
 animowany nick, animowane nazwy itemów, trolle, kolor pisania per ranga
 (LuckPerms / LucjPermissions / vanilla) — wszystko z ładnego GUI.
 
@@ -23,7 +23,7 @@ Wymaga: Paper 1.21.x. Wersja klasy: Java 17 (działa na JVM 17–21+).
 | **Itemki** — nazwanie itemu w ręce z FX (nazwa też się animuje), nazwa + losowy FX, usuń nazwę | GUI → Itemki / `/anim item <tx>` |
 | **Trolle** — czat, losowa fraza, gracz przed tobą (5 bloków), troll serwera (admin), cooldown | GUI → Trolle / `/anim troll <tx>` |
 | **Rangi** — kolor pisania per ranga; hex z configu → najbliższy FX z packa (lub czysty kolor) | GUI → Rangi (podgląd), działa w czacie automatycznie |
-| **Wybór FX** — 280 efektów z packa, strony, podgląd hexa, losowy FX | GUI → WYBIERZ FX |
+| **Wybór FX** — 50 efektów z packa, strony, podgląd hexa, losowy FX | GUI → WYBIERZ FX |
 | **Opcje** — dźwięki per gracz, reload konfiga (admin) | GUI → Opcje |
 
 ## Komendy i uprawnienia
@@ -80,5 +80,5 @@ na literze i animuje ją (ruch + kolor). Dlatego:
 
 `build.sh` (JDK 17+): `javac --release 17` ze stubami API (folder `stubs/` —
 tylko do kompilacji, NIE ląduje w jarze) → `AnimacjeHub.jar`.
-Katalog FX wbudowany w jar: `fx_katalog.json` (280 FX + 11 kolorów,
+Katalog FX wbudowany w jar: `fx_katalog.json` (50 FX + 11 kolorów,
 generowany z `narzedzia/konwerter.py`).

@@ -85,7 +85,19 @@ public final class Polecenia implements org.bukkit.command.CommandExecutor, TabC
                     main.hub().nazwijItem(p, f);
                 }
                 break;
+            case "title":
+            case "tytul":
+                if (p == null) { sender.sendMessage("§cTylko gracz."); break; }
+                if (!uprawnienie(sender, "animacje.title")) break;
+                if (args.length < 3) { sender.sendMessage("§cUzytek: /anim title <fx> <tekst>"); break; }
+                Katalog.Fx titleFx = Katalog.poNazwie(args[1]);
+                if (titleFx == null || !titleFx.animowany()) { sender.sendMessage("§cBrak animowanego FX: §f" + args[1]); break; }
+                StringBuilder titleText = new StringBuilder();
+                for (int i = 2; i < args.length; i++) { if (i > 2) titleText.append(' '); titleText.append(args[i]); }
+                p.sendTitle(titleFx.spust() + titleText, "§7Animacje Hub", 10, 60, 15);
+                break;
             case "troll":
+                if (p == null) { sender.sendMessage("§cTylko gracz."); break; }
                 if (!uprawnienie(sender, "animacje.uzywanie")) break;
                 {
                     Player cel = p;
