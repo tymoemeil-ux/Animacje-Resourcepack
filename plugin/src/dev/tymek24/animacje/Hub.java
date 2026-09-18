@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.ItemStack;
 
 /** GUI: glowne menu, strony FX (45/strona), kolory. */
