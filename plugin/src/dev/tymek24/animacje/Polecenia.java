@@ -18,7 +18,7 @@ public final class Polecenia implements org.bukkit.command.CommandExecutor, TabC
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player p = sender.isPlayer() ? sender.getPlayer() : null;
+        Player p = sender instanceof Player ? (Player) sender : null;
 
         if (args.length == 0) {
             if (p != null) main.hub().otworzMenu(p);
@@ -128,7 +128,7 @@ public final class Polecenia implements org.bukkit.command.CommandExecutor, TabC
                 sender.sendMessage("§8» §fPrzywrócono konfiguracje i katalog.");
                 break;
             case "info":
-                sender.sendMessage("§d§lAnimacje 2.0 Hub §rv2.0.0");
+                sender.sendMessage("§d§lAnimacje 2.0 Hub §rv2.0.1");
                 sender.sendMessage("§8» §f" + Katalog.iloscAnimowanych() + " animacji §8+ §f" + Katalog.iloscKolorow() + " kolorow §8| pack: §fAnimacje2.0.zip");
                 sender.sendMessage("§8» §7Komendy: §f/anim fx|nick|item|troll|kolor|glos|lista|info");
                 sender.sendMessage("§8» §7Rangi: §f" + (main.rangi().luckPerms() ? "LuckPerms (aktywny)" : "brak LP (op/player)"));
@@ -142,7 +142,7 @@ public final class Polecenia implements org.bukkit.command.CommandExecutor, TabC
     private void podgladFx(CommandSender sender, String nazwa) {
         Katalog.Fx f = Katalog.poNazwie(nazwa);
         if (f == null) { sender.sendMessage("§cBrak FX: §f" + nazwa); return; }
-        Player p = sender.isPlayer() ? sender.getPlayer() : null;
+        Player p = sender instanceof Player ? (Player) sender : null;
         if (p != null) Silnik.tytul(p, f.spust() + f.nazwa.toUpperCase(), "§8id " + f.id + " §7• §8hx " + f.hex);
         sender.sendMessage(f.spust() + "FX: §7" + f.nazwa + " §8(id " + f.id + ", hx " + f.hex + ")§r");
     }
@@ -171,7 +171,7 @@ public final class Polecenia implements org.bukkit.command.CommandExecutor, TabC
     }
 
     private void pomoz(CommandSender sender) {
-        sender.sendMessage("§d§lAnimacje 2.0 Hub §rv2.0.0 §8— komendy:");
+        sender.sendMessage("§d§lAnimacje 2.0 Hub §rv2.0.1 §8— komendy:");
         sender.sendMessage("§8» §f/anim §7— menu GUI");
         sender.sendMessage("§8» §f/anim fx <nazwa> §7— podglad FX");
         sender.sendMessage("§8» §f/anim nick [on|off] §7— animowany nick");

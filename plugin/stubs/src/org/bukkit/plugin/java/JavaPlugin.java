@@ -4,9 +4,9 @@ import java.util.logging.Logger;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitScheduler;
 public abstract class JavaPlugin implements Plugin {
-    public org.bukkit.Server getServer() { return null; }
+    public void onEnable() {}
+    public void onDisable() {}
     public File getDataFolder() { return null; }
     public Logger getLogger() { return null; }
     public FileConfiguration getConfig() { return null; }
@@ -17,7 +17,4 @@ public abstract class JavaPlugin implements Plugin {
     public PluginCommand getCommand(String name) { return null; }
     public String getName() { return ""; }
     public boolean isEnabled() { return true; }
-    public BukkitScheduler getScheduler() { return null; }
-    public void onEnable() {}
-    public void onDisable() {}
 }

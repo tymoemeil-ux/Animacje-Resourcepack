@@ -20,10 +20,10 @@ public final class Wydarzenia implements Listener {
         Player p = e.getPlayer();
         if (!main.nick().wlaczony(p)) return;
         if (main.nick().fxObrotowy(p) == null) return;
-        e.setMessage(pedrostek(p) + e.getMessage());
+        e.setMessage(przedrostekCala(p) + e.getMessage());
     }
 
-    private String pedrostek(Player p) {
+    private String przedrostekCala(Player p) {
         return main.rangi().przedrostek(p) + main.nick().przedrostek(p) + p.getName() + "§r §8»§r ";
     }
 

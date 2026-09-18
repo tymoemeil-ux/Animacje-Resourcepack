@@ -1,5 +1,6 @@
 package dev.tymek24.animacje;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,7 +29,7 @@ public final class Animacje extends JavaPlugin {
         ogloszenia = new Ogloszenia(this, konfig);
         hub = new Hub(konfig, rangi, nick, trolle, ogloszenia);
 
-        getServer().getPluginManager().registerEvents(new Wydarzenia(this), this);
+        Bukkit.getPluginManager().registerEvents(new Wydarzenia(this), this);
 
         Polecenia polecenia = new Polecenia(this);
         PluginCommand anim = getCommand("anim");
@@ -50,7 +51,7 @@ public final class Animacje extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getScheduler().cancelTasks(this);
+        Bukkit.getScheduler().cancelTasks(this);
         instancja = null;
     }
 

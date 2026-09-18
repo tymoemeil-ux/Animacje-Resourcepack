@@ -1,5 +1,5 @@
 name: AnimacjeHub
-version: 2.0.0
+version: 2.0.1
 main: dev.tymek24.animacje.Animacje
 api-version: '1.21'
 authors: [tymek24]

@@ -2,24 +2,11 @@ package dev.tymek24.animacje;
 
 import java.util.Collection;
 import java.util.List;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Registry;
-import org.bukkit.inventory.Material;
 
 /** Narzedzia pomocnicze: materialy z rejestrystyki (bez NCDFE), hex, losowanie. */
 public final class Narzedzia {
 
     private Narzedzia() {}
-
-    /** Material po nazwie z rejestru — bezpieczny w kazdej wersji (fallback PAPER). */
-    public static Material material(String key) {
-        try {
-            Material m = Registry.MATERIALS.get(NamespacedKey.minecraft(key.toLowerCase()));
-            return m == null ? Material.PAPER : m;
-        } catch (Throwable t) {
-            return Material.PAPER;
-        }
-    }
 
     public static int[] rgb(String hex) {
         String h = hex.startsWith("#") ? hex.substring(1) : hex;

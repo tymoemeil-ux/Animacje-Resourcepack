@@ -29,11 +29,11 @@ public final class Ogloszenia {
         Katalog.Fx fx = Katalog.losowyAnimowany();
         String msg = Silnik.placeholdery(lista.get(indeks % lista.size()), p, fx);
         indeks++;
-        Bukkit.broadcast(msg);
+        Bukkit.broadcastMessage(msg);
     }
 
     /** Glos ad-hoc: /anim glos <msg> — placeholdery wg nadawcy. */
     public void glos(String msg, Player nadawca) {
-        Bukkit.broadcast(Silnik.placeholdery(msg, nadawca, null));
+        Bukkit.broadcastMessage(Silnik.placeholdery(msg, nadawca, null));
     }
 }

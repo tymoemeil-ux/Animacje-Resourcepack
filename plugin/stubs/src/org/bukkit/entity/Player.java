@@ -11,12 +11,12 @@ public interface Player extends HumanEntity, OfflinePlayer {
     void sendActionBar(String message);
     void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
     void sendTitle(String title, String subtitle);
-    void whisper(OfflinePlayer player, String message);
     void setDisplayName(String name);
     String getDisplayName();
     boolean hasPermission(String permission);
     boolean isOp();
     void playSound(Location location, Sound sound, float volume, float pitch);
+    default void playSound(Location location, String sound, float volume, float pitch) {}
     void openInventory(Inventory inventory);
     void closeInventory();
     PlayerInventory getInventory();
