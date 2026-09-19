@@ -1,10 +1,17 @@
 package pl.tymek24.animacje.v3;
 
 import org.bukkit.Bukkit;
+import pl.tymek24.animacje.v3.config.*;
+import pl.tymek24.animacje.v3.catalog.*;
+import pl.tymek24.animacje.v3.services.*;
+import pl.tymek24.animacje.v3.gui.*;
+import pl.tymek24.animacje.v3.commands.*;
+import pl.tymek24.animacje.v3.listeners.*;
+
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/** Animacje Hub v2 — glowna klasa. */
+/** AnimacjeHub V3 — glowna klasa. */
 public final class AnimacjeHubV3 extends JavaPlugin {
 
     private static AnimacjeHubV3 instancja;
@@ -44,7 +51,7 @@ public final class AnimacjeHubV3 extends JavaPlugin {
         }
 
         ogloszenia.start();
-        getLogger().info("Animacje Hub v2.0.0 wloczony: "
+        getLogger().info("AnimacjeHub V3.0.0 wloczony: "
                 + Katalog.iloscAnimowanych() + " FX + " + Katalog.iloscKolorow() + " kolorow"
                 + (rangi.luckPerms() ? " | LuckPerms OK" : ""));
     }
