@@ -12,7 +12,7 @@ on:
       - '.github/workflows/build-plugin.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -34,16 +34,4 @@ jobs:
           name: AnimacjeHub-v2
           path: plugin/AnimacjeHub.jar
           if-no-files-found: error
-      - name: Refresh tracked jar
-        if: github.event_name == 'push' && github.ref == 'refs/heads/arena/01a0bf90-animacje-resourcepack'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- plugin/AnimacjeHub.jar; then
-            echo "Jar is already current"
-            exit 0
-          fi
-          git add plugin/AnimacjeHub.jar
-          git commit -m "Build AnimacjeHub.jar [skip ci]"
-          git push
 
