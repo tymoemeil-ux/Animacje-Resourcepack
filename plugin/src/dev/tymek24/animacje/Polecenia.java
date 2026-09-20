@@ -209,7 +209,16 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             return;
         }
         if (!require(sender, "animacje.profile")) return;
-        nick(sender, new String[] {"nick"});
+        Player player = (Player) sender;
+        Profil profile = plugin.profiles().get(player);
+        Katalog.Fx fx = Katalog.byName(profile.fx);
+        String rawNick = profile.nick.isBlank() ? player.getName() : profile.nick;
+        sender.sendMessage("§d§lTwój profil AnimacjeHub");
+        sender.sendMessage("§8» §fNick: " + Tekst.status(profile.nickWlaczony) + " §8• §fTekst: §b" + Tekst.czysty(rawNick));
+        sender.sendMessage("§8» §fFX: §b" + (fx == null ? "brak" : fx.nazwa) + " §8• §fKolor: §b"
+                + (profile.kolor.isBlank() ? "efektu" : profile.kolor));
+        sender.sendMessage("§8» §fRanga: §b" + plugin.rangi().opis(player));
+        sender.sendMessage("§8» §7Zmień: /anim nick, /anim nick fx <fx>, /anim nick color <kolor>");
     }
 
     private void settings(CommandSender sender) {
