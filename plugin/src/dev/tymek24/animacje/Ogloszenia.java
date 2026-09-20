@@ -4,36 +4,40 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/** Ogloszenia: okresowe glosy z placeholdrami + glos ad-hoc. */
+/** Opcjonalne ogłoszenia serwera, domyślnie wyłączone. */
 public final class Ogloszenia {
-
     private final JavaPlugin plugin;
-    private final Konfig konfig;
-    private int indeks = 0;
+    private final Konfig config;
+    private int index;
 
-    public Ogloszenia(JavaPlugin plugin, Konfig konfig) {
+    public Ogloszenia(JavaPlugin plugin, Konfig config) {
         this.plugin = plugin;
-        this.konfig = konfig;
+        this.config = config;
     }
 
     public void start() {
-        if (!konfig.ogloszeniaWlaczone()) return;
-        long ticki = konfig.ogloszeniaOdstepS() * 20L;
-        Bukkit.getScheduler().runTaskTimer(plugin, this::cykl, ticki, ticki);
+        if (!config.announcementsEnabled() || config.announcements().isEmpty()) return;
+        long ticks = config.announcementsInterval() * 20L;
+        Bukkit.getScheduler().runTaskTimer(plugin, this::sendNext, ticks, ticks);
     }
 
-    private void cykl() {
-        java.util.List<String> lista = konfig.ogloszeniaLista();
-        if (lista.isEmpty()) return;
-        Player p = Narzedzia.los(Bukkit.getOnlinePlayers());
-        Katalog.Fx fx = Katalog.losowyAnimowany();
-        String msg = Silnik.placeholdery(lista.get(indeks % lista.size()), p, fx);
-        indeks++;
-        Bukkit.broadcastMessage(msg);
+    public void send(String message, Player sender) {
+        Bukkit.broadcastMessage(replace(message, sender, Katalog.random()));
     }
 
-    /** Glos ad-hoc: /anim glos <msg> — placeholdery wg nadawcy. */
-    public void glos(String msg, Player nadawca) {
-        Bukkit.broadcastMessage(Silnik.placeholdery(msg, nadawca, null));
+    private void sendNext() {
+        java.util.List<String> messages = config.announcements();
+        if (messages.isEmpty()) return;
+        Player sample = Narzedzia.los(Bukkit.getOnlinePlayers());
+        Bukkit.broadcastMessage(replace(messages.get(index++ % messages.size()), sample, Katalog.random()));
+    }
+
+    private String replace(String message, Player player, Katalog.Fx fx) {
+        String result = Narzedzia.kody(message);
+        result = result.replace("{fx}", fx == null ? "" : fx.spust());
+        result = result.replace("{gracz}", player == null ? "gracz" : player.getName());
+        result = result.replace("{ranga}", player == null ? "default" : ((Animacje) plugin).rangi().grupa(player));
+        result = result.replace("{pack}", config.packName());
+        return result + "§r";
     }
 }

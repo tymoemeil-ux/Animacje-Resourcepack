@@ -1,45 +1,67 @@
 package dev.tymek24.animacje;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
 
-/** Narzedzia pomocnicze: materialy z rejestrystyki (bez NCDFE), hex, losowanie. */
+/** Małe, bezpieczne narzędzia wspólne dla pluginu v2. */
 public final class Narzedzia {
 
-    private Narzedzia() {}
-
-    public static int[] rgb(String hex) {
-        String h = hex.startsWith("#") ? hex.substring(1) : hex;
-        return new int[] {
-            Integer.parseInt(h.substring(0, 2), 16),
-            Integer.parseInt(h.substring(2, 4), 16),
-            Integer.parseInt(h.substring(4, 6), 16)
-        };
+    private Narzedzia() {
     }
 
-    /** Spust FX: §x + hex (format legacy-hex 1.16+, odczytywany przez pack). */
+    public static String kody(String tekst) {
+        if (tekst == null) return "";
+        return tekst.replace('&', '\u00A7').replace('\n', ' ').replace('\r', ' ');
+    }
+
+    /** Kolor spustowy rozpoznawany przez Animacje 3.0. */
     public static String spust(String hex) {
-        return "\u00A7x" + (hex.startsWith("#") ? hex.substring(1) : hex);
+        String h = hex == null ? "FFFFFF" : hex.replace("#", "").trim();
+        if (!h.matches("[0-9a-fA-F]{6}")) h = "FFFFFF";
+        return "\u00A7x" + h.toUpperCase(Locale.ROOT);
     }
 
-    /** Zamiennik & na § (dla configu). */
-    public static String kody(String s) {
-        if (s == null) return "";
-        return s.replace('&', '\u00A7');
+    public static String hex(String hex) {
+        String h = hex == null ? "FFFFFF" : hex.replace("#", "").trim();
+        return h.matches("[0-9a-fA-F]{6}") ? h.toUpperCase(Locale.ROOT) : "FFFFFF";
     }
 
-    public static <T> T los(Collection<T> lista) {
-        if (lista == null || lista.isEmpty()) return null;
-        java.util.List<T> kopi = new java.util.ArrayList<>(lista);
-        return kopi.get(java.util.concurrent.ThreadLocalRandom.current().nextInt(kopi.size()));
+    public static String ogranicz(String tekst, int maks) {
+        String s = kody(tekst).replace('\u0000', ' ');
+        if (s.length() <= maks) return s;
+        return s.substring(0, Math.max(0, maks));
     }
 
-    public static String czas() {
-        java.util.Calendar c = java.util.Calendar.getInstance();
-        return String.format("%02d:%02d", c.get(java.util.Calendar.HOUR_OF_DAY), c.get(java.util.Calendar.MINUTE));
+    /** Wartość wstawiana jako stały fragment formatu czatu. */
+    public static String ucieknijFormat(String tekst) {
+        return tekst == null ? "" : tekst.replace("%", "%%");
     }
 
-    public static String hash01(java.util.UUID u) {
-        return String.valueOf(Math.floorMod(u.hashCode(), 997));
+    public static String polacz(String[] args, int od) {
+        StringBuilder b = new StringBuilder();
+        for (int i = od; i < args.length; i++) {
+            if (i > od) b.append(' ');
+            b.append(args[i]);
+        }
+        return b.toString();
+    }
+
+    public static String[] podzielTytul(String tekst) {
+        String[] czesci = tekst.split("\\|", 2);
+        return new String[] {czesci.length > 0 ? czesci[0].trim() : "", czesci.length > 1 ? czesci[1].trim() : ""};
+    }
+
+    public static <T> T los(Collection<? extends T> kolekcja) {
+        if (kolekcja == null || kolekcja.isEmpty()) return null;
+        List<T> kopia = new ArrayList<>(kolekcja);
+        return kopia.get(ThreadLocalRandom.current().nextInt(kopia.size()));
+    }
+
+    public static boolean tak(String value) {
+        return value != null && (value.equalsIgnoreCase("on") || value.equalsIgnoreCase("wl")
+                || value.equalsIgnoreCase("true") || value.equalsIgnoreCase("tak"));
     }
 }

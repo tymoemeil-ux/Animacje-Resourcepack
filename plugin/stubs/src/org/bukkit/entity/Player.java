@@ -6,7 +6,7 @@ import org.bukkit.Sound;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.InventoryView;
-public interface Player extends HumanEntity, OfflinePlayer {
+public interface Player extends HumanEntity, OfflinePlayer, org.bukkit.command.CommandSender {
     void sendMessage(String message);
     void sendActionBar(String message);
     void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);

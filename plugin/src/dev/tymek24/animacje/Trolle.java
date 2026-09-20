@@ -1,52 +1,67 @@
 package dev.tymek24.animacje;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.bukkit.Bukkit;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
+import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadLocalRandom;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
-/** Trole — nieszkodliwe akcje rozrywkowe na graczu. */
+/** Tylko kosmetyczne, odwracalne trolle — bez obrażeń, teleportów i griefingu. */
 public final class Trolle {
+    private final Animacje plugin;
+    private final Map<UUID, Long> cooldowns = new ConcurrentHashMap<>();
 
-    private final List<java.util.function.BiConsumer<Player, Katalog.Fx>> akcje = new ArrayList<>();
-
-    public Trolle() {
-        akcje.add((cel, fx) -> cel.sendActionBar("§8[szept] §cCos teraz przelatalo ci nad glowa... (nie, to bylo nic)"));
-        akcje.add((cel, fx) -> cel.sendActionBar("§8[szept] §eZostales oznaczony przez admina. Prawdopodobnie."));
-        akcje.add((cel, fx) -> cel.sendTitle(fx.spust() + "TROLL", "§7to ty, §f" + cel.getName(), 4, 50, 10));
-        akcje.add((cel, fx) -> cel.sendTitle("§aZDROWIE", "§8zostal ci dodany... no dobra, nic", 4, 50, 10));
-        akcje.add((cel, fx) -> cel.sendActionBar("§8Ktos ci sie przypatruje... §7(spoko, to my)"));
-        akcje.add((cel, fx) -> {
-            BossBar bar = Bukkit.createBossBar(fx.spust() + "!!!", BarColor.RED, BarStyle.SEGMENTED_10);
-            bar.setProgress(0.3);
-            bar.addPlayer(cel);
-            Bukkit.getScheduler().runTaskLater(Animacje.instancja(), () -> bar.setProgress(1.0), 40L);
-            Bukkit.getScheduler().runTaskLater(Animacje.instancja(), () -> {
-                bar.removeAll();
-                bar.hide();
-            }, 70L);
-        });
-        akcje.add((cel, fx) -> cel.playSound(cel.getLocation(), "entity.wither.spawn", 0.6f, 0.5f));
-        akcje.add((cel, fx) -> cel.playSound(cel.getLocation(), "entity.villager.yes", 1.0f, 1.6f));
-        akcje.add((cel, fx) -> cel.sendMessage(
-                "§8[Serwer] §f" + cel.getName() + " §8zostal teleportowany przez admina §8(no, kłamstwo)"));
-        akcje.add((cel, fx) -> cel.sendActionBar("§8[szept] §bCiekawostka: §7jestes §e256. §7adminem dzis."));
-        akcje.add((cel, fx) -> {
-            cel.playSound(cel.getLocation(), "entity.player.levelup", 1.0f, 1.0f);
-            cel.sendTitle(fx.spust() + "LEVEL UP", "§7+1 troll §8(" + cel.getName() + ")", 4, 50, 10);
-        });
+    public Trolle(Animacje plugin) {
+        this.plugin = plugin;
     }
 
-    public int ilosc() { return akcje.size(); }
+    public long remaining(Player actor) {
+        long until = cooldowns.getOrDefault(actor.getUniqueId(), 0L);
+        return Math.max(0L, (until - System.currentTimeMillis() + 999L) / 1000L);
+    }
 
-    /** Losowy troll na cel. */
-    public void losowo(Player cel) {
-        Katalog.Fx fx = Katalog.losowyAnimowany();
-        java.util.function.BiConsumer<Player, Katalog.Fx> a = Narzedzia.los(akcje);
-        if (a == null) return;
-        a.accept(cel, fx);
+    public boolean execute(Player actor, Player target, String requestedType, Katalog.Fx requestedFx) {
+        long remaining = remaining(actor);
+        if (remaining > 0) {
+            actor.sendMessage("§cOdczekaj jeszcze " + remaining + " s przed kolejnym trollem.");
+            return false;
+        }
+        if (target == null) return false;
+        if (target == actor && !plugin.config().trollSelf()) {
+            actor.sendMessage("§cTrollowanie siebie jest wyłączone w konfiguracji.");
+            return false;
+        }
+        Katalog.Fx fx = requestedFx == null ? Katalog.random() : requestedFx;
+        String type = requestedType == null ? "random" : requestedType.toLowerCase(Locale.ROOT);
+        if (type.equals("random") || type.equals("losowy")) {
+            type = switch (ThreadLocalRandom.current().nextInt(4)) {
+                case 0 -> "title";
+                case 1 -> "actionbar";
+                case 2 -> "chat";
+                default -> "sound";
+            };
+        }
+        switch (type) {
+            case "title":
+                plugin.titles().wyslij(target, fx, "TROLL!", "To był tylko efekt tekstu ✦");
+                break;
+            case "actionbar":
+                target.sendActionBar(Tekst.animowany(fx, "Ktoś właśnie odpalił efekt na Twoim ekranie"));
+                break;
+            case "chat":
+                target.sendMessage("§8[Animacje] " + Tekst.animowany(fx, "Niespodzianka dla " + target.getName() + " ✦"));
+                break;
+            case "sound":
+                target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.8f, 1.8f);
+                target.sendActionBar(Tekst.animowany(fx, "♪"));
+                break;
+            default:
+                actor.sendMessage("§cTyp trolla: title, actionbar, chat, sound albo random.");
+                return false;
+        }
+        cooldowns.put(actor.getUniqueId(), System.currentTimeMillis() + plugin.config().trollCooldown() * 1000L);
+        return true;
     }
 }

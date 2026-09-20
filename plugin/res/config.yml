@@ -1,31 +1,72 @@
-# ============================================================
-#  Animacje Hub v2.0.0 — konfiguracja
-#  Hex bez # ; kolory rangi = LuckPerms group -> hex
-# ============================================================
+# AnimacjeHub v2.0.0 — współpracuje wyłącznie z Animacje3.0 (50 FX)
+# Kolory & są zamieniane na §. FX są nazwami z /anim lista.
 
-ogloszenia:
+resourcepack:
+  # Opcjonalne. Jeśli podasz URL, plugin wyśle pack przy wejściu gracza.
+  nazwa: Animacje3.0.zip
+  url: ""
+  sha1: ""
+  wymagany: false
+  prompt: "&dWłącz Animacje 3.0, aby widzieć animowane nicki i tytuły!"
+
+chat:
   wlaczone: true
-  odstep_s: 180
-  lista:
-    - "§x{fx} §8» §7{gracz} gra z §f256 animacjami §8na tym serwerze"
-    - "§x{fx} §8» §f/anim §7— §fekty, nick, itemy i trolle w jednym"
-    - "§x{fx} §8» §eWskazowka: §f/anim item §7— animowana nazwa itemu"
-    - "§x{fx} §8» §bPack: §fAnimacje2.0.zip §7— wersje 1.21 do 26.3"
+  ogloszenia_wejscia: true
 
 nick:
-  # co ile sekund zmienia sie FX na imieniu
-  odstep_s: 6
+  domyslnie_wlaczony: true
+  domyslny_fx: rainbow
+  maksymalna_dlugosc: 24
 
-# kolor rangi (LuckPerms group -> hex)
+title:
+  fade_in: 8
+  stay: 50
+  fade_out: 12
+
 rangi:
+  wlaczone: true
+  permission_prefix: animacje.ranga.
+  # Klucze scalar są zachowane dla starych konfiguracji v1; nowe ustawienia są w grupy.*.
   domylny: a0a0a0
-  player: a0a0a0
+  default: a0a0a0
   op: ffcc00
   vip: 44ff88
-  builder: 55aaff
+  moderator: 55ff88
   admin: ff5555
-  tymek: ff00ff
+  owner: ff00ff
+  # LuckPerms primary group wygrywa. Bez LuckPerms plugin sprawdza poniższe permissiony.
+  kolejnosc: [owner, admin, moderator, vip, op, default]
+  grupy:
+    default:
+      prefix: "&7[Gracz]"
+      fx: wave
+    op:
+      prefix: "&6[OP]"
+      fx: zloty_blask
+    vip:
+      prefix: "&b[VIP]"
+      fx: neonfala
+    moderator:
+      prefix: "&a[MOD]"
+      fx: aurora
+    admin:
+      prefix: "&c[ADMIN]"
+      fx: piorun
+    owner:
+      prefix: "&d[OWNER]"
+      fx: pryzmat
+
+item:
+  maksymalna_dlugosc: 48
 
 troll:
-  # ilosc losowych akcji do wyboru
-  akcje: 10
+  # Trolle są wyłącznie kosmetyczne: title, actionbar, czat i dźwięk.
+  cooldown_s: 5
+  na_siebie: true
+
+ogloszenia:
+  wlaczone: false
+  odstep_s: 180
+  lista:
+    - "{fx}&8 » &fPack &d{pack} &7ma 50 wybranych animacji."
+    - "{fx}&8 » &fUżyj &d/anim help &7— nick, ranga, title i animowany item."

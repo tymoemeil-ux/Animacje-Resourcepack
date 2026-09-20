@@ -1,84 +1,75 @@
-# AnimacjeHub — plugin do packa Animacje 2.0
+# AnimacjeHub v2 — plugin dla Animacje 3.0
 
-Podłącza pack **Animacje 2.0 (280 FX + 11 kolorów)** do serwera: ogłoszenia,
-animowany nick, animowane nazwy itemów, trolle, kolor pisania per ranga
-(LuckPerms / LucjPermissions / vanilla) — wszystko z ładnego GUI.
+Plugin został napisany od nowa pod `Animacje3.0.zip`. Nie ma już rotowania FX co kilka
+sekund ani hardcoded katalogu z 2.0: shader sam animuje tekst na kliencie, a plugin tylko
+wstawia właściwy kolor spustowy.
 
 ## Instalacja
 
-1. `Animacje2.0.zip` → `.minecraft/resourcepacks` (i na serwer) — **pack musi być
-   aktywny U KAŻDEGO gracza**, bo to jego szadery rysują animacje.
-2. `AnimacjeHub.jar` → `plugins/`
-3. Restart serwera.
-4. W grze: `/anim` (aliasy: `/animacje`, `/ah`).
+1. Włącz `Animacje3.0.zip` u graczy albo ustaw `resourcepack.url` i `resourcepack.sha1`.
+2. Skopiuj `AnimacjeHub.jar` do `plugins/`.
+3. Uruchom Paper 1.21.x i użyj `/anim help`.
+4. Jeśli włączasz pack z serwera, URL musi być publicznym HTTPS bez przekierowania.
 
-Wymaga: Paper 1.21.x. Wersja klasy: Java 17 (działa na JVM 17–21+).
+Plugin wymaga Java 17+. LuckPerms jest opcjonalny — bez niego działają permissiony
+`animacje.ranga.<grupa>`.
 
-## Co potrafi
+## Najważniejsze komendy
 
-| Funkcja | Gdzie |
-|---|---|
-| **Ogłoszenia** — broadcast co N sekund, rotacja tekstów, dowolny FX, dźwięk | GUI → Ogłoszenia (admin) |
-| **Animowany nick** — twój nick w czacie rysowany z FX (animacja żywa, bo to shader) | GUI → Nick / `/anim nick <tx>` |
-| **Itemki** — nazwanie itemu w ręce z FX (nazwa też się animuje), nazwa + losowy FX, usuń nazwę | GUI → Itemki / `/anim item <tx>` |
-| **Trolle** — czat, losowa fraza, gracz przed tobą (5 bloków), troll serwera (admin), cooldown | GUI → Trolle / `/anim troll <tx>` |
-| **Rangi** — kolor pisania per ranga; hex z configu → najbliższy FX z packa (lub czysty kolor) | GUI → Rangi (podgląd), działa w czacie automatycznie |
-| **Wybór FX** — 280 efektów z packa, strony, podgląd hexa, losowy FX | GUI → WYBIERZ FX |
-| **Opcje** — dźwięki per gracz, reload konfiga (admin) | GUI → Opcje |
-
-## Komendy i uprawnienia
-
-```
-/anim              — menu GUI          (animacjehub.use, default: true)
-/anim nick <tx>    — ustaw animowany nick   (animacjehub.nick)
-/anim nick off     — usuń nick
-/anim item <tx>    — nazwij item w ręce     (animacjehub.item)
-/anim troll [tx]   — troll czatu            (animacjehub.troll)
-/anim fx <nazwa>   — ustaw FX wszędzie
-/anim list         — przykłady FX z packa
-/anim reload       — reload configu         (animacjehub.admin, default: op)
+```text
+/anim                         menu GUI
+/anim nick                    status nicku, FX i rangi
+/anim nick on|off             włącz/wyłącz animowany nick
+/anim nick set <fx> <tekst>   ustaw własny nick i efekt
+/anim nick fx <fx>             zmień tylko efekt nicku
+/anim title <fx> <tekst>       animowany title dla siebie
+/anim title <gracz> <fx> ...   title dla gracza (permission op)
+/anim title all <fx> ...       title dla wszystkich (permission op)
+/anim item <fx> <nazwa>        animowana nazwa itemu w głównej ręce
+/anim item clear               usuń nazwę itemu
+/anim troll <gracz> [typ]      kosmetyczny troll: title/actionbar/chat/sound
+/anim fx <nazwa>               podgląd efektu
+/anim lista                    pełna lista 50 efektów
+/anim rank                     wykryta ranga + FX prefixu
+/anim glos <tekst>             ogłoszenie do serwera (permission op)
+/anim reload                   przeładuj config i katalog (permission op)
 ```
 
-Podpowiedzi tabu: `/anim fx <TAB>` = lista wszystkich 280 nazw.
+W title znak `|` rozdziela tytuł i podtytuł, np.:
 
-## Rangi i kolory (config.yml)
-
-```yaml
-rangi:
-  zrodlo: auto          # auto | luckperms | lucj | vanilla
-  animowane: true       # true: hex rangy -> najblizszy ANIMOWANY FX
-  kolejnosc: [admin, moderator, vip, user]
-  kolory-klucze: [admin, moderator, vip, user]
-  kolory:
-    admin: "#FF5555"    # to hex, jaki chcesz; plugin sam dobierze FX
+```text
+/anim title rainbow Witaj | Miłej gry!
 ```
 
-- **auto**: próbuje LuckPerms (`net.luckperms.api.LuckPerms`), potem LucjPermissions
-  (kilka znanych pakietów), potem vanilla (uprawnienia z `vanilla: {}`).
-- Ranga = grupa (node `group.<nazwa>`); kolejność z `kolejnosc` decyduje,
-  która wygrywa, gdy gracz ma kilka grup.
-- `animowane: false` → kolor rangi = czysty kolor (bez FX) przy dokładnym
-  trafieniu w 11 kolorów packa, inaczej brak koloru.
+## Animowany nick i ranga
 
-## Ogłoszenia
+W czacie plugin używa poprawnego `setFormat`, więc nick nie dubluje się i wiadomość nie
+jest doklejana do starego formatu. Prefix rangi i nick mogą mieć niezależne FX.
 
-- config: `ogloszenia.wlacz/odstep_s/dzwiek/fx/teksty`
-- GUI → Ogłoszenia: start/stop, zmień tekst (chat), odstęp ±10s, wybór FX.
-- Przy >1 tekście — rotacja po kolei.
+- LuckPerms: używana jest primary group gracza.
+- Bez LuckPerms: kolejność z `rangi.kolejnosc` i permissiony `animacje.ranga.<grupa>`.
+- Ustawienia nicku są trwale zapisane w `plugins/AnimacjeHub/profiles.db`.
+- Własny tekst jest ograniczony długością i zapisywany atomowo.
 
-## Jak działa "animacja"
+## Trolle
 
-Plugin tylko wstawia w tekst **kolor spustowy** (kod `§xRRGGBB` z
-`narzedzia/kolory.json`). To shader z packa Animacje 2.0 wykrywa ten kolor
-na literze i animuje ją (ruch + kolor). Dlatego:
+Trolle są celowo bezpieczne: nie zadają obrażeń, nie teleportują, nie wyrzucają i nie
+zmieniają świata. Pokazują tylko animowany title/actionbar/czat albo odtwarzają dźwięk.
+Trollowanie innych wymaga `animacje.troll.others`, ma cooldown i można je ograniczyć w
+`config.yml`.
 
-- pack musi być włączony u widza (serwer + klient),
-- tekst animuje się "na żywo" — nawet w GUI, tooltipach, tabliczkach,
-- nazwa itemu i nick w czacie to zwykły tekst → działają tak samo.
+## Budowanie
 
-## Budowanie od źródeł
+```bash
+cd plugin
+./build.sh
+```
 
-`build.sh` (JDK 17+): `javac --release 17` ze stubami API (folder `stubs/` —
-tylko do kompilacji, NIE ląduje w jarze) → `AnimacjeHub.jar`.
-Katalog FX wbudowany w jar: `fx_katalog.json` (280 FX + 11 kolorów,
-generowany z `narzedzia/konwerter.py`).
+Katalog `fx_katalog.json` jest generowany wspólnie z packiem przez:
+
+```bash
+python3 narzedzia/generuj_v3.py
+```
+
+Po buildzie jar zawiera tylko klasy pluginu oraz `plugin.yml`, `config.yml` i 50-elementowy
+katalog FX. Stubów kompilacyjnych nie ma w jarze.

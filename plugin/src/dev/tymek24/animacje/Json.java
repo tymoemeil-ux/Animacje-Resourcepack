@@ -5,132 +5,104 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Mini parser JSON — wystarczy na fx_katalog.json (tablice obiektow). */
+/** Mały parser JSON używany tylko do wbudowanego, prostego katalogu FX. */
 final class Json {
+    private final String text;
+    private int index;
 
-    private final String s;
-    private int i;
+    private Json(String text) { this.text = text; }
 
-    private Json(String s) { this.s = s; this.i = 0; }
-
-    static List<Object> tablica(String tekst) {
-        Json j = new Json(tekst);
-        j.pominij();
-        return (List<Object>) j.park();
+    static List<Object> tablica(String text) {
+        Json json = new Json(text);
+        Object value = json.value();
+        return value instanceof List ? (List<Object>) value : List.of();
     }
 
-    @SuppressWarnings("unchecked")
-    static Map<String, Object> obiekt(String tekst) {
-        Json j = new Json(tekst);
-        j.pominij();
-        return (Map<String, Object>) j.park();
+    private Object value() {
+        skip();
+        if (index >= text.length()) return null;
+        char c = text.charAt(index);
+        if (c == '[') return array();
+        if (c == '{') return object();
+        if (c == '"') return string();
+        if (c == 't' || c == 'f') return bool();
+        if (c == 'n') { index += 4; return null; }
+        return number();
     }
 
-    private Object park() {
-        pominij();
-        if (i >= s.length()) return null;
-        char c = s.charAt(i);
-        if (c == '[') return parkTablica();
-        if (c == '{') return parkObiekt();
-        if (c == '"' || c == '\'') return parkString();
-        if (c == 't' || c == 'f') return parkBool();
-        if (c == 'n') return parkNull();
-        return parkLiczba();
-    }
-
-    private List<Object> parkTablica() {
-        List<Object> w = new ArrayList<>();
-        i++; pominij();
-        if (i < s.length() && s.charAt(i) == ']') { i++; return w; }
-        while (i < s.length()) {
-            w.add(park());
-            pominij();
-            if (i >= s.length()) break;
-            char c = s.charAt(i);
-            if (c == ',') { i++; }
-            else if (c == ']') { i++; break; }
-            else break;
+    private List<Object> array() {
+        List<Object> result = new ArrayList<>();
+        index++;
+        skip();
+        while (index < text.length() && text.charAt(index) != ']') {
+            result.add(value());
+            skip();
+            if (index < text.length() && text.charAt(index) == ',') index++;
+            skip();
         }
-        return w;
+        if (index < text.length()) index++;
+        return result;
     }
 
-    private Map<String, Object> parkObiekt() {
-        Map<String, Object> w = new LinkedHashMap<>();
-        i++; pominij();
-        if (i < s.length() && s.charAt(i) == '}') { i++; return w; }
-        while (i < s.length()) {
-            pominij();
-            String klucz = parkString();
-            pominij();
-            if (i >= s.length() || s.charAt(i) != ':') break;
-            i++;
-            w.put(klucz, park());
-            pominij();
-            if (i >= s.length()) break;
-            char c = s.charAt(i);
-            if (c == ',') { i++; }
-            else if (c == '}') { i++; break; }
-            else break;
+    private Map<String, Object> object() {
+        Map<String, Object> result = new LinkedHashMap<>();
+        index++;
+        skip();
+        while (index < text.length() && text.charAt(index) != '}') {
+            String key = string();
+            skip();
+            if (index < text.length() && text.charAt(index) == ':') index++;
+            result.put(key, value());
+            skip();
+            if (index < text.length() && text.charAt(index) == ',') index++;
+            skip();
         }
-        return w;
+        if (index < text.length()) index++;
+        return result;
     }
 
-    private String parkString() {
-        char cyt = s.charAt(i);
-        StringBuilder b = new StringBuilder();
-        i++;
-        while (i < s.length()) {
-            char c = s.charAt(i);
-            if (c == '\\' && i + 1 < s.length()) {
-                char e = s.charAt(i + 1);
-                switch (e) {
-                    case 'n': b.append('\n'); break;
-                    case 't': b.append('\t'); break;
-                    case 'r': b.append('\r'); break;
-                    case '"': b.append('"'); break;
-                    case '\'': b.append('\''); break;
-                    case '\\': b.append('\\'); break;
-                    case '/': b.append('/'); break;
-                    case 'u':
-                        if (i + 5 < s.length()) {
-                            b.append((char) Integer.parseInt(s.substring(i + 2, i + 6), 16));
-                            i += 4;
+    private String string() {
+        if (index < text.length() && text.charAt(index) == '"') index++;
+        StringBuilder result = new StringBuilder();
+        while (index < text.length()) {
+            char c = text.charAt(index++);
+            if (c == '"') break;
+            if (c == '\\' && index < text.length()) {
+                char escaped = text.charAt(index++);
+                switch (escaped) {
+                    case 'n' -> result.append('\n');
+                    case 'r' -> result.append('\r');
+                    case 't' -> result.append('\t');
+                    case 'b' -> result.append('\b');
+                    case 'f' -> result.append('\f');
+                    case 'u' -> {
+                        if (index + 4 <= text.length()) {
+                            result.append((char) Integer.parseInt(text.substring(index, index + 4), 16));
+                            index += 4;
                         }
-                        break;
-                    default: b.append(e);
+                    }
+                    default -> result.append(escaped);
                 }
-                i += 2;
-                continue;
-            }
-            if (c == cyt) { i++; return b.toString(); }
-            b.append(c);
-            i++;
+            } else result.append(c);
         }
-        return b.toString();
+        return result.toString();
     }
 
-    private Object parkLiczba() {
-        int start = i;
-        while (i < s.length() && "+-0123456789.eE".indexOf(s.charAt(i)) >= 0) i++;
-        String t = s.substring(start, i);
-        if (t.contains(".") || t.contains("e") || t.contains("E")) {
-            return (Object) Double.parseDouble(t);
-        }
-        return (Object) Long.parseLong(t);
+    private Object number() {
+        int start = index;
+        while (index < text.length() && "-+0123456789.eE".indexOf(text.charAt(index)) >= 0) index++;
+        String number = text.substring(start, index);
+        return number.contains(".") || number.contains("e") || number.contains("E")
+                ? Double.parseDouble(number) : Long.parseLong(number);
     }
 
-    private Object parkBool() {
-        if (s.charAt(i) == 't') { i += 4; return Boolean.TRUE; }
-        i += 5;
-        return Boolean.FALSE;
+    private Boolean bool() {
+        boolean trueValue = text.charAt(index) == 't';
+        index += trueValue ? 4 : 5;
+        return trueValue;
     }
 
-    private Object parkNull() {
-        i += 4;
-        return null;
-    }
-
-    private void pominij() {
-        while (i < s.length() && Character.isWhitespace(s.charAt(i))) i++;
+    private void skip() {
+        while (index < text.length() && Character.isWhitespace(text.charAt(index))) index++;
     }
 }

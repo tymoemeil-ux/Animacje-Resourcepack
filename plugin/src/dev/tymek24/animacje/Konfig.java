@@ -6,44 +6,128 @@ import java.util.Locale;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/** Uprzywilejowany dostep do config.yml + domyslne wartosci. */
+/** Typowany dostęp do config.yml; wartości mają bezpieczne domyślne ustawienia. */
 public final class Konfig {
-
     private final JavaPlugin plugin;
-    private final FileConfiguration c;
 
-    private Konfig(JavaPlugin plugin, FileConfiguration c) {
+    public Konfig(JavaPlugin plugin) {
         this.plugin = plugin;
-        this.c = c;
-    }
-
-    public static Konfig wczytaj(JavaPlugin plugin) {
         plugin.saveDefaultConfig();
-        return new Konfig(plugin, plugin.getConfig());
     }
 
-    public boolean ogloszeniaWlaczone() { return c.getBoolean("ogloszenia.wlaczone", true); }
-    public int ogloszeniaOdstepS() { return Math.max(10, c.getInt("ogloszenia.odstep_s", 180)); }
-    public List<String> ogloszeniaLista() { return kody(c.getStringList("ogloszenia.lista")); }
-    public int nickOdstepS() { return Math.max(1, c.getInt("nick.odstep_s", 6)); }
+    private FileConfiguration c() {
+        return plugin.getConfig();
+    }
 
-    public void odswiez() {
+    public void reload() {
         plugin.reloadConfig();
     }
 
-    /** Kolor rangi (hex) — klucze "rangi.<grupa>"; domylny gdy brak. */
-    public String hexRangi(String ranga) {
-        String domylny = Narzedzia.kody(c.getString("rangi.domylny", "a0a0a0"));
-        if (ranga != null) {
-            String hex = c.getString("rangi." + ranga.toLowerCase(Locale.ROOT));
-            if (hex != null) return Narzedzia.kody(hex);
-        }
-        return domylny;
+    public boolean chatEnabled() {
+        return c().getBoolean("chat.wlaczone", true);
     }
 
-    private static List<String> kody(List<String> l) {
-        List<String> w = new ArrayList<>();
-        for (String s : l) w.add(Narzedzia.kody(s));
-        return w;
+    public boolean nickDefaultEnabled() {
+        return c().getBoolean("nick.domyslnie_wlaczony", true);
+    }
+
+    public String nickDefaultFx() {
+        return c().getString("nick.domyslny_fx", "rainbow");
+    }
+
+    public int nickMaxLength() {
+        return Math.max(3, Math.min(32, c().getInt("nick.maksymalna_dlugosc", 24)));
+    }
+
+    public int titleFadeIn() {
+        return Math.max(0, c().getInt("title.fade_in", 8));
+    }
+
+    public int titleStay() {
+        return Math.max(1, c().getInt("title.stay", 50));
+    }
+
+    public int titleFadeOut() {
+        return Math.max(0, c().getInt("title.fade_out", 12));
+    }
+
+    public boolean rankEnabled() {
+        return c().getBoolean("rangi.wlaczone", true);
+    }
+
+    public List<String> rankOrder() {
+        List<String> raw = c().getStringList("rangi.kolejnosc");
+        if (raw.isEmpty()) return List.of("owner", "admin", "moderator", "vip", "op", "default");
+        List<String> result = new ArrayList<>();
+        for (String value : raw) {
+            if (value != null && !value.isBlank()) result.add(value.toLowerCase(Locale.ROOT));
+        }
+        return result;
+    }
+
+    public String rankPrefix(String group) {
+        String value = c().getString("rangi.grupy." + group + ".prefix");
+        if (value == null) value = c().getString("rangi." + group + ".prefix");
+        return value == null ? c().getString("rangi.grupy.default.prefix", "&7[Gracz]") : value;
+    }
+
+    public String rankFx(String group) {
+        String value = c().getString("rangi.grupy." + group + ".fx");
+        if (value == null) value = c().getString("rangi." + group + ".fx");
+        return value == null ? c().getString("rangi.grupy.default.fx", "wave") : value;
+    }
+
+    public String rankPermissionPrefix() {
+        return c().getString("rangi.permission_prefix", "animacje.ranga.");
+    }
+
+    public boolean joinMessages() {
+        return c().getBoolean("chat.ogloszenia_wejscia", true);
+    }
+
+    public boolean announcementsEnabled() {
+        return c().getBoolean("ogloszenia.wlaczone", false);
+    }
+
+    public int announcementsInterval() {
+        return Math.max(30, c().getInt("ogloszenia.odstep_s", 180));
+    }
+
+    public List<String> announcements() {
+        List<String> result = new ArrayList<>();
+        for (String line : c().getStringList("ogloszenia.lista")) result.add(Narzedzia.kody(line));
+        return result;
+    }
+
+    public int trollCooldown() {
+        return Math.max(0, c().getInt("troll.cooldown_s", 5));
+    }
+
+    public boolean trollSelf() {
+        return c().getBoolean("troll.na_siebie", true);
+    }
+
+    public int itemMaxLength() {
+        return Math.max(3, Math.min(64, c().getInt("item.maksymalna_dlugosc", 48)));
+    }
+
+    public String resourcePackUrl() {
+        return c().getString("resourcepack.url", "");
+    }
+
+    public String resourcePackSha1() {
+        return c().getString("resourcepack.sha1", "");
+    }
+
+    public boolean resourcePackRequired() {
+        return c().getBoolean("resourcepack.wymagany", false);
+    }
+
+    public String resourcePackPrompt() {
+        return Narzedzia.kody(c().getString("resourcepack.prompt", "&dWłącz Animacje 3.0, aby widzieć efekty!"));
+    }
+
+    public String packName() {
+        return c().getString("resourcepack.nazwa", "Animacje3.0.zip");
     }
 }

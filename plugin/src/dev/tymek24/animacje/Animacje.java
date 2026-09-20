@@ -4,69 +4,72 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/** Animacje Hub v2 — glowna klasa. */
+/** Główna klasa AnimacjeHub v2 — mały, przewidywalny plugin dla packa 3.0. */
 public final class Animacje extends JavaPlugin {
+    private static Animacje instance;
+    private Konfig config;
+    private ProfileStore profiles;
+    private Rangi ranks;
+    private Tytuly titles;
+    private Trolle trolls;
+    private Itemy items;
+    private Menu menu;
+    private Polecenia commands;
+    private Ogloszenia announcements;
+    private ResourcePack resourcePack;
 
-    private static Animacje instancja;
-
-    private Konfig konfig;
-    private Rangi rangi;
-    private Nick nick;
-    private Trolle trolle;
-    private Ogloszenia ogloszenia;
-    private Hub hub;
-
-    public static Animacje instancja() { return instancja; }
+    public static Animacje get() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
-        instancja = this;
-        konfig = Konfig.wczytaj(this);
-        Katalog.wczytaj(this);
-        rangi = new Rangi(konfig);
-        nick = new Nick(this, konfig);
-        trolle = new Trolle();
-        ogloszenia = new Ogloszenia(this, konfig);
-        hub = new Hub(konfig, rangi, nick, trolle, ogloszenia);
+        instance = this;
+        config = new Konfig(this);
+        Katalog.load(this);
+        profiles = new ProfileStore(this, config);
+        ranks = new Rangi(config);
+        titles = new Tytuly(config);
+        trolls = new Trolle(this);
+        items = new Itemy(config);
+        menu = new Menu(this);
+        announcements = new Ogloszenia(this, config);
+        resourcePack = new ResourcePack(config);
+        commands = new Polecenia(this);
 
         Bukkit.getPluginManager().registerEvents(new Wydarzenia(this), this);
-
-        Polecenia polecenia = new Polecenia(this);
-        PluginCommand anim = getCommand("anim");
-        if (anim != null) {
-            anim.setExecutor(polecenia);
-            anim.setTabCompleter(polecenia);
+        PluginCommand command = getCommand("anim");
+        if (command != null) {
+            command.setExecutor(commands);
+            command.setTabCompleter(commands);
         }
-        PluginCommand animacje = getCommand("animacje");
-        if (animacje != null) {
-            animacje.setExecutor(polecenia);
-            animacje.setTabCompleter(polecenia);
-        }
-
-        ogloszenia.start();
-        getLogger().info("Animacje Hub v2.0.0 wloczony: "
-                + Katalog.iloscAnimowanych() + " FX + " + Katalog.iloscKolorow() + " kolorow"
-                + (rangi.luckPerms() ? " | LuckPerms OK" : ""));
+        announcements.start();
+        getLogger().info("AnimacjeHub v2.0.0 uruchomiony: Animacje 3.0 / " + Katalog.count() + " efektów"
+                + (ranks.luckPerms() ? " / LuckPerms" : " / fallback permissionów"));
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getScheduler().cancelTasks(this);
-        instancja = null;
+        if (Bukkit.getScheduler() != null) Bukkit.getScheduler().cancelTasks(this);
+        instance = null;
     }
 
-    public void odswiez() {
-        konfig.odswiez();
-        Katalog.ODSWIEZ();
-        Katalog.wczytaj(this);
-        ogloszenia.start();
+    public void reloadPlugin() {
+        if (Bukkit.getScheduler() != null) Bukkit.getScheduler().cancelTasks(this);
+        config.reload();
+        Katalog.load(this);
+        profiles.reload();
+        announcements.start();
     }
 
-    public Konfig konfig() { return konfig; }
-    public Rangi rangi() { return rangi; }
-    public Nick nick() { return nick; }
-    public Trolle trolle() { return trolle; }
-    public Ogloszenia ogloszenia() { return ogloszenia; }
-    public Hub hub() { return hub; }
-    public JavaPlugin plugin() { return this; }
+    public Konfig config() { return config; }
+    public ProfileStore profiles() { return profiles; }
+    public Rangi rangi() { return ranks; }
+    public Tytuly titles() { return titles; }
+    public Trolle trolls() { return trolls; }
+    public Itemy items() { return items; }
+    public Menu menu() { return menu; }
+    public Polecenia commands() { return commands; }
+    public Ogloszenia announcements() { return announcements; }
+    public ResourcePack resourcePack() { return resourcePack; }
 }

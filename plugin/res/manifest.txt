@@ -1,4 +1,2 @@
 Manifest-Version: 1.0
-Created-By: AnimacjeHub build
-paperweight-mappings-namespace: mojang
-
+Created-By: AnimacjeHub v2 build

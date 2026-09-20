@@ -1,27 +1,60 @@
 name: AnimacjeHub
-version: 2.0.1
+version: 2.0.0
 main: dev.tymek24.animacje.Animacje
 api-version: '1.21'
 authors: [tymek24]
-description: "Animacje 2.0 Hub - 256 FX, nick animowany, itemy, trolle, glosy (1.21-26.3)"
+description: "AnimacjeHub v2 — nicki, rangi, title, itemy i bezpieczne trolle dla Animacje3.0"
 softdepend: [LuckPerms]
 
 commands:
   anim:
-    description: Animacje Hub (menu, fx, nick, item, troll, glos)
-    usage: /anim [fx|nick|item|troll|kolor|glos|lista|gui|info|reload]
+    description: AnimacjeHub v2 dla Animacje3.0
+    usage: /anim [nick|title|item|troll|fx|rank|lista|reload]
     aliases: [an, animacje]
 
 permissions:
-  animacje.uzywanie:
-    description: Bazowe komendy /anim
+  animacje.use:
+    description: Otwieranie menu i podgląd FX
     default: true
-  animacje.glos:
-    description: /anim glos (ogloszenia do wszystkich)
+  animacje.uzywanie:
+    description: Zgodność wsteczna dla starych instalacji v1
+    default: true
+  animacje.nick:
+    description: Własny animowany nick
+    default: true
+  animacje.title:
+    description: Wysyłanie animowanych title do siebie
+    default: true
+  animacje.title.others:
+    description: Wysyłanie animowanych title innemu graczowi
     default: op
-  animacje.troll.inny:
-    description: Trollowanie innych graczy
+  animacje.title.broadcast:
+    description: Wysyłanie animowanych title wszystkim
+    default: op
+  animacje.item:
+    description: Animowane nazwy itemów
+    default: true
+  animacje.troll:
+    description: Kosmetyczne trolle na siebie
+    default: true
+  animacje.troll.others:
+    description: Kosmetyczne trolle na innych graczy
+    default: op
+  animacje.announce:
+    description: Ogłoszenia do całego serwera
     default: op
   animacje.admin:
-    description: /anim reload
+    description: Przeładowanie pluginu i katalogu
     default: op
+  animacje.ranga.vip:
+    description: Fallback rangi VIP bez LuckPerms
+    default: false
+  animacje.ranga.moderator:
+    description: Fallback rangi moderatora bez LuckPerms
+    default: false
+  animacje.ranga.admin:
+    description: Fallback rangi admina bez LuckPerms
+    default: false
+  animacje.ranga.owner:
+    description: Fallback rangi właściciela bez LuckPerms
+    default: false

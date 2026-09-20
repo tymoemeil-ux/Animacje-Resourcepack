@@ -2,210 +2,412 @@ package dev.tymek24.animacje;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-/** /anim (+ aliasy) — router podpolecen. */
-public final class Polecenia implements org.bukkit.command.CommandExecutor, TabCompleter {
+/** Stabilny router /anim — wszystkie akcje mają osobne permissiony i walidację. */
+public final class Polecenia implements CommandExecutor, TabCompleter {
+    private static final List<String> SUBCOMMANDS = List.of(
+            "fx", "nick", "item", "title", "troll", "rank", "lista", "gui", "info", "glos", "reload", "help");
+    private final Animacje plugin;
 
-    private final Animacje main;
-
-    public Polecenia(Animacje main) { this.main = main; }
+    public Polecenia(Animacje plugin) {
+        this.plugin = plugin;
+    }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player p = sender instanceof Player ? (Player) sender : null;
-
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            if (p != null) main.hub().otworzMenu(p);
-            else pomoz(sender);
+            if (sender instanceof Player) plugin.menu().openMain((Player) sender);
+            else help(sender);
             return true;
         }
-
-        String sub = args[0].toLowerCase();
-
+        String sub = args[0].toLowerCase(Locale.ROOT);
         switch (sub) {
             case "help":
             case "pomoc":
-                pomoz(sender);
+                help(sender);
                 break;
             case "gui":
-                if (p == null) { sender.sendMessage("§cTylko gracz."); break; }
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                main.hub().otworzMenu(p);
+                if (sender instanceof Player && require(sender, "animacje.use")) plugin.menu().openMain((Player) sender);
+                else if (!(sender instanceof Player)) sender.sendMessage("§cGUI jest dostępne tylko w grze.");
+                break;
+            case "info":
+                info(sender);
                 break;
             case "fx":
             case "efekt":
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                if (args.length == 1) {
-                    if (p != null) main.hub().otworzFx(p, 0, false);
-                    else sender.sendMessage("§cKatalog otwiera gracz.");
-                    break;
-                }
-                if (args[1].equalsIgnoreCase("lista")) {
-                    listaFx(sender, args.length > 2 ? args[2] : null);
-                    break;
-                }
-                podgladFx(sender, args[1]);
+                fx(sender, args);
                 break;
             case "lista":
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                listaFx(sender, args.length > 1 ? args[1] : null);
+            case "list":
+                list(sender, args.length > 1 ? args[1] : null);
                 break;
             case "nick":
-                if (p == null) { sender.sendMessage("§cTylko gracz."); break; }
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                if (args.length > 1) {
-                    boolean chce = args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("wl");
-                    boolean biezacy = main.nick().wlaczony(p);
-                    if (chce == biezacy) {
-                        sender.sendMessage("§8» §fNick juz jest: §7" + (biezacy ? "§aWŁ" : "§cWYŁ"));
-                    } else {
-                        main.nick().przelicz(p);
-                        p.sendMessage("§8» §fNick animowany: §7" + (chce ? "§aWŁ" : "§cWYŁ"));
-                    }
-                } else {
-                    boolean st = main.nick().przelicz(p);
-                    p.sendMessage("§8» §fNick animowany: §7" + (st ? "§aWŁ" : "§cWYŁ"));
-                }
+                nick(sender, args);
                 break;
             case "item":
             case "przedmiot":
-                if (p == null) { sender.sendMessage("§cTylko gracz."); break; }
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                if (args.length == 1) {
-                    main.hub().otworzFx(p, 0, true);
-                } else {
-                    Katalog.Fx f = Katalog.poNazwie(args[1]);
-                    if (f == null || !f.animowany()) { sender.sendMessage("§cBrak FX: §f" + args[1]); break; }
-                    main.hub().nazwijItem(p, f);
-                }
+                item(sender, args);
+                break;
+            case "title":
+            case "tytul":
+                title(sender, args);
                 break;
             case "troll":
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                {
-                    Player cel = p;
-                    if (args.length > 1) {
-                        cel = Bukkit.getPlayer(args[1]);
-                        if (cel == null) { sender.sendMessage("§cGracz nie jest online: §f" + args[1]); break; }
-                        if (cel != p && !uprawnienie(sender, "animacje.troll.inny")) break;
-                    }
-                    main.trolle().losowo(cel);
-                    if (cel == p) p.sendMessage("§8» §4TROLL! §7Wykonano losowa akcje.");
-                    else sender.sendMessage("§8» §4Troll na: §f" + cel.getName() + "§r");
-                }
+                troll(sender, args);
                 break;
-            case "kolor":
-                if (!uprawnienie(sender, "animacje.uzywanie")) break;
-                if (args.length == 1) {
-                    if (p != null) main.hub().otworzKolory(p);
-                    break;
-                }
-                Katalog.Fx k = Katalog.poNazwie(args[1]);
-                if (k == null) { sender.sendMessage("§cBrak koloru/FX: §f" + args[1]); break; }
-                sender.sendMessage(k.spust() + "Kolor: §7" + k.nazwa + " §8(" + k.hex + ")§r");
+            case "rank":
+            case "ranga":
+                rank(sender);
                 break;
             case "glos":
             case "announce":
-                if (!uprawnienie(sender, "animacje.glos")) break;
-                if (args.length < 2) { sender.sendMessage("§cUzytek: /anim glos <tekst>"); break; }
-                StringBuilder msg = new StringBuilder();
-                for (int i = 1; i < args.length; i++) {
-                    if (i > 1) msg.append(' ');
-                    msg.append(args[i]);
-                }
-                main.ogloszenia().glos(msg.toString(), p);
-                sender.sendMessage("§8» §fGlos wyslany do wszystkich.");
+                announce(sender, args);
                 break;
             case "reload":
             case "odswiez":
-                if (!uprawnienie(sender, "animacje.admin")) break;
-                main.odswiez();
-                sender.sendMessage("§8» §fPrzywrócono konfiguracje i katalog.");
-                break;
-            case "info":
-                sender.sendMessage("§d§lAnimacje 2.0 Hub §rv2.0.1");
-                sender.sendMessage("§8» §f" + Katalog.iloscAnimowanych() + " animacji §8+ §f" + Katalog.iloscKolorow() + " kolorow §8| pack: §fAnimacje2.0.zip");
-                sender.sendMessage("§8» §7Komendy: §f/anim fx|nick|item|troll|kolor|glos|lista|info");
-                sender.sendMessage("§8» §7Rangi: §f" + (main.rangi().luckPerms() ? "LuckPerms (aktywny)" : "brak LP (op/player)"));
+                if (require(sender, "animacje.admin")) {
+                    plugin.reloadPlugin();
+                    sender.sendMessage("§8» §aAnimacjeHub v2 przeładowany. Katalog: 50 FX.");
+                }
                 break;
             default:
-                sender.sendMessage("§cNieznane polecenie: §f" + sub + " §8— /anim help");
+                sender.sendMessage("§cNieznana komenda. Użyj §f/anim help§c.");
         }
         return true;
     }
 
-    private void podgladFx(CommandSender sender, String nazwa) {
-        Katalog.Fx f = Katalog.poNazwie(nazwa);
-        if (f == null) { sender.sendMessage("§cBrak FX: §f" + nazwa); return; }
-        Player p = sender instanceof Player ? (Player) sender : null;
-        if (p != null) Silnik.tytul(p, f.spust() + f.nazwa.toUpperCase(), "§8id " + f.id + " §7• §8hx " + f.hex);
-        sender.sendMessage(f.spust() + "FX: §7" + f.nazwa + " §8(id " + f.id + ", hx " + f.hex + ")§r");
-    }
-
-    private void listaFx(CommandSender sender, String rodzina) {
-        List<Katalog.Fx> lista = new ArrayList<>();
-        for (Katalog.Fx f : Katalog.ANIMOWANE) {
-            if (rodzina == null || f.rodzina.equalsIgnoreCase(rodzina)) lista.add(f);
-        }
-        if (lista.isEmpty()) { sender.sendMessage("§cBrak FX dla: §f" + rodzina); return; }
-        String rodzinaTxt = rodzina == null ? "wszystkie" : rodzina;
-        sender.sendMessage("§d§lFX §r§7(" + rodzinaTxt + ", §f" + lista.size() + "):");
-        StringBuilder linia = new StringBuilder();
-        int licznik = 0;
-        for (Katalog.Fx f : lista) {
-            String wpis = "§x" + f.hex + f.nazwa + "§r";
-            if (linia.length() + wpis.length() > 120 && linia.length() > 0) {
-                sender.sendMessage(linia.toString());
-                linia.setLength(0);
-            }
-            if (linia.length() > 0) linia.append(" §8•§r ");
-            linia.append(wpis);
-            if (++licznik >= 12) { sender.sendMessage(linia.toString()); linia.setLength(0); licznik = 0; }
-        }
-        if (linia.length() > 0) sender.sendMessage(linia.toString());
-    }
-
-    private void pomoz(CommandSender sender) {
-        sender.sendMessage("§d§lAnimacje 2.0 Hub §rv2.0.1 §8— komendy:");
+    public void help(CommandSender sender) {
+        sender.sendMessage("§d§lAnimacjeHub §rv2 §8— §fAnimacje 3.0 / 50 FX");
         sender.sendMessage("§8» §f/anim §7— menu GUI");
-        sender.sendMessage("§8» §f/anim fx <nazwa> §7— podglad FX");
-        sender.sendMessage("§8» §f/anim nick [on|off] §7— animowany nick");
-        sender.sendMessage("§8» §f/anim item <nazwa> §7— nazwa itemu z FX");
-        sender.sendMessage("§8» §f/anim troll [gracz] §7— losowy troll");
-        sender.sendMessage("§8» §f/anim kolor <nazwa> §7— kolor statyczny");
-        sender.sendMessage("§8» §f/anim glos <msg> §7— ogloszenie (uprawnienie)");
-        sender.sendMessage("§8» §f/anim lista [rodzina] §7— katalog FX");
+        sender.sendMessage("§8» §f/anim nick [on|off|set <fx> <tekst>|fx <fx>] §7— nick + ranga");
+        sender.sendMessage("§8» §f/anim title [gracz|all] <fx> <tytuł> [| podtytuł] §7— animowany title");
+        sender.sendMessage("§8» §f/anim item <fx> <nazwa> §7— animowana nazwa itemu w ręce");
+        sender.sendMessage("§8» §f/anim item clear §7— usuń nazwę itemu");
+        sender.sendMessage("§8» §f/anim troll <gracz> [title|actionbar|chat|sound] §7— kosmetyczny troll");
+        sender.sendMessage("§8» §f/anim fx <nazwa> §7— podgląd; /anim lista §7— 50 efektów");
+        sender.sendMessage("§8» §f/anim rank §7— pokaż wykrytą rangę; /anim info");
     }
 
-    private boolean uprawnienie(CommandSender s, String perm) {
-        if (s.hasPermission(perm)) return true;
-        s.sendMessage("§cBrak uprawnienia: §f" + perm);
+    private void info(CommandSender sender) {
+        sender.sendMessage("§d§lAnimacjeHub v2.0.0");
+        sender.sendMessage("§8» §fPack: §dAnimacje3.0.zip §8| §fFX: §d" + Katalog.count());
+        sender.sendMessage("§8» §fNicki, rangi, title, itemy i bezpieczne trolle są obsługiwane.");
+        sender.sendMessage("§8» §fLuckPerms: §7" + (plugin.rangi().luckPerms() ? "aktywny" : "fallback permissionów"));
+    }
+
+    private void fx(CommandSender sender, String[] args) {
+        if (!require(sender, "animacje.use")) return;
+        if (args.length < 2) {
+            if (sender instanceof Player) plugin.menu().openFx((Player) sender, 0, "preview");
+            else list(sender, null);
+            return;
+        }
+        if (args[1].equalsIgnoreCase("lista")) {
+            list(sender, args.length > 2 ? args[2] : null);
+            return;
+        }
+        Katalog.Fx fx = Katalog.byName(args[1]);
+        if (fx == null) {
+            sender.sendMessage("§cNie znaleziono FX §f" + args[1] + "§c. Użyj §f/anim lista§c.");
+            return;
+        }
+        sender.sendMessage(fx.spust() + "FX §f" + fx.nazwa + " §8• §7" + fx.opis + " §8(" + fx.hex + ")§r");
+        if (sender instanceof Player) plugin.titles().wyslij((Player) sender, fx, fx.nazwa.toUpperCase(Locale.ROOT), fx.opis);
+    }
+
+    private void list(CommandSender sender, String family) {
+        List<Katalog.Fx> result = new ArrayList<>();
+        for (Katalog.Fx fx : Katalog.animated()) {
+            if (family == null || fx.rodzina.equalsIgnoreCase(family)) result.add(fx);
+        }
+        if (result.isEmpty()) {
+            sender.sendMessage("§cBrak efektów dla rodziny: §f" + family);
+            return;
+        }
+        sender.sendMessage("§d§lAnimacje 3.0 §r§8— §f" + result.size() + " FX" + (family == null ? "" : " / " + family));
+        StringBuilder line = new StringBuilder();
+        for (int i = 0; i < result.size(); i++) {
+            Katalog.Fx fx = result.get(i);
+            String entry = fx.spust() + fx.nazwa + "§r";
+            if (line.length() + entry.length() > 110 && line.length() > 0) {
+                sender.sendMessage(line.toString());
+                line.setLength(0);
+            }
+            if (line.length() > 0) line.append(" §8• ");
+            line.append(entry);
+        }
+        if (line.length() > 0) sender.sendMessage(line.toString());
+    }
+
+    private void nick(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cNick można ustawiać tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.nick")) return;
+        Player player = (Player) sender;
+        Profil profile = plugin.profiles().get(player);
+        if (args.length == 1) {
+            Katalog.Fx fx = Katalog.byName(profile.fx);
+            sender.sendMessage("§8» §fNick: " + Tekst.status(profile.nickWlaczony) + " §8• §fFX: §b" + (fx == null ? "?" : fx.nazwa)
+                    + " §8• §fRanga: §b" + plugin.rangi().opis(player));
+            return;
+        }
+        String action = args[1].toLowerCase(Locale.ROOT);
+        if (action.equals("on") || action.equals("off") || action.equals("wl") || action.equals("wyl")) {
+            plugin.profiles().setNickEnabled(player, action.equals("on") || action.equals("wl"));
+            sender.sendMessage("§8» §fAnimowany nick: " + Tekst.status(plugin.profiles().get(player).nickWlaczony));
+            return;
+        }
+        if (action.equals("toggle") || action.equals("przelacz")) {
+            plugin.profiles().toggleNick(player);
+            sender.sendMessage("§8» §fAnimowany nick: " + Tekst.status(plugin.profiles().get(player).nickWlaczony));
+            return;
+        }
+        if (action.equals("clear") || action.equals("wyczysc")) {
+            plugin.profiles().clearNick(player);
+            sender.sendMessage("§8» §fPrzywrócono nick konta.");
+            return;
+        }
+        if (action.equals("random") || action.equals("losowy")) {
+            Katalog.Fx fx = Katalog.random();
+            plugin.profiles().setFx(player, fx);
+            sender.sendMessage("§8» §fWylosowano FX nicku: §b" + fx.nazwa);
+            return;
+        }
+        if (action.equals("fx")) {
+            if (args.length < 3) {
+                sender.sendMessage("§cUżycie: /anim nick fx <nazwa>");
+                return;
+            }
+            setNickFx(player, args[2]);
+            return;
+        }
+        if (action.equals("set") || action.equals("ustaw")) {
+            if (args.length < 3) {
+                sender.sendMessage("§cUżycie: /anim nick set <fx> <tekst> albo /anim nick set <tekst>");
+                return;
+            }
+            Katalog.Fx fx = Katalog.byName(args[2]);
+            int textStart = fx == null ? 2 : 3;
+            String nick = Narzedzia.polacz(args, textStart);
+            if (nick.isBlank()) {
+                sender.sendMessage("§cNick nie może być pusty.");
+                return;
+            }
+            if (fx != null) plugin.profiles().setFx(player, fx);
+            plugin.profiles().setNick(player, nick);
+            plugin.profiles().setNickEnabled(player, true);
+            sender.sendMessage("§8» §fUstawiono animowany nick: " + Tekst.animowany(fx == null ? Katalog.byName(profile.fx) : fx, nick));
+            return;
+        }
+        // Skrót: /anim nick <fx> albo /anim nick <tekst>.
+        Katalog.Fx fx = Katalog.byName(args[1]);
+        if (fx != null) {
+            plugin.profiles().setFx(player, fx);
+            sender.sendMessage("§8» §fFX nicku ustawiony na §b" + fx.nazwa + "§f.");
+        } else {
+            plugin.profiles().setNick(player, Narzedzia.polacz(args, 1));
+            plugin.profiles().setNickEnabled(player, true);
+            sender.sendMessage("§8» §fUstawiono tekst nicku. FX: §b" + profile.fx);
+        }
+    }
+
+    private void setNickFx(Player player, String name) {
+        Katalog.Fx fx = Katalog.byName(name);
+        if (fx == null) {
+            player.sendMessage("§cNie znaleziono FX: §f" + name);
+            return;
+        }
+        plugin.profiles().setFx(player, fx);
+        player.sendMessage("§8» §fFX nicku: §b" + fx.nazwa);
+    }
+
+    private void item(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cItem można nazwać tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.item")) return;
+        Player player = (Player) sender;
+        if (args.length == 1) {
+            plugin.menu().openFx(player, 0, "item");
+            return;
+        }
+        if (args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("wyczysc")) {
+            sender.sendMessage(plugin.items().wyczysc(player) ? "§8» §aUsunięto nazwę itemu." : "§cTrzymaj item z własną nazwą w głównej ręce.");
+            return;
+        }
+        int fxIndex = args[1].equalsIgnoreCase("set") ? 2 : 1;
+        if (args.length <= fxIndex + 1) {
+            sender.sendMessage("§cUżycie: /anim item <fx> <nazwa>");
+            return;
+        }
+        Katalog.Fx fx = Katalog.byName(args[fxIndex]);
+        if (fx == null) {
+            sender.sendMessage("§cNie znaleziono FX: §f" + args[fxIndex]);
+            return;
+        }
+        String name = Narzedzia.polacz(args, fxIndex + 1);
+        sender.sendMessage(plugin.items().ustaw(player, fx, name)
+                ? "§8» §fNazwa itemu ustawiona z FX §b" + fx.nazwa + "§f."
+                : "§cTrzymaj item w głównej ręce.");
+    }
+
+    private void title(CommandSender sender, String[] args) {
+        if (!require(sender, "animacje.title")) return;
+        int index = 1;
+        java.util.Collection<? extends Player> targets;
+        if (index >= args.length) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("§cUżycie: /anim title [gracz|all] <fx> <tytuł> [| podtytuł]");
+                return;
+            }
+            targets = List.of((Player) sender);
+        } else if (args[index].equalsIgnoreCase("all")) {
+            if (!require(sender, "animacje.title.broadcast")) return;
+            targets = Bukkit.getOnlinePlayers();
+            index++;
+        } else {
+            Player named = Bukkit.getPlayer(args[index]);
+            if (named != null && !isEffect(args[index])) {
+                if (!require(sender, "animacje.title.others")) return;
+                targets = List.of(named);
+                index++;
+            } else if (sender instanceof Player) {
+                targets = List.of((Player) sender);
+            } else {
+                sender.sendMessage("§cZ konsoli podaj gracza albo all.");
+                return;
+            }
+        }
+        Katalog.Fx fx = index < args.length ? Katalog.byName(args[index]) : null;
+        if (fx != null) index++;
+        if (fx == null) fx = Katalog.byName(plugin.config().nickDefaultFx());
+        if (fx == null) fx = Katalog.random();
+        if (index >= args.length) {
+            sender.sendMessage("§cPodaj tekst title. Oddziel subtitle znakiem |.");
+            return;
+        }
+        String[] title = Narzedzia.podzielTytul(Narzedzia.polacz(args, index));
+        for (Player target : targets) plugin.titles().wyslij(target, fx, title[0], title[1]);
+        sender.sendMessage("§8» §fWysłano animowany title z FX §b" + fx.nazwa + "§f.");
+    }
+
+    private boolean isEffect(String value) {
+        return Katalog.byName(value) != null;
+    }
+
+    private void troll(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cTroll można uruchomić tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.troll")) return;
+        Player actor = (Player) sender;
+        int index = 1;
+        Player target = actor;
+        if (index < args.length) {
+            Player named = Bukkit.getPlayer(args[index]);
+            if (named != null) {
+                target = named;
+                index++;
+            }
+        }
+        if (target != actor && !require(sender, "animacje.troll.others")) return;
+        String type = null;
+        Katalog.Fx fx = null;
+        while (index < args.length) {
+            Katalog.Fx parsed = Katalog.byName(args[index]);
+            if (parsed != null) fx = parsed;
+            else type = args[index];
+            index++;
+        }
+        if (plugin.trolls().execute(actor, target, type, fx)) {
+            sender.sendMessage("§8» §fWykonano kosmetyczny troll na §b" + target.getName() + "§f.");
+        }
+    }
+
+    private void rank(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cRangę można sprawdzić tylko w grze.");
+            return;
+        }
+        Player player = (Player) sender;
+        sender.sendMessage("§8» §fTwoja ranga: §d" + plugin.rangi().opis(player));
+        sender.sendMessage("§8» §fAnimowany prefix jest aktywny w czacie, jeśli rangi.wlaczone=true.");
+    }
+
+    private void announce(CommandSender sender, String[] args) {
+        if (!require(sender, "animacje.announce")) return;
+        if (args.length < 2) {
+            sender.sendMessage("§cUżycie: /anim glos <tekst> (użyj {fx}, aby animować fragment)");
+            return;
+        }
+        plugin.announcements().send(Narzedzia.polacz(args, 1), sender instanceof Player ? (Player) sender : null);
+        sender.sendMessage("§8» §fOgłoszenie wysłane.");
+    }
+
+    private boolean require(CommandSender sender, String permission) {
+        if (sender.hasPermission(permission)) return true;
+        sender.sendMessage("§cBrak uprawnienia: §f" + permission);
         return false;
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
-        List<String> wynik = new ArrayList<>();
-        if (args.length == 1) {
-            for (String s : new String[] {"fx", "nick", "item", "troll", "kolor", "lista", "glos", "gui", "info", "help", "reload"}) {
-                if (s.startsWith(args[0].toLowerCase())) wynik.add(s);
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) return startsWith(SUBCOMMANDS, args[0]);
+        if (args.length == 2) {
+            String sub = args[0].toLowerCase(Locale.ROOT);
+            if (sub.equals("fx") || sub.equals("efekt") || sub.equals("lista") || sub.equals("list")) return fxNames(args[1]);
+            if (sub.equals("nick")) return startsWith(List.of("on", "off", "toggle", "set", "fx", "random", "clear"), args[1]);
+            if (sub.equals("item")) {
+                List<String> result = new ArrayList<>(fxNames(args[1]));
+                result.addAll(startsWith(List.of("set", "clear"), args[1]));
+                return result;
             }
-            return wynik;
-        }
-        if (args.length == 2 && (args[0].equalsIgnoreCase("fx") || args[0].equalsIgnoreCase("item")
-                || args[0].equalsIgnoreCase("kolor"))) {
-            String pref = args[1].toLowerCase();
-            int dodane = 0;
-            List<Katalog.Fx> pula = args[0].equalsIgnoreCase("kolor") ? Katalog.KOLORY : Katalog.ANIMOWANE;
-            for (Katalog.Fx f : pula) {
-                if (f.nazwa.startsWith(pref)) { wynik.add(f.nazwa); if (++dodane >= 20) break; }
+            if (sub.equals("title") || sub.equals("tytul")) {
+                List<String> result = new ArrayList<>(fxNames(args[1]));
+                result.addAll(playerNames(args[1]));
+                return result;
             }
+            if (sub.equals("troll")) return playerNames(args[1]);
         }
-        return wynik;
+        if (args.length == 3 && args[0].equalsIgnoreCase("nick")
+                && (args[1].equalsIgnoreCase("fx") || args[1].equalsIgnoreCase("set"))) return fxNames(args[2]);
+        if (args.length == 3 && args[0].equalsIgnoreCase("item") && args[1].equalsIgnoreCase("set")) return fxNames(args[2]);
+        if (args.length == 3 && (args[0].equalsIgnoreCase("title") || args[0].equalsIgnoreCase("tytul"))) return fxNames(args[2]);
+        return Collections.emptyList();
+    }
+
+    private List<String> fxNames(String prefix) {
+        List<String> names = new ArrayList<>();
+        String wanted = prefix == null ? "" : prefix.toLowerCase(Locale.ROOT);
+        for (Katalog.Fx fx : Katalog.animated()) if (fx.nazwa.startsWith(wanted)) names.add(fx.nazwa);
+        return names;
+    }
+
+    private List<String> playerNames(String prefix) {
+        List<String> names = new ArrayList<>();
+        String wanted = prefix == null ? "" : prefix.toLowerCase(Locale.ROOT);
+        if ("all".startsWith(wanted)) names.add("all");
+        for (Player player : Bukkit.getOnlinePlayers()) if (player.getName().toLowerCase(Locale.ROOT).startsWith(wanted)) names.add(player.getName());
+        return names;
+    }
+
+    private List<String> startsWith(List<String> values, String prefix) {
+        String wanted = prefix == null ? "" : prefix.toLowerCase(Locale.ROOT);
+        List<String> result = new ArrayList<>();
+        for (String value : values) if (value.startsWith(wanted)) result.add(value);
+        return result;
     }
 }

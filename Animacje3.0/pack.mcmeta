@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "name": "Animacje 3.0 — Top 50",
+    "description": "§dAnimacje 3.0 §7— 50 starannie wybranych animacji tekstu + 4 nowe efekty",
+    "pack_format": 63,
+    "supported_formats": {
+      "min_inclusive": 42,
+      "max_inclusive": 110
+    },
+    "min_format": 42,
+    "max_format": 110
+  }
+}

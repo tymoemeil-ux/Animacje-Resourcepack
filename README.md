@@ -1,46 +1,92 @@
-# Animacje-Resourcepack
+# Animacje Resourcepack
 
-Repozytorium resourcepacków do animowania tekstu w Minecraft Java Edition.
+Packi do żywego animowania tekstu w Minecraft Java Edition. Aktualne wydanie to
+**Animacje 3.0 — Top 50** oraz przebudowany od zera **AnimacjeHub v2**.
 
-## Wersje
+## Aktualne pliki
 
-| Plik | Opis |
-|------|------|
-| `Animacje2.0/` + `Animacje2.0.zip` | **AKTUALNA (2.0)**: nowy silnik od zera — **280 animowanych efektów + 11 czystych kolorów**, każdy efekt w osobnym pliku |
-| `Animacje1.0/` + `Animacje1.0.zip` | Archiwum (1.0): pełne 140 animacji |
-| `Animacje-Datapack/` + `Animacje-Datapack.zip` | Datapack (1.21.11) — animowany nick i hologramy |
-| `konwerter.py` | `<animacja:blysk>Test</animacja>` → gotowy `/tellraw` (wersja 2.0) |
-| `Text_Effects.zip` | Oryginalny pack TheSalt's Text Effects (referencja) |
+| Plik | Przeznaczenie |
+|---|---|
+| `Animacje3.0/` + `Animacje3.0.zip` | aktualny pack: dokładnie **50** kuratorowanych efektów, w tym 4 nowe |
+| `plugin/AnimacjeHub.jar` | plugin v2: animowany nick, prefix rangi, title, itemy, GUI i bezpieczne trolle |
+| `plugin/README.md` | instalacja, komendy i uprawnienia pluginu |
+| `narzedzia/generuj_v3.py` | powtarzalny generator packa i katalogu pluginu |
+| `Animacje2.0/` + `Animacje2.0.zip` | archiwum poprzedniego packa (nie włączaj równocześnie z 3.0) |
+| `Animacje1.0/` + `Animacje1.0.zip` | stare archiwum |
+| `Animacje-Datapack/` | starszy datapack, niezależny od pluginu v2 |
 
-## Animacje 2.0 — nowy silnik (przebudowa od zera)
+## Animacje 3.0
 
-- **280 efektów animowanych** — wszystkie wyraźnie animowane (zero subtelnych); pełna lista: `python3 narzedzia/konwerter.py --lista`
-  - jaskrawe (fragmentowe/kinetyczne): blysk, neonfala, teczafala, kaskada, laser2, grzmot, neon, galaktyka, piorun, rainbow, glitch_hard, tsunami, karuzela, tornado, pulse, heartbeat, shake, ...
-  - hybrydy i ruchy: tancuj, lawina, dym, helikopter, spirala, wibrowanie, zygzak_v2, skakosz, wahadlo, ...
-  - serie tematyczne: neon (18), kruszce i kamienie (15), łączenia (40), ruchy 156-205, seria hakerska (10) + **partia 216-280: lampa, laser, fala2, skaner, gwiazdy, pulsar, drganie, skok, wahadlo, wir, kap, dryf, matrix (13 rodzin × 5)**
-- **11 czystych kolorów** (bez animacji): czerwony, zielony, niebieski, zolty, pomaranczowy, fioletowy, rozowy, cyjan, bialy, szary, brazowy
-- **Każdy efekt = osobny plik** (`tfx_<nazwa>.vsh` + `tfx_<nazwa>.fsh`)
-- Jedna wspólna, mała warstwa silnika (`tfx_common.*`) — detekcja koloru spustowego + dispatch
-- **Nowe kolory spustowe** bez kolizji z 1.0: fragmentowe `#A0A0xx`, kinetyczne — jaskrawe kolory (tekst widoczny w czacie)
-- Architektura „baza = najnowsze API”: **baza = 1.21.6+ (GLSL 330, nowy API mgle)** — ładowana zawsze (m.in. 1.21.11); overlay `old/` (GLSL 150, stary API) przez `overlays` w pack.mcmeta dla 1.20.2–1.21.5
+Wersja 3.0 nie ładuje już setek podobnych shaderów. Zostało 50 najbardziej użytecznych
+i czytelnych efektów z różnych grup: neon, ogień/lód/ocean, kosmos, cyber, ruch,
+energia i efekty imprezowe. Dodałem cztery nowe efekty napisane specjalnie dla tej wersji:
 
-## Szybki start
+- `kometa` — świetlna kometa z ogonem,
+- `iskry` — migoczące iskry,
+- `pryzmat` — kryształowy gradient,
+- `szklo` — szklany połysk.
 
+Każdy efekt jest osobną parą `tfx_<nazwa>.vsh` + `tfx_<nazwa>.fsh`, a wspólny dispatcher
+importuje wyłącznie te 50 par. `effects.json` i katalog pluginu są generowane z tej samej
+listy, dlatego plugin nie pokazuje nieistniejących efektów.
+
+### Instalacja packa
+
+1. Włącz `Animacje3.0.zip` jako **jedyny** pack nadpisujący shader tekstu.
+2. Pack musi być aktywny u widza animacji. Plugin może go wysłać przy wejściu, jeśli w
+   `plugin/res/config.yml` ustawisz publiczny `resourcepack.url` i poprawny SHA-1.
+3. W grze używaj nazw z `python3 Animacje3.0/konwerter.py --lista`.
+
+Przykład:
+
+```bash
+python3 Animacje3.0/konwerter.py '<animacja:rainbow>Witaj!</animacja>'
 ```
-1. Wrzuć Animacje2.0.zip do .minecraft/resourcepacks i włącz go (TYLKO JEDEN pack animacji!)
-2. python3 konwerter.py "Hej <animacja:blysk>SWIAT</animacja>!"
-3. Wklej wynik do chatu/konsoli
+
+Nie włączaj jednocześnie `Animacje1.0.zip`, `Animacje2.0.zip` i `Animacje3.0.zip` —
+każdy z nich podmienia ten sam renderer tekstu.
+
+## AnimacjeHub v2
+
+Plugin został napisany ponownie. Shader animuje tekst na kliencie, a plugin odpowiada za
+uprawnienia, wybór FX i poprawne formatowanie. Najważniejsze możliwości:
+
+- **animowany nick** — własny tekst i FX zapisane trwale per UUID,
+- **ranga + animowany prefix** — LuckPerms primary group albo fallback permissionów,
+- **animowane title/subtitle** dla siebie, gracza lub całego serwera,
+- **animowana nazwa itemu** w głównej ręce,
+- **kosmetyczne trolle**: title, actionbar, wiadomość albo dźwięk; bez obrażeń, teleportów
+i zmian świata,
+- GUI, tab-complete, cooldowny, walidacja i opcjonalne wysyłanie resourcepacka.
+
+Skrócona lista:
+
+```text
+/anim nick set <fx> <tekst>
+/anim nick fx <fx>
+/anim title rainbow Witaj | Podtytuł
+/anim item kometa Miecz Komety
+/anim troll Gracz title
+/anim fx pryzmat
+/anim lista
 ```
 
-Domyślny format rozkazów = **SNBT** (Minecraft 1.21.5+). Dla starszych serwerów: `python3 konwerter.py --json "..."`.
+Pełne permissiony i instrukcja są w `plugin/README.md`.
 
-## Walidacja
+## Walidacja i budowanie
 
-Macierz kompilacji (glslang 11.7.0) na **prawdziwych vanilla include'ach 1.21.11**
-(pobrane z oficjalnych assetów: `fog.glsl`, `dynamictransforms.glsl`, `projection.glsl`, `globals.glsl`):
+Regeneracja packa + katalogu pluginu:
 
-- **Baza (330) × PRAWDZIWY API 1.21.11: 8/8 OK** + **8/8 OK z `IS_GUI`** (pipeline `gui_text`) — na 1.21.11 ładowana bezpośrednio z bazy, niezależnie od wariantów
-- Overlay `old/` (150) × API 1.21.5: **8/8 OK**
-- Stare szadery 150 × API 1.21.11: **4× FAIL `'FogColor' redefinition`** — powiela dokładnie błąd z loga 1.21.11
-  (dlatego stary API przeniesiony do overlaya `old/` tylko dla ≤1.21.5)
-- **8/8** par vsh↔fsh spójnych interfejsowo (nazwy + typy)
+```bash
+python3 narzedzia/generuj_v3.py
+```
+
+Budowa jar (JDK 17+):
+
+```bash
+cd plugin
+./build.sh
+```
+
+Generator sprawdza, że lista ma dokładnie 50 unikalnych nazw i triggerów. Plugin przy
+starcie również odrzuca katalog z inną liczbą efektów lub zduplikowanym kolorem.

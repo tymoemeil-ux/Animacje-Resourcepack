@@ -6,6 +6,8 @@ public class PlayerChatEvent extends Event implements Cancellable {
     public Player getPlayer() { return null; }
     public String getMessage() { return null; }
     public void setMessage(String message) {}
+    public void setFormat(String format) {}
+    public String getFormat() { return null; }
     public boolean isCancelled() { return false; }
     public void setCancelled(boolean cancelled) {}
 }
