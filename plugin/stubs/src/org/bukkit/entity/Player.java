@@ -17,7 +17,7 @@ public interface Player extends HumanEntity, OfflinePlayer, org.bukkit.command.C
     boolean isOp();
     void playSound(Location location, Sound sound, float volume, float pitch);
     default void playSound(Location location, String sound, float volume, float pitch) {}
-    void openInventory(Inventory inventory);
+    InventoryView openInventory(Inventory inventory);
     void closeInventory();
     PlayerInventory getInventory();
     InventoryView getOpenInventory();
