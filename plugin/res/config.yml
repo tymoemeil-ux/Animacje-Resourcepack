@@ -1,0 +1,83 @@
+# AnimacjeHub v2.2.0 — współpracuje z Animacje3.1 (85 FX, target renderu 60 FPS)
+# Kolory & są zamieniane na §. FX są nazwami z /anim lista.
+# Custom obsługuje &c, &g, #RGB, #RGBA i #RRGGBB.
+
+resourcepack:
+  # Opcjonalne. Jeśli podasz URL, plugin wyśle pack przy wejściu gracza.
+  nazwa: Animacje3.0.zip
+  url: ""
+  sha1: ""
+  wymagany: false
+  prompt: "&dWłącz Animacje 3.0, aby widzieć animowane nicki i tytuły!"
+
+chat:
+  wlaczone: true
+  ogloszenia_wejscia: true
+  # Czysty kolor zwykłego tekstu po nicku; &f usuwa szare/brązowe resztki.
+  kolor_bazowy: "&f"
+
+nick:
+  domyslnie_wlaczony: true
+  domyslny_fx: rainbow
+  maksymalna_dlugosc: 24
+
+title:
+  fade_in: 8
+  stay: 50
+  fade_out: 12
+
+custom:
+  wlaczone: true
+  # Przybliżenie customowego #RRGGBB do 16 poziomów na kanał jest wykonywane w shaderze.
+  domyslny_kolor: "#FFFFFF"
+
+render:
+  target_fps: 60
+
+rangi:
+  wlaczone: true
+  permission_prefix: animacje.ranga.
+  # Klucze scalar są zachowane dla starych konfiguracji v1; nowe ustawienia są w grupy.*.
+  domylny: a0a0a0
+  default: a0a0a0
+  op: ffcc00
+  vip: 44ff88
+  moderator: 55ff88
+  admin: ff5555
+  owner: ff00ff
+  # LuckPerms primary group wygrywa. Bez LuckPerms plugin sprawdza poniższe permissiony.
+  kolejnosc: [owner, admin, moderator, vip, op, default]
+  grupy:
+    default:
+      prefix: "&7[Gracz]"
+      fx: wave
+    op:
+      prefix: "&6[OP]"
+      fx: zloty_blask
+    vip:
+      prefix: "&b[VIP]"
+      fx: neonfala
+    moderator:
+      prefix: "&a[MOD]"
+      fx: aurora
+    admin:
+      prefix: "&c[ADMIN]"
+      fx: piorun
+    owner:
+      prefix: "&d[OWNER]"
+      fx: pryzmat
+
+item:
+  maksymalna_dlugosc: 48
+
+troll:
+  # Trolle są wyłącznie kosmetyczne: title, actionbar, czat, dźwięk i bossbar.
+  cooldown_s: 5
+  na_siebie: true
+
+ogloszenia:
+  wlaczone: false
+  odstep_s: 180
+  lista:
+    - "{fx}&8 » &fPack &d{pack} &7ma 85 efektów, w tym 25 nowych i 10 hakerskich."
+    - "{fx}&8 » &fUżyj &d/anim help &7— nick, custom kolor, ranga, title i animowany item."

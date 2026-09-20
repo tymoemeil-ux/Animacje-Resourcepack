@@ -1,0 +1,5 @@
+if (c == ivec3(96, 192, 48)) {
+        tfxIDg = 183.0;
+
+    tfxOffg.y += sin(GameTime * 0.7 + g * 0.3) * 0.004;
+}

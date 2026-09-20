@@ -1,0 +1,96 @@
+name: AnimacjeHub
+version: 2.2.0
+main: dev.tymek24.animacje.Animacje
+api-version: '1.21'
+authors: [tymek24]
+description: "AnimacjeHub v2.2 — 85 efektów, profile, custom kolory, actionbar, bossbar, rangi, title, itemy i bezpieczne trolle dla Animacje3.1"
+softdepend: [LuckPerms]
+
+commands:
+  anim:
+    description: AnimacjeHub v2 dla Animacje3.0
+    usage: /anim [nick|title|item|troll|fx|rank|lista|reload]
+    aliases: [an, animacje]
+
+permissions:
+  animacje.use:
+    description: Otwieranie menu i podgląd FX
+    default: true
+  animacje.fx:
+    description: Używanie standardowych efektów tekstu
+    default: true
+  animacje.custom:
+    description: Używanie własnych kolorów z efektami
+    default: true
+  animacje.preview:
+    description: Szybki podgląd title
+    default: true
+  animacje.actionbar:
+    description: Wysyłanie animowanych actionbarów
+    default: true
+  animacje.chat:
+    description: Wysyłanie animowanych wiadomości
+    default: true
+  animacje.pack:
+    description: Ręczne wysyłanie resourcepacka
+    default: true
+  animacje.profile:
+    description: Profil, ustawienia i reset własnych ustawień
+    default: true
+  animacje.settings:
+    description: Podgląd ustawień pluginu
+    default: op
+  animacje.nick.custom:
+    description: Zapisywanie customowego koloru nicku
+    default: true
+  animacje.item.custom:
+    description: Ustawianie customowego koloru nazwy itemu
+    default: true
+  animacje.hacker:
+    description: Dostęp do 10 efektów hakerskich
+    default: op
+  animacje.uzywanie:
+    description: Zgodność wsteczna dla starych instalacji v1
+    default: true
+  animacje.nick:
+    description: Własny animowany nick
+    default: true
+  animacje.title:
+    description: Wysyłanie animowanych title do siebie
+    default: true
+  animacje.title.others:
+    description: Wysyłanie animowanych title innemu graczowi
+    default: op
+  animacje.title.broadcast:
+    description: Wysyłanie animowanych title wszystkim
+    default: op
+  animacje.item:
+    description: Animowane nazwy itemów
+    default: true
+  animacje.troll:
+    description: Kosmetyczne trolle na siebie
+    default: true
+  animacje.troll.others:
+    description: Kosmetyczne trolle na innych graczy
+    default: op
+  animacje.troll.bossbar:
+    description: Trollowanie przez tymczasowy bossbar
+    default: op
+  animacje.announce:
+    description: Ogłoszenia do całego serwera
+    default: op
+  animacje.admin:
+    description: Przeładowanie pluginu i katalogu
+    default: op
+  animacje.ranga.vip:
+    description: Fallback rangi VIP bez LuckPerms
+    default: false
+  animacje.ranga.moderator:
+    description: Fallback rangi moderatora bez LuckPerms
+    default: false
+  animacje.ranga.admin:
+    description: Fallback rangi admina bez LuckPerms
+    default: false
+  animacje.ranga.owner:
+    description: Fallback rangi właściciela bez LuckPerms
+    default: false

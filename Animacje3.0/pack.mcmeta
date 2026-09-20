@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "name": "Animacje 3.1 — Top 85",
+    "description": "§dAnimacje 3.1 §7— 85 animacji tekstu, w tym 25 premium i 10 hakerskich",
+    "pack_format": 63,
+    "supported_formats": {
+      "min_inclusive": 42,
+      "max_inclusive": 110
+    },
+    "min_format": 42,
+    "max_format": 110
+  }
+}
