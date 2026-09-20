@@ -35,10 +35,12 @@ public final class Menu {
         inventory.setItem(14, item(Material.PAPER, "§aAnimowany item", List.of(
                 "§7Wybierz efekt i nazwę itemu", "§8/anim item <fx> <nazwa>")));
         inventory.setItem(16, item(Material.NETHER_STAR, "§cTrolle kosmetyczne", List.of(
-                "§7Title, actionbar, czat albo dźwięk", "§8/anim troll <gracz>")));
+                "§7Title, actionbar, czat, dźwięk albo bossbar", "§8/anim troll <gracz>")));
         inventory.setItem(20, item(Material.EMERALD, "§aKolor custom", List.of(
                 "§7&c, &g, #RGB lub #RRGGBB + dowolny FX", "§8/anim custom &c wave Tekst")));
         inventory.setItem(22, item(Material.COMPASS, "§fPomoc", List.of("§7Kliknij lub użyj /anim help")));
+        inventory.setItem(24, item(Material.REDSTONE, "§bNarzędzia", List.of(
+                "§7/anim settings — ustawienia", "§7/anim pack — wyślij pack ponownie")));
         player.openInventory(inventory);
     }
 
@@ -75,13 +77,16 @@ public final class Menu {
             } else if (slot == 14) openFx(player, 0, "item");
             else if (slot == 16) {
                 player.closeInventory();
-                player.sendMessage("§8» §fUżyj: §d/anim troll <gracz> [title|actionbar|chat|sound]");
+                player.sendMessage("§8» §fUżyj: §d/anim troll <gracz> [title|actionbar|chat|sound|bossbar]");
             } else if (slot == 20) {
                 player.closeInventory();
                 player.sendMessage("§8» §fCustom: §d/anim custom &c wave Tekst§f albo §d/anim custom nick #55FFAA wave Nazwa");
             } else if (slot == 22) {
                 player.closeInventory();
                 plugin.commands().help(player);
+            } else if (slot == 24) {
+                player.closeInventory();
+                player.sendMessage("§8» §fUstawienia: §d/anim settings §8• §fPack: §d/anim pack");
             }
             return true;
         }

@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 /** Stabilny router /anim — wszystkie akcje mają osobne permissiony i walidację. */
 public final class Polecenia implements CommandExecutor, TabCompleter {
     private static final List<String> SUBCOMMANDS = List.of(
-            "fx", "nick", "item", "title", "troll", "custom", "color", "rank", "lista", "gui", "info", "glos", "reload", "help");
+            "fx", "nick", "item", "title", "troll", "custom", "color", "preview", "actionbar", "chat", "pack", "profile", "profil", "settings", "reset", "random", "rank", "lista", "gui", "info", "glos", "reload", "help");
     private final Animacje plugin;
 
     public Polecenia(Animacje plugin) {
@@ -69,6 +69,37 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             case "kolor":
                 custom(sender, args);
                 break;
+            case "preview":
+            case "podglad":
+                preview(sender, args);
+                break;
+            case "actionbar":
+            case "bar":
+                actionbar(sender, args);
+                break;
+            case "chat":
+                animatedChat(sender, args);
+                break;
+            case "pack":
+            case "resourcepack":
+                sendPack(sender);
+                break;
+            case "profile":
+            case "profil":
+                profile(sender);
+                break;
+            case "settings":
+            case "ustawienia":
+                settings(sender);
+                break;
+            case "reset":
+            case "wyzeruj":
+                reset(sender);
+                break;
+            case "random":
+            case "losuj":
+                random(sender);
+                break;
             case "rank":
             case "ranga":
                 rank(sender);
@@ -81,7 +112,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             case "odswiez":
                 if (require(sender, "animacje.admin")) {
                     plugin.reloadPlugin();
-                    sender.sendMessage("§8» §aAnimacjeHub v2 przeładowany. Katalog: " + Katalog.count() + " FX.");
+                    sender.sendMessage("§8» §aAnimacjeHub v2.2 przeładowany. Katalog: " + Katalog.count() + " FX.");
                 }
                 break;
             default:
@@ -91,7 +122,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
     }
 
     public void help(CommandSender sender) {
-        sender.sendMessage("§d§lAnimacjeHub §rv2 §8— §fAnimacje 3.1 / " + Katalog.count() + " FX / target " + plugin.config().targetFps() + " FPS");
+        sender.sendMessage("§d§lAnimacjeHub §rv2.2 §8— §fAnimacje 3.1 / " + Katalog.count() + " FX / target " + plugin.config().targetFps() + " FPS");
         sender.sendMessage("§8» §f/anim §7— menu GUI");
         sender.sendMessage("§8» §f/anim nick [on|off|set <fx> <tekst>|fx <fx>] §7— nick + ranga");
         sender.sendMessage("§8» §f/anim custom <kolor> <fx> <tekst> §7— custom title");
@@ -101,9 +132,150 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         sender.sendMessage("§8» §f/anim title [gracz|all] <fx> <tytuł> [| podtytuł] §7— animowany title");
         sender.sendMessage("§8» §f/anim item <fx> <nazwa> §7— animowana nazwa itemu w ręce");
         sender.sendMessage("§8» §f/anim item clear §7— usuń nazwę itemu");
-        sender.sendMessage("§8» §f/anim troll <gracz> [title|actionbar|chat|sound] §7— kosmetyczny troll");
+        sender.sendMessage("§8» §f/anim preview [kolor] <fx> <tekst> §7— szybki podgląd title");
+        sender.sendMessage("§8» §f/anim actionbar [kolor] <fx> <tekst> §7— animowany pasek");
+        sender.sendMessage("§8» §f/anim chat [kolor] <fx> <tekst> §7— animowana wiadomość");
+        sender.sendMessage("§8» §f/anim pack §7— ponownie wyślij resourcepack");
+        sender.sendMessage("§8» §f/anim profile|settings|reset|random §7— profil i narzędzia");
+        sender.sendMessage("§8» §f/anim troll <gracz> [title|actionbar|chat|sound|bossbar] §7— troll");
         sender.sendMessage("§8» §f/anim fx <nazwa> §7— podgląd; /anim lista §7— " + Katalog.count() + " efektów");
         sender.sendMessage("§8» §f/anim rank §7— pokaż wykrytą rangę; /anim info");
+    }
+
+    private void preview(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cPodgląd jest dostępny tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.preview")) return;
+        RenderSpec spec = renderSpec(sender, args, 1);
+        if (spec == null) return;
+        if (spec.color != null && !require(sender, "animacje.custom")) return;
+        Player player = (Player) sender;
+        plugin.titles().wyslij(player, spec.fx, spec.color, spec.text, "");
+        sender.sendMessage("§8» §fPodgląd: §b" + spec.fx.nazwa + "§f" + (spec.color == null ? "" : " §8• §b" + spec.color));
+    }
+
+    private void actionbar(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cActionbar jest dostępny tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.actionbar")) return;
+        RenderSpec spec = renderSpec(sender, args, 1);
+        if (spec == null) return;
+        if (spec.color != null && !require(sender, "animacje.custom")) return;
+        Player player = (Player) sender;
+        String rendered = spec.color == null ? Tekst.animowany(spec.fx, spec.text) : Tekst.custom(spec.fx, spec.color, spec.text);
+        player.sendActionBar(rendered);
+        sender.sendMessage("§8» §fWysłano actionbar z FX §b" + spec.fx.nazwa + "§f.");
+    }
+
+    private void animatedChat(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cAnimowany chat jest dostępny tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.chat")) return;
+        if (!plugin.config().chatEnabled()) {
+            sender.sendMessage("§cAnimowany chat jest wyłączony w konfiguracji.");
+            return;
+        }
+        RenderSpec spec = renderSpec(sender, args, 1);
+        if (spec == null) return;
+        if (spec.color != null && !require(sender, "animacje.custom")) return;
+        String rendered = spec.color == null ? Tekst.animowany(spec.fx, spec.text) : Tekst.custom(spec.fx, spec.color, spec.text);
+        Bukkit.broadcastMessage(rendered);
+        sender.sendMessage("§8» §fWysłano animowaną wiadomość.");
+    }
+
+    private void sendPack(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cResourcepack można wysłać tylko graczowi.");
+            return;
+        }
+        if (!require(sender, "animacje.pack")) return;
+        if (plugin.config().resourcePackUrl().isBlank()) {
+            sender.sendMessage("§cResourcepack nie ma ustawionego URL-a w config.yml.");
+            return;
+        }
+        plugin.resourcePack().send((Player) sender);
+        sender.sendMessage("§8» §fPonowiono wysyłanie resourcepacka.");
+    }
+
+    private void profile(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cProfil jest dostępny tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.profile")) return;
+        nick(sender, new String[] {"nick"});
+    }
+
+    private void settings(CommandSender sender) {
+        if (!require(sender, "animacje.settings")) return;
+        sender.sendMessage("§d§lAnimacjeHub — ustawienia runtime");
+        sender.sendMessage("§8» §fFX: §b" + Katalog.count() + " §8| §fTarget: §b" + plugin.config().targetFps() + " FPS");
+        sender.sendMessage("§8» §fCustom kolory: §b" + (plugin.config().customEnabled() ? "ON" : "OFF"));
+        sender.sendMessage("§8» §fRangi: §b" + (plugin.config().rankEnabled() ? "ON" : "OFF")
+                + " §8| §fChat: §b" + (plugin.config().chatEnabled() ? "ON" : "OFF"));
+        sender.sendMessage("§8» §fAby zmienić ustawienia, edytuj config.yml i użyj /anim reload.");
+    }
+
+    private void reset(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cProfil można wyzerować tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.profile")) return;
+        plugin.profiles().reset((Player) sender);
+        sender.sendMessage("§8» §aProfil zresetowany do ustawień domyślnych.");
+    }
+
+    private void random(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cLosowanie FX jest dostępne tylko w grze.");
+            return;
+        }
+        nick(sender, new String[] {"nick", "random"});
+    }
+
+    private RenderSpec renderSpec(CommandSender sender, String[] args, int start) {
+        if (args.length <= start + 1) {
+            sender.sendMessage("§cUżycie: /anim preview [kolor] <fx> <tekst>");
+            return null;
+        }
+        String color = null;
+        int fxIndex = start;
+        if (Kolory.normalizuj(args[fxIndex]) != null && fxIndex + 1 < args.length
+                && Katalog.byName(args[fxIndex + 1]) != null) {
+            color = Kolory.normalizuj(args[fxIndex]);
+            fxIndex++;
+        }
+        Katalog.Fx fx = Katalog.byName(args[fxIndex]);
+        if (fx == null) {
+            sender.sendMessage("§cNie znaleziono FX: §f" + args[fxIndex]);
+            return null;
+        }
+        if (!canUseFx(sender, fx)) return null;
+        String text = Narzedzia.polacz(args, fxIndex + 1);
+        if (text.isBlank()) {
+            sender.sendMessage("§cTekst nie może być pusty.");
+            return null;
+        }
+        return new RenderSpec(fx, color, text);
+    }
+
+    private static final class RenderSpec {
+        final Katalog.Fx fx;
+        final String color;
+        final String text;
+
+        RenderSpec(Katalog.Fx fx, String color, String text) {
+            this.fx = fx;
+            this.color = color;
+            this.text = text;
+        }
     }
 
     private void custom(CommandSender sender, String[] args) {
@@ -157,7 +329,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
     }
 
     private void info(CommandSender sender) {
-        sender.sendMessage("§d§lAnimacjeHub v2.1.0");
+        sender.sendMessage("§d§lAnimacjeHub v2.2.0");
         sender.sendMessage("§8» §fPack: §dAnimacje3.1 / Animacje3.0.zip §8| §fFX: §d" + Katalog.count());
         sender.sendMessage("§8» §fNicki, rangi, title, itemy, custom kolory i bezpieczne trolle są obsługiwane.");
         sender.sendMessage("§8» §fPremium: 25 nowych FX | Hakerskie: 10 FX (permission animacje.hacker).");
@@ -477,7 +649,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         if (args.length == 2) {
             String sub = args[0].toLowerCase(Locale.ROOT);
             if (sub.equals("fx") || sub.equals("efekt") || sub.equals("lista") || sub.equals("list")) return fxNames(args[1]);
-            if (sub.equals("nick")) return startsWith(List.of("on", "off", "toggle", "set", "fx", "random", "clear"), args[1]);
+            if (sub.equals("nick")) return startsWith(List.of("on", "off", "toggle", "set", "fx", "color", "custom", "random", "clear"), args[1]);
             if (sub.equals("item")) {
                 List<String> result = new ArrayList<>(fxNames(args[1]));
                 result.addAll(startsWith(List.of("set", "clear"), args[1]));
@@ -489,9 +661,19 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
                 return result;
             }
             if (sub.equals("troll")) return playerNames(args[1]);
+            if (sub.equals("preview") || sub.equals("podglad") || sub.equals("actionbar") || sub.equals("bar") || sub.equals("chat")) {
+                List<String> result = new ArrayList<>(fxNames(args[1]));
+                result.addAll(startsWith(List.of("&c", "&g", "#FFFFFF", "#55FFAA", "#FF55AA"), args[1]));
+                return result;
+            }
+            if (sub.equals("profile") || sub.equals("profil")) return Collections.emptyList();
             if (sub.equals("custom") || sub.equals("color") || sub.equals("kolor")) {
                 return startsWith(List.of("nick", "item", "title", "&c", "&g", "#FFFFFF", "#55FFAA"), args[1]);
             }
+        }
+        if (args.length == 3 && (args[0].equalsIgnoreCase("preview") || args[0].equalsIgnoreCase("podglad")
+                || args[0].equalsIgnoreCase("actionbar") || args[0].equalsIgnoreCase("bar") || args[0].equalsIgnoreCase("chat"))) {
+            return Kolory.normalizuj(args[1]) == null ? Collections.emptyList() : fxNames(args[2]);
         }
         if (args.length == 3 && (args[0].equalsIgnoreCase("custom") || args[0].equalsIgnoreCase("color") || args[0].equalsIgnoreCase("kolor"))) {
             if (args[1].equalsIgnoreCase("nick") || args[1].equalsIgnoreCase("item") || args[1].equalsIgnoreCase("title")) {
@@ -507,6 +689,9 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
                 && (args[1].equalsIgnoreCase("fx") || args[1].equalsIgnoreCase("set"))) return fxNames(args[2]);
         if (args.length == 3 && args[0].equalsIgnoreCase("item") && args[1].equalsIgnoreCase("set")) return fxNames(args[2]);
         if (args.length == 3 && (args[0].equalsIgnoreCase("title") || args[0].equalsIgnoreCase("tytul"))) return fxNames(args[2]);
+        if (args.length == 3 && args[0].equalsIgnoreCase("troll")) {
+            return startsWith(List.of("title", "actionbar", "chat", "sound", "bossbar", "random"), args[2]);
+        }
         return Collections.emptyList();
     }
 

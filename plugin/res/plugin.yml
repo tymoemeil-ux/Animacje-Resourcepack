@@ -1,9 +1,9 @@
 name: AnimacjeHub
-version: 2.1.0
+version: 2.2.0
 main: dev.tymek24.animacje.Animacje
 api-version: '1.21'
 authors: [tymek24]
-description: "AnimacjeHub v2.1 — 85 efektów, custom kolory, nicki, rangi, title, itemy i bezpieczne trolle dla Animacje3.1"
+description: "AnimacjeHub v2.2 — 85 efektów, profile, custom kolory, actionbar, bossbar, rangi, title, itemy i bezpieczne trolle dla Animacje3.1"
 softdepend: [LuckPerms]
 
 commands:
@@ -22,6 +22,24 @@ permissions:
   animacje.custom:
     description: Używanie własnych kolorów z efektami
     default: true
+  animacje.preview:
+    description: Szybki podgląd title
+    default: true
+  animacje.actionbar:
+    description: Wysyłanie animowanych actionbarów
+    default: true
+  animacje.chat:
+    description: Wysyłanie animowanych wiadomości
+    default: true
+  animacje.pack:
+    description: Ręczne wysyłanie resourcepacka
+    default: true
+  animacje.profile:
+    description: Profil, ustawienia i reset własnych ustawień
+    default: true
+  animacje.settings:
+    description: Podgląd ustawień pluginu
+    default: op
   animacje.nick.custom:
     description: Zapisywanie customowego koloru nicku
     default: true
@@ -54,6 +72,9 @@ permissions:
     default: true
   animacje.troll.others:
     description: Kosmetyczne trolle na innych graczy
+    default: op
+  animacje.troll.bossbar:
+    description: Trollowanie przez tymczasowy bossbar
     default: op
   animacje.announce:
     description: Ogłoszenia do całego serwera

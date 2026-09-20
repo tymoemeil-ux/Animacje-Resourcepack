@@ -1,4 +1,4 @@
-# AnimacjeHub v2.1 — plugin dla Animacje 3.1
+# AnimacjeHub v2.2 — plugin dla Animacje 3.1
 
 Plugin działa z `Animacje3.0.zip` w rozszerzonej wersji zawierającej **85 efektów**:
 50 bazowych, 25 nowych premium oraz 10 efektów hakerskich. Animacja jest liczona po stronie
@@ -36,7 +36,15 @@ Plugin wymaga Java 17+. LuckPerms jest opcjonalny — bez niego działają permi
                                    customowa nazwa itemu w ręce
 /anim item <fx> <nazwa>            animowana nazwa itemu w głównej ręce
 /anim item clear                   usuń nazwę itemu
-/anim troll <gracz> [typ]           kosmetyczny troll
+/anim troll <gracz> [typ]           kosmetyczny troll: title/actionbar/chat/sound/bossbar
+/anim preview [kolor] <fx> <tekst>  szybki title bez zapisywania profilu
+/anim actionbar [kolor] <fx> <tekst> animowany pasek akcji
+/anim chat [kolor] <fx> <tekst>     animowana wiadomość do serwera
+/anim pack                          ponownie wyślij resourcepack
+/anim profile                       pokaż zapisany profil nicku i rangi
+/anim settings                      pokaż ustawienia runtime
+/anim reset                         wyzeruj zapisany profil
+/anim random                        wylosuj FX animowanego nicku
 /anim fx <nazwa>                    podgląd efektu
 /anim lista                         lista dostępnych efektów
 /anim rank                          wykryta ranga i FX prefixu
@@ -55,6 +63,12 @@ zarezerwowanym triggerze, dlatego dowolny kolor może działać z dowolnym z 85 
 | `animacje.use` | true | GUI i podgląd |
 | `animacje.fx` | true | katalog efektów |
 | `animacje.custom` | true | customowe kolory |
+| `animacje.preview` | true | szybki podgląd title |
+| `animacje.actionbar` | true | animowane actionbary |
+| `animacje.chat` | true | animowany chat |
+| `animacje.pack` | true | ręczne wysłanie resourcepacka |
+| `animacje.profile` | true | profil i reset ustawień |
+| `animacje.settings` | op | podgląd ustawień runtime |
 | `animacje.nick` | true | własny animowany nick |
 | `animacje.nick.custom` | true | zapis customowego koloru nicku |
 | `animacje.title` | true | title dla siebie |
@@ -64,6 +78,7 @@ zarezerwowanym triggerze, dlatego dowolny kolor może działać z dowolnym z 85 
 | `animacje.item.custom` | true | customowe nazwy itemów |
 | `animacje.troll` | true | troll na siebie |
 | `animacje.troll.others` | op | trollowanie innych |
+| `animacje.troll.bossbar` | op | tymczasowy bossbar trolla |
 | `animacje.hacker` | op | 10 efektów hakerskich |
 | `animacje.announce` | op | ogłoszenia |
 | `animacje.admin` | op | reload |
@@ -79,8 +94,9 @@ profili jest kompatybilny — customowy kolor zostanie pusty i można go ustawi�
 
 ## Trolle
 
-Trolle są wyłącznie kosmetyczne: title, actionbar, chat albo sound. Nie zadają obrażeń,
-nie teleportują, nie wyrzucają i nie zmieniają świata. Mają cooldown i osobne permissiony.
+Trolle są wyłącznie kosmetyczne: title, actionbar, chat, sound albo tymczasowy bossbar.
+Nie zadają obrażeń, nie teleportują, nie wyrzucają i nie zmieniają świata. Mają cooldown,
+a losowy tryb oraz osobne permissiony.
 
 ## Budowanie
 

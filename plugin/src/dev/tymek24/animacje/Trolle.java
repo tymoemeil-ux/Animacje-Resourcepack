@@ -5,7 +5,11 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 
 /** Tylko kosmetyczne, odwracalne trolle — bez obrażeń, teleportów i griefingu. */
@@ -41,11 +45,13 @@ public final class Trolle {
         }
         String type = requestedType == null ? "random" : requestedType.toLowerCase(Locale.ROOT);
         if (type.equals("random") || type.equals("losowy")) {
-            type = switch (ThreadLocalRandom.current().nextInt(4)) {
+            int variants = actor.hasPermission("animacje.troll.bossbar") ? 5 : 4;
+            type = switch (ThreadLocalRandom.current().nextInt(variants)) {
                 case 0 -> "title";
                 case 1 -> "actionbar";
                 case 2 -> "chat";
-                default -> "sound";
+                case 3 -> "sound";
+                default -> "bossbar";
             };
         }
         switch (type) {
@@ -61,6 +67,21 @@ public final class Trolle {
             case "sound":
                 target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.8f, 1.8f);
                 target.sendActionBar(Tekst.animowany(fx, "♪"));
+                break;
+            case "bossbar":
+                if (!actor.hasPermission("animacje.troll.bossbar")) {
+                    actor.sendMessage("§cBossbar troll wymaga permissionu: §fanimacje.troll.bossbar");
+                    return false;
+                }
+                BossBar bar = Bukkit.createBossBar(Tekst.animowany(fx, "SYSTEM ALERT"), BarColor.PURPLE, BarStyle.SEGMENTED_10);
+                bar.addPlayer(target);
+                bar.setProgress(1.0);
+                bar.setVisible(true);
+                target.sendActionBar(Tekst.animowany(fx, "Monitorowanie połączenia..."));
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    bar.removeAll();
+                    bar.hide();
+                }, 80L);
                 break;
             default:
                 actor.sendMessage("§cTyp trolla: title, actionbar, chat, sound albo random.");

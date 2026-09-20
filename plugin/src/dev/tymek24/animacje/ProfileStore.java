@@ -72,6 +72,11 @@ public final class ProfileStore {
         update(player, profile -> profile.nickWlaczony = !profile.nickWlaczony);
     }
 
+    public void reset(Player player) {
+        profiles.remove(player.getUniqueId());
+        save();
+    }
+
     public void reload() {
         profiles.clear();
         load();

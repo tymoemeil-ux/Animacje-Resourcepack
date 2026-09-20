@@ -1,4 +1,4 @@
-# AnimacjeHub v2.1.0 — współpracuje z Animacje3.1 (85 FX, target renderu 60 FPS)
+# AnimacjeHub v2.2.0 — współpracuje z Animacje3.1 (85 FX, target renderu 60 FPS)
 # Kolory & są zamieniane na §. FX są nazwami z /anim lista.
 # Custom obsługuje &c, &g, #RGB, #RGBA i #RRGGBB.
 
@@ -71,7 +71,7 @@ item:
   maksymalna_dlugosc: 48
 
 troll:
-  # Trolle są wyłącznie kosmetyczne: title, actionbar, czat i dźwięk.
+  # Trolle są wyłącznie kosmetyczne: title, actionbar, czat, dźwięk i bossbar.
   cooldown_s: 5
   na_siebie: true
 
