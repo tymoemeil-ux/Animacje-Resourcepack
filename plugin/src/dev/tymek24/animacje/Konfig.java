@@ -27,6 +27,13 @@ public final class Konfig {
         return c().getBoolean("chat.wlaczone", true);
     }
 
+    /** Kolor zwykłego tekstu po animowanym fragmencie; domyślnie czysta biel. */
+    public String baseChatColor() {
+        String raw = c().getString("chat.kolor_bazowy", "&f");
+        String value = Narzedzia.kody(raw);
+        return value.matches("§[0-9a-fk-or]") ? value : "\u00A7f";
+    }
+
     public boolean nickDefaultEnabled() {
         return c().getBoolean("nick.domyslnie_wlaczony", true);
     }
@@ -49,6 +56,14 @@ public final class Konfig {
 
     public int titleFadeOut() {
         return Math.max(0, c().getInt("title.fade_out", 12));
+    }
+
+    public boolean customEnabled() {
+        return c().getBoolean("custom.wlaczone", true);
+    }
+
+    public int targetFps() {
+        return Math.max(30, Math.min(240, c().getInt("render.target_fps", 60)));
     }
 
     public boolean rankEnabled() {

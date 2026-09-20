@@ -14,12 +14,21 @@ public final class Tekst {
 
     public static String animowany(Katalog.Fx fx, String tekst) {
         if (fx == null) return czysty(tekst) + "\u00A7r";
-        return fx.spust() + czysty(tekst) + "\u00A7r";
+        return fx.spust() + Narzedzia.bezKolorow(tekst) + "\u00A7r";
     }
 
     public static String animowany(Katalog.Fx fx, String tekst, int maks) {
-        if (fx == null) return Narzedzia.ogranicz(tekst, maks) + "\u00A7r";
-        return fx.spust() + Narzedzia.ogranicz(tekst, maks) + "\u00A7r";
+        if (fx == null) return Narzedzia.bezKolorow(Narzedzia.ogranicz(tekst, maks)) + "\u00A7r";
+        return fx.spust() + Narzedzia.bezKolorow(Narzedzia.ogranicz(tekst, maks)) + "\u00A7r";
+    }
+
+    public static String custom(Katalog.Fx fx, String kolor, String tekst) {
+        return custom(fx, kolor, tekst, 128);
+    }
+
+    public static String custom(Katalog.Fx fx, String kolor, String tekst, int maks) {
+        if (fx == null) return Narzedzia.bezKolorow(Narzedzia.ogranicz(tekst, maks)) + "\u00A7r";
+        return Kolory.trigger(fx, kolor) + Narzedzia.bezKolorow(Narzedzia.ogranicz(tekst, maks)) + "\u00A7r";
     }
 
     public static String status(boolean wlaczony) {

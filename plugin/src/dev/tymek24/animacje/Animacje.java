@@ -44,7 +44,7 @@ public final class Animacje extends JavaPlugin {
             command.setTabCompleter(commands);
         }
         announcements.start();
-        getLogger().info("AnimacjeHub v2.0.0 uruchomiony: Animacje 3.0 / " + Katalog.count() + " efektów"
+        getLogger().info("AnimacjeHub v2.1.0 uruchomiony: Animacje 3.1 / " + Katalog.count() + " efektów"
                 + (ranks.luckPerms() ? " / LuckPerms" : " / fallback permissionów"));
     }
 

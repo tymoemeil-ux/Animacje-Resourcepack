@@ -1,92 +1,62 @@
-# Animacje Resourcepack
+# Animacje Resourcepack 3.1
 
-Packi do żywego animowania tekstu w Minecraft Java Edition. Aktualne wydanie to
-**Animacje 3.0 — Top 50** oraz przebudowany od zera **AnimacjeHub v2**.
+Pack do płynnego animowania tekstu w Minecraft Java Edition oraz plugin Paper
+`AnimacjeHub v2.1`. Aktualne wydanie ma **85 efektów**: 50 bazowych, 25 nowych premium i
+10 efektów hakerskich.
 
 ## Aktualne pliki
 
 | Plik | Przeznaczenie |
 |---|---|
-| `Animacje3.0/` + `Animacje3.0.zip` | aktualny pack: dokładnie **50** kuratorowanych efektów, w tym 4 nowe |
-| `plugin/AnimacjeHub.jar` | plugin v2: animowany nick, prefix rangi, title, itemy, GUI i bezpieczne trolle |
-| `plugin/README.md` | instalacja, komendy i uprawnienia pluginu |
-| `narzedzia/generuj_v3.py` | powtarzalny generator packa i katalogu pluginu |
-| `Animacje2.0/` + `Animacje2.0.zip` | archiwum poprzedniego packa (nie włączaj równocześnie z 3.0) |
-| `Animacje1.0/` + `Animacje1.0.zip` | stare archiwum |
-| `Animacje-Datapack/` | starszy datapack, niezależny od pluginu v2 |
+| `Animacje3.0/` + `Animacje3.0.zip` | aktualny pack tekstu: 85 efektów i dispatcher 1–85 |
+| `plugin/AnimacjeHub.jar` | plugin v2.1: nick, rangi, title, itemy, GUI, custom kolory i trolle |
+| `plugin/README.md` | instalacja, komendy i pełna tabela permissionów |
+| `narzedzia/generuj_v3.py` | generator packa, ZIP-a i katalogu pluginu |
+| `Animacje2.0/` + `Animacje2.0.zip` | archiwum — nie włączaj równocześnie |
 
-## Animacje 3.0
+## Pack 3.1
 
-Wersja 3.0 nie ładuje już setek podobnych shaderów. Zostało 50 najbardziej użytecznych
-i czytelnych efektów z różnych grup: neon, ogień/lód/ocean, kosmos, cyber, ruch,
-energia i efekty imprezowe. Dodałem cztery nowe efekty napisane specjalnie dla tej wersji:
+Shader importuje 85 osobnych par VSH/FSH i działa płynnie per klatka renderowania. Przy
+60 FPS klient dostaje płynne animacje bez rotowania kolorów przez serwer. Dziesięć efektów
+z rodziny `hakerskie` jest oznaczone w GUI i chronione permissionem pluginu.
 
-- `kometa` — świetlna kometa z ogonem,
-- `iskry` — migoczące iskry,
-- `pryzmat` — kryształowy gradient,
-- `szklo` — szklany połysk.
+Nowe efekty premium obejmują m.in. `spectrum`, `aurora_flow`, `electric`, `scanline`,
+`wave2`, `bounce`, `prism2` i `gradient`. Efekty hakerskie to m.in. `hack_matrix`,
+`hack_terminal`, `hack_cyber`, `hack_zeroday`, `hack_root` i `hack_overclock`.
 
-Każdy efekt jest osobną parą `tfx_<nazwa>.vsh` + `tfx_<nazwa>.fsh`, a wspólny dispatcher
-importuje wyłącznie te 50 par. `effects.json` i katalog pluginu są generowane z tej samej
-listy, dlatego plugin nie pokazuje nieistniejących efektów.
-
-### Instalacja packa
+### Instalacja
 
 1. Włącz `Animacje3.0.zip` jako **jedyny** pack nadpisujący shader tekstu.
-2. Pack musi być aktywny u widza animacji. Plugin może go wysłać przy wejściu, jeśli w
-   `plugin/res/config.yml` ustawisz publiczny `resourcepack.url` i poprawny SHA-1.
-3. W grze używaj nazw z `python3 Animacje3.0/konwerter.py --lista`.
+2. Pack musi być aktywny u widza animacji. Plugin może go wysłać przy wejściu przez
+   `resourcepack.url` i poprawny SHA-1.
+3. Nie włączaj jednocześnie Animacje1.0/2.0 — każdy nadpisuje `rendertype_text`.
 
-Przykład:
-
-```bash
-python3 Animacje3.0/konwerter.py '<animacja:rainbow>Witaj!</animacja>'
-```
-
-Nie włączaj jednocześnie `Animacje1.0.zip`, `Animacje2.0.zip` i `Animacje3.0.zip` —
-każdy z nich podmienia ten sam renderer tekstu.
-
-## AnimacjeHub v2
-
-Plugin został napisany ponownie. Shader animuje tekst na kliencie, a plugin odpowiada za
-uprawnienia, wybór FX i poprawne formatowanie. Najważniejsze możliwości:
-
-- **animowany nick** — własny tekst i FX zapisane trwale per UUID,
-- **ranga + animowany prefix** — LuckPerms primary group albo fallback permissionów,
-- **animowane title/subtitle** dla siebie, gracza lub całego serwera,
-- **animowana nazwa itemu** w głównej ręce,
-- **kosmetyczne trolle**: title, actionbar, wiadomość albo dźwięk; bez obrażeń, teleportów
-i zmian świata,
-- GUI, tab-complete, cooldowny, walidacja i opcjonalne wysyłanie resourcepacka.
-
-Skrócona lista:
+## Plugin v2.1
 
 ```text
-/anim nick set <fx> <tekst>
-/anim nick fx <fx>
-/anim title rainbow Witaj | Podtytuł
-/anim item kometa Miecz Komety
-/anim troll Gracz title
-/anim fx pryzmat
-/anim lista
+/anim custom &c wave Czerwony tekst
+/anim custom &g rainbow Zielony tęczowy tekst
+/anim custom #55FFAA hack_cyber CYBER TEXT
+/anim custom nick #FF55AA wave MojNick
+/anim custom item #55FFFF spectrum Miecz
+/anim nick color #FFFFFF
+/anim troll Gracz hack_matrix
 ```
 
-Pełne permissiony i instrukcja są w `plugin/README.md`.
+Custom obsługuje `&0–&f`, dodatkowy alias `&g`, nazwy kolorów, `#RGB`, `#RGBA` i
+`#RRGGBB`. Kolor jest kodowany w triggerze i może być łączony z dowolnym efektem.
+Szary/brązowy kod z prefixu nie przebija już animacji — plugin usuwa wewnętrzne kody
+kolorów i ustawia zwykły tekst po nicku na biały (`chat.kolor_bazowy: "&f"`).
 
-## Walidacja i budowanie
+Pełne komendy i permissiony są w `plugin/README.md`.
 
-Regeneracja packa + katalogu pluginu:
+## Budowanie i walidacja
 
 ```bash
 python3 narzedzia/generuj_v3.py
-```
-
-Budowa jar (JDK 17+):
-
-```bash
 cd plugin
 ./build.sh
 ```
 
-Generator sprawdza, że lista ma dokładnie 50 unikalnych nazw i triggerów. Plugin przy
-starcie również odrzuca katalog z inną liczbą efektów lub zduplikowanym kolorem.
+Generator sprawdza 85 unikalnych nazw i kolorów, synchronizuje `effects.json` z
+`plugin/res/fx_katalog.json`, buduje ZIP i usuwa pliki cache z paczki.

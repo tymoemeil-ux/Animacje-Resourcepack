@@ -32,16 +32,19 @@ public final class Wydarzenia implements Listener {
 
     private void formatChat(Player player, Consumer<String> formatSetter) {
         Profil profile = plugin.profiles().get(player);
+        String base = plugin.config().baseChatColor();
         String rank = Narzedzia.ucieknijFormat(plugin.rangi().prefix(player));
-        String separator = "§8»§r ";
+        String separator = base + "»" + base + " ";
         if (profile.nickWlaczony) {
             Katalog.Fx fx = Katalog.byName(profile.fx);
             if (fx == null) fx = Katalog.byName(plugin.config().nickDefaultFx());
-            String nick = fx == null ? player.getName()
-                    : Tekst.animowany(fx, profile.nick.isBlank() ? player.getName() : profile.nick, plugin.config().nickMaxLength());
-            formatSetter.accept(rank + Narzedzia.ucieknijFormat(nick) + "§r " + separator + "%2$s");
+            String raw = profile.nick.isBlank() ? player.getName() : profile.nick;
+            String nick = fx == null ? raw : profile.kolor.isBlank()
+                    ? Tekst.animowany(fx, raw, plugin.config().nickMaxLength())
+                    : Tekst.custom(fx, profile.kolor, raw, plugin.config().nickMaxLength());
+            formatSetter.accept(rank + Narzedzia.ucieknijFormat(nick) + base + " " + separator + "%2$s");
         } else {
-            formatSetter.accept(rank + "%1$s§r " + separator + "%2$s");
+            formatSetter.accept(rank + "%1$s" + base + " " + separator + "%2$s");
         }
     }
 
@@ -53,9 +56,10 @@ public final class Wydarzenia implements Listener {
         if (plugin.config().joinMessages()) {
             Profil profile = plugin.profiles().get(player);
             Katalog.Fx fx = profile.nickWlaczony ? Katalog.byName(profile.fx) : null;
-            String name = fx == null ? Tekst.czysty(profile.nick.isBlank() ? player.getName() : profile.nick)
-                    : Tekst.animowany(fx, profile.nick.isBlank() ? player.getName() : profile.nick);
-            event.setJoinMessage(plugin.rangi().prefix(player) + name + "§r §7dołączył.");
+            String raw = profile.nick.isBlank() ? player.getName() : profile.nick;
+            String name = fx == null ? Tekst.czysty(raw) : profile.kolor.isBlank()
+                    ? Tekst.animowany(fx, raw) : Tekst.custom(fx, profile.kolor, raw);
+            event.setJoinMessage(plugin.rangi().prefix(player) + name + plugin.config().baseChatColor() + "dołączył.");
         }
     }
 
@@ -65,9 +69,10 @@ public final class Wydarzenia implements Listener {
             Player player = event.getPlayer();
             Profil profile = plugin.profiles().get(player);
             Katalog.Fx fx = profile.nickWlaczony ? Katalog.byName(profile.fx) : null;
-            String name = fx == null ? Tekst.czysty(profile.nick.isBlank() ? player.getName() : profile.nick)
-                    : Tekst.animowany(fx, profile.nick.isBlank() ? player.getName() : profile.nick);
-            event.setQuitMessage(plugin.rangi().prefix(player) + name + "§r §7opuścił serwer.");
+            String raw = profile.nick.isBlank() ? player.getName() : profile.nick;
+            String name = fx == null ? Tekst.czysty(raw) : profile.kolor.isBlank()
+                    ? Tekst.animowany(fx, raw) : Tekst.custom(fx, profile.kolor, raw);
+            event.setQuitMessage(plugin.rangi().prefix(player) + name + plugin.config().baseChatColor() + "opuścił serwer.");
         }
     }
 

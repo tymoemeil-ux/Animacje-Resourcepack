@@ -14,11 +14,19 @@ public final class Itemy {
     }
 
     public boolean ustaw(Player player, Katalog.Fx fx, String name) {
+        return ustawTekst(player, Tekst.animowany(fx, Narzedzia.ogranicz(name, config.itemMaxLength())));
+    }
+
+    public boolean ustawCustom(Player player, Katalog.Fx fx, String color, String name) {
+        return ustawTekst(player, Tekst.custom(fx, color, Narzedzia.ogranicz(name, config.itemMaxLength())));
+    }
+
+    private boolean ustawTekst(Player player, String displayName) {
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item == null || item.getType() == Material.AIR) return false;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return false;
-        meta.setDisplayName(Tekst.animowany(fx, Narzedzia.ogranicz(name, config.itemMaxLength())));
+        meta.setDisplayName(displayName);
         item.setItemMeta(meta);
         player.getInventory().setItemInMainHand(item);
         return true;

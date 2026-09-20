@@ -13,6 +13,7 @@ in vec2 texCoord0;
 in float tfxID;
 in vec4 tfxColor;
 in vec2 tfxPos;
+in float tfxCustom;
 
 out vec4 fragColor;
 
@@ -175,6 +176,115 @@ void main() {
     }
     else if (tfx == 50) {
         color = tfxRenderSzklo(uv, texColor, tfxColor);
+    }
+    else if (tfx == 51) {
+        color = tfxRenderSpectrum(uv, texColor, tfxColor);
+    }
+    else if (tfx == 52) {
+        color = tfxRenderAuroraFlow(uv, texColor, tfxColor);
+    }
+    else if (tfx == 53) {
+        color = tfxRenderSunset(uv, texColor, tfxColor);
+    }
+    else if (tfx == 54) {
+        color = tfxRenderFirefly(uv, texColor, tfxColor);
+    }
+    else if (tfx == 55) {
+        color = tfxRenderElectric(uv, texColor, tfxColor);
+    }
+    else if (tfx == 56) {
+        color = tfxRenderGlow(uv, texColor, tfxColor);
+    }
+    else if (tfx == 57) {
+        color = tfxRenderIceCrystal(uv, texColor, tfxColor);
+    }
+    else if (tfx == 58) {
+        color = tfxRenderLava(uv, texColor, tfxColor);
+    }
+    else if (tfx == 59) {
+        color = tfxRenderMoonlight(uv, texColor, tfxColor);
+    }
+    else if (tfx == 60) {
+        color = tfxRenderStarlight(uv, texColor, tfxColor);
+    }
+    else if (tfx == 61) {
+        color = tfxRenderGoldRush(uv, texColor, tfxColor);
+    }
+    else if (tfx == 62) {
+        color = tfxRenderPixel(uv, texColor, tfxColor);
+    }
+    else if (tfx == 63) {
+        color = tfxRenderScanline(uv, texColor, tfxColor);
+    }
+    else if (tfx == 64) {
+        color = tfxRenderWave2(uv, texColor, tfxColor);
+    }
+    else if (tfx == 65) {
+        color = tfxRenderRipple2(uv, texColor, tfxColor);
+    }
+    else if (tfx == 66) {
+        color = tfxRenderBounce(uv, texColor, tfxColor);
+    }
+    else if (tfx == 67) {
+        color = tfxRenderSwing(uv, texColor, tfxColor);
+    }
+    else if (tfx == 68) {
+        color = tfxRenderJelly(uv, texColor, tfxColor);
+    }
+    else if (tfx == 69) {
+        color = tfxRenderOrbit2(uv, texColor, tfxColor);
+    }
+    else if (tfx == 70) {
+        color = tfxRenderComet2(uv, texColor, tfxColor);
+    }
+    else if (tfx == 71) {
+        color = tfxRenderSparkle(uv, texColor, tfxColor);
+    }
+    else if (tfx == 72) {
+        color = tfxRenderPrism2(uv, texColor, tfxColor);
+    }
+    else if (tfx == 73) {
+        color = tfxRenderBreath(uv, texColor, tfxColor);
+    }
+    else if (tfx == 74) {
+        color = tfxRenderGradient(uv, texColor, tfxColor);
+    }
+    else if (tfx == 75) {
+        color = tfxRenderMirror(uv, texColor, tfxColor);
+    }
+    else if (tfx == 76) {
+        color = tfxRenderHackMatrix(uv, texColor, tfxColor);
+    }
+    else if (tfx == 77) {
+        color = tfxRenderHackTerminal(uv, texColor, tfxColor);
+    }
+    else if (tfx == 78) {
+        color = tfxRenderHackCyber(uv, texColor, tfxColor);
+    }
+    else if (tfx == 79) {
+        color = tfxRenderHackRedteam(uv, texColor, tfxColor);
+    }
+    else if (tfx == 80) {
+        color = tfxRenderHackZeroday(uv, texColor, tfxColor);
+    }
+    else if (tfx == 81) {
+        color = tfxRenderHackRoot(uv, texColor, tfxColor);
+    }
+    else if (tfx == 82) {
+        color = tfxRenderHackBinary(uv, texColor, tfxColor);
+    }
+    else if (tfx == 83) {
+        color = tfxRenderHackGlitch(uv, texColor, tfxColor);
+    }
+    else if (tfx == 84) {
+        color = tfxRenderHackVirus(uv, texColor, tfxColor);
+    }
+    else if (tfx == 85) {
+        color = tfxRenderHackOverclock(uv, texColor, tfxColor);
+    }
+    if (tfxCustom > 0.5) {
+        float brightness = max(dot(color.rgb, vec3(0.30, 0.59, 0.11)), 0.18);
+        color.rgb = clamp(tfxColor.rgb * (0.45 + brightness * 0.95), 0.0, 1.0);
     }
 
     if (color.a < 0.1) {

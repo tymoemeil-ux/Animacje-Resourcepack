@@ -17,8 +17,15 @@ public final class Narzedzia {
         return tekst.replace('&', '\u00A7').replace('\n', ' ').replace('\r', ' ');
     }
 
+    /** Usuwa kolory z tekstu, który ma być animowany jednym triggerem. */
+    public static String bezKolorow(String tekst) {
+        return kody(tekst)
+                .replaceAll("§x(?:§[0-9a-fA-F]){6}", "")
+                .replaceAll("§[0-9a-fA-F]", "");
+    }
+
     /**
-     * Kolor spustowy rozpoznawany przez Animacje 3.0.
+     * Kolor spustowy rozpoznawany przez Animacje 3.1.
      *
      * Minecraft nie rozpoznaje skrótu §xRRGGBB. Poprawny legacy zapis hex to
      * §x§R§R§G§G§B§B; skrót powodował wyświetlanie kodu, np. 40E0FFwave,

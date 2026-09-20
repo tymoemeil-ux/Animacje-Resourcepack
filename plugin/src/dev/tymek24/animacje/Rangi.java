@@ -33,6 +33,8 @@ public final class Rangi {
         String value = config.rankPrefix(group);
         if (value == null || value.isBlank()) return "";
         value = value.replace("{ranga}", group).replace("{grupa}", group);
+        // Prefix dostaje jeden wspólny trigger; stare &7/&8 w środku tworzyły szary lub brązowy fragment.
+        value = Narzedzia.bezKolorow(value);
         Katalog.Fx fx = Katalog.byName(config.rankFx(group));
         if (fx == null) fx = Katalog.byName("wave");
         return Tekst.animowany(fx, value, 64) + " ";

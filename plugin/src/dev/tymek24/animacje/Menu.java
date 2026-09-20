@@ -23,12 +23,12 @@ public final class Menu {
     }
 
     public void openMain(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 27, "§dAnimacje 3.0 §8• §fv2");
+        Inventory inventory = Bukkit.createInventory(null, 27, "§dAnimacje 3.1 §8• §fv2");
         views.put(inventory, new View("main", 0));
         for (int i = 0; i < inventory.getSize(); i++) inventory.setItem(i, pane());
-        inventory.setItem(4, item(Material.BOOK, "§dAnimacje 3.0", List.of(
-                "§f50 wybranych efektów tekstu", "§7Plugin v2 • pack: Animacje3.0.zip")));
-        inventory.setItem(10, item(Material.DIAMOND, "§bKatalog FX", List.of("§7Kliknij, aby obejrzeć 50 efektów")));
+        inventory.setItem(4, item(Material.BOOK, "§dAnimacje 3.1", List.of(
+                "§f85 efektów tekstu • 25 nowych • 10 hakerskich", "§7Plugin v2 • target renderu: " + plugin.config().targetFps() + " FPS")));
+        inventory.setItem(10, item(Material.DIAMOND, "§bKatalog FX", List.of("§7Kliknij, aby obejrzeć dostępne efekty")));
         inventory.setItem(12, item(Material.CLOCK, "§eAnimowany nick", List.of(
                 "§7Stan: " + Tekst.status(plugin.profiles().get(player).nickWlaczony),
                 "§7Kliknij, aby przełączyć", "§8/anim nick on|off")));
@@ -36,12 +36,14 @@ public final class Menu {
                 "§7Wybierz efekt i nazwę itemu", "§8/anim item <fx> <nazwa>")));
         inventory.setItem(16, item(Material.NETHER_STAR, "§cTrolle kosmetyczne", List.of(
                 "§7Title, actionbar, czat albo dźwięk", "§8/anim troll <gracz>")));
+        inventory.setItem(20, item(Material.EMERALD, "§aKolor custom", List.of(
+                "§7&c, &g, #RGB lub #RRGGBB + dowolny FX", "§8/anim custom &c wave Tekst")));
         inventory.setItem(22, item(Material.COMPASS, "§fPomoc", List.of("§7Kliknij lub użyj /anim help")));
         player.openInventory(inventory);
     }
 
     public void openFx(Player player, int page, String mode) {
-        List<Katalog.Fx> effects = Katalog.animated();
+        List<Katalog.Fx> effects = Katalog.visible(player.hasPermission("animacje.hacker"));
         int pages = Math.max(1, (effects.size() + PAGE_SIZE - 1) / PAGE_SIZE);
         page = Math.max(0, Math.min(page, pages - 1));
         Inventory inventory = Bukkit.createInventory(null, 54,
@@ -74,6 +76,9 @@ public final class Menu {
             else if (slot == 16) {
                 player.closeInventory();
                 player.sendMessage("§8» §fUżyj: §d/anim troll <gracz> [title|actionbar|chat|sound]");
+            } else if (slot == 20) {
+                player.closeInventory();
+                player.sendMessage("§8» §fCustom: §d/anim custom &c wave Tekst§f albo §d/anim custom nick #55FFAA wave Nazwa");
             } else if (slot == 22) {
                 player.closeInventory();
                 plugin.commands().help(player);
@@ -82,9 +87,13 @@ public final class Menu {
         }
         if (slot < PAGE_SIZE) {
             int index = view.page * PAGE_SIZE + slot;
-            List<Katalog.Fx> effects = Katalog.animated();
+            List<Katalog.Fx> effects = Katalog.visible(player.hasPermission("animacje.hacker"));
             if (index < effects.size()) {
                 Katalog.Fx fx = effects.get(index);
+                if (fx.hakerski() && !player.hasPermission("animacje.hacker")) {
+                    player.sendMessage("§cTen efekt wymaga permissionu: §fanimacje.hacker");
+                    return true;
+                }
                 if (view.type.equals("item")) {
                     player.closeInventory();
                     player.sendMessage("§8» §fWybrano §b" + fx.nazwa + "§f. Użyj: §d/anim item " + fx.nazwa + " <nazwa>");
@@ -99,17 +108,18 @@ public final class Menu {
         } else if (slot == 45) {
             if (view.page <= 0) openMain(player); else openFx(player, view.page - 1, view.type);
         } else if (slot == 53) {
-            int pages = Math.max(1, (Katalog.count() + PAGE_SIZE - 1) / PAGE_SIZE);
+            int pages = Math.max(1, (Katalog.visible(player.hasPermission("animacje.hacker")).size() + PAGE_SIZE - 1) / PAGE_SIZE);
             openFx(player, view.page + 1 >= pages ? 0 : view.page + 1, view.type);
         }
         return true;
     }
 
     private ItemStack effectItem(Katalog.Fx fx) {
+        String family = fx.hakerski() ? "§cHACKER" : "§b" + fx.rodzina;
         return item(Material.PAPER, fx.spust() + fx.nazwa, List.of(
-                "§8" + fx.rodzina + " §7• §f" + fx.hex,
-                "§7" + fx.opis,
-                "§8Klik = podgląd"));
+                family + " §f• " + fx.hex,
+                "§f" + fx.opis,
+                "§7Klik = podgląd"));
     }
 
     private ItemStack pane() {

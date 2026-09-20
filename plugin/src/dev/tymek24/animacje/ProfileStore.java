@@ -55,6 +55,15 @@ public final class ProfileStore {
         update(player, profile -> profile.fx = fx.nazwa);
     }
 
+    public void setColor(Player player, String color) {
+        String normalized = Kolory.normalizuj(color);
+        update(player, profile -> profile.kolor = normalized == null ? "" : normalized);
+    }
+
+    public void clearColor(Player player) {
+        update(player, profile -> profile.kolor = "");
+    }
+
     public void setNickEnabled(Player player, boolean enabled) {
         update(player, profile -> profile.nickWlaczony = enabled);
     }
@@ -97,6 +106,8 @@ public final class ProfileStore {
                     profile.nickWlaczony = Boolean.parseBoolean(fields[1]);
                     profile.fx = fields[2].isBlank() ? "rainbow" : fields[2];
                     profile.nick = new String(Base64.getDecoder().decode(fields[3]), StandardCharsets.UTF_8);
+                    profile.kolor = fields.length >= 5 && Kolory.normalizuj(fields[4]) != null
+                            ? Kolory.normalizuj(fields[4]) : "";
                     profiles.put(uuid, profile);
                 } catch (IllegalArgumentException ignored) {
                     logger.warning("Pominięto uszkodzony profil w profiles.db");
@@ -112,12 +123,12 @@ public final class ProfileStore {
             Files.createDirectories(file.getParent());
             Path temp = file.resolveSibling("profiles.db.tmp");
             try (BufferedWriter writer = Files.newBufferedWriter(temp, StandardCharsets.UTF_8)) {
-                writer.write("# uuid|nick_wlaczony|fx|nick_base64");
+                writer.write("# uuid|nick_wlaczony|fx|nick_base64|kolor");
                 writer.newLine();
                 for (Map.Entry<UUID, Profil> entry : profiles.entrySet()) {
                     Profil p = entry.getValue().kopia();
                     String nick = Base64.getEncoder().encodeToString(p.nick.getBytes(StandardCharsets.UTF_8));
-                    writer.write(entry.getKey() + "|" + p.nickWlaczony + "|" + p.fx + "|" + nick);
+                    writer.write(entry.getKey() + "|" + p.nickWlaczony + "|" + p.fx + "|" + nick + "|" + p.kolor);
                     writer.newLine();
                 }
             }

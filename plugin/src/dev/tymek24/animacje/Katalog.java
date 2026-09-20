@@ -41,6 +41,10 @@ public final class Katalog {
         public boolean animowany() {
             return id > 0;
         }
+
+        public boolean hakerski() {
+            return "hakerskie".equalsIgnoreCase(rodzina) || nazwa.startsWith("hack_");
+        }
     }
 
     private static final List<Fx> ALL = new ArrayList<>();
@@ -69,7 +73,7 @@ public final class Katalog {
                         string(row.get("opis")), Boolean.parseBoolean(string(row.get("nowosc")))));
             }
         } catch (Exception ex) {
-            plugin.getLogger().severe("Nie można wczytać katalogu Animacje 3.0: " + ex.getMessage());
+            plugin.getLogger().severe("Nie można wczytać katalogu Animacje 3.1: " + ex.getMessage());
             return;
         }
         Set<String> names = new HashSet<>();
@@ -80,8 +84,8 @@ public final class Katalog {
                 return;
             }
         }
-        if (loaded.size() != 50) {
-            plugin.getLogger().severe("Animacje 3.0 musi mieć 50 efektów, znaleziono " + loaded.size());
+        if (loaded.size() != 85) {
+            plugin.getLogger().severe("Animacje 3.1 musi mieć 85 efektów, znaleziono " + loaded.size());
             return;
         }
         loaded.sort(java.util.Comparator.comparingInt(fx -> fx.id));
@@ -89,7 +93,7 @@ public final class Katalog {
         ALL.addAll(loaded);
         ANIMATED.clear();
         ANIMATED.addAll(loaded);
-        LOG.info("Katalog Animacje 3.0: 50 efektów");
+        LOG.info("Katalog Animacje 3.1: 85 efektów");
     }
 
     public static synchronized List<Fx> all() {
@@ -100,6 +104,12 @@ public final class Katalog {
         return Collections.unmodifiableList(new ArrayList<>(ANIMATED));
     }
 
+    public static synchronized List<Fx> visible(boolean hackerPermission) {
+        List<Fx> result = new ArrayList<>();
+        for (Fx fx : ANIMATED) if (hackerPermission || !fx.hakerski()) result.add(fx);
+        return Collections.unmodifiableList(result);
+    }
+
     public static synchronized Fx byName(String name) {
         if (name == null) return null;
         String wanted = name.toLowerCase(Locale.ROOT).trim();
@@ -108,7 +118,12 @@ public final class Katalog {
     }
 
     public static synchronized Fx random() {
-        return ANIMATED.isEmpty() ? null : ANIMATED.get(ThreadLocalRandom.current().nextInt(ANIMATED.size()));
+        return random(true);
+    }
+
+    public static synchronized Fx random(boolean hackerPermission) {
+        List<Fx> visible = visible(hackerPermission);
+        return visible.isEmpty() ? null : visible.get(ThreadLocalRandom.current().nextInt(visible.size()));
     }
 
     public static int count() {

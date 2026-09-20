@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 /** Stabilny router /anim — wszystkie akcje mają osobne permissiony i walidację. */
 public final class Polecenia implements CommandExecutor, TabCompleter {
     private static final List<String> SUBCOMMANDS = List.of(
-            "fx", "nick", "item", "title", "troll", "rank", "lista", "gui", "info", "glos", "reload", "help");
+            "fx", "nick", "item", "title", "troll", "custom", "color", "rank", "lista", "gui", "info", "glos", "reload", "help");
     private final Animacje plugin;
 
     public Polecenia(Animacje plugin) {
@@ -64,6 +64,11 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             case "troll":
                 troll(sender, args);
                 break;
+            case "custom":
+            case "color":
+            case "kolor":
+                custom(sender, args);
+                break;
             case "rank":
             case "ranga":
                 rank(sender);
@@ -76,7 +81,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             case "odswiez":
                 if (require(sender, "animacje.admin")) {
                     plugin.reloadPlugin();
-                    sender.sendMessage("§8» §aAnimacjeHub v2 przeładowany. Katalog: 50 FX.");
+                    sender.sendMessage("§8» §aAnimacjeHub v2 przeładowany. Katalog: " + Katalog.count() + " FX.");
                 }
                 break;
             default:
@@ -86,26 +91,82 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
     }
 
     public void help(CommandSender sender) {
-        sender.sendMessage("§d§lAnimacjeHub §rv2 §8— §fAnimacje 3.0 / 50 FX");
+        sender.sendMessage("§d§lAnimacjeHub §rv2 §8— §fAnimacje 3.1 / " + Katalog.count() + " FX / target " + plugin.config().targetFps() + " FPS");
         sender.sendMessage("§8» §f/anim §7— menu GUI");
         sender.sendMessage("§8» §f/anim nick [on|off|set <fx> <tekst>|fx <fx>] §7— nick + ranga");
+        sender.sendMessage("§8» §f/anim custom <kolor> <fx> <tekst> §7— custom title");
+        sender.sendMessage("§8» §f/anim custom nick <kolor> <fx> <tekst> §7— custom nick");
+        sender.sendMessage("§8» §f/anim custom item <kolor> <fx> <nazwa> §7— custom item");
+        sender.sendMessage("§8» §fKolory: §f&c §7/ §f&g §7/ §f#RGB §7/ §f#RRGGBB");
         sender.sendMessage("§8» §f/anim title [gracz|all] <fx> <tytuł> [| podtytuł] §7— animowany title");
         sender.sendMessage("§8» §f/anim item <fx> <nazwa> §7— animowana nazwa itemu w ręce");
         sender.sendMessage("§8» §f/anim item clear §7— usuń nazwę itemu");
         sender.sendMessage("§8» §f/anim troll <gracz> [title|actionbar|chat|sound] §7— kosmetyczny troll");
-        sender.sendMessage("§8» §f/anim fx <nazwa> §7— podgląd; /anim lista §7— 50 efektów");
+        sender.sendMessage("§8» §f/anim fx <nazwa> §7— podgląd; /anim lista §7— " + Katalog.count() + " efektów");
         sender.sendMessage("§8» §f/anim rank §7— pokaż wykrytą rangę; /anim info");
     }
 
+    private void custom(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cCustomowe animacje są dostępne tylko w grze.");
+            return;
+        }
+        if (!require(sender, "animacje.custom")) return;
+        if (!plugin.config().customEnabled()) {
+            sender.sendMessage("§cTryb custom jest wyłączony w konfiguracji.");
+            return;
+        }
+        Player player = (Player) sender;
+        String mode = args.length > 1 ? args[1].toLowerCase(Locale.ROOT) : "title";
+        boolean explicitMode = mode.equals("nick") || mode.equals("item") || mode.equals("title");
+        int colorIndex = explicitMode ? 2 : 1;
+        int fxIndex = colorIndex + 1;
+        int textIndex = fxIndex + 1;
+        if (args.length <= textIndex) {
+            sender.sendMessage("§cUżycie: /anim custom [nick|item|title] <&c|&g|#RGB|#RRGGBB> <fx> <tekst>");
+            return;
+        }
+        String color = Kolory.normalizuj(args[colorIndex]);
+        if (color == null) {
+            sender.sendMessage("§cNiepoprawny kolor. Użyj &c, &g, #RGB albo #RRGGBB.");
+            return;
+        }
+        Katalog.Fx fx = Katalog.byName(args[fxIndex]);
+        if (fx == null) {
+            sender.sendMessage("§cNie znaleziono FX: §f" + args[fxIndex]);
+            return;
+        }
+        if (!canUseFx(sender, fx)) return;
+        String text = Narzedzia.polacz(args, textIndex);
+        if (mode.equals("nick")) {
+            if (!require(sender, "animacje.nick.custom")) return;
+            plugin.profiles().setFx(player, fx);
+            plugin.profiles().setColor(player, color);
+            plugin.profiles().setNick(player, text);
+            plugin.profiles().setNickEnabled(player, true);
+            sender.sendMessage("§8» §fCustom nick ustawiony: " + Tekst.custom(fx, color, text));
+        } else if (mode.equals("item")) {
+            if (!require(sender, "animacje.item.custom")) return;
+            sender.sendMessage(plugin.items().ustawCustom(player, fx, color, text)
+                    ? "§8» §fCustomowa nazwa itemu ustawiona kolorem §b" + color + "§f."
+                    : "§cTrzymaj item w głównej ręce.");
+        } else {
+            plugin.titles().wyslij(player, fx, color, text, "");
+            sender.sendMessage("§8» §fWysłano custom title z kolorem §b" + color + "§f.");
+        }
+    }
+
     private void info(CommandSender sender) {
-        sender.sendMessage("§d§lAnimacjeHub v2.0.0");
-        sender.sendMessage("§8» §fPack: §dAnimacje3.0.zip §8| §fFX: §d" + Katalog.count());
-        sender.sendMessage("§8» §fNicki, rangi, title, itemy i bezpieczne trolle są obsługiwane.");
+        sender.sendMessage("§d§lAnimacjeHub v2.1.0");
+        sender.sendMessage("§8» §fPack: §dAnimacje3.1 / Animacje3.0.zip §8| §fFX: §d" + Katalog.count());
+        sender.sendMessage("§8» §fNicki, rangi, title, itemy, custom kolory i bezpieczne trolle są obsługiwane.");
+        sender.sendMessage("§8» §fPremium: 25 nowych FX | Hakerskie: 10 FX (permission animacje.hacker).");
         sender.sendMessage("§8» §fLuckPerms: §7" + (plugin.rangi().luckPerms() ? "aktywny" : "fallback permissionów"));
     }
 
     private void fx(CommandSender sender, String[] args) {
         if (!require(sender, "animacje.use")) return;
+        if (!require(sender, "animacje.fx")) return;
         if (args.length < 2) {
             if (sender instanceof Player) plugin.menu().openFx((Player) sender, 0, "preview");
             else list(sender, null);
@@ -120,20 +181,23 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             sender.sendMessage("§cNie znaleziono FX §f" + args[1] + "§c. Użyj §f/anim lista§c.");
             return;
         }
+        if (!canUseFx(sender, fx)) return;
         sender.sendMessage(fx.spust() + "FX §f" + fx.nazwa + " §8• §7" + fx.opis + " §8(" + fx.hex + ")§r");
         if (sender instanceof Player) plugin.titles().wyslij((Player) sender, fx, fx.nazwa.toUpperCase(Locale.ROOT), fx.opis);
     }
 
     private void list(CommandSender sender, String family) {
+        if (!require(sender, "animacje.fx")) return;
         List<Katalog.Fx> result = new ArrayList<>();
-        for (Katalog.Fx fx : Katalog.animated()) {
+        boolean canSeeHackers = sender.hasPermission("animacje.hacker");
+        for (Katalog.Fx fx : Katalog.visible(canSeeHackers)) {
             if (family == null || fx.rodzina.equalsIgnoreCase(family)) result.add(fx);
         }
         if (result.isEmpty()) {
             sender.sendMessage("§cBrak efektów dla rodziny: §f" + family);
             return;
         }
-        sender.sendMessage("§d§lAnimacje 3.0 §r§8— §f" + result.size() + " FX" + (family == null ? "" : " / " + family));
+        sender.sendMessage("§d§lAnimacje 3.1 §r§8— §f" + result.size() + " FX" + (family == null ? "" : " / " + family));
         StringBuilder line = new StringBuilder();
         for (int i = 0; i < result.size(); i++) {
             Katalog.Fx fx = result.get(i);
@@ -159,10 +223,39 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             Katalog.Fx fx = Katalog.byName(profile.fx);
             sender.sendMessage("§8» §fNick: " + Tekst.status(profile.nickWlaczony) + " §8• §fFX: §b" + (fx == null ? "?" : fx.nazwa)
+                    + " §8• §fKolor: §b" + (profile.kolor.isBlank() ? "efektu" : profile.kolor)
                     + " §8• §fRanga: §b" + plugin.rangi().opis(player));
             return;
         }
         String action = args[1].toLowerCase(Locale.ROOT);
+        if (action.equals("custom")) {
+            if (args.length < 5) {
+                sender.sendMessage("§cUżycie: /anim nick custom <kolor> <fx> <tekst>");
+                return;
+            }
+            String[] customArgs = new String[args.length];
+            customArgs[0] = "custom";
+            customArgs[1] = "nick";
+            System.arraycopy(args, 2, customArgs, 2, args.length - 2);
+            custom(sender, customArgs);
+            return;
+        }
+        if (action.equals("color") || action.equals("kolor")) {
+            if (args.length < 3) {
+                sender.sendMessage("§cUżycie: /anim nick color <&c|&g|#RRGGBB> (clear usuwa custom)");
+                return;
+            }
+            if (args[2].equalsIgnoreCase("clear") || args[2].equalsIgnoreCase("wyczysc")) {
+                plugin.profiles().clearColor(player);
+                sender.sendMessage("§8» §fPrzywrócono kolor renderowany przez FX.");
+            } else if (Kolory.normalizuj(args[2]) == null) {
+                sender.sendMessage("§cNiepoprawny kolor. Użyj &c, &g, #RGB albo #RRGGBB.");
+            } else {
+                plugin.profiles().setColor(player, args[2]);
+                sender.sendMessage("§8» §fKolor nicku: §b" + Kolory.normalizuj(args[2]));
+            }
+            return;
+        }
         if (action.equals("on") || action.equals("off") || action.equals("wl") || action.equals("wyl")) {
             plugin.profiles().setNickEnabled(player, action.equals("on") || action.equals("wl"));
             sender.sendMessage("§8» §fAnimowany nick: " + Tekst.status(plugin.profiles().get(player).nickWlaczony));
@@ -175,11 +268,13 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         }
         if (action.equals("clear") || action.equals("wyczysc")) {
             plugin.profiles().clearNick(player);
-            sender.sendMessage("§8» §fPrzywrócono nick konta.");
+            plugin.profiles().clearColor(player);
+            sender.sendMessage("§8» §fPrzywrócono nick konta i kolor FX.");
             return;
         }
         if (action.equals("random") || action.equals("losowy")) {
-            Katalog.Fx fx = Katalog.random();
+            Katalog.Fx fx = Katalog.random(player.hasPermission("animacje.hacker"));
+            plugin.profiles().clearColor(player);
             plugin.profiles().setFx(player, fx);
             sender.sendMessage("§8» §fWylosowano FX nicku: §b" + fx.nazwa);
             return;
@@ -204,7 +299,11 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§cNick nie może być pusty.");
                 return;
             }
-            if (fx != null) plugin.profiles().setFx(player, fx);
+            if (fx != null) {
+                if (!canUseFx(sender, fx)) return;
+                plugin.profiles().setFx(player, fx);
+            }
+            plugin.profiles().clearColor(player);
             plugin.profiles().setNick(player, nick);
             plugin.profiles().setNickEnabled(player, true);
             sender.sendMessage("§8» §fUstawiono animowany nick: " + Tekst.animowany(fx == null ? Katalog.byName(profile.fx) : fx, nick));
@@ -213,6 +312,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         // Skrót: /anim nick <fx> albo /anim nick <tekst>.
         Katalog.Fx fx = Katalog.byName(args[1]);
         if (fx != null) {
+            if (!canUseFx(sender, fx)) return;
             plugin.profiles().setFx(player, fx);
             sender.sendMessage("§8» §fFX nicku ustawiony na §b" + fx.nazwa + "§f.");
         } else {
@@ -228,6 +328,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             player.sendMessage("§cNie znaleziono FX: §f" + name);
             return;
         }
+        if (!canUseFx(player, fx)) return;
         plugin.profiles().setFx(player, fx);
         player.sendMessage("§8» §fFX nicku: §b" + fx.nazwa);
     }
@@ -257,6 +358,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             sender.sendMessage("§cNie znaleziono FX: §f" + args[fxIndex]);
             return;
         }
+        if (!canUseFx(sender, fx)) return;
         String name = Narzedzia.polacz(args, fxIndex + 1);
         sender.sendMessage(plugin.items().ustaw(player, fx, name)
                 ? "§8» §fNazwa itemu ustawiona z FX §b" + fx.nazwa + "§f."
@@ -293,7 +395,8 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         Katalog.Fx fx = index < args.length ? Katalog.byName(args[index]) : null;
         if (fx != null) index++;
         if (fx == null) fx = Katalog.byName(plugin.config().nickDefaultFx());
-        if (fx == null) fx = Katalog.random();
+        if (fx == null) fx = Katalog.random(sender.hasPermission("animacje.hacker"));
+        if (!canUseFx(sender, fx)) return;
         if (index >= args.length) {
             sender.sendMessage("§cPodaj tekst title. Oddziel subtitle znakiem |.");
             return;
@@ -332,6 +435,7 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
             else type = args[index];
             index++;
         }
+        if (!canUseFx(sender, fx)) return;
         if (plugin.trolls().execute(actor, target, type, fx)) {
             sender.sendMessage("§8» §fWykonano kosmetyczny troll na §b" + target.getName() + "§f.");
         }
@@ -355,6 +459,10 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
         }
         plugin.announcements().send(Narzedzia.polacz(args, 1), sender instanceof Player ? (Player) sender : null);
         sender.sendMessage("§8» §fOgłoszenie wysłane.");
+    }
+
+    private boolean canUseFx(CommandSender sender, Katalog.Fx fx) {
+        return fx == null || !fx.hakerski() || require(sender, "animacje.hacker");
     }
 
     private boolean require(CommandSender sender, String permission) {
@@ -381,6 +489,19 @@ public final class Polecenia implements CommandExecutor, TabCompleter {
                 return result;
             }
             if (sub.equals("troll")) return playerNames(args[1]);
+            if (sub.equals("custom") || sub.equals("color") || sub.equals("kolor")) {
+                return startsWith(List.of("nick", "item", "title", "&c", "&g", "#FFFFFF", "#55FFAA"), args[1]);
+            }
+        }
+        if (args.length == 3 && (args[0].equalsIgnoreCase("custom") || args[0].equalsIgnoreCase("color") || args[0].equalsIgnoreCase("kolor"))) {
+            if (args[1].equalsIgnoreCase("nick") || args[1].equalsIgnoreCase("item") || args[1].equalsIgnoreCase("title")) {
+                return startsWith(List.of("&c", "&g", "#FFFFFF", "#55FFAA", "#FF55AA"), args[2]);
+            }
+            return fxNames(args[2]);
+        }
+        if (args.length == 4 && args[0].equalsIgnoreCase("custom")
+                && (args[1].equalsIgnoreCase("nick") || args[1].equalsIgnoreCase("item") || args[1].equalsIgnoreCase("title"))) {
+            return fxNames(args[3]);
         }
         if (args.length == 3 && args[0].equalsIgnoreCase("nick")
                 && (args[1].equalsIgnoreCase("fx") || args[1].equalsIgnoreCase("set"))) return fxNames(args[2]);

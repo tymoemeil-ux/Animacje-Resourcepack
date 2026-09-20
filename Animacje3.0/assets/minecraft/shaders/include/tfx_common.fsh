@@ -8,6 +8,7 @@ vec3 tfxHsv(float h, float s, float v) {
     return v * mix(vec3(1.0), clamp(k - 1.0, 0.0, 1.0), s);
 }
 
+#define TFX_FPS 60.0
 #define TFX_SPD 1.0
 #define TFX_INT 1.0
 
@@ -61,3 +62,38 @@ vec3 tfxHsv(float h, float s, float v) {
     #moj_import <tfx_iskry.fsh>
     #moj_import <tfx_pryzmat.fsh>
     #moj_import <tfx_szklo.fsh>
+    #moj_import <tfx_spectrum.fsh>
+    #moj_import <tfx_aurora_flow.fsh>
+    #moj_import <tfx_sunset.fsh>
+    #moj_import <tfx_firefly.fsh>
+    #moj_import <tfx_electric.fsh>
+    #moj_import <tfx_glow.fsh>
+    #moj_import <tfx_ice_crystal.fsh>
+    #moj_import <tfx_lava.fsh>
+    #moj_import <tfx_moonlight.fsh>
+    #moj_import <tfx_starlight.fsh>
+    #moj_import <tfx_gold_rush.fsh>
+    #moj_import <tfx_pixel.fsh>
+    #moj_import <tfx_scanline.fsh>
+    #moj_import <tfx_wave2.fsh>
+    #moj_import <tfx_ripple2.fsh>
+    #moj_import <tfx_bounce.fsh>
+    #moj_import <tfx_swing.fsh>
+    #moj_import <tfx_jelly.fsh>
+    #moj_import <tfx_orbit2.fsh>
+    #moj_import <tfx_comet2.fsh>
+    #moj_import <tfx_sparkle.fsh>
+    #moj_import <tfx_prism2.fsh>
+    #moj_import <tfx_breath.fsh>
+    #moj_import <tfx_gradient.fsh>
+    #moj_import <tfx_mirror.fsh>
+    #moj_import <tfx_hack_matrix.fsh>
+    #moj_import <tfx_hack_terminal.fsh>
+    #moj_import <tfx_hack_cyber.fsh>
+    #moj_import <tfx_hack_redteam.fsh>
+    #moj_import <tfx_hack_zeroday.fsh>
+    #moj_import <tfx_hack_root.fsh>
+    #moj_import <tfx_hack_binary.fsh>
+    #moj_import <tfx_hack_glitch.fsh>
+    #moj_import <tfx_hack_virus.fsh>
+    #moj_import <tfx_hack_overclock.fsh>

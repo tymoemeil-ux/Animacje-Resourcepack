@@ -33,7 +33,12 @@ public final class Trolle {
             actor.sendMessage("§cTrollowanie siebie jest wyłączone w konfiguracji.");
             return false;
         }
-        Katalog.Fx fx = requestedFx == null ? Katalog.random() : requestedFx;
+        Katalog.Fx fx = requestedFx == null
+                ? Katalog.random(actor.hasPermission("animacje.hacker")) : requestedFx;
+        if (fx != null && fx.hakerski() && !actor.hasPermission("animacje.hacker")) {
+            actor.sendMessage("§cEfekty hakerskie wymagają uprawnienia: §fanimacje.hacker");
+            return false;
+        }
         String type = requestedType == null ? "random" : requestedType.toLowerCase(Locale.ROOT);
         if (type.equals("random") || type.equals("losowy")) {
             type = switch (ThreadLocalRandom.current().nextInt(4)) {
@@ -51,7 +56,7 @@ public final class Trolle {
                 target.sendActionBar(Tekst.animowany(fx, "Ktoś właśnie odpalił efekt na Twoim ekranie"));
                 break;
             case "chat":
-                target.sendMessage("§8[Animacje] " + Tekst.animowany(fx, "Niespodzianka dla " + target.getName() + " ✦"));
+                target.sendMessage("§f[Animacje] " + Tekst.animowany(fx, "Niespodzianka dla " + target.getName() + " ✦"));
                 break;
             case "sound":
                 target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.8f, 1.8f);

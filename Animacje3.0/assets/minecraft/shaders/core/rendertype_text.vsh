@@ -20,7 +20,9 @@ out vec2 texCoord0;
 out float tfxID;
 out vec4 tfxColor;
 out vec2 tfxPos;
+out float tfxCustom;
 
+#define TFX_FPS 60.0
 #define GameTime (GameTime * 1200.0)
 
 #moj_import <minecraft:tfx_common.vsh>
@@ -45,4 +47,5 @@ void main() {
     tfxID = tfxIDg;
     tfxColor = tfxBaseg;
     tfxPos = vec2(Position.x, Position.y);
+    tfxCustom = tfxCustomg;
 }

@@ -1,5 +1,6 @@
-# AnimacjeHub v2.0.0 — współpracuje wyłącznie z Animacje3.0 (50 FX)
+# AnimacjeHub v2.1.0 — współpracuje z Animacje3.1 (85 FX, target renderu 60 FPS)
 # Kolory & są zamieniane na §. FX są nazwami z /anim lista.
+# Custom obsługuje &c, &g, #RGB, #RGBA i #RRGGBB.
 
 resourcepack:
   # Opcjonalne. Jeśli podasz URL, plugin wyśle pack przy wejściu gracza.
@@ -12,6 +13,8 @@ resourcepack:
 chat:
   wlaczone: true
   ogloszenia_wejscia: true
+  # Czysty kolor zwykłego tekstu po nicku; &f usuwa szare/brązowe resztki.
+  kolor_bazowy: "&f"
 
 nick:
   domyslnie_wlaczony: true
@@ -22,6 +25,14 @@ title:
   fade_in: 8
   stay: 50
   fade_out: 12
+
+custom:
+  wlaczone: true
+  # Przybliżenie customowego #RRGGBB do 16 poziomów na kanał jest wykonywane w shaderze.
+  domyslny_kolor: "#FFFFFF"
+
+render:
+  target_fps: 60
 
 rangi:
   wlaczone: true
@@ -68,5 +79,5 @@ ogloszenia:
   wlaczone: false
   odstep_s: 180
   lista:
-    - "{fx}&8 » &fPack &d{pack} &7ma 50 wybranych animacji."
-    - "{fx}&8 » &fUżyj &d/anim help &7— nick, ranga, title i animowany item."
+    - "{fx}&8 » &fPack &d{pack} &7ma 85 efektów, w tym 25 nowych i 10 hakerskich."
+    - "{fx}&8 » &fUżyj &d/anim help &7— nick, custom kolor, ranga, title i animowany item."

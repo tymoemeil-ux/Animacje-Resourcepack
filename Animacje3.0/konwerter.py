@@ -40,7 +40,7 @@ def build(text):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("text", nargs="?", help="tekst z tagami animacja")
-    parser.add_argument("--lista", action="store_true", help="lista 50 efektów")
+    parser.add_argument("--lista", action="store_true", help="lista 85 efektów")
     args = parser.parse_args()
     if args.lista:
         for row in CATALOG.values():

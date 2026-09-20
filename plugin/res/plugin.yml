@@ -1,9 +1,9 @@
 name: AnimacjeHub
-version: 2.0.0
+version: 2.1.0
 main: dev.tymek24.animacje.Animacje
 api-version: '1.21'
 authors: [tymek24]
-description: "AnimacjeHub v2 — nicki, rangi, title, itemy i bezpieczne trolle dla Animacje3.0"
+description: "AnimacjeHub v2.1 — 85 efektów, custom kolory, nicki, rangi, title, itemy i bezpieczne trolle dla Animacje3.1"
 softdepend: [LuckPerms]
 
 commands:
@@ -16,6 +16,21 @@ permissions:
   animacje.use:
     description: Otwieranie menu i podgląd FX
     default: true
+  animacje.fx:
+    description: Używanie standardowych efektów tekstu
+    default: true
+  animacje.custom:
+    description: Używanie własnych kolorów z efektami
+    default: true
+  animacje.nick.custom:
+    description: Zapisywanie customowego koloru nicku
+    default: true
+  animacje.item.custom:
+    description: Ustawianie customowego koloru nazwy itemu
+    default: true
+  animacje.hacker:
+    description: Dostęp do 10 efektów hakerskich
+    default: op
   animacje.uzywanie:
     description: Zgodność wsteczna dla starych instalacji v1
     default: true

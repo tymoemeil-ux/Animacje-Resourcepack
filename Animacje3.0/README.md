@@ -1,16 +1,16 @@
-# Animacje Resourcepack 3.0 — Top 50
+# Animacje Resourcepack 3.1 — Top 85
 
-Lekki resourcepack do animowania tekstu w Minecraft Java Edition. Wersja 3.0 została
-odchudzona do **dokładnie 50** najbardziej efektownych animacji. Zostawiono różne style:
-neon, ogień i lód, kosmos, cyber, ruch oraz efekty imprezowe. Cztery efekty oznaczone
-`NOWE` powstały specjalnie w tej wersji.
+Lekki resourcepack do animowania tekstu w Minecraft Java Edition. Wersja 3.1 zawiera
+**dokładnie 85** efektów: bazowe animacje, 25 nowych efektów premium i 10 efektów
+hakerskich. Shader działa płynnie per klatka renderowania; przy 60 FPS animacje są
+renderowane bez klatkowania. Efekty hakerskie wymagają permissionu pluginu.
 
 ## Instalacja
 
 1. Włącz `Animacje3.0.zip` jako jedyny pack tekstowych shaderów.
 2. Pack musi być aktywny u osoby, która ma widzieć animację (serwer może go wysłać graczom).
 3. Nie włączaj równocześnie Animacje1.0/2.0 — wszystkie nadpisują renderer tekstu.
-4. Plugin `AnimacjeHub` v2 korzysta z tego samego katalogu 50 efektów.
+4. Plugin `AnimacjeHub` v2 korzysta z tego samego katalogu 85 efektów.
 
 ## Szybki przykład
 
@@ -77,11 +77,47 @@ działa w czacie, tytułach, nazwach itemów, hologramach i GUI.
 | 48 | `iskry` **NOWE** | nowe | Nowa: losowo migoczące iskry |
 | 49 | `pryzmat` **NOWE** | nowe | Nowa: kryształowy pryzmat |
 | 50 | `szklo` **NOWE** | nowe | Nowa: szklany połysk |
+| 51 | `spectrum` **NOWE** | premium | Płynne spektrum kolorów |
+| 52 | `aurora_flow` **NOWE** | premium | Wolno płynąca zorza |
+| 53 | `sunset` **NOWE** | premium | Ciepły gradient zachodu słońca |
+| 54 | `firefly` **NOWE** | premium | Migoczące świetliki |
+| 55 | `electric` **NOWE** | premium | Szybkie elektryczne impulsy |
+| 56 | `glow` **NOWE** | premium | Miękka poświata oddechu |
+| 57 | `ice_crystal` **NOWE** | premium | Krystaliczny lodowy blask |
+| 58 | `lava` **NOWE** | premium | Płynna lawa i żar |
+| 59 | `moonlight` **NOWE** | premium | Chłodne światło księżyca |
+| 60 | `starlight` **NOWE** | premium | Gwiezdne migotanie |
+| 61 | `gold_rush` **NOWE** | premium | Złoty pęd światła |
+| 62 | `pixel` **NOWE** | premium | Pikselowy skok kolorów |
+| 63 | `scanline` **NOWE** | premium | Cybernetyczna linia skanu |
+| 64 | `wave2` **NOWE** | premium | Głęboka fala świetlna |
+| 65 | `ripple2` **NOWE** | premium | Koncentryczne pulsowanie |
+| 66 | `bounce` **NOWE** | premium | Sprężyste odbicie liter |
+| 67 | `swing` **NOWE** | premium | Rytmiczne wychylenie |
+| 68 | `jelly` **NOWE** | premium | Miękkie żelowe falowanie |
+| 69 | `orbit2` **NOWE** | premium | Kolorowa orbita |
+| 70 | `comet2` **NOWE** | premium | Szybka kometa neonowa |
+| 71 | `sparkle` **NOWE** | premium | Czyste iskierki |
+| 72 | `prism2` **NOWE** | premium | Pryzmatyczny połysk |
+| 73 | `breath` **NOWE** | premium | Spokojny oddech koloru |
+| 74 | `gradient` **NOWE** | premium | Elegancki gradient |
+| 75 | `mirror` **NOWE** | premium | Lustrzane przejście |
+| 76 | `hack_matrix` **NOWE** | hakerskie | Hakerski deszcz kodu Matrix |
+| 77 | `hack_terminal` **NOWE** | hakerskie | Zielony terminal CRT |
+| 78 | `hack_cyber` **NOWE** | hakerskie | Cyberpunkowy skan cyan/magenta |
+| 79 | `hack_redteam` **NOWE** | hakerskie | Czerwony tryb red team |
+| 80 | `hack_zeroday` **NOWE** | hakerskie | Agresywny zero-day glitch |
+| 81 | `hack_root` **NOWE** | hakerskie | Fioletowy dostęp root |
+| 82 | `hack_binary` **NOWE** | hakerskie | Binarny strumień danych |
+| 83 | `hack_glitch` **NOWE** | hakerskie | Kompresyjny glitch terminala |
+| 84 | `hack_virus` **NOWE** | hakerskie | Zielono-czerwony wirus |
+| 85 | `hack_overclock` **NOWE** | hakerskie | Przegrzany overclock |
 
 ## Technicznie
 
-- Wspólny shader importuje wyłącznie 50 par `tfx_<nazwa>.vsh`/`.fsh`.
-- Każdy efekt ma własny kolor spustowy i dispatcher ID 1–50.
+- Wspólny shader importuje wyłącznie 85 par `tfx_<nazwa>.vsh`/`.fsh`.
+- Każdy efekt ma własny kolor spustowy i dispatcher ID 1–85.
+- Tryb custom koduje kolor #RGB/#RRGGBB w zarezerwowanym triggerze, więc działa z każdym FX.
 - Pack bazuje na shader API Minecrafta 1.21.6+ i deklaruje obsługę formatów 42–110.
 - `effects.json` jest źródłem prawdy dla konwertera i katalogu pluginu.
 

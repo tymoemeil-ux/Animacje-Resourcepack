@@ -398,5 +398,285 @@
     "rodzina": "nowe",
     "opis": "Nowa: szklany połysk",
     "nowosc": true
+  },
+  {
+    "id": 51,
+    "nazwa": "spectrum",
+    "hex": "#F05A28",
+    "rodzina": "premium",
+    "opis": "Płynne spektrum kolorów",
+    "nowosc": true
+  },
+  {
+    "id": 52,
+    "nazwa": "aurora_flow",
+    "hex": "#00D4A8",
+    "rodzina": "premium",
+    "opis": "Wolno płynąca zorza",
+    "nowosc": true
+  },
+  {
+    "id": 53,
+    "nazwa": "sunset",
+    "hex": "#FF8A3D",
+    "rodzina": "premium",
+    "opis": "Ciepły gradient zachodu słońca",
+    "nowosc": true
+  },
+  {
+    "id": 54,
+    "nazwa": "firefly",
+    "hex": "#E8FF4F",
+    "rodzina": "premium",
+    "opis": "Migoczące świetliki",
+    "nowosc": true
+  },
+  {
+    "id": 55,
+    "nazwa": "electric",
+    "hex": "#3D7CFF",
+    "rodzina": "premium",
+    "opis": "Szybkie elektryczne impulsy",
+    "nowosc": true
+  },
+  {
+    "id": 56,
+    "nazwa": "glow",
+    "hex": "#FFD166",
+    "rodzina": "premium",
+    "opis": "Miękka poświata oddechu",
+    "nowosc": true
+  },
+  {
+    "id": 57,
+    "nazwa": "ice_crystal",
+    "hex": "#8BE9FD",
+    "rodzina": "premium",
+    "opis": "Krystaliczny lodowy blask",
+    "nowosc": true
+  },
+  {
+    "id": 58,
+    "nazwa": "lava",
+    "hex": "#FF3D2E",
+    "rodzina": "premium",
+    "opis": "Płynna lawa i żar",
+    "nowosc": true
+  },
+  {
+    "id": 59,
+    "nazwa": "moonlight",
+    "hex": "#A8B8FF",
+    "rodzina": "premium",
+    "opis": "Chłodne światło księżyca",
+    "nowosc": true
+  },
+  {
+    "id": 60,
+    "nazwa": "starlight",
+    "hex": "#FFF1A8",
+    "rodzina": "premium",
+    "opis": "Gwiezdne migotanie",
+    "nowosc": true
+  },
+  {
+    "id": 61,
+    "nazwa": "gold_rush",
+    "hex": "#FFB000",
+    "rodzina": "premium",
+    "opis": "Złoty pęd światła",
+    "nowosc": true
+  },
+  {
+    "id": 62,
+    "nazwa": "pixel",
+    "hex": "#B967FF",
+    "rodzina": "premium",
+    "opis": "Pikselowy skok kolorów",
+    "nowosc": true
+  },
+  {
+    "id": 63,
+    "nazwa": "scanline",
+    "hex": "#18E0FF",
+    "rodzina": "premium",
+    "opis": "Cybernetyczna linia skanu",
+    "nowosc": true
+  },
+  {
+    "id": 64,
+    "nazwa": "wave2",
+    "hex": "#38BDF8",
+    "rodzina": "premium",
+    "opis": "Głęboka fala świetlna",
+    "nowosc": true
+  },
+  {
+    "id": 65,
+    "nazwa": "ripple2",
+    "hex": "#00F5D4",
+    "rodzina": "premium",
+    "opis": "Koncentryczne pulsowanie",
+    "nowosc": true
+  },
+  {
+    "id": 66,
+    "nazwa": "bounce",
+    "hex": "#FF5DA2",
+    "rodzina": "premium",
+    "opis": "Sprężyste odbicie liter",
+    "nowosc": true
+  },
+  {
+    "id": 67,
+    "nazwa": "swing",
+    "hex": "#C77DFF",
+    "rodzina": "premium",
+    "opis": "Rytmiczne wychylenie",
+    "nowosc": true
+  },
+  {
+    "id": 68,
+    "nazwa": "jelly",
+    "hex": "#7AF0D1",
+    "rodzina": "premium",
+    "opis": "Miękkie żelowe falowanie",
+    "nowosc": true
+  },
+  {
+    "id": 69,
+    "nazwa": "orbit2",
+    "hex": "#5E60CE",
+    "rodzina": "premium",
+    "opis": "Kolorowa orbita",
+    "nowosc": true
+  },
+  {
+    "id": 70,
+    "nazwa": "comet2",
+    "hex": "#FF6B35",
+    "rodzina": "premium",
+    "opis": "Szybka kometa neonowa",
+    "nowosc": true
+  },
+  {
+    "id": 71,
+    "nazwa": "sparkle",
+    "hex": "#FFFFFF",
+    "rodzina": "premium",
+    "opis": "Czyste iskierki",
+    "nowosc": true
+  },
+  {
+    "id": 72,
+    "nazwa": "prism2",
+    "hex": "#D8B4FE",
+    "rodzina": "premium",
+    "opis": "Pryzmatyczny połysk",
+    "nowosc": true
+  },
+  {
+    "id": 73,
+    "nazwa": "breath",
+    "hex": "#94A3B8",
+    "rodzina": "premium",
+    "opis": "Spokojny oddech koloru",
+    "nowosc": true
+  },
+  {
+    "id": 74,
+    "nazwa": "gradient",
+    "hex": "#F15BB5",
+    "rodzina": "premium",
+    "opis": "Elegancki gradient",
+    "nowosc": true
+  },
+  {
+    "id": 75,
+    "nazwa": "mirror",
+    "hex": "#72EFDD",
+    "rodzina": "premium",
+    "opis": "Lustrzane przejście",
+    "nowosc": true
+  },
+  {
+    "id": 76,
+    "nazwa": "hack_matrix",
+    "hex": "#21DE4B",
+    "rodzina": "hakerskie",
+    "opis": "Hakerski deszcz kodu Matrix",
+    "nowosc": true
+  },
+  {
+    "id": 77,
+    "nazwa": "hack_terminal",
+    "hex": "#7CFF6B",
+    "rodzina": "hakerskie",
+    "opis": "Zielony terminal CRT",
+    "nowosc": true
+  },
+  {
+    "id": 78,
+    "nazwa": "hack_cyber",
+    "hex": "#00F0FF",
+    "rodzina": "hakerskie",
+    "opis": "Cyberpunkowy skan cyan/magenta",
+    "nowosc": true
+  },
+  {
+    "id": 79,
+    "nazwa": "hack_redteam",
+    "hex": "#FF1744",
+    "rodzina": "hakerskie",
+    "opis": "Czerwony tryb red team",
+    "nowosc": true
+  },
+  {
+    "id": 80,
+    "nazwa": "hack_zeroday",
+    "hex": "#FF00AA",
+    "rodzina": "hakerskie",
+    "opis": "Agresywny zero-day glitch",
+    "nowosc": true
+  },
+  {
+    "id": 81,
+    "nazwa": "hack_root",
+    "hex": "#A855F7",
+    "rodzina": "hakerskie",
+    "opis": "Fioletowy dostęp root",
+    "nowosc": true
+  },
+  {
+    "id": 82,
+    "nazwa": "hack_binary",
+    "hex": "#00FF88",
+    "rodzina": "hakerskie",
+    "opis": "Binarny strumień danych",
+    "nowosc": true
+  },
+  {
+    "id": 83,
+    "nazwa": "hack_glitch",
+    "hex": "#B6FF00",
+    "rodzina": "hakerskie",
+    "opis": "Kompresyjny glitch terminala",
+    "nowosc": true
+  },
+  {
+    "id": 84,
+    "nazwa": "hack_virus",
+    "hex": "#C6FF00",
+    "rodzina": "hakerskie",
+    "opis": "Zielono-czerwony wirus",
+    "nowosc": true
+  },
+  {
+    "id": 85,
+    "nazwa": "hack_overclock",
+    "hex": "#FF6D00",
+    "rodzina": "hakerskie",
+    "opis": "Przegrzany overclock",
+    "nowosc": true
   }
 ]
