@@ -17,16 +17,27 @@ public final class Narzedzia {
         return tekst.replace('&', '\u00A7').replace('\n', ' ').replace('\r', ' ');
     }
 
-    /** Kolor spustowy rozpoznawany przez Animacje 3.0. */
+    /**
+     * Kolor spustowy rozpoznawany przez Animacje 3.0.
+     *
+     * Minecraft nie rozpoznaje skrótu §xRRGGBB. Poprawny legacy zapis hex to
+     * §x§R§R§G§G§B§B; skrót powodował wyświetlanie kodu, np. 40E0FFwave,
+     * zamiast ukrycia koloru przez renderer tekstu.
+     */
     public static String spust(String hex) {
         String h = hex == null ? "FFFFFF" : hex.replace("#", "").trim();
         if (!h.matches("[0-9a-fA-F]{6}")) h = "FFFFFF";
-        return "\u00A7x" + h.toUpperCase(Locale.ROOT);
+        StringBuilder result = new StringBuilder("\u00A7x");
+        for (char digit : h.toUpperCase(Locale.ROOT).toCharArray()) {
+            result.append('\u00A7').append(digit);
+        }
+        return result.toString();
     }
 
+    /** Znormalizowany zapis prezentowany graczowi i w katalogu efektów. */
     public static String hex(String hex) {
         String h = hex == null ? "FFFFFF" : hex.replace("#", "").trim();
-        return h.matches("[0-9a-fA-F]{6}") ? h.toUpperCase(Locale.ROOT) : "FFFFFF";
+        return h.matches("[0-9a-fA-F]{6}") ? "#" + h.toUpperCase(Locale.ROOT) : "#FFFFFF";
     }
 
     public static String ogranicz(String tekst, int maks) {
