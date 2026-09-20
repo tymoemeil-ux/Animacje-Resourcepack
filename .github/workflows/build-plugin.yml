@@ -24,7 +24,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: false
       - name: Build plugin
         working-directory: plugin
         run: ./build.sh
